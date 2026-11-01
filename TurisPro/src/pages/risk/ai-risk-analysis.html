@@ -1,0 +1,670 @@
+<!DOCTYPE html><html class="h-full" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TurisPro - Análisis de riesgo con IA</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#bfc7d2",
+            "on-tertiary-container": "#fbfcff",
+            "surface-container-low": "#eef4fb",
+            "primary-container": "#007bb9",
+            "surface-container-high": "#e2e9f0",
+            "secondary-fixed-dim": "#89ceff",
+            "secondary-fixed": "#c9e6ff",
+            "on-secondary-fixed-variant": "#004c6e",
+            "background": "#f6faff",
+            "primary-fixed-dim": "#93ccff",
+            "surface-tint": "#006398",
+            "surface-variant": "#dde3ea",
+            "on-secondary-container": "#004666",
+            "on-tertiary-fixed-variant": "#004d68",
+            "inverse-primary": "#93ccff",
+            "inverse-surface": "#2a3137",
+            "on-primary-fixed": "#001d31",
+            "on-surface": "#161c21",
+            "on-error-container": "#93000a",
+            "primary-fixed": "#cce5ff",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#d4dbe2",
+            "on-tertiary-fixed": "#001e2c",
+            "on-primary-container": "#fdfcff",
+            "outline": "#707881",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-primary-fixed-variant": "#004b73",
+            "error": "#ba1a1a",
+            "surface-bright": "#f6faff",
+            "on-primary": "#ffffff",
+            "tertiary": "#006385",
+            "inverse-on-surface": "#ebf1f9",
+            "surface-container-highest": "#dde3ea",
+            "on-surface-variant": "#3f4850",
+            "tertiary-container": "#007ea7",
+            "surface-container": "#e8eff6",
+            "secondary": "#006591",
+            "surface": "#f6faff",
+            "secondary-container": "#39b8fd",
+            "tertiary-fixed-dim": "#77d1ff",
+            "on-secondary-fixed": "#001e2f",
+            "on-error": "#ffffff",
+            "on-background": "#161c21",
+            "tertiary-fixed": "#c2e8ff",
+            "primary": "#006194"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "gutter-sm": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "margin-sm": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "label-code": ["JetBrains Mono"],
+            "label-md": ["Inter"],
+            "display": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-sm": ["Hanken Grotesk"],
+            "headline-md": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"],
+            "title-lg": ["Inter"],
+            "display-mobile": ["Hanken Grotesk"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-code": ["12px", { "lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "title-lg": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "display-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1;
+    }
+    .gauge-glow {
+      filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.35));
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex selection:bg-secondary-fixed selection:text-on-secondary-fixed-variant">
+<!-- SIDEBAR NAVIGATION (Shared Component Anchor) -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background shadow-sm border-r border-outline-variant dark:border-outline">
+<div class="flex flex-col gap-6">
+<!-- Header with Official Logo -->
+<div class="px-5 pt-1">
+<div class="bg-surface-container-lowest/10 backdrop-blur-sm rounded-xl p-2.5 flex items-center justify-center border border-white/10">
+<img alt="TurisPro Brand Logo" class="h-10 w-auto object-contain brightness-105" src="../../../assets/images/logo-turispro.png">
+</div>
+<div class="mt-2 text-center">
+<p class="font-label-md text-label-md text-secondary-fixed-dim uppercase tracking-wider font-semibold">Riesgo &amp; Proveedores</p>
+</div>
+</div>
+<!-- Main Navigation Menu -->
+<nav class="flex flex-col space-y-1 px-3">
+<!-- 0: Inicio -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../dashboard/dashboard.html">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-md text-label-md">Inicio</span>
+</a>
+<!-- 1: Proveedores -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../providers/directory.html">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+<span class="font-label-md text-label-md">Proveedores</span>
+</a>
+<!-- 2: Comparar -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../providers/compare.html">
+<span class="material-symbols-outlined text-[20px]">compare_arrows</span>
+<span class="font-label-md text-label-md">Comparar</span>
+</a>
+<!-- 3: Documentos -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../providers/hotel-los-andes/documents.html">
+<span class="material-symbols-outlined text-[20px]">folder</span>
+<span class="font-label-md text-label-md">Documentos</span>
+</a>
+<!-- 4: Evaluaciones -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../providers/hotel-los-andes/evaluations.html">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span class="font-label-md text-label-md">Evaluaciones</span>
+</a>
+<!-- 5: Incidentes -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../providers/hotel-los-andes/incidents.html">
+<span class="material-symbols-outlined text-[20px]">report_problem</span>
+<span class="font-label-md text-label-md">Incidentes</span>
+</a>
+<!-- 6: Reportes -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../reports/executive-analytics.html">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-label-md text-label-md">Reportes</span>
+</a>
+<!-- 7: Análisis IA (ACTIVE TAB) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary font-semibold border-l-4 border-on-primary rounded-r-lg shadow-sm cursor-pointer select-none" href="ai-risk-analysis.html">
+<span class="material-symbols-outlined text-[20px] fill-icon">psychology</span>
+<span class="font-label-md text-label-md text-white font-semibold">Análisis IA</span>
+<span class="ml-auto bg-secondary-container/30 text-white text-[10px] font-bold px-2 py-0.5 rounded-full border border-secondary-container/40">Activo</span>
+</a>
+<!-- 8: Configuración -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../settings/settings.html">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer -->
+<div class="px-4 space-y-3">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-secondary-container hover:bg-secondary-fixed text-on-secondary-fixed font-title-md text-label-md rounded-xl transition-all shadow-sm" onclick="location.href='../providers/register.html'">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Registrar proveedor</span>
+</button>
+<div class="pt-3 border-t border-white/10 flex items-center gap-3 px-2">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed-dim/30 flex items-center justify-center text-on-primary border border-white/20">
+<span class="material-symbols-outlined text-[22px]">account_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-body-sm text-on-primary truncate font-semibold">Carlos Mendoza</span>
+<span class="font-label-md text-[11px] text-secondary-fixed-dim truncate">Auditor de Riesgo Sr.</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- MAIN VIEWPORT CONTAINER -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TOP NAVIGATION BAR (Shared Component Anchor) -->
+<header class="h-16 px-8 flex justify-between items-center bg-surface-container-lowest dark:bg-surface-container border-b border-outline-variant/60 shadow-sm sticky top-0 z-30">
+<div class="flex items-center gap-6 flex-1 max-w-2xl">
+<!-- Search bar -->
+<div class="relative w-full max-w-lg">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-bright border border-outline-variant/70 rounded-xl text-on-surface font-body-sm placeholder:text-outline/70 focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-fixed-dim text-sm transition-all" placeholder="Buscar por NIT, razón social, RNT o responsable..." type="text">
+</div>
+</div>
+<!-- Right Actions: Date, Icons & CTA -->
+<div class="flex items-center gap-4">
+<!-- Date display -->
+<div class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-low rounded-lg text-on-surface-variant font-label-md text-label-md border border-outline-variant/40">
+<span class="material-symbols-outlined text-[16px] text-primary">calendar_today</span>
+<span>17 de Mayo, 2024</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<button class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-surface-container-high transition-colors relative" title="Notificaciones">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-surface-container-high transition-colors" title="Centro de Ayuda">
+<span class="material-symbols-outlined text-[22px]">help_outline</span>
+</button>
+</div>
+<div class="h-6 w-px bg-outline-variant/50"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-container text-on-primary font-title-md text-body-sm rounded-xl transition-all shadow-sm" onclick="location.href='../providers/register.html'">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Registrar proveedor</span>
+</button>
+</div>
+</header>
+<!-- MAIN BODY CONTENT CANVAS -->
+<main class="flex-1 p-8 space-y-6 max-w-7xl w-full mx-auto">
+<!-- Breadcrumbs & Navigation Path -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<nav class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="../providers/directory.html">
+<span class="material-symbols-outlined text-[16px]">domain</span>
+<span>Proveedores</span>
+</a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="../providers/directory.html">Hoteles</a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="../providers/hotel-los-andes/detail.html">Hotel Los Andes</a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">psychology</span>
+<span>Análisis de riesgo con IA</span>
+</span>
+</nav>
+<!-- Right Quick Status Badge -->
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Auditoría Vigente 2024
+          </span>
+</div>
+</div>
+<!-- PROVIDER SELECTOR & TOP AUDIT HEADER -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider font-label-md">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Proveedor Auditado en Tiempo Real</span>
+</div>
+<!-- Highlighted Provider Dropdown Selector -->
+<div class="relative inline-block text-left">
+<button class="group flex items-center gap-3 text-left py-1.5 px-3 -ml-3 rounded-xl hover:bg-surface-container-low transition-colors border border-transparent hover:border-outline-variant/60">
+<div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-headline-md font-bold text-lg">
+                HA
+              </div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Hotel Los Andes</h1>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">expand_more</span>
+</div>
+<p class="font-label-code text-label-code text-on-surface-variant font-medium">
+                  NIT: 900.123.456-7 · Medellín, Colombia · HND-MED-049
+                </p>
+</div>
+</button>
+</div>
+</div>
+<!-- Header Action Buttons -->
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex items-center gap-2 px-3.5 py-2.5 bg-surface-bright hover:bg-surface-container-low text-on-surface font-title-md text-body-sm rounded-xl border border-outline-variant transition-all hover:border-primary/50 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">tune</span>
+<span>Configurar variables</span>
+</button>
+<button class="flex items-center gap-2 px-3.5 py-2.5 bg-surface-bright hover:bg-surface-container-low text-primary font-title-md text-body-sm rounded-xl border border-outline-variant transition-all hover:border-primary shadow-sm">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Recalcular score IA</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-container text-on-primary font-title-md text-body-sm rounded-xl transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>Exportar informe de riesgo (PDF)</span>
+</button>
+</div>
+</div>
+<!-- GOVERNANCE & AI COMPLIANCE BANNER -->
+<div class="bg-gradient-to-r from-sky-50 via-surface-container-low to-blue-50/40 rounded-2xl p-4 sm:p-5 border border-primary/20 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-start gap-3.5">
+<div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">smart_toy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-title-md text-body-md font-bold text-on-surface">IA Co-pilot</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed-variant">ISO 31000 Compliant</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Modelo predictivo de riesgo activo auditado bajo norma ISO 31000.
+            </p>
+</div>
+</div>
+<!-- Prominent Mandatory Human-in-the-loop Disclaimer -->
+<div class="w-full md:w-auto px-4 py-2.5 bg-white/90 border border-amber-300/80 rounded-xl shadow-xs flex items-center gap-2.5 text-amber-900 shrink-0">
+<span class="material-symbols-outlined text-[20px] text-amber-600 fill-icon">shield_with_heart</span>
+<span class="font-title-md text-body-sm font-semibold">
+            Análisis de apoyo. La decisión final la toma una persona.
+          </span>
+</div>
+</div>
+<!-- MAIN AUDIT BENTO GRID: SCORE & GAUGE + CONTINUOUS SEVERITY SPECTRUM -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- 3. GAUGE CIRCULAR IMPACTANTE (Left Card - 5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-2xl p-6 sm:p-7 border border-outline-variant/60 shadow-sm flex flex-col justify-between relative overflow-hidden">
+<!-- Top subtle accent bar -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 via-teal-500 to-sky-500"></div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">speed</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Score Global de Riesgo</h2>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wide uppercase">
+                Auditado Hoy
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Evaluación multifactorial sintetizada por el motor predictivo de TurisPro.
+            </p>
+</div>
+<!-- Circular Gauge Representation -->
+<div class="my-6 flex flex-col items-center justify-center">
+<div class="relative w-56 h-56 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 200 200">
+<!-- Background track -->
+<circle cx="100" cy="100" fill="transparent" r="78" stroke="#E2E8F0" stroke-linecap="round" stroke-width="16"></circle>
+<!-- Progress circle (Value: 18 / 100) -> Circumference = 2 * PI * 78 ≈ 490. Stroke-dashoffset = 490 - (490 * 0.18) ≈ 401.8 -->
+<circle class="gauge-glow transition-all duration-1000 ease-out" cx="100" cy="100" fill="transparent" r="78" stroke="#10b981" stroke-dasharray="490" stroke-dashoffset="401.8" stroke-linecap="round" stroke-width="16"></circle>
+</svg>
+<!-- Central Score Metrics -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<div class="flex items-baseline">
+<span class="font-display text-display font-extrabold text-on-surface tracking-tight">18</span>
+<span class="font-title-lg text-title-lg font-medium text-outline">/100</span>
+</div>
+<!-- Badge distintivo RIESGO BAJO en verde esmeralda corporativo -->
+<div class="mt-1 px-3 py-0.5 rounded-full bg-emerald-500 text-white font-title-md text-xs font-bold uppercase tracking-wider shadow-sm">
+                  RIESGO BAJO
+                </div>
+<span class="font-body-sm text-[12px] text-on-surface-variant mt-1">
+                  Nivel de riesgo estimado: bajo
+                </span>
+</div>
+</div>
+<!-- Trend indicator -->
+<div class="mt-4 flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50 text-emerald-800 rounded-xl border border-emerald-200 text-xs font-semibold">
+<span class="material-symbols-outlined text-[18px] text-emerald-600 font-bold">trending_down</span>
+<span>↓ -3 pts respecto al trimestre anterior (Mejora en estabilidad)</span>
+</div>
+</div>
+<!-- Model Confidence Footer -->
+<div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between text-xs text-on-surface-variant font-label-md">
+<span class="flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span>Confianza del algoritmo: <strong class="text-on-surface">98.4%</strong></span>
+</span>
+<span class="text-outline font-label-code">(+12,000 registros turísticos)</span>
+</div>
+</div>
+<!-- 4. BARRA HORIZONTAL DE ESPECTRO & FACTORES (Right Card - 7 cols) -->
+<div class="lg:col-span-7 space-y-6 flex flex-col justify-between">
+<!-- SEVERITY SPECTRUM CARD (0 a 100 con marcador en 18) -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-title-lg font-bold text-on-surface">
+                Espectro de Severidad y Clasificación
+              </h3>
+<span class="font-label-code text-xs text-on-surface-variant bg-surface-container-low px-2 py-1 rounded">
+                Escala Normalizada ISO 31000
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+              Distribución de rangos de tolerancia de riesgo para prestadores de servicios turísticos.
+            </p>
+<!-- Spectrum horizontal bar container with pointer -->
+<div class="pt-8 pb-3 px-2">
+<div class="relative">
+<!-- Floating Tooltip Pointer exactly at 18% -->
+<div class="absolute -top-10 left-[18%] -translate-x-1/2 flex flex-col items-center pointer-events-none z-10">
+<div class="bg-on-surface text-surface-container-lowest px-2.5 py-1 rounded-md text-[11px] font-title-md font-bold whitespace-nowrap shadow-md flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+<span>Hotel Los Andes: 18 / 100 (Riesgo Bajo)</span>
+</div>
+<div class="w-2 h-2 bg-on-surface transform rotate-45 -mt-1"></div>
+</div>
+<!-- Vertical indicator line down the bar at 18% -->
+<div class="absolute -top-2 left-[18%] -translate-x-1/2 w-4 h-8 flex items-center justify-center pointer-events-none z-10">
+<div class="w-1 h-6 bg-white rounded-full ring-2 ring-emerald-600 shadow-md"></div>
+</div>
+<!-- Horizontal Segmented Bar (0-30, 31-70, 71-100) -->
+<div class="h-4 w-full rounded-full flex overflow-hidden shadow-inner bg-surface-container-high p-0.5">
+<!-- Tramo Bajo: 0 a 30 (30%) -->
+<div class="h-full w-[30%] bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-l-full relative group"></div>
+<!-- Tramo Medio: 31 a 70 (40%) -->
+<div class="h-full w-[40%] bg-gradient-to-r from-amber-400 to-amber-500 mx-0.5"></div>
+<!-- Tramo Alto: 71 a 100 (30%) -->
+<div class="h-full w-[30%] bg-gradient-to-r from-rose-500 to-red-600 rounded-r-full"></div>
+</div>
+</div>
+<!-- Legends at breakpoints: 0, 30, 70, 100 -->
+<div class="relative w-full mt-3 font-label-code text-[11px] text-outline flex justify-between select-none">
+<div class="flex flex-col items-start">
+<span class="font-bold text-emerald-700">0</span>
+<span class="text-[10px] text-emerald-700 font-sans font-medium">Óptimo</span>
+</div>
+<div class="flex flex-col items-center -ml-6">
+<span class="font-bold text-emerald-600">30</span>
+<span class="text-[10px] text-emerald-600 font-sans font-medium">Riesgo Bajo</span>
+</div>
+<div class="flex flex-col items-center -mr-6">
+<span class="font-bold text-amber-600">70</span>
+<span class="text-[10px] text-amber-600 font-sans font-medium">Riesgo Medio</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-bold text-rose-600">100</span>
+<span class="text-[10px] text-rose-600 font-sans font-medium">Crítico</span>
+</div>
+</div>
+</div>
+<!-- Contextual interpretation chip -->
+<div class="mt-4 pt-3 border-t border-outline-variant/30 flex items-center justify-between text-xs">
+<span class="text-on-surface-variant font-body-sm">
+                Posición relativa: <strong class="text-emerald-700">Dentro del percentil 12% más seguro</strong> de alojamientos en Antioquia.
+              </span>
+<a class="text-primary hover:underline font-semibold font-label-md flex items-center gap-0.5" href="#">
+<span>Ver criterios de ponderación</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 6. EXPLICACIÓN Y DIAGNÓSTICO DEL MODELO IA -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/60 shadow-sm relative overflow-hidden">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-white flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px] fill-icon">psychology</span>
+</div>
+<div class="space-y-1.5">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-title-md font-bold text-on-surface">
+                    Explicación del modelo IA
+                  </h3>
+<span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold tracking-wide uppercase">
+                    Diagnóstico Asistido
+                  </span>
+</div>
+<!-- Verbatim explanation quote -->
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed bg-surface-container-low/60 p-3.5 rounded-xl border border-outline-variant/40 italic">
+                  "El proveedor presenta un nivel de riesgo bajo debido a sus evaluaciones positivas, su buen historial de cumplimiento y el bajo número de incidentes registrados. La póliza próxima a vencer es el único factor de atención."
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. FACTORES QUE INFLUYEN EN EL MODELO (Desglose analítico estructurado) -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 border border-outline-variant/60 shadow-sm space-y-5">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">fact_check</span>
+<span>Factores auditados por el algoritmo</span>
+</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Desglose detallado de variables clave con su impacto individual en la ponderación del score.
+            </p>
+</div>
+<div class="flex items-center gap-2 font-label-md text-xs">
+<span class="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 3 Favorables
+            </span>
+<span class="inline-flex items-center gap-1 text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200">
+<span class="material-symbols-outlined text-[14px]">warning</span> 1 Atención
+            </span>
+</div>
+</div>
+<!-- Factors Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Factor 1: Evaluaciones positivas -->
+<div class="bg-surface-container-low/40 rounded-xl p-4 border border-emerald-200/80 hover:border-emerald-300 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</span>
+<span class="font-label-code text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  + Ponderación Alta
+                </span>
+</div>
+<h4 class="font-title-md text-body-md font-bold text-on-surface">
+                Evaluaciones positivas (4.6/5)
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-snug">
+                24 evaluaciones registradas sin quejas críticas de servicio.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/30 flex items-center justify-between text-xs text-outline">
+<span>Fuente: Operaciones</span>
+<span class="text-emerald-700 font-semibold">Score: 92/100</span>
+</div>
+</div>
+<!-- Factor 2: Buen historial de cumplimiento -->
+<div class="bg-surface-container-low/40 rounded-xl p-4 border border-emerald-200/80 hover:border-emerald-300 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</span>
+<span class="font-label-code text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  + Regulatorio OK
+                </span>
+</div>
+<h4 class="font-title-md text-body-md font-bold text-on-surface">
+                Buen historial de cumplimiento
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-snug">
+                Registro Nacional de Turismo RNT 45892 vigente hasta 2027.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/30 flex items-center justify-between text-xs text-outline">
+<span>Fuente: MinComercio</span>
+<span class="text-emerald-700 font-semibold">Score: 98/100</span>
+</div>
+</div>
+<!-- Factor 3: Bajo número de incidentes -->
+<div class="bg-surface-container-low/40 rounded-xl p-4 border border-emerald-200/80 hover:border-emerald-300 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</span>
+<span class="font-label-code text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  + Control Operativo
+                </span>
+</div>
+<h4 class="font-title-md text-body-md font-bold text-on-surface">
+                Bajo número de incidentes (2)
+              </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-snug">
+                1 resuelto favorablemente, 1 de severidad media bajo seguimiento controlado.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/30 flex items-center justify-between text-xs text-outline">
+<span>Bitácora de Riesgos</span>
+<span class="text-emerald-700 font-semibold">Score: 85/100</span>
+</div>
+</div>
+<!-- Factor 4: Póliza próxima a vencer (Alerta) -->
+<div class="bg-amber-50/50 rounded-xl p-4 border-2 border-amber-300 hover:border-amber-400 transition-all flex flex-col justify-between shadow-xs">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px] font-bold fill-icon">warning</span>
+</span>
+<span class="font-label-code text-[11px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded border border-amber-300 animate-pulse">
+                  ! Factor Crítico
+                </span>
+</div>
+<h4 class="font-title-md text-body-md font-bold text-amber-950">
+                Póliza próxima a vencer (05/10/2026)
+              </h4>
+<p class="font-body-sm text-body-sm text-amber-900 mt-1.5 leading-snug">
+                Póliza de Responsabilidad Civil Suramericana #8942-01 vence en 18 días.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between text-xs text-amber-800 font-medium">
+<span>Aseguradora Sura</span>
+<span class="font-bold text-amber-900">Requiere Gestión</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 7. RECOMENDACIÓN Y PLAN DE ACCIÓN SUGERIDO -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 sm:p-7 border border-outline-variant/60 shadow-sm relative overflow-hidden">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<div class="space-y-3 max-w-3xl">
+<div class="flex items-center gap-2">
+<span class="w-9 h-9 rounded-xl bg-secondary text-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">
+                Recomendaciones preventivas generadas por IA
+              </h3>
+</div>
+<!-- Recommendation text verbatim -->
+<p class="font-body-lg text-body-lg text-on-surface-variant font-medium leading-relaxed pl-1">
+              "Solicitar la renovación de la póliza antes de su vencimiento, realizar seguimiento periódico y actualizar la evaluación en el próximo periodo."
+            </p>
+<div class="flex items-center gap-4 text-xs font-label-md text-outline pl-1 pt-1">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
+                Prioridad: Media / Preventiva
+              </span>
+<span>•</span>
+<span>Impacto estimado al cumplir: Score &lt; 15 pts</span>
+</div>
+</div>
+<!-- Quick Action Buttons in one click -->
+<div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0 min-w-[280px]">
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-container text-on-primary font-title-md text-body-sm rounded-xl transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+<span>Enviar recordatorio de póliza al proveedor</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 bg-surface-bright hover:bg-surface-container-low text-on-surface font-title-md text-body-sm rounded-xl border border-outline-variant transition-all hover:border-primary/50 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">calendar_add_on</span>
+<span>Crear tarea de seguimiento en calendario</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-title-md text-body-sm rounded-xl border border-emerald-300 transition-all shadow-xs">
+<span class="material-symbols-outlined text-[18px] text-emerald-600 font-bold">check_circle</span>
+<span>Aprobar auditoría preventiva</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 8. AVISO LEGAL Y ÉTICO DE IA -->
+<footer class="bg-surface-container-low/70 border border-outline-variant/60 rounded-2xl p-5 text-on-surface-variant font-label-md">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-start sm:items-center gap-3">
+<span class="material-symbols-outlined text-outline text-[22px] shrink-0">gavel</span>
+<p class="text-body-sm leading-relaxed">
+<strong class="text-on-surface font-semibold">Aviso de transparencia algorítmica:</strong> Análisis de apoyo. La decisión final la toma una persona. Cumplimiento normativo ISO 31000 y principios éticos de gobernanza de datos de TurisPro.
+            </p>
+</div>
+<div class="flex items-center gap-3 shrink-0 text-xs text-outline font-label-code">
+<span>Versión Modelo: 3.4.2-pred</span>
+<span>•</span>
+<a class="text-primary hover:underline font-sans font-medium" href="#">Ver memoria técnica</a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

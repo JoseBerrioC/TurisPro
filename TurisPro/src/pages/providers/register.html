@@ -1,0 +1,686 @@
+<!DOCTYPE html><html class="h-full bg-surface" lang="es" style="width: 1280px; height: 2044px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TurisPro - Registrar nuevo proveedor</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed": "#001945",
+            "on-secondary": "#ffffff",
+            "primary-fixed-dim": "#a9c7ff",
+            "secondary": "#2b5bb5",
+            "on-surface-variant": "#424752",
+            "inverse-primary": "#a9c7ff",
+            "on-tertiary-fixed-variant": "#753400",
+            "surface": "#f9f9ff",
+            "error": "#ba1a1a",
+            "on-background": "#111c2d",
+            "secondary-container": "#759efd",
+            "secondary-fixed": "#d9e2ff",
+            "surface-container-high": "#dee8ff",
+            "on-tertiary-container": "#ffdece",
+            "surface-container": "#e7eeff",
+            "on-surface": "#111c2d",
+            "primary": "#004d99",
+            "surface-container-low": "#f0f3ff",
+            "tertiary": "#813900",
+            "tertiary-fixed-dim": "#ffb68c",
+            "inverse-surface": "#263143",
+            "primary-container": "#1565c0",
+            "tertiary-fixed": "#ffdbc9",
+            "on-primary-container": "#dae5ff",
+            "on-primary-fixed": "#001b3d",
+            "on-primary-fixed-variant": "#00468c",
+            "surface-container-highest": "#d8e3fb",
+            "surface-variant": "#d8e3fb",
+            "error-container": "#ffdad6",
+            "secondary-fixed-dim": "#b0c6ff",
+            "outline-variant": "#c2c6d4",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed": "#d6e3ff",
+            "on-secondary-fixed-variant": "#00429c",
+            "outline": "#727783",
+            "on-error": "#ffffff",
+            "surface-bright": "#f9f9ff",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-dim": "#cfdaf2",
+            "on-tertiary-fixed": "#321200",
+            "tertiary-container": "#a64c00",
+            "background": "#f9f9ff",
+            "on-secondary-container": "#00337c",
+            "surface-tint": "#005db7",
+            "on-error-container": "#93000a",
+            "inverse-on-surface": "#ecf1ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.5rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "table-header": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-metric": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-sm": ["Inter"],
+            "table-cell": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-metric": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md overflow-x-hidden">
+<!-- Side Navigation Bar (Anchored Component) -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm select-none" style="background-color: #0D47A1;">
+<div class="flex flex-col">
+<!-- Header Brand Logo -->
+<div class="px-6 pt-2 pb-5 border-b border-primary-container/40 flex items-center justify-between">
+<div class="flex items-center gap-3"><a href="#" class="flex items-center block"><img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-10 w-auto max-w-[190px] object-contain rounded-md shadow-xs"></a></div>
+</div>
+<!-- Action Button CTA -->
+<div class="px-4 py-4">
+<button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary px-4 py-2.5 rounded-lg text-label-md font-label-md shadow hover:bg-primary-container/90 transition-all cursor-pointer" type="button">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+<span class="">+ Registrar proveedor</span>
+</button>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex flex-col space-y-0.5 px-2">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../dashboard/dashboard.html">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Inicio</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary font-semibold border-l-4 border-on-primary rounded-r-lg cursor-pointer" href="directory.html">
+<span class="material-symbols-outlined text-xl" data-icon="domain" data-weight="fill" style="font-variation-settings: 'FILL' 1;">domain</span>
+<span class="text-label-md font-label-md">Proveedores</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="compare.html">
+<span class="material-symbols-outlined text-xl" data-icon="compare_arrows">compare_arrows</span>
+<span class="text-label-md font-label-md">Comparar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/documents.html">
+<span class="material-symbols-outlined text-xl" data-icon="folder">folder</span>
+<span class="text-label-md font-label-md">Documentos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/evaluations.html">
+<span class="material-symbols-outlined text-xl" data-icon="fact_check">fact_check</span>
+<span class="text-label-md font-label-md">Evaluaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/incidents.html">
+<span class="material-symbols-outlined text-xl" data-icon="report_problem">report_problem</span>
+<span class="text-label-md font-label-md">Incidentes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../reports/executive-analytics.html">
+<span class="material-symbols-outlined text-xl" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Reportes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../risk/ai-risk-analysis.html">
+<span class="material-symbols-outlined text-xl" data-icon="psychology">psychology</span>
+<span class="text-label-md font-label-md">Análisis IA</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../settings/settings.html">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Configuración</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer / User Profile -->
+<div class="px-4 pt-3 border-t border-primary-container/40">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-primary-container/30 hover:bg-primary-container/50 transition-colors cursor-pointer">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed text-primary flex items-center justify-center font-bold text-label-md">
+<span class="material-symbols-outlined text-xl" data-icon="account_circle">account_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-label-md font-label-md text-on-primary truncate">Carlos Mendoza</span>
+<span class="text-label-sm font-label-sm text-secondary-fixed-dim truncate">Administrador</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Header (Anchored Component) -->
+<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<!-- Left Search Area -->
+<div class="flex items-center gap-4 w-96">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg" data-icon="search">search</span>
+<input class="w-full pl-9 pr-4 py-1.5 bg-surface-container-low border border-outline-variant/60 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Buscar proveedores, servicios, NIT o documentos..." type="text">
+</div>
+</div>
+<!-- Right Header Elements -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-outline text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</span>
+<span class="">Hoy, 24/10/2024</span>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<!-- Action Icons -->
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-full transition-colors relative" title="Ayuda" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="help_outline">help_outline</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-full transition-colors relative" title="Notificaciones" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<!-- User Menu Anchor -->
+<div class="flex items-center gap-3 pl-1">
+<div class="text-right">
+<p class="text-label-md font-label-md text-on-surface leading-tight">Carlos Mendoza</p>
+<p class="text-label-sm font-label-sm text-outline">Riesgo &amp; Cumplimiento</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-label-md border border-primary-fixed-dim">
+          CM
+        </div>
+</div>
+</div>
+</header>
+<!-- Main Canvas Container -->
+<main class="ml-64 pt-20 pb-28 px-8 min-h-screen bg-surface custom-scroll">
+<div class="max-w-6xl mx-auto space-y-6">
+<!-- Breadcrumbs & Heading -->
+<div class="pt-2">
+<nav class="flex items-center gap-2 text-body-sm font-body-sm text-outline mb-2">
+<a class="hover:text-primary transition-colors" href="directory.html">Proveedores</a>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-semibold">Registrar nuevo proveedor</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Registrar nuevo proveedor</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+              Completa la información legal, operativa y documental para ingresar el proveedor y habilitar la estimación de riesgo con IA.
+            </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 text-label-sm font-label-sm rounded-full bg-[#E3F2FD] text-[#0D47A1]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#1565C0]"></span>
+              Modo Registro Rápido
+            </span>
+</div>
+</div>
+</div>
+<!-- Co-pilot AI Warning Banner -->
+<div class="rounded-xl border border-blue-200/80 bg-blue-50/70 p-4.5 flex items-start gap-3.5 shadow-sm" style="background-color: #F0F7FF; border-color: #B9DAFB;">
+<div class="p-2 rounded-lg bg-white text-primary shadow-xs flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="psychology" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<h3 class="text-label-md font-label-md text-primary">Análisis de apoyo con IA Co-pilot</h3>
+<span class="px-2 py-0.2 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">ISO 31000 Compliant</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+            Análisis de apoyo. La decisión final la toma una persona. Los datos ingresados alimentan el modelo predictivo de riesgo bajo norma ISO 31000.
+          </p>
+</div>
+</div>
+<form class="space-y-6" id="providerForm" onsubmit="event.preventDefault(); window.location.href='directory.html';">
+<!-- Sección 1: Información General -->
+<section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
+<div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+<div class="flex items-center gap-2.5">
+<span class="w-7 h-7 rounded-md bg-blue-50 text-primary flex items-center justify-center font-bold text-label-md">1</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Información general</h2>
+<p class="text-body-sm font-body-sm text-outline">Datos de identificación tributaria y contacto corporativo oficial.</p>
+</div>
+</div>
+<span class="text-body-sm font-body-sm text-outline"><span class="text-error font-bold">*</span> Campos obligatorios</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+<!-- Nombre de empresa -->
+<div class="space-y-1.5 lg:col-span-2">
+<label class="block text-label-md font-label-md text-slate-700" for="company_name">
+                Nombre de empresa / Razón social <span class="text-error">*</span>
+</label>
+<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="company_name" name="company_name" placeholder="ej: Hoteles del Caribe S.A.S." required="" type="text" value="Hoteles del Caribe S.A.S.">
+</div>
+<!-- NIT -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="nit">
+                NIT / Identificación fiscal <span class="text-error">*</span>
+</label>
+<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400 font-mono text-sm" id="nit" name="nit" placeholder="ej: 900.123.456-7" required="" type="text" value="900.123.456-7">
+</div>
+<!-- Tipo de proveedor -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="provider_type">
+                Tipo de proveedor <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all appearance-none cursor-pointer pr-10" id="provider_type" name="provider_type" required="">
+<option selected="" value="hotel">Hotel / Cadena Hotelera</option>
+<option value="transporte">Transporte Terrestre Especial</option>
+<option value="operador">Operador Turístico / Receptivo</option>
+<option value="aerolinea">Aerolínea Comercial</option>
+<option value="guia">Guianza Turística Certificada</option>
+<option value="otro">Otro Prestador de Servicios</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-slate-400 pointer-events-none text-xl" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Persona de contacto -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="contact_name">
+                Persona de contacto <span class="text-error">*</span>
+</label>
+<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="contact_name" name="contact_name" placeholder="ej: Laura Gómez Mejía" required="" type="text" value="Laura Gómez Mejía">
+</div>
+<!-- Teléfono -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="phone">
+                Teléfono <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="call">call</span>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="phone" name="phone" placeholder="ej: +57 (605) 664 1234" required="" type="tel" value="+57 (605) 664 1234">
+</div>
+</div>
+<!-- Correo electrónico -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="email">
+                Correo electrónico <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="mail">mail</span>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="email" name="email" placeholder="ej: contacto@hoteldelcaribe.com" required="" type="email" value="contacto@hoteldelcaribe.com">
+</div>
+</div>
+<!-- Dirección -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="address">
+                Dirección <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="location_on">location_on</span>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="address" name="address" placeholder="ej: Calle 32 # 8-45, Bocagrande" required="" type="text" value="Calle 32 # 8-45, Bocagrande">
+</div>
+</div>
+<!-- Ciudad principal -->
+<div class="space-y-1.5">
+<label class="block text-label-md font-label-md text-slate-700" for="city">
+                Ciudad principal <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="apartment">apartment</span>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="city" name="city" placeholder="ej: Cartagena de Indias, Bolívar" required="" type="text" value="Cartagena de Indias, Bolívar">
+</div>
+</div>
+</div>
+</section>
+<!-- Sección 2: Servicios Ofrecidos -->
+<section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
+<div class="flex items-center gap-2.5 pb-4 mb-4 border-b border-slate-100">
+<span class="w-7 h-7 rounded-md bg-blue-50 text-primary flex items-center justify-center font-bold text-label-md">2</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Servicios ofrecidos</h2>
+<p class="text-body-sm font-body-sm text-outline">Selecciona todas las categorías que apliquen para este proveedor.</p>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 pt-2">
+<!-- Hotel (Checked) -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border-2 border-primary bg-blue-50/60 cursor-pointer transition-all shadow-xs">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="hotel">hotel</span>
+<span class="text-label-md font-label-md text-slate-800 font-semibold">Hotel</span>
+</div>
+</label>
+<!-- Restaurante (Checked) -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border-2 border-primary bg-blue-50/60 cursor-pointer transition-all shadow-xs">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="restaurant">restaurant</span>
+<span class="text-label-md font-label-md text-slate-800 font-semibold">Restaurante</span>
+</div>
+</label>
+<!-- Transporte -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="directions_bus">directions_bus</span>
+<span class="text-body-md font-body-md text-slate-700">Transporte</span>
+</div>
+</label>
+<!-- Operador turístico -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="travel_explore">travel_explore</span>
+<span class="text-body-md font-body-md text-slate-700">Operador turístico</span>
+</div>
+</label>
+<!-- Guía -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="hiking">hiking</span>
+<span class="text-body-md font-body-md text-slate-700">Guía</span>
+</div>
+</label>
+<!-- Aerolínea -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="flight">flight</span>
+<span class="text-body-md font-body-md text-slate-700">Aerolínea</span>
+</div>
+</label>
+<!-- Aseguradora -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="verified_user">verified_user</span>
+<span class="text-body-md font-body-md text-slate-700">Aseguradora</span>
+</div>
+</label>
+<!-- Otro -->
+<label class="flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="more_horiz">more_horiz</span>
+<span class="text-body-md font-body-md text-slate-700">Otro</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Sección 3: Cobertura Geográfica -->
+<section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
+<div class="flex items-center gap-2.5 pb-4 mb-4 border-b border-slate-100">
+<span class="w-7 h-7 rounded-md bg-blue-50 text-primary flex items-center justify-center font-bold text-label-md">3</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Cobertura geográfica</h2>
+<p class="text-body-sm font-body-sm text-outline">Selector múltiple de ciudades, departamentos o regiones donde opera el proveedor.</p>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Search & Quick Add Input -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="map">map</span>
+<input class="w-full pl-9 pr-4 py-2 bg-white border border-slate-300 rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" placeholder="Escribe ciudad, departamento o macro-región turística..." type="text">
+</div>
+<button class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-primary text-primary hover:bg-blue-50 text-label-md font-label-md transition-colors cursor-pointer shrink-0" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+<span class="">+ Agregar cobertura</span>
+</button>
+</div>
+<!-- Active Chips / Badges Container -->
+<div class="pt-1">
+<label class="block text-label-sm font-label-sm text-slate-500 uppercase tracking-wider mb-2">Coberturas seleccionadas:</label>
+<div class="flex flex-wrap items-center gap-2">
+<!-- Chip 1 -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface border border-outline-variant/60 text-label-md font-label-md">
+<span class="material-symbols-outlined text-base text-primary" data-icon="pin_drop">pin_drop</span>
+<span class="">Cartagena (Bolívar)</span>
+<button class="text-outline hover:text-error transition-colors flex items-center" title="Eliminar Cartagena" type="button">
+<span class="material-symbols-outlined text-base" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 2 -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface border border-outline-variant/60 text-label-md font-label-md">
+<span class="material-symbols-outlined text-base text-primary" data-icon="pin_drop">pin_drop</span>
+<span class="">Barranquilla (Atlántico)</span>
+<button class="text-outline hover:text-error transition-colors flex items-center" title="Eliminar Barranquilla" type="button">
+<span class="material-symbols-outlined text-base" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 3 -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface border border-outline-variant/60 text-label-md font-label-md">
+<span class="material-symbols-outlined text-base text-primary" data-icon="pin_drop">pin_drop</span>
+<span class="">Santa Marta (Magdalena)</span>
+<button class="text-outline hover:text-error transition-colors flex items-center" title="Eliminar Santa Marta" type="button">
+<span class="material-symbols-outlined text-base" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 4 -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-100/70 text-primary border border-blue-200 text-label-md font-label-md">
+<span class="material-symbols-outlined text-base text-primary" data-icon="travel_explore">travel_explore</span>
+<span class="">Región Caribe</span>
+<button class="text-primary hover:text-error transition-colors flex items-center" title="Eliminar Región Caribe" type="button">
+<span class="material-symbols-outlined text-base" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sección 4: Documentación y Vigencias -->
+<section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
+<div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+<div class="flex items-center gap-2.5">
+<span class="w-7 h-7 rounded-md bg-blue-50 text-primary flex items-center justify-center font-bold text-label-md">4</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Documentación y Vigencias</h2>
+<p class="text-body-sm font-body-sm text-outline">Carga los soportes regulatorios y define los vencimientos para el monitoreo de riesgo activo.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-slate-500">
+<span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
+<span class="">Validación OCR automática</span>
+</div>
+</div>
+<!-- Drag and Drop Zone -->
+<div class="border-2 border-dashed border-slate-300 hover:border-primary/80 rounded-xl p-8 text-center bg-slate-50/50 hover:bg-blue-50/20 transition-all cursor-pointer group mb-6">
+<div class="w-12 h-12 mx-auto rounded-full bg-blue-100 text-primary flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface font-medium">
+              Arrastra aquí los documentos o <span class="text-primary underline font-semibold">haz clic para examinar</span>
+</p>
+<p class="text-body-sm font-body-sm text-outline mt-1">
+              Admite formatos PDF, PNG, JPG (Tamaño máximo hasta 10MB por archivo)
+            </p>
+</div>
+<!-- Documents Checklist & Expiration Selector -->
+<div class="space-y-3">
+<label class="block text-label-sm font-label-sm text-slate-500 uppercase tracking-wider">Documentos requeridos para habilitación:</label>
+<!-- Doc 1: RNT -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
+<div class="flex items-start gap-3.5">
+<div class="p-2 rounded bg-red-50 text-red-700 shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-md font-label-md text-slate-900 font-semibold">Registro Nacional de Turismo (RNT)</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
+                      Cargado
+                    </span>
+</div>
+<p class="text-body-sm font-body-sm text-slate-500 mt-0.5">rnt_vigente_2024.pdf <span class="text-slate-400">•</span> 2.4 MB</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex items-center gap-2">
+<label class="text-label-sm font-label-sm text-slate-600" for="exp_rnt">Fecha de vencimiento:</label>
+<input class="bg-white border border-slate-300 rounded-md px-2.5 py-1 text-table-cell font-table-cell text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer" id="exp_rnt" type="date" value="2025-03-31">
+</div>
+<button class="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100 transition-colors" title="Ver documento" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-error rounded hover:bg-slate-100 transition-colors" title="Reemplazar archivo" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="delete_outline">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Doc 2: Póliza -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
+<div class="flex items-start gap-3.5">
+<div class="p-2 rounded bg-red-50 text-red-700 shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-md font-label-md text-slate-900 font-semibold">Póliza de Responsabilidad Civil</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
+                      Cargado
+                    </span>
+</div>
+<p class="text-body-sm font-body-sm text-slate-500 mt-0.5">poliza_contractual.pdf <span class="text-slate-400">•</span> 4.1 MB</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex items-center gap-2">
+<label class="text-label-sm font-label-sm text-slate-600" for="exp_poliza">Fecha de vencimiento:</label>
+<input class="bg-white border border-slate-300 rounded-md px-2.5 py-1 text-table-cell font-table-cell text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer" id="exp_poliza" type="date" value="2024-12-15">
+</div>
+<button class="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100 transition-colors" title="Ver documento" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-error rounded hover:bg-slate-100 transition-colors" title="Reemplazar archivo" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="delete_outline">delete_outline</span>
+</button>
+</div>
+</div>
+<!-- Doc 3: RUT -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
+<div class="flex items-start gap-3.5">
+<div class="p-2 rounded bg-red-50 text-red-700 shrink-0">
+<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-md font-label-md text-slate-900 font-semibold">RUT actualizado (DIAN)</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
+                      Cargado
+                    </span>
+</div>
+<p class="text-body-sm font-body-sm text-slate-500 mt-0.5">rut_2024.pdf <span class="text-slate-400">•</span> 1.1 MB</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex items-center gap-2">
+<label class="text-label-sm font-label-sm text-slate-600">Fecha de vencimiento:</label>
+<div class="px-3 py-1 bg-slate-100 border border-slate-200 rounded-md text-slate-600 text-table-cell font-table-cell">
+                    Indefinido
+                  </div>
+</div>
+<button class="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100 transition-colors" title="Ver documento" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-error rounded hover:bg-slate-100 transition-colors" title="Reemplazar archivo" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="delete_outline">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Barra inferior de acciones (Sticky Docked Action Bar) -->
+<div class="sticky bottom-0 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 z-20">
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-slate-500">
+<span class="material-symbols-outlined text-green-600 text-lg" data-icon="check_circle">check_circle</span>
+<span class="">Todos los datos requeridos validados para estimación de riesgo.</span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<!-- Botón Secundario Cancelar -->
+<button class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-label-md font-label-md font-medium transition-colors shadow-xs" type="button">
+              Cancelar
+            </button>
+<!-- Botón Primario Guardar -->
+<button class="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-white font-medium text-label-md font-label-md shadow-sm transition-all cursor-pointer" onclick="triggerFeedback()" onmouseout="this.style.backgroundColor='#1565C0'" onmouseover="this.style.backgroundColor='#0D47A1'" style="background-color: #1565C0;" type="submit">
+<span class="material-symbols-outlined text-lg" data-icon="save">save</span>
+<span class="">Guardar proveedor</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</main>
+<!-- Success Toast / Notification (Visible Feedback) -->
+<aside class="fixed bottom-6 right-8 max-w-md bg-slate-900 text-white p-4 rounded-xl shadow-2xl border border-slate-700 flex items-start gap-3.5 z-50 transition-all duration-300 transform translate-y-0" id="feedbackToast">
+<div class="p-1 rounded-full bg-emerald-500/20 text-emerald-400 mt-0.5">
+<span class="material-symbols-outlined text-lg" data-icon="check">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-label-md font-label-md font-semibold text-white">✓ Proveedor registrado correctamente</h4>
+<p class="text-body-sm font-body-sm text-slate-300 mt-0.5">Redirigiendo a ficha técnica y motor de evaluación de riesgo...</p>
+</div>
+<button class="text-slate-400 hover:text-white transition-colors" onclick="dismissToast()" type="button">
+<span class="material-symbols-outlined text-base" data-icon="close">close</span>
+</button>
+</aside>
+<script>
+    function triggerFeedback() {
+      const toast = document.getElementById('feedbackToast');
+      if (toast) {
+        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.add('opacity-100', 'translate-y-0');
+      }
+    }
+
+    function dismissToast() {
+      const toast = document.getElementById('feedbackToast');
+      if (toast) {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }
+    }
+  </script>
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

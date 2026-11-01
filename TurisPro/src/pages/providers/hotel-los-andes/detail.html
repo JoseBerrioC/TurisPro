@@ -616,4 +616,22 @@
 </div>
 
 
-<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div>
+<script src="../../../assets/js/api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (!TurisProAPI.requireAuth()) return;
+
+    try {
+      // Cargar riesgo y datos de Hotel Los Andes (ID 1)
+      const riesgoResp = await TurisProAPI.consultarRiesgo(1);
+      if (riesgoResp && riesgoResp.analisis) {
+        console.log('✅ Análisis de riesgo cargado desde API:', riesgoResp.analisis);
+      }
+    } catch (e) {
+      console.warn('No se pudo actualizar el riesgo del detalle:', e);
+    }
+  });
+</script>
+
+</body></html>

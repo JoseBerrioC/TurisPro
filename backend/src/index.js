@@ -3,6 +3,7 @@ const config = require('./config/config');
 const { getDatabase } = require('./database/connection');
 const { seed } = require('./database/seed');
 const corsMiddleware = require('./middlewares/corsMiddleware');
+const { serveStatic } = require('./middlewares/staticServer');
 const { handleRequest } = require('./routes/router');
 
 async function iniciarServidor() {
@@ -25,7 +26,19 @@ async function iniciarServidor() {
     const isOptions = corsMiddleware(req, res);
     if (isOptions) return;
 
-    // Enrutar petición
+    const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    const pathname = parsedUrl.pathname;
+
+    // Si es una petición a la API, despachar a las rutas REST
+    if (pathname.startsWith('/api/') || pathname === '/api') {
+      return handleRequest(req, res);
+    }
+
+    // Si es un archivo estático del prototipo frontend, servirlo
+    const servido = serveStatic(req, res);
+    if (servido) return;
+
+    // Si no se encontró estático, despachar al router (para 404 o API)
     handleRequest(req, res);
   });
 
@@ -33,7 +46,8 @@ async function iniciarServidor() {
   server.listen(PORT, () => {
     console.log(`=======================================================`);
     console.log(`✅ Servidor TurisPro escuchando en http://localhost:${PORT}`);
-    console.log(`📋 Documentación y estado en: http://localhost:${PORT}/api/health`);
+    console.log(`🌐 Frontend Prototipo: http://localhost:${PORT}/`);
+    console.log(`📋 API REST y Estado:  http://localhost:${PORT}/api/health`);
     console.log(`=======================================================`);
   });
 

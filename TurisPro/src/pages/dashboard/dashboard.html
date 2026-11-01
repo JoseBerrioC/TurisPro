@@ -273,11 +273,11 @@
 <span class="material-symbols-outlined text-on-primary text-xl">account_circle</span>
 </div>
 <div class="min-w-0 flex-1">
-<p class="text-label-md font-label-md font-bold text-white truncate leading-tight">Carlos Mendoza</p>
-<p class="text-body-sm font-body-sm text-[#93C5FD] truncate leading-tight mt-0.5">Administrador</p>
+<p id="user-display-name" class="text-label-md font-label-md font-bold text-white truncate leading-tight">Carlos Mendoza</p>
+<p id="user-display-role" class="text-body-sm font-body-sm text-[#93C5FD] truncate leading-tight mt-0.5">Administrador</p>
 </div>
 </div>
-<button class="p-1 text-[#93C5FD] hover:text-white transition-colors" title="Cerrar sesión" onclick="location.href='../auth/login.html'">
+<button class="p-1 text-[#93C5FD] hover:text-white transition-colors" title="Cerrar sesión" onclick="TurisProAPI.logout()">
 <span class="material-symbols-outlined text-lg">logout</span>
 </button>
 </div>
@@ -373,7 +373,7 @@
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-slate-900">128</div>
+<div id="metric-proveedores-activos" class="text-display-metric font-display-metric text-slate-900">128</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm text-[#2E7D32]">
 <span class="material-symbols-outlined text-base font-bold">trending_up</span>
 <span class="font-semibold">+8 este trimestre</span>
@@ -389,7 +389,7 @@
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-slate-900">12</div>
+<div id="metric-riesgo-alto" class="text-display-metric font-display-metric text-slate-900">12</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm">
 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FFF8E1] text-[#7A5300]">
 <span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>
@@ -407,7 +407,7 @@
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-[#C62828]">7</div>
+<div id="metric-docs-atencion" class="text-display-metric font-display-metric text-[#C62828]">7</div>
 <div class="mt-1 flex items-center gap-1 text-body-sm font-body-sm text-[#C62828]">
 <span class="material-symbols-outlined text-base">error</span>
 <span class="font-medium">Requiere bloqueo temporal</span>
@@ -423,7 +423,7 @@
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-slate-900">24</div>
+<div id="metric-incidentes-abiertos" class="text-display-metric font-display-metric text-slate-900">24</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm text-[#2E7D32]">
 <span class="material-symbols-outlined text-base font-bold">check_circle</span>
 <span class="font-semibold">+18% vs. mes anterior</span>
@@ -642,7 +642,7 @@
 <th class="py-3 px-5 text-right" scope="col">Acciones</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-slate-200 text-table-cell font-table-cell text-slate-800">
+<tbody id="tabla-atencion-tbody" class="divide-y divide-slate-200 text-table-cell font-table-cell text-slate-800">
 <!-- FILA 1: Viajes XYZ -->
 <tr class="hover:bg-[#F1F5F9] transition-colors">
 <td class="py-3.5 px-5 font-semibold text-slate-900">
@@ -1111,5 +1111,129 @@
     });
   </script>
 
+
+
+<script src="../../assets/js/api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Validar autenticación
+    if (!TurisProAPI.requireAuth()) return;
+
+    // Mostrar datos del usuario activo
+    const user = TurisProAPI.getUser();
+    if (user) {
+      const nameEl = document.getElementById('user-display-name');
+      const roleEl = document.getElementById('user-display-role');
+      if (nameEl) nameEl.textContent = user.nombre || user.correo;
+      if (roleEl) roleEl.textContent = user.rol;
+    }
+
+    await cargarDatosDashboard();
+  });
+
+  async function cargarDatosDashboard() {
+    try {
+      const resp = await TurisProAPI.getDashboard();
+      if (!resp || !resp.indicadores) return;
+
+      const ind = resp.indicadores;
+      const elActivos = document.getElementById('metric-proveedores-activos');
+      const elRiesgoAlto = document.getElementById('metric-riesgo-alto');
+      const elDocs = document.getElementById('metric-docs-atencion');
+      const elIncs = document.getElementById('metric-incidentes-abiertos');
+
+      if (elActivos) elActivos.textContent = ind.proveedoresActivos;
+      if (elRiesgoAlto) elRiesgoAlto.textContent = ind.proveedoresRiesgoAlto;
+      if (elDocs) elDocs.textContent = ind.documentosAtencion;
+      if (elIncs) elIncs.textContent = ind.incidentesAbiertos;
+
+      // Renderizar tabla de atención prioritaria
+      const tbody = document.getElementById('tabla-atencion-tbody');
+      if (tbody && Array.isArray(resp.tablaAtencion) && resp.tablaAtencion.length > 0) {
+        tbody.innerHTML = '';
+        resp.tablaAtencion.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-[#F1F5F9] transition-colors';
+
+          const badgeRiesgo = item.nivelRiesgo === 'ALTO'
+            ? '<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]"><span class="w-1.5 h-1.5 rounded-full bg-[#C62828]"></span>● Riesgo alto</span>'
+            : '<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#7A5300]"><span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>● ' + (item.nivelRiesgo || 'Medio') + '</span>';
+
+          const motivos = (item.motivosAtencion || []).join('; ') || 'Atención requerida';
+
+          tr.innerHTML = `
+            <td class="py-3.5 px-5 font-semibold text-slate-900">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-red-100 text-[#C62828] font-bold flex items-center justify-center text-xs flex-shrink-0">
+                  ${item.razonSocial.substring(0, 3).toUpperCase()}
+                </div>
+                <div>
+                  <div class="font-bold text-slate-900 leading-snug">${item.razonSocial}</div>
+                  <div class="text-xs text-slate-400 font-mono">ID: #${item.idProveedor}</div>
+                </div>
+              </div>
+            </td>
+            <td class="py-3.5 px-5 text-slate-700">${item.tipo}</td>
+            <td class="py-3.5 px-5">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">
+                ${item.motivosAtencion?.[0] || 'Atención'}
+              </span>
+            </td>
+            <td class="py-3.5 px-5">${badgeRiesgo}</td>
+            <td class="py-3.5 px-5 text-xs text-slate-600">${motivos}</td>
+            <td class="py-3.5 px-5 text-right">
+              <a href="../providers/hotel-los-andes/detail.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs transition-colors">
+                <span>Ver ficha</span>
+                <span class="material-symbols-outlined text-sm">visibility</span>
+              </a>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    } catch (err) {
+      console.warn('No se pudo conectar con la API de Dashboard:', err);
+    }
+  }
+
+  // Sobrescribir submit de registro de proveedor para persistir con la API
+  const originalHandleFormSubmit = window.handleFormSubmit;
+  window.handleFormSubmit = async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const inputs = form.querySelectorAll('input, select');
+    
+    const razonSocial = inputs[0] ? inputs[0].value.trim() : '';
+    const nit = inputs[1] ? inputs[1].value.trim() : '';
+    const tipoVal = inputs[3] ? inputs[3].value : 'hotel';
+    const correo = inputs[5] ? inputs[5].value.trim() : '';
+    const telefono = inputs[6] ? inputs[6].value.trim() : '';
+
+    const tipoMap = {
+      operador: 'OPERADOR',
+      hotel: 'HOTEL',
+      transporte: 'TRANSPORTADOR',
+      aerolinea: 'AEROLINEA',
+      guia: 'GUIA'
+    };
+
+    try {
+      await TurisProAPI.crearProveedor({
+        razonSocial,
+        nit,
+        tipo: tipoMap[tipoVal] || 'HOTEL',
+        correo: correo || ('contacto@' + nit.replace(/[^0-9]/g, '') + '.com'),
+        telefono
+      });
+
+      closeModal();
+      showToast('Proveedor "' + razonSocial + '" registrado y auditado exitosamente en el backend.');
+      form.reset();
+      await cargarDatosDashboard();
+    } catch (err) {
+      alert('Error al registrar: ' + err.message);
+    }
+  };
+</script>
 
 </body></html>

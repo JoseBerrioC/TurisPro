@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <!-- Material Symbols Outlined -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Tailwind Config based on Design Tokens -->
@@ -141,53 +140,55 @@
 <div class="mb-6">
 <h1 class="font-headline-lg text-headline-lg text-on-surface">Iniciar sesión</h1>
 <p class="font-body-md text-body-md text-on-surface-variant mt-1.5">
-            Ingresa tus credenciales corporativas para acceder a la plataforma.
-          </p>
+  Ingresa tus credenciales corporativas para acceder a la plataforma.
+</p>
 </div>
-<!-- Banner / Alerta de Error Visible -->
-<div class="mb-6 p-3.5 bg-error-container/40 border border-error/30 rounded-xl flex items-start gap-3 text-error">
+
+<!-- Banner / Alerta de Error Dinámico (Oculto por defecto) -->
+<div id="errorBanner" class="hidden mb-6 p-3.5 bg-error-container/40 border border-error/30 rounded-xl flex items-start gap-3 text-error">
 <span class="material-symbols-outlined text-xl flex-shrink-0 text-error mt-0.5" data-icon="report_problem">report_problem</span>
 <div class="flex-1">
-<p class="font-label-md text-label-md text-error leading-snug">
-              Correo o contraseña incorrectos. Verifica tus credenciales o solicita el restablecimiento a tu administrador.
-            </p>
+<p id="errorMessage" class="font-label-md text-label-md text-error leading-snug">
+  Correo o contraseña incorrectos. Verifica tus credenciales o solicita el restablecimiento a tu administrador.
+</p>
 </div>
 </div>
+
 <!-- Formulario de acceso -->
-<form class="space-y-4" onsubmit="event.preventDefault(); window.location.href='../dashboard/dashboard.html';">
+<form id="loginForm" class="space-y-4">
 <!-- Campo Correo Corporativo -->
 <div>
 <label class="block font-label-md text-label-md text-on-surface mb-1.5" for="email">
-              Correo electrónico corporativo <span class="text-error">*</span>
+  Correo electrónico corporativo <span class="text-error">*</span>
 </label>
 <div class="relative rounded-xl shadow-sm">
 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
 <span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
 </div>
-<input class="block w-full pl-10 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-error/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="email" name="email" placeholder="ejemplo@turispro.co" required="" type="email" value="carlos.mendoza@turispro.co">
+<input class="block w-full pl-10 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline-variant/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="email" name="email" placeholder="ejemplo@turispro.com" required="" type="email" value="admin@turispro.com">
 </div>
 </div>
 <!-- Campo Contraseña -->
 <div>
 <label class="block font-label-md text-label-md text-on-surface mb-1.5" for="password">
-              Contraseña <span class="text-error">*</span>
+  Contraseña <span class="text-error">*</span>
 </label>
 <div class="relative rounded-xl shadow-sm">
 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
 <span class="material-symbols-outlined text-lg" data-icon="lock">lock</span>
 </div>
-<input class="block w-full pl-10 pr-11 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-error/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="password" name="password" placeholder="••••••••••••" required="" type="password">
+<input class="block w-full pl-10 pr-11 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline-variant/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="password" name="password" placeholder="••••••••••••" required="" type="password" value="Admin123*">
 <button aria-label="Mostrar u ocultar contraseña" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface cursor-pointer transition-colors" id="togglePassword" onclick="
-                  const passInput = document.getElementById('password');
-                  const eyeIcon = document.getElementById('eyeIcon');
-                  if (passInput.type === 'password') {
-                    passInput.type = 'text';
-                    eyeIcon.textContent = 'visibility_off';
-                  } else {
-                    passInput.type = 'password';
-                    eyeIcon.textContent = 'visibility';
-                  }
-                " type="button">
+      const passInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    " type="button">
 <span class="material-symbols-outlined text-lg" data-icon="visibility" id="eyeIcon">visibility</span>
 </button>
 </div>
@@ -199,24 +200,41 @@
 <span class="font-body-md text-body-md text-on-surface-variant">Recordarme en este equipo</span>
 </label>
 <a class="font-label-md text-label-md text-primary-container hover:text-primary hover:underline transition-colors" href="#">
-              ¿Olvidaste tu contraseña?
-            </a>
+  ¿Olvidaste tu contraseña?
+</a>
 </div>
 <!-- Botón primario de acción -->
 <div class="pt-2">
-<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-lg py-3 px-4 rounded-xl shadow-sm transition-all duration-150 flex items-center justify-center gap-2 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
-<span class="">Iniciar sesión</span>
-<span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+<button id="submitBtn" class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-lg py-3 px-4 rounded-xl shadow-sm transition-all duration-150 flex items-center justify-center gap-2 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
+  <span>Iniciar sesión</span>
+  <span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
+
+<!-- Accesos Rápidos por Rol (HU-01, HU-02) -->
+<div class="pt-4 border-t border-outline-variant/30">
+  <p class="font-label-sm text-label-sm text-outline mb-2 text-center">Acceso rápido con usuarios del MVP:</p>
+  <div class="grid grid-cols-3 gap-2">
+    <button type="button" onclick="setRole('admin@turispro.com', 'Admin123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      👑 Admin
+    </button>
+    <button type="button" onclick="setRole('gestor@turispro.com', 'Gestor123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      🏢 Gestor
+    </button>
+    <button type="button" onclick="setRole('evaluador@turispro.com', 'Evaluador123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      📋 Evaluador
+    </button>
+  </div>
+</div>
+
 <!-- Enlace de soporte / ayuda -->
 <div class="pt-3 text-center">
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-              ¿Problemas para acceder? 
-              <a class="font-label-sm text-label-sm text-primary-container hover:underline inline-flex items-center gap-0.5 ml-1" href="#">
-<span class="">Contacta al Administrador de tu organización</span>
-<span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
-</a>
+  ¿Problemas para acceder? 
+  <a class="font-label-sm text-label-sm text-primary-container hover:underline inline-flex items-center gap-0.5 ml-1" href="#">
+    <span>Contacta al Administrador de tu organización</span>
+    <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+  </a>
 </p>
 </div>
 </form>
@@ -224,8 +242,8 @@
 <!-- Pie de página con certificación institucional -->
 <div class="w-full max-w-md mx-auto pt-8 border-t border-outline-variant/30 text-center">
 <p class="font-label-sm text-label-sm text-outline">
-          TurisPro Enterprise v4.8.2 · Plataforma certificada bajo norma ISO 31000 y normatividad RNT Colombia
-        </p>
+  TurisPro Enterprise v4.8.2 · Plataforma certificada bajo norma ISO 31000 y normatividad RNT Colombia
+</p>
 </div>
 </section>
 <!-- COLUMNA DERECHA: Hero Panel Corporativo & Valor de Negocio -->
@@ -263,26 +281,26 @@
 <!-- Categorías de cobertura en pills sutiles -->
 <div class="flex flex-wrap items-center gap-2 mb-6">
 <span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
-            Hoteles &amp; Resorts
-          </span>
+  Hoteles &amp; Resorts
+</span>
 <span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
-            Aerolíneas
-          </span>
+  Aerolíneas
+</span>
 <span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
-            Transporte Terrestre
-          </span>
+  Transporte Terrestre
+</span>
 <span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
-            Operadores Receptivos
-          </span>
+  Operadores Receptivos
+</span>
 </div>
 <!-- Título principal -->
 <h2 class="font-headline-lg text-3xl xl:text-4xl text-on-primary font-bold leading-tight tracking-tight mb-5">
-          Gestiona tus proveedores turísticos en un solo lugar.
-        </h2>
+  Gestiona tus proveedores turísticos en un solo lugar.
+</h2>
 <!-- Descripción complementaria -->
 <p class="font-body-lg text-body-lg text-on-primary-container leading-relaxed mb-8">
-          Centraliza la información legal, cobertura geográfica, monitoreo predictivo de riesgos con IA y cumplimiento normativo de hoteles, aerolíneas, operadores y transporte.
-        </p>
+  Centraliza la información legal, cobertura geográfica, monitoreo predictivo de riesgos con IA y cumplimiento normativo de hoteles, aerolíneas, operadores y transporte.
+</p>
 <!-- Tarjeta flotante con preview sutil o estadísticas de confianza -->
 <div class="bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl p-5 border border-on-primary/20 text-on-primary shadow-lg space-y-4">
 <div class="flex items-center justify-between pb-3 border-b border-on-primary/10">
@@ -331,5 +349,44 @@
 </aside>
 </main>
 
+<!-- Inclusión del cliente API de TurisPro -->
+<script src="../../assets/js/api.js"></script>
+<script>
+  function setRole(email, pass) {
+    document.getElementById('email').value = email;
+    document.getElementById('password').value = pass;
+    document.getElementById('errorBanner').classList.add('hidden');
+  }
 
-<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
+  const loginForm = document.getElementById('loginForm');
+  const errorBanner = document.getElementById('errorBanner');
+  const errorMessage = document.getElementById('errorMessage');
+  const submitBtn = document.getElementById('submitBtn');
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBanner.classList.add('hidden');
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Validando...';
+    
+    try {
+      await TurisProAPI.login(email, password);
+      submitBtn.innerHTML = '<span>¡Acceso Concedido! Redirigiendo...</span>';
+      submitBtn.classList.remove('bg-primary-container', 'hover:bg-primary');
+      submitBtn.classList.add('bg-emerald-600');
+      setTimeout(() => {
+        window.location.href = '../dashboard/dashboard.html';
+      }, 400);
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Iniciar sesión</span><span class="material-symbols-outlined text-xl">arrow_forward</span>';
+      errorMessage.textContent = err.message || 'Correo o contraseña incorrectos. Verifica tus credenciales.';
+      errorBanner.classList.remove('hidden');
+    }
+  });
+</script>
+</body></html>

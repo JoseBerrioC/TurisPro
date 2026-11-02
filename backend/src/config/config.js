@@ -1,15 +1,27 @@
 const path = require('node:path');
 
+const nodeEnv = process.env.NODE_ENV || 'development';
+const isProduction = nodeEnv === 'production';
+
+// Validación de seguridad: en producción se prohíbe el uso de claves secretas predeterminadas
+let jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  if (isProduction) {
+    throw new Error('CONFIGURACIÓN INSEGURA: Se requiere definir la variable de entorno JWT_SECRET en entorno de producción.');
+  }
+  jwtSecret = 'turispro_secret_key_2026_safe_jwt_token_dev';
+}
+
 const config = {
   server: {
     port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
-    env: process.env.NODE_ENV || 'development'
+    env: nodeEnv
   },
   database: {
     filename: process.env.DB_PATH || path.join(__dirname, '../../turispro.db')
   },
   auth: {
-    secret: process.env.JWT_SECRET || 'turispro_secret_key_2026_safe_jwt_token',
+    secret: jwtSecret,
     expiresInHours: 24
   },
   motorRiesgo: {

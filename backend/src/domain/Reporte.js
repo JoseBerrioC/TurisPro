@@ -108,8 +108,19 @@ class Reporte {
       throw new Error('La comparación debe realizarse exactamente entre 2 o 3 proveedores');
     }
 
-    const comparativa = ids.map(id => {
-      const p = Proveedor.verDetalle(Number(id));
+    // Validar que los identificadores sean números positivos y no existan duplicados
+    const idsNumeros = ids.map(id => Number(id));
+    if (idsNumeros.some(id => isNaN(id) || id <= 0)) {
+      throw new Error('Los identificadores de proveedores deben ser números válidos');
+    }
+
+    const setIds = new Set(idsNumeros);
+    if (setIds.size !== idsNumeros.length) {
+      throw new Error('No se pueden comparar identificadores de proveedores duplicados');
+    }
+
+    const comparativa = idsNumeros.map(id => {
+      const p = Proveedor.verDetalle(id);
       if (!p) throw new Error(`Proveedor #${id} no encontrado`);
 
       const servicios = Servicio.listarPorProveedor(p.idProveedor);

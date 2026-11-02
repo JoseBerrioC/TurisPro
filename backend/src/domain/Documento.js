@@ -13,12 +13,27 @@ class Documento {
     this.estado = this.calcularEstado();
   }
 
+  /**
+   * Parsea una fecha a milisegundos UTC a nivel de día (ignorando horas y desfases de zona horaria)
+   */
+  static parsearFechaUTC(fecha) {
+    if (!fecha) return Date.now();
+    if (fecha instanceof Date) {
+      return Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate());
+    }
+    if (typeof fecha === 'string') {
+      const match = fecha.match(/^(\d{4})-(\d{2})-(\d{2})/);
+      if (match) {
+        return Date.UTC(parseInt(match[1], 10), parseInt(match[2], 10) - 1, parseInt(match[3], 10));
+      }
+    }
+    const d = new Date(fecha);
+    return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+
   diasParaVencer(fechaReferencia = new Date()) {
-    const vencimiento = new Date(this.fechaVencimiento);
-    const ref = new Date(fechaReferencia);
-    // Comparar únicamente fechas ignorando horas para precisión exacta de días
-    const utc1 = Date.UTC(ref.getFullYear(), ref.getMonth(), ref.getDate());
-    const utc2 = Date.UTC(vencimiento.getFullYear(), vencimiento.getMonth(), vencimiento.getDate());
+    const utc1 = Documento.parsearFechaUTC(fechaReferencia);
+    const utc2 = Documento.parsearFechaUTC(this.fechaVencimiento);
     const msPorDia = 1000 * 60 * 60 * 24;
     return Math.floor((utc2 - utc1) / msPorDia);
   }

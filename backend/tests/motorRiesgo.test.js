@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const MotorRiesgo = require('../src/services/MotorRiesgo');
 const FactorRiesgo = require('../src/domain/FactorRiesgo');
+const Documento = require('../src/domain/Documento');
 const { NivelRiesgo } = require('../src/domain/enums');
 
 test('MotorRiesgo - Clasificación de niveles según umbrales (34 y 67)', () => {
@@ -86,4 +87,43 @@ test('MotorRiesgo - Generación de explicación mediante plantilla de respaldo',
   assert.ok(texto.includes('evaluaciones de desempeño'));
   assert.ok(texto.includes('historial de incidentes'));
   assert.ok(texto.includes('cumplimiento documental'));
+});
+
+test('MotorRiesgo & Documento - Consistencia en comparación de fechas y cálculo de días', () => {
+  // Verificación de parseo seguro sin distorsión por zona horaria local
+  const ref = '2026-11-01';
+  const vencimientoExacto = '2026-11-11'; // exactamente 10 días
+  
+  const doc = new Documento({
+    idDocumento: 99,
+    idProveedor: 1,
+    tipo: 'Seguro Hotelero',
+    fechaEmision: '2026-01-01',
+    fechaVencimiento: vencimientoExacto
+  });
+
+  const dias = doc.diasParaVencer(ref);
+  assert.strictEqual(dias, 10, 'El cálculo de días entre fechas calendario debe ser exacto sin saltos por UTC');
+
+  // Documento que vence el mismo día
+  const docMismoDia = new Documento({
+    idDocumento: 100,
+    idProveedor: 1,
+    tipo: 'Licencia',
+    fechaEmision: '2026-01-01',
+    fechaVencimiento: '2026-11-01'
+  });
+  assert.strictEqual(docMismoDia.diasParaVencer('2026-11-01'), 0);
+  assert.strictEqual(docMismoDia.calcularEstado('2026-11-01'), 'Por vencer');
+
+  // Documento vencido ayer
+  const docAyer = new Documento({
+    idDocumento: 101,
+    idProveedor: 1,
+    tipo: 'Certificado',
+    fechaEmision: '2026-01-01',
+    fechaVencimiento: '2026-10-31'
+  });
+  assert.strictEqual(docAyer.diasParaVencer('2026-11-01'), -1);
+  assert.strictEqual(docAyer.calcularEstado('2026-11-01'), 'Vencido');
 });

@@ -1,9 +1,11 @@
 const test = require('node:test');
 const assert = require('node:assert');
+const crypto = require('node:crypto');
 const { EventEmitter } = require('node:events');
 const { handleRequest } = require('../src/routes/router');
 const { getDatabase } = require('../src/database/connection');
 const { seed } = require('../src/database/seed');
+const Usuario = require('../src/domain/Usuario');
 
 function callApi(method, path, body = null, headers = {}) {
   return new Promise((resolve, reject) => {
@@ -43,7 +45,11 @@ function callApi(method, path, body = null, headers = {}) {
     handleRequest(req, res).catch(reject);
 
     if (body !== null) {
-      req.emit('data', Buffer.from(JSON.stringify(body)));
+      if (typeof body === 'string') {
+        req.emit('data', Buffer.from(body));
+      } else {
+        req.emit('data', Buffer.from(JSON.stringify(body)));
+      }
     }
     req.emit('end');
   });
@@ -79,6 +85,39 @@ test('API Integration - HU-01: Login con credenciales válidas e inválidas', as
   assert.strictEqual(resExito.status, 200);
   assert.ok(resExito.data.token);
   assert.strictEqual(resExito.data.usuario.rol, 'ADMINISTRADOR');
+});
+
+test('API Integration - Migración progresiva de contraseña legacy tras login exitoso', async () => {
+  const db = getDatabase();
+  const correoLegacy = 'usuario.legacy@turispro.com';
+  const claveLegacy = 'ClaveAntigua2025*';
+  
+  // Generar hash legacy (1,000 iteraciones, formato salt:hash sin metadato)
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hashRaw = crypto.pbkdf2Sync(claveLegacy, salt, 1000, 64, 'sha512').toString('hex');
+  const hashLegacy = `${salt}:${hashRaw}`;
+
+  // Insertar usuario con hash legacy en la base de datos
+  db.prepare(`
+    INSERT OR REPLACE INTO usuarios (nombre, correo, contrasena_hash, rol, activo)
+    VALUES (?, ?, ?, 'GESTOR_PROVEEDORES', 1)
+  `).run('Usuario Legacy', correoLegacy, hashLegacy);
+
+  // Iniciar sesión con la clave correcta
+  const resLogin = await callApi('POST', '/api/auth/login', {
+    correo: correoLegacy,
+    clave: claveLegacy
+  });
+
+  assert.strictEqual(resLogin.status, 200);
+  assert.ok(resLogin.data.token);
+
+  // Comprobar que en la base de datos el hash fue actualizado a 210,000 iteraciones
+  const usuarioActualizado = Usuario.buscarPorCorreo(correoLegacy);
+  assert.ok(usuarioActualizado);
+  const partes = usuarioActualizado.contrasenaHash.split(':');
+  assert.strictEqual(partes.length, 3, 'El hash actualizado debe tener 3 partes (salt:hash:iteraciones)');
+  assert.strictEqual(partes[2], '210000', 'Debe haber sido actualizado a 210,000 iteraciones');
 });
 
 test('API Integration - HU-02: Menú y opciones según rol del usuario', async () => {
@@ -138,7 +177,30 @@ test('API Integration - HU-12 y HU-13: Consulta de Riesgo y aviso humano obligat
   assert.ok(res.data.analisis.factores.length >= 3);
 });
 
+test('API Integration - HU-31: Vista global de riesgos sin duplicados de proveedores', async () => {
+  const db = getDatabase();
+  // Insertar un análisis adicional para simular historial múltiple en proveedor 1
+  db.prepare(`
+    INSERT INTO analisis_riesgo (id_proveedor, puntaje, nivel, explicacion, origen_explicacion, recomendacion)
+    VALUES (1, 45, 'MEDIO', 'Segundo análisis histórico para pruebas', 'PLANTILLA', 'Recomendación histórica')
+  `).run();
+
+  const res = await callApi('GET', '/api/riesgo/global');
+  assert.strictEqual(res.status, 200);
+
+  // Verificar que ningún idProveedor se repita en la lista
+  const ids = res.data.items.map(item => item.idProveedor);
+  const idsUnicos = new Set(ids);
+  assert.strictEqual(ids.length, idsUnicos.size, 'No deben existir proveedores duplicados en la vista global');
+  
+  // El proveedor 1 debe tener vinculado el análisis más reciente
+  const prov1 = res.data.items.find(i => i.idProveedor === 1);
+  assert.ok(prov1.ultimoAnalisis);
+  assert.strictEqual(prov1.ultimoAnalisis.explicacion, 'Segundo análisis histórico para pruebas');
+});
+
 test('API Integration - HU-15: Comparar 2 o 3 proveedores lado a lado', async () => {
+  // Comparación válida
   const res = await callApi('POST', '/api/proveedores/comparar', {
     ids: [1, 2]
   });
@@ -146,4 +208,37 @@ test('API Integration - HU-15: Comparar 2 o 3 proveedores lado a lado', async ()
   assert.strictEqual(res.data.totalComparados, 2);
   assert.strictEqual(res.data.proveedores[0].razonSocial, 'Hotel Los Andes S.A.S.');
   assert.strictEqual(res.data.proveedores[1].razonSocial, 'Transportes Andinos Express');
+
+  // Rechazo de IDs duplicados
+  const resDuplicados = await callApi('POST', '/api/proveedores/comparar', {
+    ids: [1, 1]
+  });
+  assert.strictEqual(resDuplicados.status, 400);
+  assert.ok(resDuplicados.data.error.includes('duplicados'));
+
+  // Rechazo de cantidad menor a 2 o mayor a 3
+  const resUno = await callApi('POST', '/api/proveedores/comparar', {
+    ids: [1]
+  });
+  assert.strictEqual(resUno.status, 400);
+
+  const resCuatro = await callApi('POST', '/api/proveedores/comparar', {
+    ids: [1, 2, 3, 4]
+  });
+  assert.strictEqual(resCuatro.status, 400);
+});
+
+test('API Integration - Manejo de solicitudes que exceden el límite de 5 MB (HTTP 413)', async () => {
+  // Petición con Content-Length declarado > 5 MB
+  const resContentLength = await callApi('POST', '/api/auth/login', {}, {
+    'content-length': (6 * 1024 * 1024).toString()
+  });
+  assert.strictEqual(resContentLength.status, 413);
+  assert.ok(resContentLength.data.error.includes('Payload Too Large'));
+
+  // Petición con cuerpo en stream > 5 MB
+  const chunkGrande = 'A'.repeat(5.5 * 1024 * 1024);
+  const resStreamGrande = await callApi('POST', '/api/auth/login', chunkGrande);
+  assert.strictEqual(resStreamGrande.status, 413);
+  assert.ok(resStreamGrande.data.error.includes('Payload Too Large'));
 });

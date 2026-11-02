@@ -52,13 +52,15 @@ class RiesgoController {
   }
 
   static vistaGlobal(query) {
-    // HU-31: Vista global de análisis de riesgo
+    // HU-31: Vista global de análisis de riesgo (seleccionando únicamente el análisis más reciente para evitar duplicados)
     const db = getDatabase();
     let sql = `
       SELECT p.id_proveedor, p.razon_social, p.tipo, p.nivel_riesgo, p.puntaje_riesgo,
              ar.id_analisis, ar.explicacion, ar.origen_explicacion, ar.recomendacion, ar.fecha_calculo
       FROM proveedores p
-      LEFT JOIN analisis_riesgo ar ON p.id_proveedor = ar.id_proveedor
+      LEFT JOIN analisis_riesgo ar ON ar.id_analisis = (
+        SELECT MAX(id_analisis) FROM analisis_riesgo WHERE id_proveedor = p.id_proveedor
+      )
       WHERE p.activo = 1
     `;
     const params = [];

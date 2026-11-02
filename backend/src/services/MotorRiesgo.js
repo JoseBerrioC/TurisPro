@@ -33,42 +33,52 @@ class MotorRiesgo {
   }
 
   esAnalisisVigente(ultimoAnalisis, idProveedor) {
-    if (!ultimoAnalisis) return false;
+    if (!ultimoAnalisis || !ultimoAnalisis.fechaCalculo) return false;
 
-    const fechaRef = ultimoAnalisis.fechaCalculo;
+    // Normalizar la fecha de referencia para comparaciones cronológicas consistentes
+    const dRef = new Date(ultimoAnalisis.fechaCalculo);
+    if (isNaN(dRef.getTime())) return false;
+    const fechaRefIso = dRef.toISOString();
+
     const db = getDatabase();
 
     // Comprobar si hay evaluaciones posteriores a la fecha del último cálculo
+    // Se utiliza datetime() en SQLite y fecha ISO normalizada para evitar inconsistencias de formato
     const evalNueva = db.prepare(`
       SELECT 1 FROM evaluaciones 
-      WHERE id_proveedor = ? AND (fecha > ? OR creado_en > ?)
+      WHERE id_proveedor = ? AND (
+        datetime(fecha) > datetime(?) OR 
+        datetime(creado_en) > datetime(?)
+      )
       LIMIT 1
-    `).get(idProveedor, fechaRef, fechaRef);
+    `).get(idProveedor, fechaRefIso, fechaRefIso);
     if (evalNueva) return false;
 
     // Comprobar si hay incidentes nuevos o actualizados posteriores a la fecha del último cálculo
     const incNuevo = db.prepare(`
       SELECT 1 FROM incidentes 
-      WHERE id_proveedor = ? AND (fecha > ? OR actualizado_en > ?)
+      WHERE id_proveedor = ? AND (
+        datetime(fecha) > datetime(?) OR 
+        datetime(actualizado_en) > datetime(?)
+      )
       LIMIT 1
-    `).get(idProveedor, fechaRef, fechaRef);
+    `).get(idProveedor, fechaRefIso, fechaRefIso);
     if (incNuevo) return false;
 
     // Comprobar si hay documentos nuevos posteriores
     const docNuevo = db.prepare(`
       SELECT 1 FROM documentos 
-      WHERE id_proveedor = ? AND creado_en > ?
+      WHERE id_proveedor = ? AND datetime(creado_en) > datetime(?)
       LIMIT 1
-    `).get(idProveedor, fechaRef);
+    `).get(idProveedor, fechaRefIso);
     if (docNuevo) return false;
 
     // Comprobar si el estado de vigencia de algún documento cambió con el paso del tiempo hoy
-    // (ej. pasó a vencido desde que se calculó)
     const docs = Documento.listarPorProveedor(idProveedor);
     const ahora = new Date();
     for (const d of docs) {
       const estadoAhora = d.calcularEstado(ahora);
-      const estadoEntonces = d.calcularEstado(new Date(fechaRef));
+      const estadoEntonces = d.calcularEstado(dRef);
       if (estadoAhora !== estadoEntonces) {
         return false;
       }

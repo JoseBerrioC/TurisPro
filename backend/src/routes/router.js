@@ -11,24 +11,61 @@ const IncidenteController = require('../controllers/incidenteController');
 const RiesgoController = require('../controllers/riesgoController');
 const DashboardController = require('../controllers/dashboardController');
 
+const MAX_PAYLOAD_BYTES = 5 * 1024 * 1024; // Límite estricto de 5 MB
+
 async function parseBody(req) {
   return new Promise((resolve, reject) => {
-    let raw = '';
-    req.on('data', chunk => {
-      raw += chunk;
-      if (raw.length > 5 * 1024 * 1024) { // límite de 5MB
-        reject(new Error('Payload Too Large'));
+    // Si el encabezado Content-Length ya declara un tamaño superior al límite, rechazar de inmediato
+    const contentLength = parseInt(req.headers['content-length'], 10);
+    if (!isNaN(contentLength) && contentLength > MAX_PAYLOAD_BYTES) {
+      const err = new Error('Payload Too Large: el cuerpo de la petición excede el límite permitido de 5 MB');
+      err.statusCode = 413;
+      req.resume(); // Drenar el stream para evitar bloquear o cerrar incorrectamente la conexión
+      return reject(err);
+    }
+
+    let bytesReceived = 0;
+    const chunks = [];
+    let limitExceeded = false;
+
+    function onData(chunk) {
+      if (limitExceeded) return;
+      bytesReceived += chunk.length;
+      if (bytesReceived > MAX_PAYLOAD_BYTES) {
+        limitExceeded = true;
+        req.removeListener('data', onData);
+        req.removeListener('end', onEnd);
+        req.resume(); // Consumir y descartar el resto del flujo sin acumular en memoria
+        const err = new Error('Payload Too Large: el cuerpo de la petición excede el límite permitido de 5 MB');
+        err.statusCode = 413;
+        return reject(err);
       }
-    });
-    req.on('end', () => {
+      chunks.push(chunk);
+    }
+
+    function onEnd() {
+      if (limitExceeded) return;
+      if (chunks.length === 0) return resolve({});
+      const raw = Buffer.concat(chunks).toString('utf8');
       if (!raw.trim()) return resolve({});
       try {
         resolve(JSON.parse(raw));
       } catch (err) {
-        reject(new Error('Cuerpo de la petición JSON inválido'));
+        const parseErr = new Error('Cuerpo de la petición JSON inválido');
+        parseErr.statusCode = 400;
+        reject(parseErr);
       }
-    });
-    req.on('error', reject);
+    }
+
+    function onError(err) {
+      if (limitExceeded) return;
+      err.statusCode = 400;
+      reject(err);
+    }
+
+    req.on('data', onData);
+    req.once('end', onEnd);
+    req.once('error', onError);
   });
 }
 
@@ -61,14 +98,17 @@ async function handleRequest(req, res) {
     try {
       body = await parseBody(req);
     } catch (err) {
-      res.writeHead(400, { 'Content-Type': 'application/json' });
+      const statusCode = err.statusCode || 400;
+      res.writeHead(statusCode, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: err.message }));
     }
   }
 
   const send = ({ status = 200, body: resBody = {} }) => {
-    res.writeHead(status, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(resBody));
+    if (!res.headersSent) {
+      res.writeHead(status, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(resBody));
+    }
   };
 
   try {
@@ -272,7 +312,7 @@ async function handleRequest(req, res) {
   } catch (error) {
     console.error('Error procesando petición HTTP:', error);
     return send({
-      status: 400,
+      status: error.statusCode || 400,
       body: {
         error: error.message || 'Error interno del servidor'
       }

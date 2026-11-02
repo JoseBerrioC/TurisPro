@@ -26,9 +26,20 @@ class AuthService {
       .update(`${header}.${body}`)
       .digest('base64url');
 
-    if (signature !== signatureEsperada) return null;
-
     try {
+      const sigBuffer = Buffer.from(signature, 'utf8');
+      const sigEsperadaBuffer = Buffer.from(signatureEsperada, 'utf8');
+
+      // Validación obligatoria de longitud para timingSafeEqual
+      if (sigBuffer.length !== sigEsperadaBuffer.length) {
+        return null;
+      }
+
+      // Comparación en tiempo constante para mitigar ataques de temporización (timing attacks)
+      if (!crypto.timingSafeEqual(sigBuffer, sigEsperadaBuffer)) {
+        return null;
+      }
+
       const payload = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));
       if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) {
         return null; // Token expirado
@@ -53,6 +64,13 @@ class AuthService {
     const claveValida = Usuario.verificarClave(clave, usuario.contrasenaHash);
     if (!claveValida) {
       throw new Error('Credenciales incorrectas');
+    }
+
+    // Estrategia de actualización progresiva de hashes (rehash on login si es legacy)
+    if (Usuario.necesitaActualizarHash(usuario.contrasenaHash)) {
+      const nuevoHash = Usuario.hashClave(clave);
+      Usuario.actualizarHash(usuario.idUsuario, nuevoHash);
+      usuario.contrasenaHash = nuevoHash;
     }
 
     const token = this.generarToken({

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="h-full bg-[#F5F7FA]" lang="es"><head>
+﻿<!DOCTYPE html><html class="h-full bg-[#F5F7FA]" lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>TurisPro — Dashboard de Gestión y Riesgo de Proveedores</title>
@@ -196,12 +196,13 @@
       font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
     }
   </style>
+<link rel="stylesheet" href="../../assets/css/turispro-base.css">
 </head>
 <body class="h-full text-on-surface antialiased bg-[#F5F7FA]" data-mode="connect">
 <!-- ========================================================================= -->
 <!-- 1. SIDEBAR IZQUIERDO PERSISTENTE (#0D47A1)                                 -->
 <!-- ========================================================================= -->
-<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between z-40 bg-[#0D47A1] text-on-primary border-r border-[#00337c] shadow-sm select-none">
+<aside class="sidebar-drawer fixed left-0 top-0 h-screen w-64 flex flex-col justify-between z-40 bg-[#0D47A1] text-on-primary border-r border-[#00337c] shadow-sm select-none">
 <!-- Top Brand & Navigation Cluster -->
 <div class="flex flex-col">
 <!-- Brand Header -->
@@ -286,7 +287,7 @@
 <!-- ========================================================================= -->
 <!-- 2. TOPBAR DOCKADO A LA DERECHA DEL SIDEBAR                                 -->
 <!-- ========================================================================= -->
-<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant/60 shadow-sm">
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant/60 shadow-sm">
 <!-- Left: Global Search Bar -->
 <div class="flex items-center flex-1 max-w-xl">
 <div class="relative w-full">
@@ -325,7 +326,7 @@
 <!-- ========================================================================= -->
 <!-- 3. CONTENIDO PRINCIPAL CANVAS                                            -->
 <!-- ========================================================================= -->
-<main class="ml-64 pt-20 px-8 pb-12 min-h-screen">
+<main class="ml-0 md:ml-64 pt-20 px-8 pb-12 min-h-screen">
 <!-- Encabezado de Página & Saludo -->
 <div class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
@@ -1236,4 +1237,5 @@
   };
 </script>
 
+<script src="../../assets/js/nav-layout.js"></script>
 </body></html>

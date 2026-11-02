@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="h-full bg-surface" lang="es" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+﻿<!DOCTYPE html><html class="h-full bg-surface" lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>TurisPro - Detalle de Proveedor: Hotel Los Andes</title>
@@ -148,12 +148,13 @@
       color: #0D47A1;
     }
   </style>
+<link rel="stylesheet" href="../../../assets/css/turispro-base.css">
 </head>
 <body class="h-full text-on-surface antialiased flex">
 <!-- ========================================================================= -->
 <!-- SIDEBAR (Persistent Nav - Exact Shared Component Specifications)        -->
 <!-- ========================================================================= -->
-<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 sidebar-bg border-r border-outline-variant shadow-sm text-on-primary">
+<aside class="sidebar-drawer fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 sidebar-bg border-r border-outline-variant shadow-sm text-on-primary">
 <!-- Top Brand & Navigation Section -->
 <div class="flex flex-col">
 <!-- Brand Header -->
@@ -237,11 +238,11 @@
 <!-- ========================================================================= -->
 <!-- MAIN WORKSPACE CONTAINER (Offset by 260px sidebar)                         -->
 <!-- ========================================================================= -->
-<div class="flex-1 ml-64 min-h-screen flex flex-col bg-[#F5F7FA]">
+<div class="flex-1 ml-0 md:ml-64 min-h-screen flex flex-col bg-[#F5F7FA]">
 <!-- ========================================================================= -->
 <!-- TOP UTILITY HEADER (Exact Shared Component TopNavBar Specs)              -->
 <!-- ========================================================================= -->
-<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
 <!-- Search on the left -->
 <div class="flex items-center gap-4 flex-1 max-w-lg">
 <div class="relative w-full">
@@ -694,7 +695,7 @@
 </main>
 </div>
 <!-- Modal: Agregar nuevo servicio o tarifa -->
-<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#111c2d]/50 backdrop-blur-xs select-none transition-all" id="modal-add-service">
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#111c2d]/50 backdrop-blur-xs select-none transition-all hidden" id="modal-add-service">
 <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full border border-outline-variant shadow-lg overflow-hidden flex flex-col text-on-surface">
 <!-- Encabezado del modal -->
 <div class="px-6 py-4 border-b border-outline-variant/60 flex items-start justify-between bg-surface-container-low/30">
@@ -803,4 +804,5 @@
   })();
 </script>
 
-<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>
+<script src="../../../assets/js/nav-layout.js"></script>
+</body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head>
+﻿<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TurisPro - Incidentes: Hotel Los Andes</title>
@@ -46,11 +46,12 @@
       color: #1e293b;
     }
   </style>
+<link rel="stylesheet" href="../../../assets/css/turispro-base.css">
 </head>
 <body class="flex min-h-screen bg-[#f6faff] text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900">
 
   <!-- SIDEBAR (Celeste Corporativo TurisPro) -->
-  <aside class="fixed left-0 top-0 h-screen w-64 bg-[#0284c7] text-white flex flex-col justify-between z-30 shadow-md">
+  <aside class="sidebar-drawer fixed left-0 top-0 h-screen w-64 bg-[#0284c7] text-white flex flex-col justify-between z-30 shadow-md">
     <div>
       <!-- Brand Logo Header -->
       <div class="p-5 border-b border-sky-500/40 flex items-center justify-between">
@@ -126,7 +127,7 @@
   </aside>
 
   <!-- MAIN VIEWPORT CONTENT -->
-  <div class="ml-64 flex-1 flex flex-col min-w-0 pb-16">
+  <div class="ml-0 md:ml-64 flex-1 flex flex-col min-w-0 pb-16">
 
     <!-- TOP BAR DOCKED -->
     <header class="h-16 bg-white border-b border-slate-200/80 sticky top-0 z-20 px-8 flex items-center justify-between gap-4 shadow-sm">
@@ -554,7 +555,7 @@
   </div>
 
   <!-- MODAL: + REGISTRAR INCIDENTE -->
-  <div id="modal-incidente" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+  <div id="modal-incidente" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden">
     <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl overflow-hidden transition-all transform scale-100">
       
       <!-- Modal Header -->
@@ -675,4 +676,5 @@
 
 
 
+<script src="../../../assets/js/nav-layout.js"></script>
 </body></html>

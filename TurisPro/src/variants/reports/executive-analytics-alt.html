@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="h-full" lang="es"><head>
+﻿<!DOCTYPE html><html class="h-full" lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>TurisPro - Reportes y Analítica Ejecutiva</title>
@@ -117,12 +117,13 @@
       },
     }
   </script>
+<link rel="stylesheet" href="../../assets/css/turispro-base.css">
 </head>
 <body class="bg-background text-on-surface antialiased flex h-screen overflow-hidden" data-mode="connect">
 <!-- ========================================================================= -->
 <!-- SHARED COMPONENT: SideNavBar (Authority: JSON & Style Guidance)            -->
 <!-- ========================================================================= -->
-<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm">
+<aside class="sidebar-drawer fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm">
 <!-- Header Section with Logo -->
 <div class="px-5">
 <div class="flex items-center gap-3 py-2">
@@ -202,7 +203,7 @@
 <!-- ========================================================================= -->
 <!-- MAIN WRAPPER (TopNavBar + Content Canvas)                                  -->
 <!-- ========================================================================= -->
-<div class="flex-1 flex flex-col ml-64 min-w-0 h-screen overflow-hidden">
+<div class="flex-1 flex flex-col ml-0 md:ml-64 min-w-0 h-screen overflow-hidden">
 <!-- ======================================================================= -->
 <!-- SHARED COMPONENT: TopNavBar (Exact layout from JSON)                   -->
 <!-- ======================================================================= -->
@@ -945,4 +946,5 @@
 </div>
 
 
+<script src="../../assets/js/nav-layout.js"></script>
 </body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="h-full bg-background" lang="es"><head>
+﻿<!DOCTYPE html><html class="h-full bg-background" lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>TurisPro - Configuración del sistema</title>
@@ -148,12 +148,13 @@
       background: #94A3B8;
     }
   </style>
+<link rel="stylesheet" href="../../assets/css/turispro-base.css">
 </head>
 <body class="h-full bg-background text-on-surface antialiased flex overflow-hidden">
 <!-- ========================================================= -->
 <!-- 1. SIDEBAR GENERAL (JSON SHAPE & STYLE EXECUTION)          -->
 <!-- ========================================================= -->
-<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm">
+<aside class="sidebar-drawer fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm">
 <!-- Top Area: Logo + CTA + Navigation List -->
 <div class="flex flex-col flex-1 overflow-hidden px-4">
 <!-- Brand Logo Header Container -->
@@ -241,7 +242,7 @@
 <!-- ========================================================= -->
 <!-- 2. TOP NAV BAR (JSON SHAPE & STYLE EXECUTION)              -->
 <!-- ========================================================= -->
-<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<header class="fixed top-0 right-0 left-0 md:left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
 <!-- Left: Global Search for NIT, Razón Social, RNT -->
 <div class="flex items-center gap-4 w-96">
 <div class="relative w-full">
@@ -288,7 +289,7 @@
 <!-- ========================================================= -->
 <!-- 3. MAIN WORKSPACE / CONTENT CANVAS                         -->
 <!-- ========================================================= -->
-<main class="ml-64 mt-16 flex-1 h-[calc(100vh-4rem)] overflow-y-auto custom-scroll bg-surface p-8">
+<main class="ml-0 md:ml-64 mt-16 flex-1 h-[calc(100vh-4rem)] overflow-y-auto custom-scroll bg-surface p-8">
 <div class="max-w-7xl mx-auto space-y-6">
 <!-- Breadcrumb & Header Title Area -->
 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-2 border-b border-outline-variant/60">
@@ -923,4 +924,5 @@
       }
     });
   </script>
+<script src="../../assets/js/nav-layout.js"></script>
 </body></html>

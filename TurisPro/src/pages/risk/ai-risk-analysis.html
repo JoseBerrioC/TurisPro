@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="h-full" lang="es"><head>
+﻿<!DOCTYPE html><html class="h-full" lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>TurisPro - Análisis de riesgo con IA</title>
@@ -127,10 +127,11 @@
       filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.35));
     }
   </style>
+<link rel="stylesheet" href="../../assets/css/turispro-base.css">
 </head>
 <body class="bg-background text-on-surface antialiased min-h-screen flex selection:bg-secondary-fixed selection:text-on-secondary-fixed-variant">
 <!-- SIDEBAR NAVIGATION (Shared Component Anchor) -->
-<aside class="fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background shadow-sm border-r border-outline-variant dark:border-outline">
+<aside class="sidebar-drawer fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background shadow-sm border-r border-outline-variant dark:border-outline">
 <div class="flex flex-col gap-6">
 <!-- Header with Official Logo -->
 <div class="px-5 pt-1">
@@ -209,7 +210,7 @@
 </div>
 </aside>
 <!-- MAIN VIEWPORT CONTAINER -->
-<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<div class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
 <!-- TOP NAVIGATION BAR (Shared Component Anchor) -->
 <header class="h-16 px-8 flex justify-between items-center bg-surface-container-lowest dark:bg-surface-container border-b border-outline-variant/60 shadow-sm sticky top-0 z-30">
 <div class="flex items-center gap-6 flex-1 max-w-2xl">
@@ -667,4 +668,5 @@
 </footer>
 </main>
 </div>
+<script src="../../assets/js/nav-layout.js"></script>
 </body></html>

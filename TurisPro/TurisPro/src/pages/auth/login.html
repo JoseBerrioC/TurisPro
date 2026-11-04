@@ -1,0 +1,785 @@
+<!DOCTYPE html><html class="h-full" lang="es" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TurisPro - Iniciar sesión</title>
+<!-- Inter Font Family -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config based on Design Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#d8e3fb",
+            "secondary-fixed-dim": "#b0c6ff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#001945",
+            "on-secondary-fixed-variant": "#00429c",
+            "inverse-on-surface": "#ecf1ff",
+            "error-container": "#ffdad6",
+            "on-primary-fixed-variant": "#00468c",
+            "inverse-primary": "#a9c7ff",
+            "on-secondary-container": "#00337c",
+            "primary": "#004d99",
+            "secondary": "#2b5bb5",
+            "tertiary": "#813900",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#001b3d",
+            "on-error": "#ffffff",
+            "outline-variant": "#c2c6d4",
+            "surface-tint": "#005db7",
+            "tertiary-fixed": "#ffdbc9",
+            "primary-fixed": "#d6e3ff",
+            "surface-container-low": "#f0f3ff",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f9f9ff",
+            "on-tertiary-fixed-variant": "#753400",
+            "on-surface": "#111c2d",
+            "on-background": "#111c2d",
+            "on-primary-container": "#dae5ff",
+            "surface-container": "#e7eeff",
+            "surface-container-highest": "#d8e3fb",
+            "on-surface-variant": "#424752",
+            "surface": "#f9f9ff",
+            "surface-dim": "#cfdaf2",
+            "primary-container": "#1565c0",
+            "inverse-surface": "#263143",
+            "on-tertiary-fixed": "#321200",
+            "on-tertiary-container": "#ffdece",
+            "surface-bright": "#f9f9ff",
+            "outline": "#727783",
+            "primary-fixed-dim": "#a9c7ff",
+            "secondary-fixed": "#d9e2ff",
+            "surface-container-high": "#dee8ff",
+            "tertiary-container": "#a64c00",
+            "tertiary-fixed-dim": "#ffb68c",
+            "on-error-container": "#93000a",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "secondary-container": "#759efd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "display-metric": ["Inter"],
+            "body-md": ["Inter"],
+            "table-header": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "table-cell": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "display-metric": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="h-full bg-background font-body-md text-on-surface antialiased select-none">
+<!-- Semantic Shell Rule Applied: Login is a Linear/Transactional page, thus SideNavBar and TopNavBar are suppressed -->
+<main class="min-h-screen w-full flex flex-col lg:flex-row">
+<!-- COLUMNA IZQUIERDA: Formulario e Identidad de Acceso -->
+<section class="w-full lg:w-1/2 min-h-screen bg-surface-container-lowest flex flex-col justify-between p-6 sm:p-10 lg:p-14 z-10 border-r border-outline-variant/30">
+<!-- Encabezado / Branding superior -->
+<div class="w-full max-w-md mx-auto">
+<div class="flex items-center justify-between pb-8">
+<div class="flex items-center gap-3"><div class="flex items-center gap-3"><img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-10 w-auto object-contain rounded-lg shadow-sm"></div></div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 font-label-sm text-label-sm rounded-full bg-surface-container-low text-primary border border-outline-variant/40">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="verified_user">verified_user</span>
+<span class="">Enterprise SSO</span>
+</div>
+</div>
+</div>
+<!-- Contenedor central del Formulario -->
+<div class="w-full max-w-md mx-auto py-2">
+<!-- Títulos de sección -->
+<div class="mb-6">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Iniciar sesión</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5">
+  Ingresa tus credenciales corporativas para acceder a la plataforma.
+</p>
+</div>
+
+<!-- Banner / Alerta de Error Dinámico (Oculto por defecto) -->
+<div id="errorBanner" class="hidden mb-6 p-3.5 bg-error-container/40 border border-error/30 rounded-xl flex items-start gap-3 text-error">
+<span class="material-symbols-outlined text-xl flex-shrink-0 text-error mt-0.5" data-icon="report_problem">report_problem</span>
+<div class="flex-1">
+<p id="errorMessage" class="font-label-md text-label-md text-error leading-snug">
+  Correo o contraseña incorrectos. Verifica tus credenciales o solicita el restablecimiento a tu administrador.
+</p>
+</div>
+</div>
+
+<!-- Formulario de acceso -->
+<form id="loginForm" class="space-y-4">
+<!-- Campo Correo Corporativo -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="email">
+  Correo electrónico corporativo <span class="text-error">*</span>
+</label>
+<div class="relative rounded-xl shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline-variant/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="email" name="email" placeholder="ejemplo@turispro.com" required="" type="email" value="admin@turispro.com">
+</div>
+</div>
+<!-- Campo Contraseña -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="password">
+  Contraseña <span class="text-error">*</span>
+</label>
+<div class="relative rounded-xl shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="lock">lock</span>
+</div>
+<input class="block w-full pl-10 pr-11 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline-variant/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="password" name="password" placeholder="••••••••••••" required="" type="password" value="Admin123*">
+<button aria-label="Mostrar u ocultar contraseña" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface cursor-pointer transition-colors" id="togglePassword" onclick="
+      const passInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    " type="button">
+<span class="material-symbols-outlined text-lg" data-icon="visibility" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Fila de opciones: Recordar y Recuperación -->
+<div class="flex items-center justify-between pt-1">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="h-4 w-4 rounded border-outline-variant text-primary-container focus:ring-primary-container cursor-pointer transition" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface-variant">Recordarme en este equipo</span>
+</label>
+<a class="font-label-md text-label-md text-primary-container hover:text-primary hover:underline transition-colors" href="#">
+  ¿Olvidaste tu contraseña?
+</a>
+</div>
+<!-- Botón primario de acción -->
+<div class="pt-2">
+<button id="submitBtn" class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-lg py-3 px-4 rounded-xl shadow-sm transition-all duration-150 flex items-center justify-center gap-2 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
+  <span>Iniciar sesión</span>
+  <span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+
+<!-- Accesos Rápidos por Rol (HU-01, HU-02) -->
+<div class="pt-4 border-t border-outline-variant/30">
+  <p class="font-label-sm text-label-sm text-outline mb-2 text-center">Acceso rápido con usuarios del MVP:</p>
+  <div class="grid grid-cols-3 gap-2">
+    <button type="button" onclick="setRole('admin@turispro.com', 'Admin123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      👑 Admin
+    </button>
+    <button type="button" onclick="setRole('gestor@turispro.com', 'Gestor123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      🏢 Gestor
+    </button>
+    <button type="button" onclick="setRole('evaluador@turispro.com', 'Evaluador123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      📋 Evaluador
+    </button>
+  </div>
+</div>
+
+<!-- Enlace de soporte / ayuda -->
+<div class="pt-3 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+  ¿Problemas para acceder? 
+  <a class="font-label-sm text-label-sm text-primary-container hover:underline inline-flex items-center gap-0.5 ml-1" href="#">
+    <span>Contacta al Administrador de tu organización</span>
+    <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+  </a>
+</p>
+</div>
+</form>
+</div>
+<!-- Pie de página con certificación institucional -->
+<div class="w-full max-w-md mx-auto pt-8 border-t border-outline-variant/30 text-center">
+<p class="font-label-sm text-label-sm text-outline">
+  TurisPro Enterprise v4.8.2 · Plataforma certificada bajo norma ISO 31000 y normatividad RNT Colombia
+</p>
+</div>
+</section>
+<!-- COLUMNA DERECHA: Hero Panel Corporativo & Valor de Negocio -->
+<aside class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0D47A1] via-primary to-primary-container text-on-primary flex-col justify-between p-12 lg:p-16 relative overflow-hidden">
+<!-- Fondo geométrico sutil y abstracto -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg class="w-full h-full" height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="48" id="corporate-grid" patternUnits="userSpaceOnUse" width="48">
+<path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-width="0.8"></path>
+<circle cx="48" cy="0" fill="currentColor" r="1.5"></circle>
+</pattern>
+</defs>
+<rect fill="url(#corporate-grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Halos decorativos de profundidad suave -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-fixed/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Cabecera Superior del Hero Panel -->
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-on-primary/10 backdrop-blur-md border border-on-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-2xl" data-icon="shield">shield</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-primary tracking-wide uppercase text-xs">Security &amp; Compliance Cloud</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-on-primary/10 border border-on-primary/20 text-on-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+<span class="">Sistemas Operativos 99.98%</span>
+</div>
+</div>
+<!-- Contenido Central Hero -->
+<div class="relative z-10 max-w-xl my-auto py-8">
+<!-- Categorías de cobertura en pills sutiles -->
+<div class="flex flex-wrap items-center gap-2 mb-6">
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Hoteles &amp; Resorts
+</span>
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Aerolíneas
+</span>
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Transporte Terrestre
+</span>
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Operadores Receptivos
+</span>
+</div>
+<!-- Título principal -->
+<h2 class="font-headline-lg text-3xl xl:text-4xl text-on-primary font-bold leading-tight tracking-tight mb-5">
+  Gestiona tus proveedores turísticos en un solo lugar.
+</h2>
+<!-- Descripción complementaria -->
+<p class="font-body-lg text-body-lg text-on-primary-container leading-relaxed mb-8">
+  Centraliza la información legal, cobertura geográfica, monitoreo predictivo de riesgos con IA y cumplimiento normativo de hoteles, aerolíneas, operadores y transporte.
+</p>
+<!-- Tarjeta flotante con preview sutil o estadísticas de confianza -->
+<div class="bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl p-5 border border-on-primary/20 text-on-primary shadow-lg space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-on-primary/10">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+<span class="font-label-md text-label-md text-on-primary font-semibold">Modelo predictivo de riesgo activo</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-on-primary/15 text-primary-fixed">IA Evaluativa</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-start gap-2.5">
+<div class="p-1.5 rounded-lg bg-on-primary/10 flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base text-primary-fixed" data-icon="fact_check">fact_check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Auditoría automática</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">RNT, pólizas contractuales y certificaciones vigentes.</p>
+</div>
+</div>
+<div class="flex items-start gap-2.5">
+<div class="p-1.5 rounded-lg bg-on-primary/10 flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base text-primary-fixed" data-icon="psychology">psychology</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Supervisión asistida</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">Análisis de apoyo. La decisión final la toma una persona.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pie del Panel Derecho: Métricas de confianza -->
+<div class="relative z-10 pt-6 border-t border-on-primary/15 flex items-center justify-between text-on-primary-container font-label-sm text-label-sm">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="gavel">gavel</span>
+<span class="">Cumplimiento MinComercio</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="lock_reset">lock_reset</span>
+<span class="">Cifrado TLS 1.3 / AES-256</span>
+</div>
+</div>
+<span class="">Colombia · LatAm</span>
+</div>
+</aside>
+</main>
+
+<!-- Inclusión del cliente API de TurisPro -->
+<script src="../../assets/js/api.js"></script>
+<script>
+  function setRole(email, pass) {
+    document.getElementById('email').value = email;
+    document.getElementById('password').value = pass;
+    document.getElementById('errorBanner').classList.add('hidden');
+  }
+
+  const loginForm = document.getElementById('loginForm');
+  const errorBanner = document.getElementById('errorBanner');
+  const errorMessage = document.getElementById('errorMessage');
+  const submitBtn = document.getElementById('submitBtn');
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBanner.classList.add('hidden');
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Validando...';
+    
+    try {
+      await TurisProAPI.login(email, password);
+      submitBtn.innerHTML = '<span>¡Acceso Concedido! Redirigiendo...</span>';
+      submitBtn.classList.remove('bg-primary-container', 'hover:bg-primary');
+      submitBtn.classList.add('bg-emerald-600');
+      setTimeout(() => {
+        window.location.href = '../dashboard/dashboard.html';
+      }, 400);
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Iniciar sesión</span><span class="material-symbols-outlined text-xl">arrow_forward</span>';
+      errorMessage.textContent = err.message || 'Correo o contraseña incorrectos. Verifica tus credenciales.';
+      errorBanner.classList.remove('hidden');
+    }
+  });
+</script>
+<!DOCTYPE html><html class="h-full" lang="es" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TurisPro - Iniciar sesión</title>
+<!-- Inter Font Family -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config based on Design Tokens -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#d8e3fb",
+            "secondary-fixed-dim": "#b0c6ff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#001945",
+            "on-secondary-fixed-variant": "#00429c",
+            "inverse-on-surface": "#ecf1ff",
+            "error-container": "#ffdad6",
+            "on-primary-fixed-variant": "#00468c",
+            "inverse-primary": "#a9c7ff",
+            "on-secondary-container": "#00337c",
+            "primary": "#004d99",
+            "secondary": "#2b5bb5",
+            "tertiary": "#813900",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#001b3d",
+            "on-error": "#ffffff",
+            "outline-variant": "#c2c6d4",
+            "surface-tint": "#005db7",
+            "tertiary-fixed": "#ffdbc9",
+            "primary-fixed": "#d6e3ff",
+            "surface-container-low": "#f0f3ff",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f9f9ff",
+            "on-tertiary-fixed-variant": "#753400",
+            "on-surface": "#111c2d",
+            "on-background": "#111c2d",
+            "on-primary-container": "#dae5ff",
+            "surface-container": "#e7eeff",
+            "surface-container-highest": "#d8e3fb",
+            "on-surface-variant": "#424752",
+            "surface": "#f9f9ff",
+            "surface-dim": "#cfdaf2",
+            "primary-container": "#1565c0",
+            "inverse-surface": "#263143",
+            "on-tertiary-fixed": "#321200",
+            "on-tertiary-container": "#ffdece",
+            "surface-bright": "#f9f9ff",
+            "outline": "#727783",
+            "primary-fixed-dim": "#a9c7ff",
+            "secondary-fixed": "#d9e2ff",
+            "surface-container-high": "#dee8ff",
+            "tertiary-container": "#a64c00",
+            "tertiary-fixed-dim": "#ffb68c",
+            "on-error-container": "#93000a",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "secondary-container": "#759efd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "display-metric": ["Inter"],
+            "body-md": ["Inter"],
+            "table-header": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "table-cell": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "display-metric": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }],
+            "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="h-full bg-background font-body-md text-on-surface antialiased select-none">
+<!-- Semantic Shell Rule Applied: Login is a Linear/Transactional page, thus SideNavBar and TopNavBar are suppressed -->
+<main class="min-h-screen w-full flex flex-col lg:flex-row">
+<!-- COLUMNA IZQUIERDA: Formulario e Identidad de Acceso -->
+<section class="w-full lg:w-1/2 min-h-screen bg-surface-container-lowest flex flex-col justify-between p-6 sm:p-10 lg:p-14 z-10 border-r border-outline-variant/30">
+<!-- Encabezado / Branding superior -->
+<div class="w-full max-w-md mx-auto">
+<div class="flex items-center justify-between pb-8">
+<div class="flex items-center gap-3"><div class="flex items-center gap-3"><img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-10 w-auto object-contain rounded-lg shadow-sm"></div></div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 font-label-sm text-label-sm rounded-full bg-surface-container-low text-primary border border-outline-variant/40">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="verified_user">verified_user</span>
+<span class="">Enterprise SSO</span>
+</div>
+</div>
+</div>
+<!-- Contenedor central del Formulario -->
+<div class="w-full max-w-md mx-auto py-2">
+<!-- Títulos de sección -->
+<div class="mb-6">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Iniciar sesión</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5">
+  Ingresa tus credenciales corporativas para acceder a la plataforma.
+</p>
+</div>
+
+<!-- Banner / Alerta de Error Dinámico (Oculto por defecto) -->
+<div id="errorBanner" class="hidden mb-6 p-3.5 bg-error-container/40 border border-error/30 rounded-xl flex items-start gap-3 text-error">
+<span class="material-symbols-outlined text-xl flex-shrink-0 text-error mt-0.5" data-icon="report_problem">report_problem</span>
+<div class="flex-1">
+<p id="errorMessage" class="font-label-md text-label-md text-error leading-snug">
+  Correo o contraseña incorrectos. Verifica tus credenciales o solicita el restablecimiento a tu administrador.
+</p>
+</div>
+</div>
+
+<!-- Formulario de acceso -->
+<form id="loginForm" class="space-y-4">
+<!-- Campo Correo Corporativo -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="email">
+  Correo electrónico corporativo <span class="text-error">*</span>
+</label>
+<div class="relative rounded-xl shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3.5 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline-variant/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="email" name="email" placeholder="ejemplo@turispro.com" required="" type="email" value="admin@turispro.com">
+</div>
+</div>
+<!-- Campo Contraseña -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="password">
+  Contraseña <span class="text-error">*</span>
+</label>
+<div class="relative rounded-xl shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="lock">lock</span>
+</div>
+<input class="block w-full pl-10 pr-11 py-2.5 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline-variant/60 rounded-xl placeholder:text-outline/70 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" id="password" name="password" placeholder="••••••••••••" required="" type="password" value="Admin123*">
+<button aria-label="Mostrar u ocultar contraseña" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface cursor-pointer transition-colors" id="togglePassword" onclick="
+      const passInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+      } else {
+        passInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+      }
+    " type="button">
+<span class="material-symbols-outlined text-lg" data-icon="visibility" id="eyeIcon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Fila de opciones: Recordar y Recuperación -->
+<div class="flex items-center justify-between pt-1">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="h-4 w-4 rounded border-outline-variant text-primary-container focus:ring-primary-container cursor-pointer transition" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface-variant">Recordarme en este equipo</span>
+</label>
+<a class="font-label-md text-label-md text-primary-container hover:text-primary hover:underline transition-colors" href="#">
+  ¿Olvidaste tu contraseña?
+</a>
+</div>
+<!-- Botón primario de acción -->
+<div class="pt-2">
+<button id="submitBtn" class="w-full bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-lg py-3 px-4 rounded-xl shadow-sm transition-all duration-150 flex items-center justify-center gap-2 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
+  <span>Iniciar sesión</span>
+  <span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+
+<!-- Accesos Rápidos por Rol (HU-01, HU-02) -->
+<div class="pt-4 border-t border-outline-variant/30">
+  <p class="font-label-sm text-label-sm text-outline mb-2 text-center">Acceso rápido con usuarios del MVP:</p>
+  <div class="grid grid-cols-3 gap-2">
+    <button type="button" onclick="setRole('admin@turispro.com', 'Admin123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      👑 Admin
+    </button>
+    <button type="button" onclick="setRole('gestor@turispro.com', 'Gestor123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      🏢 Gestor
+    </button>
+    <button type="button" onclick="setRole('evaluador@turispro.com', 'Evaluador123*')" class="px-2 py-1.5 text-xs font-semibold rounded-lg border border-primary/40 text-primary hover:bg-primary/10 transition text-center">
+      📋 Evaluador
+    </button>
+  </div>
+</div>
+
+<!-- Enlace de soporte / ayuda -->
+<div class="pt-3 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+  ¿Problemas para acceder? 
+  <a class="font-label-sm text-label-sm text-primary-container hover:underline inline-flex items-center gap-0.5 ml-1" href="#">
+    <span>Contacta al Administrador de tu organización</span>
+    <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+  </a>
+</p>
+</div>
+</form>
+</div>
+<!-- Pie de página con certificación institucional -->
+<div class="w-full max-w-md mx-auto pt-8 border-t border-outline-variant/30 text-center">
+<p class="font-label-sm text-label-sm text-outline">
+  TurisPro Enterprise v4.8.2 · Plataforma certificada bajo norma ISO 31000 y normatividad RNT Colombia
+</p>
+</div>
+</section>
+<!-- COLUMNA DERECHA: Hero Panel Corporativo & Valor de Negocio -->
+<aside class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0D47A1] via-primary to-primary-container text-on-primary flex-col justify-between p-12 lg:p-16 relative overflow-hidden">
+<!-- Fondo geométrico sutil y abstracto -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg class="w-full h-full" height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="48" id="corporate-grid" patternUnits="userSpaceOnUse" width="48">
+<path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" stroke-width="0.8"></path>
+<circle cx="48" cy="0" fill="currentColor" r="1.5"></circle>
+</pattern>
+</defs>
+<rect fill="url(#corporate-grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Halos decorativos de profundidad suave -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-fixed/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Cabecera Superior del Hero Panel -->
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-on-primary/10 backdrop-blur-md border border-on-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-2xl" data-icon="shield">shield</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-primary tracking-wide uppercase text-xs">Security &amp; Compliance Cloud</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-on-primary/10 border border-on-primary/20 text-on-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+<span class="">Sistemas Operativos 99.98%</span>
+</div>
+</div>
+<!-- Contenido Central Hero -->
+<div class="relative z-10 max-w-xl my-auto py-8">
+<!-- Categorías de cobertura en pills sutiles -->
+<div class="flex flex-wrap items-center gap-2 mb-6">
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Hoteles &amp; Resorts
+</span>
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Aerolíneas
+</span>
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Transporte Terrestre
+</span>
+<span class="px-3 py-1 rounded-full text-xs font-label-md bg-white/10 text-white/90 backdrop-blur-sm border border-white/15">
+  Operadores Receptivos
+</span>
+</div>
+<!-- Título principal -->
+<h2 class="font-headline-lg text-3xl xl:text-4xl text-on-primary font-bold leading-tight tracking-tight mb-5">
+  Gestiona tus proveedores turísticos en un solo lugar.
+</h2>
+<!-- Descripción complementaria -->
+<p class="font-body-lg text-body-lg text-on-primary-container leading-relaxed mb-8">
+  Centraliza la información legal, cobertura geográfica, monitoreo predictivo de riesgos con IA y cumplimiento normativo de hoteles, aerolíneas, operadores y transporte.
+</p>
+<!-- Tarjeta flotante con preview sutil o estadísticas de confianza -->
+<div class="bg-surface-container-lowest/10 backdrop-blur-md rounded-2xl p-5 border border-on-primary/20 text-on-primary shadow-lg space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-on-primary/10">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+<span class="font-label-md text-label-md text-on-primary font-semibold">Modelo predictivo de riesgo activo</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-on-primary/15 text-primary-fixed">IA Evaluativa</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-start gap-2.5">
+<div class="p-1.5 rounded-lg bg-on-primary/10 flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base text-primary-fixed" data-icon="fact_check">fact_check</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Auditoría automática</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">RNT, pólizas contractuales y certificaciones vigentes.</p>
+</div>
+</div>
+<div class="flex items-start gap-2.5">
+<div class="p-1.5 rounded-lg bg-on-primary/10 flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base text-primary-fixed" data-icon="psychology">psychology</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-primary">Supervisión asistida</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">Análisis de apoyo. La decisión final la toma una persona.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pie del Panel Derecho: Métricas de confianza -->
+<div class="relative z-10 pt-6 border-t border-on-primary/15 flex items-center justify-between text-on-primary-container font-label-sm text-label-sm">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="gavel">gavel</span>
+<span class="">Cumplimiento MinComercio</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base" data-icon="lock_reset">lock_reset</span>
+<span class="">Cifrado TLS 1.3 / AES-256</span>
+</div>
+</div>
+<span class="">Colombia · LatAm</span>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto p-4"></main>
+
+<!-- Inclusión del cliente API de TurisPro -->
+<script src="../../assets/js/api.js"></script>
+<script>
+  function setRole(email, pass) {
+    document.getElementById('email').value = email;
+    document.getElementById('password').value = pass;
+    document.getElementById('errorBanner').classList.add('hidden');
+  }
+
+  const loginForm = document.getElementById('loginForm');
+  const errorBanner = document.getElementById('errorBanner');
+  const errorMessage = document.getElementById('errorMessage');
+  const submitBtn = document.getElementById('submitBtn');
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBanner.classList.add('hidden');
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="inline-block animate-spin mr-2">⏳</span> Validando...';
+    
+    try {
+      await TurisProAPI.login(email, password);
+      submitBtn.innerHTML = '<span>¡Acceso Concedido! Redirigiendo...</span>';
+      submitBtn.classList.remove('bg-primary-container', 'hover:bg-primary');
+      submitBtn.classList.add('bg-emerald-600');
+      setTimeout(() => {
+        window.location.href = '../dashboard/dashboard.html';
+      }, 400);
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Iniciar sesión</span><span class="material-symbols-outlined text-xl">arrow_forward</span>';
+      errorMessage.textContent = err.message || 'Correo o contraseña incorrectos. Verifica tus credenciales.';
+      errorBanner.classList.remove('hidden');
+    }
+  });
+</script>
+</body></html></main>
+<script src="/TurisPro/assets/js/spa.js"></script>
+</body></html>

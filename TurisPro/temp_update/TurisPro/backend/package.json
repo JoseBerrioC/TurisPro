@@ -1,0 +1,24 @@
+{
+  "name": "turispro-backend",
+  "version": "1.0.0",
+  "description": "API Backend para TurisPro basada en Diagramas UML (Clases, Estados, Secuencia, Comunicaciones) y Backlog de Negocio",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/database/seed.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "turispro",
+    "turismo",
+    "proveedores",
+    "riesgo-ia",
+    "evaluaciones"
+  ],
+  "author": "José Berrío",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

@@ -1,0 +1,590 @@
+<!DOCTYPE html><html class="h-full bg-surface" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TurisPro - Detalle de Proveedor: Hotel Los Andes</title>
+<!-- Google Fonts: Inter & Hanken Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with forms & container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config updated to modern sky/cerulean azure palette -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#c2e8ff",
+            "tertiary-fixed-dim": "#77d1ff",
+            "primary-fixed": "#cce5ff",
+            "on-primary-container": "#fdfcff",
+            "inverse-surface": "#2a3137",
+            "on-surface": "#161c21",
+            "on-tertiary": "#ffffff",
+            "primary-fixed-dim": "#93ccff",
+            "primary-container": "#0284c7",
+            "secondary-fixed-dim": "#89ceff",
+            "outline": "#707881",
+            "secondary-fixed": "#c9e6ff",
+            "surface-tint": "#0284c7",
+            "surface-variant": "#dde3ea",
+            "on-secondary-container": "#0369a1",
+            "on-primary-fixed-variant": "#0369a1",
+            "surface-bright": "#f6faff",
+            "surface-container-highest": "#dde3ea",
+            "outline-variant": "#bfc7d2",
+            "surface-dim": "#d4dbe2",
+            "on-error": "#ffffff",
+            "tertiary-container": "#0ea5e9",
+            "on-tertiary-fixed": "#001e2c",
+            "on-error-container": "#93000a",
+            "primary": "#0284c7",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#38bdf8",
+            "inverse-primary": "#93ccff",
+            "error-container": "#ffdad6",
+            "on-background": "#161c21",
+            "on-primary": "#ffffff",
+            "surface": "#f6faff",
+            "background": "#f6faff",
+            "surface-container": "#e0f2fe",
+            "on-tertiary-fixed-variant": "#0369a1",
+            "on-surface-variant": "#3f4850",
+            "error": "#ba1a1a",
+            "on-primary-fixed": "#001d31",
+            "inverse-on-surface": "#ebf1f9",
+            "surface-container-high": "#e2e9f0",
+            "tertiary": "#0369a1",
+            "on-secondary-fixed-variant": "#0369a1",
+            "secondary": "#0284c7",
+            "surface-container-low": "#f0f9ff",
+            "on-tertiary-container": "#fbfcff",
+            "on-secondary-fixed": "#001e2f",
+            "surface-container-lowest": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "margin": "2rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Hanken Grotesk", "Inter"],
+            "headline-md": ["Hanken Grotesk", "Inter"],
+            "headline-lg": ["Hanken Grotesk", "Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "display-metric": ["Hanken Grotesk", "Inter"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .sidebar-bg {
+      background-color: #0369a1;
+    }
+    .active-nav-item {
+      background-color: #0284c7;
+      color: #FFFFFF;
+      border-left: 4px solid #bae6fd;
+    }
+    .badge-risk-low {
+      background-color: #E8F5E9;
+      color: #1B5E20;
+    }
+    .badge-risk-warning {
+      background-color: #FFF8E1;
+      color: #5D4037;
+    }
+    .badge-risk-danger {
+      background-color: #FFEBEE;
+      color: #B71C1C;
+    }
+    .badge-risk-info {
+      background-color: #e0f2fe;
+      color: #0369a1;
+    }
+  </style>
+</head>
+<body class="h-full text-on-surface antialiased flex">
+<!-- ========================================================================= -->
+<!-- SIDEBAR (Modern Celeste / Sky Blue Corporate Theme)                       -->
+<!-- ========================================================================= -->
+<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between py-4 z-40 sidebar-bg border-r border-sky-700/50 shadow-sm text-on-primary">
+<!-- Top Brand & Navigation Section -->
+<div class="flex flex-col">
+<!-- Brand Header with Logo -->
+<div class="px-6 pb-6 pt-2 flex items-center gap-3 border-b border-sky-400/20">
+  <a href="#" class="flex items-center block w-full py-1">
+    <img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-10 w-auto max-w-full object-contain rounded-md shadow-2xs">
+  </a>
+</div>
+<!-- Quick Action CTA inside Sidebar -->
+<div class="px-4 mt-4 mb-2">
+<button class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-sky-500 hover:bg-sky-400 text-white rounded-lg text-label-md font-semibold transition-colors duration-150 shadow-sm border border-sky-300/30" onclick="location.href='../../pages/providers/register.html'">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span class="">+ Registrar proveedor</span>
+</button>
+</div>
+<!-- Navigation Tabs (Active: Proveedores) -->
+<nav class="mt-3 flex flex-col space-y-0.5">
+<!-- Inicio -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/dashboard/dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="">Inicio</span>
+</a>
+<!-- Proveedores (ACTIVE TAB) -->
+<a class="flex items-center gap-3 px-6 py-2.5 active-nav-item font-semibold text-label-md cursor-pointer select-none shadow-inner" href="../../pages/providers/directory.html">
+<span class="material-symbols-outlined" data-icon="domain" style="font-variation-settings: 'FILL' 1;">domain</span>
+<span class="">Proveedores</span>
+</a>
+<!-- Comparar -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/providers/compare.html">
+<span class="material-symbols-outlined" data-icon="compare_arrows">compare_arrows</span>
+<span class="">Comparar</span>
+</a>
+<!-- Documentos -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/providers/hotel-los-andes/documents.html">
+<span class="material-symbols-outlined" data-icon="folder">folder</span>
+<span class="">Documentos</span>
+</a>
+<!-- Evaluaciones -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/providers/hotel-los-andes/evaluations.html">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="">Evaluaciones</span>
+</a>
+<!-- Incidentes -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/providers/hotel-los-andes/incidents.html">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="">Incidentes</span>
+</a>
+<!-- Reportes -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/reports/executive-analytics.html">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="">Reportes</span>
+</a>
+<!-- Análisis IA -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/risk/ai-risk-analysis.html">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="">Análisis IA</span>
+</a>
+<!-- Configuración -->
+<a class="flex items-center gap-3 px-6 py-2.5 text-sky-100 hover:text-white hover:bg-sky-600/50 transition-colors text-label-md font-medium cursor-pointer select-none" href="../../pages/settings/settings.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="">Configuración</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer: Session Profile Anchor (Carlos Mendoza) -->
+<div class="px-5 pt-4 border-t border-sky-500/30">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3 min-w-0">
+<div class="h-9 w-9 rounded-full bg-sky-400 text-sky-950 flex items-center justify-center font-bold text-sm shrink-0 border border-sky-200/50 shadow-sm">
+            CM
+          </div>
+<div class="truncate">
+<div class="text-label-md font-semibold text-white truncate">Carlos Mendoza</div>
+<div class="text-body-sm text-sky-200 truncate">Director de Compras</div>
+</div>
+</div>
+<button class="text-sky-200 hover:text-white p-1 rounded transition-colors" title="Cerrar sesión" onclick="location.href='../../pages/auth/login.html'">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- MAIN WORKSPACE CONTAINER                                                  -->
+<!-- ========================================================================= -->
+<div class="flex-1 ml-64 min-h-screen flex flex-col bg-[#F8FAFC]">
+<!-- ========================================================================= -->
+<!-- TOP UTILITY HEADER                                                        -->
+<!-- ========================================================================= -->
+<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-white border-b border-slate-200 shadow-xs">
+<!-- Search on the left -->
+<div class="flex items-center gap-4 flex-1 max-w-lg">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 text-body-md bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all placeholder:text-slate-400" placeholder="Buscar por NIT, razón social, RNT o responsable..." type="text">
+</div>
+</div>
+<!-- Right Utility Actions -->
+<div class="flex items-center gap-5">
+<!-- Date display -->
+<div class="hidden lg:flex items-center gap-1.5 text-body-sm text-slate-600 bg-sky-50/60 px-3 py-1.5 rounded-lg border border-sky-100">
+<span class="material-symbols-outlined text-base text-sky-600" data-icon="calendar_today">calendar_today</span>
+<span class="">Hoy, 24/10/2024</span>
+</div>
+<div class="h-5 w-px bg-slate-200"></div>
+<!-- Help icon -->
+<button class="relative p-2 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors" title="Centro de Ayuda">
+<span class="material-symbols-outlined text-xl" data-icon="help_outline">help_outline</span>
+</button>
+<!-- Notifications icon with dot -->
+<button class="relative p-2 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-colors" title="Notificaciones">
+<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-error"></span>
+</button>
+<!-- Trailing Primary Action button: + Registrar proveedor -->
+<button class="flex items-center gap-2 px-3.5 py-1.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-label-md font-semibold transition-colors shadow-sm" onclick="location.href='../../pages/providers/register.html'">
+<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+<span class="">+ Registrar proveedor</span>
+</button>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- CONTENT CANVAS                                                            -->
+<!-- ========================================================================= -->
+<main class="flex-1 mt-16 px-8 py-6 space-y-6 max-w-7xl w-full mx-auto">
+<!-- 1. BREADCRUMB NAVIGATION -->
+<nav class="flex items-center gap-2 text-body-sm text-slate-500">
+<a class="hover:text-sky-600 transition-colors" href="../../pages/providers/directory.html">Proveedores</a>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-sky-600 transition-colors" href="../../pages/providers/directory.html">Hoteles</a>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="font-semibold text-slate-800">Hotel Los Andes</span>
+</nav>
+<!-- 2. MAIN PROVIDER HEADER -->
+<section class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start md:items-center gap-4">
+<!-- Establishment Badge Avatar -->
+<div class="h-16 w-16 rounded-xl bg-sky-50 flex items-center justify-center text-sky-600 border border-sky-100 shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-3xl" data-icon="hotel">hotel</span>
+</div>
+<div class="space-y-1">
+<div class="flex flex-wrap items-center gap-3">
+<h1 class="text-headline-lg font-headline-lg text-slate-900 tracking-tight">Hotel Los Andes</h1>
+<!-- Soft risk badge: pill-shaped, green circle bullet -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full badge-risk-low border border-[#A5D6A7]">
+<span class="h-2 w-2 rounded-full bg-[#2E7D32]"></span>
+<span class="text-[#1B5E20]">● Riesgo bajo · 18/100</span>
+</span>
+<!-- Institutional Verification Badge with sky tone -->
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 text-label-sm rounded-full bg-sky-50 text-sky-700 font-medium border border-sky-200">
+<span class="material-symbols-outlined text-xs text-sky-600" data-icon="verified">verified</span>
+                Auditoría ISO 31000
+              </span>
+</div>
+<div class="flex items-center gap-3 text-body-md text-slate-500">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-base text-sky-500" data-icon="location_on">location_on</span>
+                Hotel · Medellín, Colombia
+              </span>
+<span class="text-slate-300">•</span>
+<span class="text-body-sm text-slate-500">Código Único: HND-MED-049</span>
+</div>
+</div>
+</div>
+<!-- Header Actions on the Right -->
+<div class="flex items-center gap-3 shrink-0">
+<button class="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-sky-200 text-sky-700 hover:bg-sky-50 rounded-lg text-label-md font-semibold transition-colors shadow-xs">
+<span class="material-symbols-outlined text-base text-sky-600" data-icon="edit">edit</span>
+<span class="">Editar</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-label-md text-slate-700 hover:bg-slate-50 transition-colors shadow-xs">
+<span class="material-symbols-outlined text-base text-slate-500" data-icon="share">share</span>
+<span class="">Compartir</span>
+</button>
+<button class="p-2 bg-white border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors shadow-xs" title="Más opciones de proveedor">
+<span class="material-symbols-outlined text-lg" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</section>
+<!-- 3. AI GOVERNANCE BANNER -->
+<div class="flex items-center gap-3 px-4 py-3 bg-sky-50/80 border border-sky-200 rounded-lg text-body-sm text-sky-900 shadow-xs">
+<span class="material-symbols-outlined text-lg text-sky-600 shrink-0" data-icon="psychology">psychology</span>
+<p class="leading-relaxed">
+<strong class="font-semibold text-sky-800">IA Co-pilot:</strong> Modelo predictivo de riesgo activo. Análisis de apoyo. La decisión final la toma una persona. Cumplimiento auditado bajo norma ISO 31000.
+        </p>
+</div>
+<!-- 4. ROW OF 4 SUMMARY KPI CARDS -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1: Evaluación General -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-md text-slate-500 font-medium">Evaluación general</span>
+<div class="p-2 rounded-lg bg-sky-50 text-sky-600">
+<span class="material-symbols-outlined text-lg" data-icon="star">star</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-display-metric font-display-metric text-slate-900">4.6</span>
+<span class="text-body-md text-slate-400">/ 5</span>
+<div class="flex items-center text-[#F9A825] ml-1">
+<span class="material-symbols-outlined text-base" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-base" data-icon="star_half" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+</div>
+<p class="text-body-sm text-slate-400">Basado en 24 evaluaciones de huéspedes y auditoría interna</p>
+</div>
+</div>
+<!-- Card 2: Incidentes -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-md text-slate-500 font-medium">Incidentes</span>
+<div class="p-2 rounded-lg bg-amber-50 text-amber-700">
+<span class="material-symbols-outlined text-lg" data-icon="warning">warning</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<span class="text-display-metric font-display-metric text-slate-900">2</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm badge-risk-warning font-semibold">
+                Controlado
+              </span>
+</div>
+<p class="text-body-sm text-slate-400">1 leve resuelto · 1 en seguimiento</p>
+</div>
+</div>
+<!-- Card 3: Documentos vigentes -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-md text-slate-500 font-medium">Documentos vigentes</span>
+<div class="p-2 rounded-lg bg-sky-50 text-sky-600">
+<span class="material-symbols-outlined text-lg" data-icon="folder_shared">folder_shared</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-display-metric font-display-metric text-slate-900">3 / 4</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-label-sm badge-risk-warning font-medium">
+<span class="h-1.5 w-1.5 rounded-full bg-[#F9A825]"></span>
+<span class="">1 próximo a vencer (Póliza RC)</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Última evaluación -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-md text-slate-500 font-medium">Última evaluación</span>
+<div class="p-2 rounded-lg bg-emerald-50 text-emerald-700">
+<span class="material-symbols-outlined text-lg" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<div>
+<div class="text-headline-md font-headline-md text-slate-900 mb-1">
+              15/09/2026
+            </div>
+<p class="text-body-sm text-slate-400">Evaluador: Carlos Mendoza · Auditoría aprobada</p>
+</div>
+</div>
+</section>
+<!-- 5. HORIZONTAL NAVIGATION TABS (Active: Información in Modern Sky Blue) -->
+<section class="border-b border-slate-200">
+<nav aria-label="Pestañas de Proveedor" class="flex space-x-8 overflow-x-auto">
+<!-- Active Tab: Información -->
+<button class="border-b-2 border-sky-600 pb-3 text-sky-600 text-label-md font-semibold flex items-center gap-2 whitespace-nowrap" onclick="location.href='../../pages/providers/hotel-los-andes/detail.html'">
+<span class="material-symbols-outlined text-lg text-sky-600" data-icon="info">info</span>
+<span class="">Información</span>
+</button>
+<!-- Services Tab -->
+<button class="border-b-2 border-transparent pb-3 text-slate-500 hover:text-sky-600 hover:border-sky-300 text-label-md font-medium transition-colors flex items-center gap-2 whitespace-nowrap" onclick="location.href='../../pages/providers/hotel-los-andes/services-and-rates.html'">
+<span class="material-symbols-outlined text-lg" data-icon="room_service">room_service</span>
+<span class="">Servicios y tarifas</span>
+</button>
+<!-- Documents Tab -->
+<button class="border-b-2 border-transparent pb-3 text-slate-500 hover:text-sky-600 hover:border-sky-300 text-label-md font-medium transition-colors flex items-center gap-2 whitespace-nowrap" onclick="location.href='../../pages/providers/hotel-los-andes/documents.html'">
+<span class="material-symbols-outlined text-lg" data-icon="description">description</span>
+<span class="">Documentos (4)</span>
+</button>
+<!-- Reviews Tab -->
+<button class="border-b-2 border-transparent pb-3 text-slate-500 hover:text-sky-600 hover:border-sky-300 text-label-md font-medium transition-colors flex items-center gap-2 whitespace-nowrap" onclick="location.href='../../pages/providers/hotel-los-andes/evaluations.html'">
+<span class="material-symbols-outlined text-lg" data-icon="rate_review">rate_review</span>
+<span class="">Evaluaciones (24)</span>
+</button>
+<!-- Incidents Tab -->
+<button class="border-b-2 border-transparent pb-3 text-slate-500 hover:text-sky-600 hover:border-sky-300 text-label-md font-medium transition-colors flex items-center gap-2 whitespace-nowrap" onclick="location.href='../../pages/providers/hotel-los-andes/incidents.html'">
+<span class="material-symbols-outlined text-lg" data-icon="warning_amber">warning_amber</span>
+<span class="">Incidentes (2)</span>
+</button>
+<!-- AI Analysis Tab -->
+<button class="border-b-2 border-transparent pb-3 text-slate-500 hover:text-sky-600 hover:border-sky-300 text-label-md font-medium transition-colors flex items-center gap-2 whitespace-nowrap" onclick="location.href='../../pages/risk/ai-risk-analysis.html'">
+<span class="material-symbols-outlined text-lg" data-icon="neurology">neurology</span>
+<span class="">Análisis IA</span>
+</button>
+</nav>
+</section>
+<!-- 6. TAB CONTENT: INFORMACIÓN -->
+<section class="space-y-6">
+<!-- Card: Información General Dividida en Bloques -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+<!-- Bloque 1: Datos de identificación tributaria y contacto corporativo -->
+<div class="p-6 border-b border-slate-100">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sky-600" data-icon="badge">badge</span>
+<h2 class="text-headline-sm font-headline-sm text-slate-900">Datos de identificación tributaria y contacto corporativo</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- NIT -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">NIT / Identificación fiscal</span>
+<div class="flex items-center gap-2">
+<span class="text-body-md font-semibold text-slate-900">900.123.456-7</span>
+<button class="text-sky-600 hover:text-sky-700 transition-colors" title="Copiar NIT">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Persona de contacto -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">Persona de contacto</span>
+<p class="text-body-md text-slate-900">
+<span class="font-semibold">María Pérez</span>
+<span class="text-slate-400 text-body-sm block">(Gerente de Operaciones y Reservas)</span>
+</p>
+</div>
+<!-- Teléfono -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">Teléfono corporativo</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-sky-600" data-icon="call">call</span>
+<a class="text-body-md text-sky-600 hover:text-sky-700 hover:underline" href="tel:+573000000000">+57 300 000 0000</a>
+</div>
+</div>
+<!-- Correo electrónico -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">Correo electrónico</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-sky-600" data-icon="mail">mail</span>
+<a class="text-body-md text-sky-600 hover:text-sky-700 hover:underline" href="mailto:contacto@hotel.com">contacto@hotel.com</a>
+</div>
+</div>
+<!-- Dirección física -->
+<div class="space-y-1 md:col-span-2">
+<span class="text-body-sm text-slate-500">Dirección física</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-sky-600" data-icon="pin_drop">pin_drop</span>
+<span class="text-body-md text-slate-900">Calle 10 # 43E-12, El Poblado, Medellín, Antioquia</span>
+</div>
+</div>
+<!-- Sitio web -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">Sitio web oficial</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-sky-600" data-icon="language">language</span>
+<a class="text-body-md text-sky-600 hover:text-sky-700 hover:underline flex items-center gap-1" href="https://www.hotellosandes.com" target="_blank">
+<span class="">www.hotellosandes.com</span>
+<span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Bloque 2: Cobertura geográfica y operativa -->
+<div class="p-6 border-b border-slate-100 bg-sky-50/20">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sky-600" data-icon="travel_explore">travel_explore</span>
+<h2 class="text-headline-sm font-headline-sm text-slate-900">Cobertura geográfica y capacidad operativa</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Cobertura -->
+<div class="space-y-2">
+<span class="text-body-sm text-slate-500 block">Ciudades y regiones de operación</span>
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-white border border-sky-200 rounded-full text-label-sm font-medium text-sky-800 shadow-2xs">
+<span class="material-symbols-outlined text-xs text-sky-600" data-icon="location_on">location_on</span>
+                    Medellín
+                  </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-white border border-sky-200 rounded-full text-label-sm font-medium text-sky-800 shadow-2xs">
+<span class="material-symbols-outlined text-xs text-sky-600" data-icon="map">map</span>
+                    Antioquia
+                  </span>
+</div>
+</div>
+<!-- Tipo de establecimiento -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">Tipo de establecimiento</span>
+<p class="text-body-md font-medium text-slate-900">Hotel urbano &amp; corporativo (4 estrellas)</p>
+<div class="flex text-[#F9A825] gap-0.5">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Capacidad -->
+<div class="space-y-1">
+<span class="text-body-sm text-slate-500">Capacidad instalada</span>
+<p class="text-body-md font-medium text-slate-900">120 habitaciones · 3 salones de eventos</p>
+<span class="text-body-sm text-slate-400">Aforo máximo en eventos: 350 personas</span>
+</div>
+</div>
+</div>
+<!-- Bloque 3: Resumen de cumplimiento y estado normativo -->
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sky-600" data-icon="gavel">gavel</span>
+<h2 class="text-headline-sm font-headline-sm text-slate-900">Resumen de cumplimiento y estado normativo</h2>
+</div>
+<span class="text-label-sm text-slate-400">Regulación Nacional de Turismo (Colombia)</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- RNT -->
+<div class="p-4 rounded-lg border border-slate-200 bg-white">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm text-slate-500 font-medium">Registro Nacional de Turismo</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold badge-risk-low">
+                    ● Vigente
+                  </span>
+</div>
+<div class="text-body-md font-semibold text-slate-900">RNT No. 45892</div>
+<div class="text-body-sm text-slate-400 mt-1">Vigente hasta: 31/03/2027</div>
+</div>
+<!-- Póliza de Seguros -->
+<div class="p-4 rounded-lg border border-slate-200 bg-white">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm text-slate-500 font-medium">Póliza de Responsabilidad Civil</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold badge-risk-warning">
+                    ● Próximo a vencer
+                  </span>
+</div>
+<div class="text-body-md font-semibold text-slate-900">Suramericana Póliza #8942-01</div>
+<div class="text-body-sm text-[#813900] font-medium mt-1">Vence en 18 días (11/11/2024)</div>
+</div>
+<!-- Representante Legal -->
+<div class="p-4 rounded-lg border border-slate-200 bg-white">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-sm text-slate-500 font-medium">Representación Legal Registrada</span>
+<span class="material-symbols-outlined text-sky-600 text-base" data-icon="account_balance">account_balance</span>
+</div>
+<div class="text-body-md font-semibold text-slate-900">María Pérez Valencia</div>
+<div class="text-body-sm text-slate-400 mt-1">C.C. 43.892.102 (Facultades plenas)</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. INSTITUTIONAL FOOTER --></main></div></body></html>

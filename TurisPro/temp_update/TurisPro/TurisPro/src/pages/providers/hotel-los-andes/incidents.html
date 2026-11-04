@@ -1,0 +1,897 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TurisPro - Incidentes: Hotel Los Andes</title>
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7', // Celeste corporativo TurisPro
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          },
+          fontFamily: {
+            sans: ['"Hanken Grotesk"', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    body {
+      font-family: 'Hanken Grotesk', Inter, sans-serif;
+      background-color: #f6faff;
+      color: #1e293b;
+    }
+  </style>
+<style id="turispro-fixed-sidebar-styles">
+/* Sidebar fija y uniforme en todas las secciones */
+html body aside.tp-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  background-color: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>
+<style id="turispro-sidebar-uniform-style">
+/* Panel lateral unico de TurisPro: conserva exactamente el aspecto del Inicio. */
+.tp-sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+.tp-sidebar img {
+  display: block !important;
+  height: 2.25rem !important;
+  width: auto !important;
+  max-width: 190px !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+</style>
+<style id="turispro-sidebar-typography-uniform">
+/* Normalizacion final: mismo tamano de texto e iconos en todas las paginas */
+html body aside.tp-sidebar,
+html body aside.tp-sidebar * {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  box-sizing: border-box !important;
+}
+/* Todos los enlaces del menu tienen la misma altura, separacion y alineacion */
+html body aside.tp-sidebar nav a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  line-height: 18px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  flex: 0 0 48px !important;
+  white-space: nowrap !important;
+}
+/* Mismo tamano y ancho reservado para todos los iconos del menu */
+html body aside.tp-sidebar nav a .material-symbols-outlined {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  flex: 0 0 20px !important;
+  vertical-align: middle !important;
+}
+/* Texto de cada opcion: 13px exactos y una misma altura de linea */
+html body aside.tp-sidebar nav a > span:not(.material-symbols-outlined) {
+  display: inline-block !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* Insignia PRO consistente sin alterar el tamano del nombre de la opcion */
+html body aside.tp-sidebar nav a > span.ml-auto {
+  margin-left: auto !important;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  font-weight: 700 !important;
+}
+/* Boton Registrar proveedor */
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  height: 48px !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button .material-symbols-outlined {
+  width: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button span:not(.material-symbols-outlined) {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+/* Iconos y textos del pie de usuario con medidas definidas */
+html body aside.tp-sidebar > div:last-child .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:last-child p:first-child {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+}
+html body aside.tp-sidebar > div:last-child p:last-child {
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 400 !important;
+}
+</style>
+</head>
+<body class="flex min-h-screen bg-[#f6faff] text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900">
+
+  <!-- SIDEBAR (Celeste Corporativo TurisPro) -->
+  <aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between z-40 bg-[#0D47A1] text-on-primary border-r border-[#00337c] shadow-sm select-none tp-sidebar">
+<!-- Top Brand & Navigation Cluster -->
+<div class="flex flex-col">
+<!-- Brand Header -->
+<div class="px-6 pt-5 pb-4 border-b border-[#1565C0]/40 flex items-center justify-between">
+<div class="flex items-center"><img src="../../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-9 w-auto max-w-[190px] object-contain rounded"></div>
+</div>
+<!-- Quick Action CTA inside Sidebar -->
+<div class="px-4 pt-4 pb-2">
+<button class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[#1565C0] hover:bg-[#0D47A1] text-white font-label-md text-label-md font-semibold shadow-sm transition-all border border-blue-400/30 cursor-pointer" onclick="location.href='../register.html'" type="button">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span class="">+ Registrar proveedor</span>
+</button>
+</div>
+<!-- Navigation Tabs (from Shared Components JSON) -->
+<nav class="mt-2 flex flex-col space-y-0.5 px-3">
+<!-- 1. Inicio (Activo) -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-r-lg transition-colors cursor-pointer" href="../../dashboard/dashboard.html">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="text-label-md font-label-md">Inicio</span>
+</a>
+<!-- 2. Proveedores -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../directory.html">
+<span class="material-symbols-outlined text-lg">domain</span>
+<span class="text-label-md font-label-md">Proveedores</span>
+</a>
+<!-- 3. Comparar -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../compare.html">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
+<span class="text-label-md font-label-md">Comparar</span>
+</a>
+<!-- 4. Documentos -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="documents.html">
+<span class="material-symbols-outlined text-lg">folder</span>
+<span class="text-label-md font-label-md">Documentos</span>
+</a>
+<!-- 5. Evaluaciones -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="evaluations.html">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+<span class="text-label-md font-label-md">Evaluaciones</span>
+</a>
+<!-- 6. Incidentes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="incidents.html">
+<span class="material-symbols-outlined text-lg">report_problem</span>
+<span class="text-label-md font-label-md">Incidentes</span>
+</a>
+<!-- 7. Reportes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../../reports/executive-analytics.html">
+<span class="material-symbols-outlined text-lg">analytics</span>
+<span class="text-label-md font-label-md">Reportes</span>
+</a>
+<!-- 8. Análisis IA -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../../risk/ai-risk-analysis.html">
+<span class="material-symbols-outlined text-lg">psychology</span>
+<span class="text-label-md font-label-md">Análisis IA</span>
+<span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-300/20 text-[#93C5FD]">PRO</span>
+</a>
+<!-- 9. Configuración -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../../settings/settings.html">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="text-label-md font-label-md">Configuración</span>
+</a>
+</nav>
+</div>
+<!-- User Anchor Footer -->
+<div class="p-3 border-t border-[#1565C0]/40">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#0a3880]/60 hover:bg-[#0a3880] transition-colors cursor-pointer">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-9 h-9 rounded-full bg-blue-200/20 border border-blue-300/30 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary text-xl">account_circle</span>
+</div>
+<div class="min-w-0 flex-1">
+<p id="user-display-name" class="text-label-md font-label-md font-bold text-white truncate leading-tight">Carlos Mendoza</p>
+<p id="user-display-role" class="text-body-sm font-body-sm text-[#93C5FD] truncate leading-tight mt-0.5">Administrador</p>
+</div>
+</div>
+<button class="p-1 text-[#93C5FD] hover:text-white transition-colors" title="Cerrar sesión" onclick="TurisProAPI.logout()">
+<span class="material-symbols-outlined text-lg">logout</span>
+</button>
+</div>
+</div>
+</aside>
+
+  <!-- MAIN VIEWPORT CONTENT -->
+  <div class="ml-64 flex-1 flex flex-col min-w-0 pb-16">
+
+    <!-- TOP BAR DOCKED -->
+    <header class="h-16 bg-white border-b border-slate-200/80 sticky top-0 z-20 px-8 flex items-center justify-between gap-4 shadow-sm">
+      <!-- Search Input -->
+      <div class="flex-1 max-w-xl">
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+          <input type="text" placeholder="Buscar por NIT, razón social, RNT o responsable..." class="w-full pl-10 pr-4 py-2 bg-slate-50 hover:bg-slate-100/70 focus:bg-white text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition-all text-slate-700">
+        </div>
+      </div>
+
+      <!-- Header Secondary & Primary Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Date Badge -->
+        
+
+        <div class="h-5 w-px bg-slate-200"></div>
+
+        <button class="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors relative" title="Ayuda">
+          <span class="material-symbols-outlined text-[20px]">help_outline</span>
+        </button>
+        <button class="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors relative" title="Notificaciones">
+          <span class="material-symbols-outlined text-[20px]">notifications</span>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white"></span>
+        </button>
+
+        <button class="flex items-center gap-2 py-2 px-3.5 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-all" onclick="location.href='../register.html'">
+          <span class="material-symbols-outlined text-[16px]">add</span>
+          <span>+ Registrar proveedor</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="px-8 pt-6 pb-12 max-w-7xl w-full mx-auto space-y-5">
+
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+        <a href="../directory.html" class="hover:text-brand-600 transition-colors">Proveedores</a>
+        <span class="text-slate-300">/</span>
+        <a href="../directory.html" class="hover:text-brand-600 transition-colors">Hoteles</a>
+        <span class="text-slate-300">/</span>
+        <span class="text-slate-800 font-semibold">Hotel Los Andes</span>
+      </nav>
+
+      <!-- PROVIDER HEADER BANNER / IDENTITY CARD -->
+      <section class="bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 rounded-xl bg-brand-50 border border-brand-200/80 flex items-center justify-center text-brand-600 shrink-0">
+            <span class="material-symbols-outlined text-[28px]">hotel</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-3 flex-wrap">
+              <h1 class="text-xl font-bold text-slate-900 tracking-tight">Hotel Los Andes</h1>
+              <!-- Risk pill -->
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Riesgo bajo · 18/100
+              </span>
+              <!-- ISO pill -->
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200">
+                <span class="material-symbols-outlined text-[14px]">verified</span>
+                Auditoría ISO 31000
+              </span>
+            </div>
+            <div class="flex items-center gap-3 mt-1 text-xs text-slate-500">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-slate-400">location_on</span>
+                Hotel · Medellín, Colombia
+              </span>
+              <span class="text-slate-300">•</span>
+              <span>Código Único: <strong class="font-medium text-slate-700">HND-MED-049</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 self-start md:self-center">
+          <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-200 rounded-lg shadow-sm transition-colors">
+            <span class="material-symbols-outlined text-[16px]">edit</span>
+            Editar
+          </button>
+          <button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-200 rounded-lg shadow-sm transition-colors">
+            <span class="material-symbols-outlined text-[16px]">share</span>
+            Compartir
+          </button>
+          <button class="p-1.5 text-slate-500 hover:text-slate-700 hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors">
+            <span class="material-symbols-outlined text-[18px]">more_vert</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ISO 31000 AI CO-PILOT BANNER -->
+      <section class="bg-gradient-to-r from-sky-50 via-sky-50/70 to-indigo-50/50 border border-sky-200/90 rounded-xl p-3.5 flex items-center justify-between text-xs text-slate-700 shadow-sm">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-brand-600 text-[18px]">psychology</span>
+          <span><strong class="text-brand-900 font-semibold">IA Co-pilot:</strong> Modelo predictivo de riesgo activo. Análisis de apoyo. La decisión final la toma una persona. Cumplimiento auditado bajo norma ISO 31000.</span>
+        </div>
+        <span class="text-[11px] font-medium text-brand-700 bg-white/70 px-2 py-0.5 rounded border border-brand-200">ISO 31000:2018</span>
+      </section>
+
+      <!-- SUMMARY KPI METRIC CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <!-- Card 1: Evaluación -->
+        <div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between text-slate-500 mb-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Evaluación general</span>
+            <span class="material-symbols-outlined text-brand-600 text-[18px]">hotel_class</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl font-bold text-slate-900">4.6</span>
+            <span class="text-xs text-slate-400">/ 5</span>
+            <div class="flex text-amber-400 text-[14px] ml-1">
+              ★★★★★
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-2">Basado en 24 evaluaciones de huéspedes y auditoría interna</p>
+        </div>
+
+        <!-- Card 2: Incidentes (Focused) -->
+        <div class="bg-white border-2 border-amber-300/80 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-16 h-16 bg-amber-50 rounded-bl-full -z-0"></div>
+          <div class="flex items-center justify-between text-slate-500 mb-2 relative z-10">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-600">Incidentes</span>
+            <span class="material-symbols-outlined text-amber-500 text-[20px]">warning</span>
+          </div>
+          <div class="flex items-baseline gap-2 relative z-10">
+            <span class="text-2xl font-bold text-slate-900">2</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100/80 text-emerald-800">
+              Controlado
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-500 mt-2 relative z-10">1 leve resuelto · 1 en seguimiento preventivo</p>
+        </div>
+
+        <!-- Card 3: Documentos -->
+        <div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between text-slate-500 mb-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Documentos vigentes</span>
+            <span class="material-symbols-outlined text-sky-600 text-[18px]">folder_open</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl font-bold text-slate-900">3 / 4</span>
+          </div>
+          <div class="mt-2 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+            1 próximo a vencer (Póliza RC)
+          </div>
+        </div>
+
+        <!-- Card 4: Última auditoría -->
+        <div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between text-slate-500 mb-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Última evaluación</span>
+            <span class="material-symbols-outlined text-emerald-600 text-[18px]">verified</span>
+          </div>
+          <div class="text-base font-bold text-slate-900">15/09/2026</div>
+          <p class="text-[11px] text-slate-500 mt-2">Evaluador: Carlos Mendoza · Auditoría aprobada</p>
+        </div>
+      </div>
+
+      <!-- TAB NAVIGATION BAR -->
+      <div class="bg-white border-b border-slate-200/80 rounded-t-xl px-4 flex items-center gap-1 shadow-sm overflow-x-auto">
+        <a href="detail.html" class="px-4 py-3.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">info</span>
+          <span>Información</span>
+        </a>
+        <a href="services-and-rates.html" class="px-4 py-3.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">room_service</span>
+          <span>Servicios y tarifas</span>
+        </a>
+        <a href="documents.html" class="px-4 py-3.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">folder</span>
+          <span>Documentos (4)</span>
+        </a>
+        <a href="evaluations.html" class="px-4 py-3.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">fact_check</span>
+          <span>Evaluaciones (24)</span>
+        </a>
+        <!-- ACTIVE TAB: Incidentes -->
+        <a href="incidents.html" class="px-4 py-3.5 text-xs font-bold text-brand-600 border-b-2 border-brand-600 transition-colors flex items-center gap-2 bg-brand-50/50">
+          <span class="material-symbols-outlined text-[16px] text-brand-600 fill">report_problem</span>
+          <span>Incidentes (2)</span>
+          <span class="px-1.5 py-0.2 bg-brand-100 text-brand-800 text-[10px] rounded-full font-bold">Activo</span>
+        </a>
+        <a href="../../risk/ai-risk-analysis.html" class="px-4 py-3.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">psychology</span>
+          <span>Análisis IA</span>
+        </a>
+      </div>
+
+      <!-- MAIN TAB CONTENT PANEL: Incidentes e incumplimientos -->
+      <section class="bg-white border border-slate-200/80 rounded-b-xl -mt-5 p-6 shadow-sm space-y-6">
+
+        <!-- Header of the Tab Section -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>Incidentes e incumplimientos</span>
+              <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-semibold border border-slate-200">2 registrados</span>
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">Gestión de novedades operativas, reclamos de huéspedes y trazabilidad de resolución bajo esquema ISO 31000.</p>
+          </div>
+
+          <!-- CTA Button to open modal -->
+          <button onclick="document.getElementById('modal-incidente').classList.remove('hidden')" class="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white text-xs font-semibold rounded-lg shadow-sm hover:shadow transition-all shrink-0">
+            <span class="material-symbols-outlined text-[18px]">add_alert</span>
+            <span>+ Registrar incidente</span>
+          </button>
+        </div>
+
+        <!-- FILTROS Y BÚSQUEDA -->
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <!-- Left: Filter dropdowns -->
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Filter: Tipo -->
+            <div class="flex items-center gap-1.5">
+              <label for="filtro-tipo" class="text-xs font-semibold text-slate-600">Tipo:</label>
+              <select id="filtro-tipo" class="text-xs bg-white border border-slate-200 text-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600">
+                <option value="todos">Todos los tipos</option>
+                <option value="retraso">Retraso</option>
+                <option value="queja">Queja</option>
+                <option value="facturacion">Facturación</option>
+                <option value="infraestructura">Infraestructura</option>
+              </select>
+            </div>
+
+            <!-- Filter: Severidad -->
+            <div class="flex items-center gap-1.5">
+              <label for="filtro-severidad" class="text-xs font-semibold text-slate-600">Severidad:</label>
+              <select id="filtro-severidad" class="text-xs bg-white border border-slate-200 text-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600">
+                <option value="todas">Todas las severidades</option>
+                <option value="alta">● Alta (Crítica)</option>
+                <option value="media">● Media (Moderada)</option>
+                <option value="baja">● Baja (Leve)</option>
+              </select>
+            </div>
+
+            <!-- Filter: Estado -->
+            <div class="flex items-center gap-1.5">
+              <label for="filtro-estado" class="text-xs font-semibold text-slate-600">Estado:</label>
+              <select id="filtro-estado" class="text-xs bg-white border border-slate-200 text-slate-700 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600">
+                <option value="todos">Todos los estados</option>
+                <option value="seguimiento">En seguimiento</option>
+                <option value="resuelto">Resuelto</option>
+                <option value="escalado">Escalado</option>
+              </select>
+            </div>
+
+            <button class="text-xs text-brand-600 hover:text-brand-800 font-semibold px-2 py-1 hover:bg-brand-50 rounded transition-colors">
+              Limpiar filtros
+            </button>
+          </div>
+
+          <!-- Right: Search bar & Export -->
+          <div class="flex items-center gap-2 self-end lg:self-auto">
+            <div class="relative w-64">
+              <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[16px]">search</span>
+              <input type="text" placeholder="Buscar incidente o palabra clave..." class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 text-slate-700">
+            </div>
+            <button class="inline-flex items-center gap-1 px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium border border-slate-200 rounded-lg transition-colors shadow-2xs">
+              <span class="material-symbols-outlined text-[16px]">download</span>
+              <span>Exportar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TABLA DE INCIDENTES -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden shadow-2xs">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50/90 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-200">
+                <th class="py-3 px-4 w-32">Fecha</th>
+                <th class="py-3 px-4 w-28">Tipo</th>
+                <th class="py-3 px-4">Descripción del incidente</th>
+                <th class="py-3 px-4 w-36">Severidad</th>
+                <th class="py-3 px-4 w-36">Estado</th>
+                <th class="py-3 px-4 text-right w-24">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 bg-white">
+              
+              <!-- FILA 1: 12/09/2026 | Retraso | Check-in retrasado 45 minutos por habitación no disponible | ● Media (amarillo) | En seguimiento -->
+              <tr class="hover:bg-slate-50/70 transition-colors">
+                <td class="py-3.5 px-4 font-medium text-slate-800 whitespace-nowrap">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-slate-400 text-[16px]">event</span>
+                    <span>12/09/2026</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                    Retraso
+                  </span>
+                </td>
+                <td class="py-3.5 px-4">
+                  <div class="font-medium text-slate-900 leading-snug">
+                    Check-in retrasado 45 minutos por habitación no disponible
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">
+                    Reportado por: Carlos Mendoza · Huésped: Grupo Bancolombia Convención
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <!-- ● Media (amarillo) -->
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200/90">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    ● Media
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <!-- En seguimiento -->
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-800 border border-sky-200">
+                    <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+                    En seguimiento
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                  <div class="inline-flex items-center gap-1">
+                    <button class="px-2 py-1 text-brand-600 hover:text-brand-800 hover:bg-brand-50 rounded font-semibold transition-colors">
+                      Ver
+                    </button>
+                    <button class="p-1 text-slate-400 hover:text-slate-600 rounded">
+                      <span class="material-symbols-outlined text-[16px]">more_vert</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- FILA 2: 03/05/2026 | Queja | Huésped reportó ruido en la habitación | ● Baja (verde) | Resuelto -->
+              <tr class="hover:bg-slate-50/70 transition-colors">
+                <td class="py-3.5 px-4 font-medium text-slate-800 whitespace-nowrap">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-slate-400 text-[16px]">event</span>
+                    <span>03/05/2026</span>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                    Queja
+                  </span>
+                </td>
+                <td class="py-3.5 px-4">
+                  <div class="font-medium text-slate-900 leading-snug">
+                    Huésped reportó ruido en la habitación
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">
+                    Solución: Se efectuó cambio de habitación al piso ejecutivo y compensación de cortesía.
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <!-- ● Baja (verde) -->
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    ● Baja
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <!-- Resuelto -->
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <span class="material-symbols-outlined text-[14px] text-emerald-600">check_circle</span>
+                    Resuelto
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                  <div class="inline-flex items-center gap-1">
+                    <button class="px-2 py-1 text-brand-600 hover:text-brand-800 hover:bg-brand-50 rounded font-semibold transition-colors">
+                      Ver
+                    </button>
+                    <button class="p-1 text-slate-400 hover:text-slate-600 rounded">
+                      <span class="material-symbols-outlined text-[16px]">more_vert</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <!-- Footer de paginación de la tabla -->
+          <div class="bg-slate-50/70 border-t border-slate-200 px-4 py-2.5 flex items-center justify-between text-xs text-slate-500">
+            <span>Mostrando 2 de 2 registros totales</span>
+            <div class="flex items-center gap-1">
+              <span class="text-slate-400 mr-2">Página 1 de 1</span>
+              <button class="p-1 rounded text-slate-300 cursor-not-allowed" disabled="">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button class="p-1 rounded text-slate-300 cursor-not-allowed" disabled="">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROTOCOLO Y MATRIZ DE RIESGO DE INCIDENTES (ISO 31000) -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-sky-100 text-brand-700 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">policy</span>
+            </div>
+            <div>
+              <p class="font-semibold text-slate-900">Protocolo de escalamiento y SLA de resolución</p>
+              <p class="text-slate-500">Incidentes de severidad Media cuentan con un compromiso de respuesta de 48 horas con el proveedor.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white text-slate-600 border border-slate-200 text-[11px] font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Baja &lt; 72h
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white text-slate-600 border border-slate-200 text-[11px] font-medium">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span> Media &lt; 48h
+            </span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-white text-slate-600 border border-slate-200 text-[11px] font-medium">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span> Alta &lt; 12h
+            </span>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- MODAL: + REGISTRAR INCIDENTE -->
+  <div id="modal-incidente" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl overflow-hidden transition-all transform scale-100">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4.5 bg-gradient-to-r from-slate-50 to-sky-50/50 border-b border-slate-200/80 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-100/80 text-brand-700 flex items-center justify-center border border-brand-200/70">
+            <span class="material-symbols-outlined text-[22px]">report_problem</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Registrar nuevo incidente</h3>
+            <p class="text-xs text-slate-500">Hotel Los Andes · Código Único: <strong class="text-slate-700 font-semibold">HND-MED-049</strong></p>
+          </div>
+        </div>
+        <button onclick="document.getElementById('modal-incidente').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body (Form: tipo, descripción, severidad y observaciones) -->
+      <form class="p-6 space-y-4 text-xs" onsubmit="event.preventDefault(); document.getElementById('modal-incidente').classList.add('hidden');">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Campo 1: Tipo -->
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1.5">
+              Tipo de incidente <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <select class="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition-all appearance-none cursor-pointer">
+                <option value="">Selecciona el tipo de novedad...</option>
+                <option value="retraso" selected="">Retraso en check-in / check-out</option>
+                <option value="queja">Queja por servicio o confort</option>
+                <option value="incumplimiento">Incumplimiento de tarifa o contrato</option>
+                <option value="infraestructura">Falla de infraestructura / amenidades</option>
+                <option value="otro">Otro tipo de eventualidad</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]">expand_more</span>
+            </div>
+          </div>
+
+          <!-- Campo 2: Severidad -->
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1.5">
+              Severidad <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <select class="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition-all appearance-none cursor-pointer">
+                <option value="baja">● Baja (Leve sin afectación contractual)</option>
+                <option value="media" selected="">● Media (Moderada / Requiere seguimiento)</option>
+                <option value="alta">● Alta (Crítica / Afectación directa al servicio)</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]">expand_more</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo 3: Fecha de ocurrencia -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1.5">
+              Fecha del incidente <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <input type="date" value="2026-09-12" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition-all">
+            </div>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1.5">
+              Estado inicial
+            </label>
+            <div class="relative">
+              <select class="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition-all appearance-none cursor-pointer">
+                <option value="seguimiento" selected="">En seguimiento</option>
+                <option value="resuelto">Resuelto</option>
+                <option value="escalado">Escalado a gerencia</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]">expand_more</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo 4: Descripción -->
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1.5">
+            Descripción del incidente <span class="text-rose-500">*</span>
+          </label>
+          <textarea rows="3" placeholder="Detalla de forma precisa los hechos ocurridos, personas afectadas o área implicada..." class="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition-all placeholder:text-slate-400 resize-none">Check-in retrasado 45 minutos por habitación no disponible</textarea>
+        </div>
+
+        <!-- Campo 5: Observaciones -->
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1.5">
+            Observaciones y plan de mitigación
+          </label>
+          <textarea rows="2" placeholder="Acciones preventivas acordadas con el proveedor o compensaciones al cliente..." class="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-600 transition-all placeholder:text-slate-400 resize-none">Se solicitó informe a recepción de Hotel Los Andes y se estableció compromiso de asignación prioritaria en próximas reservas corporativas.</textarea>
+        </div>
+
+        <!-- ISO 31000 Compliance Notice in Modal -->
+        <div class="p-3 bg-sky-50/70 border border-sky-200/70 rounded-lg flex items-start gap-2.5 text-[11px] text-sky-900">
+          <span class="material-symbols-outlined text-brand-600 text-[18px] shrink-0 mt-0.5">verified_user</span>
+          <span>El reporte se indexará automáticamente en el historial de riesgo y auditoría del proveedor para el cálculo predictivo del score general de TurisPro.</span>
+        </div>
+
+        <!-- Modal Actions Footer -->
+        <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
+          <button type="button" onclick="document.getElementById('modal-incidente').classList.add('hidden')" class="px-4 py-2 border border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold rounded-lg transition-colors">
+            Cancelar
+          </button>
+          <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white font-semibold rounded-lg shadow-sm hover:shadow transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">save</span>
+            <span>Guardar incidente</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+
+<style id="turispro-professional-navigation">
+.tp-sidebar nav a{position:relative!important; border-left:4px solid transparent!important; border-radius:0 9px 9px 0!important; transition:background-color .18s ease,color .18s ease,border-color .18s ease!important}
+.tp-sidebar nav a.tp-active{background:#1565C0!important;color:#fff!important;border-left-color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)!important}
+.tp-sidebar nav a.tp-active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500!important}
+.tp-sidebar nav a:not(.tp-active):hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
+#feedbackToast[hidden]{display:none!important}
+</style>
+
+<style id="turispro-sidebar-active-fix">
+/* El estado activo se determina por la URL; ninguna opción queda resaltada por defecto. */
+html body aside.tp-sidebar nav a:not(.tp-active) {
+  background: transparent !important; color: #dbeafe !important;
+  border-left: 0 !important; border-radius: 8px !important; box-shadow: none !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar nav a.tp-active {
+  background: #1565C0 !important; color: #fff !important;
+  border-left: 4px solid #fff !important; border-radius: 0 8px 8px 0 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07) !important;
+}
+html body aside.tp-sidebar nav a:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important; color:#fff !important;
+}
+</style>
+<script id="turispro-live-ui">
+(function(){
+ function init(){
+  const sidebar=document.querySelector('aside.tp-sidebar');
+  if(sidebar){
+   const current=location.pathname.replace(/\\/g,'/');
+   sidebar.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); if(!href)return;
+    const target=new URL(href,location.href).pathname.replace(/\\/g,'/');
+    const active=target===current || (current.endsWith('/register.html') && target.endsWith('/directory.html')===false && a.textContent.trim().includes('Registrar proveedor'));
+    a.classList.toggle('tp-active',active);
+    if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+   });
+  }
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+
+<style id="turispro-sidebar-no-transient-home">
+/* Evita que Inicio se ilumine por estados momentáneos de foco/clic cuando no es la página activa. */
+html body aside.tp-sidebar nav a:not(.tp-active):active,
+html body aside.tp-sidebar nav a:not(.tp-active):focus {
+  background: transparent !important;
+  color: #dbeafe !important;
+  box-shadow: none !important;
+}
+html body aside.tp-sidebar nav a[href*="dashboard/dashboard.html"]:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important;
+}
+</style>
+
+</body></html>

@@ -1,0 +1,17 @@
+# Node / Entorno
+node_modules/
+.env
+*.env.local
+
+# Bases de datos SQLite
+*.db
+*.db-wal
+*.db-shm
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cobertura y reportes
+coverage/
+.nyc_output/

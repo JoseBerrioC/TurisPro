@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TurisPro - Comparar proveedores</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim from Target Design Theme -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "error": "#ba1a1a",
+          "on-secondary": "#ffffff",
+          "surface-container-highest": "#d8e3fb",
+          "on-secondary-fixed": "#001945",
+          "primary-fixed": "#d6e3ff",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#263143",
+          "background": "#f9f9ff",
+          "surface-container": "#e7eeff",
+          "surface": "#f9f9ff",
+          "on-secondary-fixed-variant": "#00429c",
+          "on-surface": "#111c2d",
+          "tertiary-fixed": "#ffdbc9",
+          "tertiary-container": "#a64c00",
+          "secondary-fixed": "#d9e2ff",
+          "on-secondary-container": "#00337c",
+          "on-primary-fixed": "#001b3d",
+          "surface-bright": "#f9f9ff",
+          "on-primary-fixed-variant": "#00468c",
+          "tertiary-fixed-dim": "#ffb68c",
+          "outline-variant": "#c2c6d4",
+          "error-container": "#ffdad6",
+          "on-tertiary-container": "#ffdece",
+          "outline": "#727783",
+          "on-primary-container": "#dae5ff",
+          "surface-variant": "#d8e3fb",
+          "on-error": "#ffffff",
+          "surface-tint": "#005db7",
+          "on-tertiary-fixed-variant": "#753400",
+          "on-tertiary-fixed": "#321200",
+          "primary-container": "#1565c0",
+          "secondary-container": "#759efd",
+          "primary": "#004d99",
+          "on-surface-variant": "#424752",
+          "inverse-on-surface": "#ecf1ff",
+          "secondary": "#2b5bb5",
+          "on-background": "#111c2d",
+          "surface-container-high": "#dee8ff",
+          "surface-dim": "#cfdaf2",
+          "surface-container-low": "#f0f3ff",
+          "secondary-fixed-dim": "#b0c6ff",
+          "on-tertiary": "#ffffff",
+          "tertiary": "#813900",
+          "surface-container-lowest": "#ffffff",
+          "primary-fixed-dim": "#a9c7ff",
+          "on-primary": "#ffffff",
+          "inverse-primary": "#a9c7ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-xl": "2rem",
+          "space-md": "1rem",
+          "margin": "2rem",
+          "space-lg": "1.5rem",
+          "gutter": "1.5rem",
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem"
+        },
+        "fontFamily": {
+          "headline-sm": ["Inter"],
+          "body-md": ["Inter"],
+          "body-sm": ["Inter"],
+          "display-metric": ["Inter"],
+          "headline-md": ["Inter"],
+          "label-md": ["Inter"],
+          "headline-lg": ["Inter"],
+          "table-header": ["Inter"],
+          "body-lg": ["Inter"],
+          "table-cell": ["Inter"],
+          "label-sm": ["Inter"],
+          "code": ["JetBrains Mono"]
+        },
+        "fontSize": {
+          "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+          "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+          "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+          "display-metric": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+          "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }],
+          "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+          "table-header": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+          "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+          "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+          "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }]
+        }
+      }
+    };
+  </script>
+</head>
+<body class="h-full font-body-md text-on-surface bg-background antialiased flex overflow-hidden">
+<!-- ========================================================================= -->
+<!-- 1. SIDEBAR INSTITUCIONAL (TurisPro Corporate Deep Navy #004d99 / #1565c0) -->
+<!-- ========================================================================= -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-[#003870] border-r border-[#002852] shadow-md select-none">
+<!-- Top Area: Brand & Primary Navigation -->
+<div class="flex flex-col gap-4">
+<!-- Official Logo TurisPro -->
+<div class="px-5 pt-1 pb-3 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<img alt="TurisPro Brand Logo" class="h-9 w-auto object-contain bg-surface-container-lowest p-1 rounded-md shadow-sm" src="../../../assets/images/logo-turispro.png"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary">TurisPro</span>
+<span class="font-label-sm text-label-sm text-primary-fixed-dim">Riesgo &amp; Proveedores</span>
+</div>
+</div>
+<!-- Quick Action: Registrar Proveedor -->
+<div class="px-4">
+<button class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-primary-container hover:bg-[#1976d2] text-on-primary font-label-md text-body-md rounded-lg shadow-sm transition-all duration-150 cursor-pointer border border-white/10" onclick="location.href='../../pages/providers/register.html'">
+<span class="material-symbols-outlined text-body-lg">add</span>
+<span>+ Registrar proveedor</span>
+</button>
+</div>
+<!-- Main Navigation Links -->
+<nav class="flex flex-col gap-0.5 mt-2">
+<!-- Inicio -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/dashboard/dashboard.html">
+<span class="material-symbols-outlined text-body-lg">dashboard</span>
+<span>Inicio</span>
+</a>
+<!-- Proveedores -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/providers/directory.html">
+<span class="material-symbols-outlined text-body-lg">domain</span>
+<span>Proveedores</span>
+</a>
+<!-- Comparar (ACTIVO - Corporativo) -->
+<a class="flex items-center gap-3 px-4 py-2.5 bg-primary-container text-on-primary font-semibold border-l-4 border-on-primary font-label-md text-label-md cursor-pointer shadow-sm" href="../../pages/providers/compare.html">
+<span class="material-symbols-outlined text-body-lg" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+<span>Comparar</span>
+</a>
+<!-- Documentos -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/providers/hotel-los-andes/documents.html">
+<span class="material-symbols-outlined text-body-lg">folder</span>
+<span>Documentos</span>
+</a>
+<!-- Evaluaciones -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/providers/hotel-los-andes/evaluations.html">
+<span class="material-symbols-outlined text-body-lg">fact_check</span>
+<span>Evaluaciones</span>
+</a>
+<!-- Incidentes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/providers/hotel-los-andes/incidents.html">
+<span class="material-symbols-outlined text-body-lg">report_problem</span>
+<span>Incidentes</span>
+</a>
+<!-- Reportes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/reports/executive-analytics.html">
+<span class="material-symbols-outlined text-body-lg">analytics</span>
+<span>Reportes</span>
+</a>
+<!-- Análisis IA -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/risk/ai-risk-analysis.html">
+<span class="material-symbols-outlined text-body-lg">psychology</span>
+<span>Análisis IA</span>
+</a>
+<!-- Configuración -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-primary-fixed-dim hover:text-on-primary hover:bg-[#004d99]/50 transition-colors font-label-md text-label-md cursor-pointer" href="../../pages/settings/settings.html">
+<span class="material-symbols-outlined text-body-lg">settings</span>
+<span>Configuración</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Footer / Profile Info -->
+<div class="px-4 pt-4 border-t border-white/10">
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary-fixed text-headline-sm" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<div class="flex flex-col overflow-hidden">
+<span class="font-label-md text-body-sm text-on-primary truncate">Carlos Mendoza</span>
+<span class="font-body-sm text-[12px] text-primary-fixed-dim truncate">Auditor de Riesgo</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- 2. MAIN VIEW CONTAINER (Canvas with TopBar)                              -->
+<!-- ========================================================================= -->
+<div class="ml-64 flex-1 flex flex-col h-screen overflow-y-auto">
+<!-- TOP BAR (Shared Component: TopNavBar with Breadcrumb & Controls) -->
+<header class="sticky top-0 right-0 h-16 px-8 flex justify-between items-center bg-surface-container-lowest border-b border-outline-variant shadow-sm z-30">
+<!-- Left: Breadcrumb & Search input -->
+<div class="flex items-center gap-6">
+<!-- Breadcrumb Corporativo -->
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer">Inicio</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="hover:text-primary cursor-pointer">Proveedores</span>
+<span class="material-symbols-outlined text-body-sm text-outline">chevron_right</span>
+<span class="font-label-md text-primary font-semibold">Comparar proveedores</span>
+</div>
+<!-- Global Search Bar -->
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-body-md pointer-events-none">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-container-low border border-outline-variant rounded text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" placeholder="Buscar por NIT, razón social, RNT..." type="text"/>
+</div>
+</div>
+<!-- Right: Date, Help, Notifications, CTA & Profile -->
+<div class="flex items-center gap-4">
+<!-- Date Badge -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container-low text-on-surface-variant font-label-md text-label-md border border-outline-variant">
+<span class="material-symbols-outlined text-body-sm text-primary-container">calendar_today</span>
+<span>Hoy, 24/10/2024</span>
+</div>
+<!-- Notification & Help Icons -->
+<div class="flex items-center gap-1 border-r border-outline-variant pr-3">
+<button class="p-2 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-low rounded transition-colors relative" title="Notificaciones">
+<span class="material-symbols-outlined text-headline-sm">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary-container hover:bg-surface-container-low rounded transition-colors" title="Ayuda">
+<span class="material-symbols-outlined text-headline-sm">help_outline</span>
+</button>
+</div>
+<!-- Trailing Primary Action -->
+<button class="flex items-center gap-2 py-1.5 px-3.5 bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-sm rounded shadow-sm transition-all duration-150 cursor-pointer" onclick="location.href='../../pages/providers/register.html'">
+<span class="material-symbols-outlined text-body-md">add_circle</span>
+<span>+ Registrar proveedor</span>
+</button>
+<!-- Profile mini pill -->
+<div class="flex items-center gap-2 pl-2">
+<div class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-md text-body-sm font-semibold border border-primary/20">
+            CM
+          </div>
+</div>
+</div>
+</header>
+<!-- ======================================================================= -->
+<!-- 3. MAIN CONTENT: CABECERA & MATRIZ COMPARATIVA                         -->
+<!-- ======================================================================= -->
+<main class="p-8 max-w-[1440px] w-full mx-auto flex flex-col gap-6">
+<!-- HEADER & MULTI-SELECT CHIPS SECTION -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col gap-5">
+<!-- Header Top Row -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container border border-outline-variant">
+<span class="material-symbols-outlined text-headline-sm">compare_arrows</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Comparar proveedores</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+                  Matriz comparativa de desempeño operativo, cumplimiento normativo y nivel de riesgo predictivo
+                </p>
+</div>
+</div>
+</div>
+<!-- Actions: Export, Clear, Save -->
+<div class="flex items-center gap-2 self-start md:self-auto">
+<button class="flex items-center gap-1.5 px-3 py-1.5 border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-md text-body-sm rounded transition-colors">
+<span class="material-symbols-outlined text-body-md text-primary-container">file_download</span>
+<span>Exportar matriz (PDF/Excel)</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 border border-outline-variant hover:bg-surface-container-low text-on-surface-variant hover:text-error font-label-md text-body-sm rounded transition-colors">
+<span class="material-symbols-outlined text-body-md">clear_all</span>
+<span>Limpiar</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-1.5 bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-sm rounded shadow-xs transition-colors">
+<span class="material-symbols-outlined text-body-md">bookmark</span>
+<span>Guardar comparativa</span>
+</button>
+</div>
+</div>
+<!-- Interactive Multi-Select Chips Bar -->
+<div class="flex flex-wrap items-center gap-2 pt-2 border-t border-surface-container-high">
+<span class="font-table-header text-table-header text-on-surface-variant font-bold uppercase tracking-wider mr-1">
+            Proveedores en matriz:
+          </span>
+<!-- Chip 1: Hotel Los Andes -->
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container text-on-surface rounded-full text-body-sm font-medium border border-primary-container/30 shadow-xs">
+<span class="material-symbols-outlined text-body-sm text-primary-container">check</span>
+<span>Hotel Los Andes (Medellín)</span>
+<button class="hover:text-error flex items-center justify-center ml-0.5 text-outline" title="Quitar de comparación">
+<span class="material-symbols-outlined text-body-sm">close</span>
+</button>
+</div>
+<!-- Chip 2: Hotel Colonial -->
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container text-on-surface rounded-full text-body-sm font-medium border border-primary-container/30 shadow-xs">
+<span class="material-symbols-outlined text-body-sm text-primary-container">check</span>
+<span>Hotel Colonial (Cartagena)</span>
+<button class="hover:text-error flex items-center justify-center ml-0.5 text-outline" title="Quitar de comparación">
+<span class="material-symbols-outlined text-body-sm">close</span>
+</button>
+</div>
+<!-- Chip 3: Hotel Plaza -->
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container text-on-surface rounded-full text-body-sm font-medium border border-primary-container/30 shadow-xs">
+<span class="material-symbols-outlined text-body-sm text-primary-container">check</span>
+<span>Hotel Plaza (Bogotá)</span>
+<button class="hover:text-error flex items-center justify-center ml-0.5 text-outline" title="Quitar de comparación">
+<span class="material-symbols-outlined text-body-sm">close</span>
+</button>
+</div>
+<!-- Chip Inactive/Add More -->
+<button class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-low hover:bg-surface-container text-primary-container rounded-full text-body-sm font-medium border border-dashed border-primary-container/40 transition-colors">
+<span class="material-symbols-outlined text-body-sm">add</span>
+<span>+ Añadir proveedor (ej. Gran Hotel Pereira, Transportes del Caribe...)</span>
+</button>
+</div>
+<!-- Neutral Governance / Objective Disclaimer Notice -->
+<div class="flex items-start gap-3 p-3.5 bg-surface-container-low rounded-lg border-l-4 border-primary-container">
+<span class="material-symbols-outlined text-primary-container text-headline-sm shrink-0">verified_user</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong class="font-semibold text-on-surface">Aviso de gobernanza y objetividad:</strong> 
+            Análisis de apoyo neutral. La herramienta facilita la comparación visual de métricas objetivas sin recomendar automáticamente una decisión final. Conforme a ISO 31000.
+          </p>
+</div>
+</section>
+<!-- ===================================================================== -->
+<!-- 4. COMPARISON MATRIX (Strict Corporate Data Grid)                    -->
+<!-- ===================================================================== -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse table-fixed">
+<!-- Column Layout Definition -->
+<colgroup>
+<col class="w-1/4"/>
+<col class="w-1/4"/>
+<col class="w-1/4"/>
+<col class="w-1/4"/>
+</colgroup>
+<!-- Table Header / Provider Profiles -->
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<!-- Left Anchor Header -->
+<th class="p-4 align-bottom">
+<span class="font-table-header text-table-header text-on-surface-variant uppercase tracking-wider block font-bold">
+                  Criterio / Métrica
+                </span>
+<span class="font-body-sm text-body-sm text-outline font-normal">
+                  Indicadores comparables (Base 5.0)
+                </span>
+</th>
+<!-- Provider 1: Hotel Los Andes -->
+<th class="p-4 border-l border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Hotel Los Andes</span>
+<span class="font-code text-body-sm px-2 py-0.5 bg-surface-container text-primary-container rounded border border-outline-variant font-medium">HND-MED-049</span>
+</div>
+<div class="flex items-center gap-2 text-body-sm text-on-surface-variant font-normal">
+<span class="material-symbols-outlined text-body-md text-outline">location_on</span>
+<span>Medellín</span>
+<span>•</span>
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[12px] font-semibold ml-1 text-on-surface">4 Estrellas</span>
+</div>
+</div>
+</div>
+</th>
+<!-- Provider 2: Hotel Colonial -->
+<th class="p-4 border-l border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Hotel Colonial</span>
+<span class="font-code text-body-sm px-2 py-0.5 bg-surface-container text-primary-container rounded border border-outline-variant font-medium">COL-CTG-012</span>
+</div>
+<div class="flex items-center gap-2 text-body-sm text-on-surface-variant font-normal">
+<span class="material-symbols-outlined text-body-md text-outline">location_on</span>
+<span>Cartagena</span>
+<span>•</span>
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[12px] font-semibold ml-1 text-on-surface">4 Estrellas</span>
+</div>
+</div>
+</div>
+</th>
+<!-- Provider 3: Hotel Plaza -->
+<th class="p-4 border-l border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Hotel Plaza</span>
+<span class="font-code text-body-sm px-2 py-0.5 bg-surface-container text-primary-container rounded border border-outline-variant font-medium">PLZ-BOG-088</span>
+</div>
+<div class="flex items-center gap-2 text-body-sm text-on-surface-variant font-normal">
+<span class="material-symbols-outlined text-body-md text-outline">location_on</span>
+<span>Bogotá</span>
+<span>•</span>
+<div class="flex items-center text-primary-container">
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-body-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[12px] font-semibold ml-1 text-on-surface">5 Estrellas</span>
+</div>
+</div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- SECTION A: CRITERIOS DE EVALUACIÓN Y CALIDAD (1 a 5.0) -->
+<tr class="bg-surface-container/60">
+<td class="px-4 py-2 font-table-header text-table-header font-bold text-primary-container tracking-wider uppercase" colspan="4">
+                A. Criterios de Evaluación y Calidad (Escala 1.0 a 5.0)
+              </td>
+</tr>
+<!-- Row 1: Calidad del servicio -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">room_service</span>
+<span>Calidad del servicio</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.8</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 96%"></div>
+</div>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.2</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.5</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 2: Cumplimiento de contratos y acuerdos -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">description</span>
+<span>Cumplimiento de contratos y acuerdos</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.7</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 94%"></div>
+</div>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">3.8</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 76%"></div>
+</div>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.3</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 86%"></div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 3: Atención y hospitalidad -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">sentiment_satisfied</span>
+<span>Atención y hospitalidad</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.8</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 96%"></div>
+</div>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.0</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.4</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 4: Puntualidad en servicios -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">schedule</span>
+<span>Puntualidad en servicios</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.6</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">3.9</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.2</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 5: Relación de Precio / Tarifa -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">payments</span>
+<span>Relación de Precio / Tarifa</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.2</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.7</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 94%"></div>
+</div>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center font-code text-body-sm">
+<span class="font-semibold text-on-surface">4.2</span>
+<span class="text-outline">/ 5.0</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</td>
+</tr>
+<!-- SECTION B: TRAZABILIDAD OPERATIVA Y DOCUMENTAL -->
+<tr class="bg-surface-container/60">
+<td class="px-4 py-2 font-table-header text-table-header font-bold text-primary-container tracking-wider uppercase" colspan="4">
+                B. Trazabilidad Operativa y Cumplimiento Legal
+              </td>
+</tr>
+<!-- Row 6: Incidentes e incumplimientos registrados -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">report_problem</span>
+<span>Incidentes e incumplimientos</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-body-md text-on-surface font-semibold">2 incidentes</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>1 resuelto, 1 en seguimiento</span>
+</div>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-body-md text-on-surface font-semibold">6 incidentes</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+<span>4 resueltos, 2 en seguimiento</span>
+</div>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-body-md text-on-surface font-semibold">3 incidentes</span>
+<div class="flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>2 resueltos, 1 en seguimiento</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 7: Estado de Documentación y certificaciones -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">verified</span>
+<span>Documentación y certificaciones</span>
+</div>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5 items-start">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface text-label-sm font-label-sm border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-[#e65100]"></span>
+<span>Próxima a vencer</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Detalle: Póliza RC</span>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5 items-start">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-primary-container text-label-sm font-label-sm border border-primary-container/20">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Vigente</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Detalle: RNT y Cámara al día</span>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-1.5 items-start">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-primary-container text-label-sm font-label-sm border border-primary-container/20">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Vigente</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Detalle: RNT y pólizas al día</span>
+</div>
+</td>
+</tr>
+<!-- SECTION C: EVALUACIÓN PREDICTIVA DE RIESGO IA -->
+<tr class="bg-surface-container/60">
+<td class="px-4 py-2 font-table-header text-table-header font-bold text-primary-container tracking-wider uppercase" colspan="4">
+                C. Evaluación Predictiva de Riesgo IA (Metodología ISO 31000)
+              </td>
+</tr>
+<!-- Row 8: Riesgo IA (Score Global) -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="p-4 font-label-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-body-md">psychology</span>
+<span>Riesgo IA (Score Global)</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline block mt-0.5">
+                  Menor score indica menor probabilidad de fallo
+                </span>
+</td>
+<!-- Los Andes -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code text-headline-md font-bold text-on-surface">18 <span class="text-body-sm text-outline font-normal">/ 100</span></span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary-container text-label-sm font-semibold border border-primary-container/20">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Riesgo bajo</span>
+</span>
+</div>
+</td>
+<!-- Colonial -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code text-headline-md font-bold text-on-surface">48 <span class="text-body-sm text-outline font-normal">/ 100</span></span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-semibold border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-[#f57c00]"></span>
+<span>Riesgo medio</span>
+</span>
+</div>
+</td>
+<!-- Plaza -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-code text-headline-md font-bold text-on-surface">26 <span class="text-body-sm text-outline font-normal">/ 100</span></span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary-container text-label-sm font-semibold border border-primary-container/20">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Riesgo bajo</span>
+</span>
+</div>
+</td>
+</tr>
+<!-- SECTION D: ACCIONES INDIVIDUALES POR PROVEEDOR -->
+<tr class="bg-surface-container-low/30">
+<td class="p-4 align-middle font-label-md text-body-sm text-on-surface-variant font-semibold">
+                Gestión y seguimiento operativo
+              </td>
+<!-- Los Andes Actions -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-sm rounded shadow-xs transition-colors">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Ver ficha completa</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-body-sm rounded transition-colors text-center truncate">
+                      Ver contratos
+                    </button>
+<button class="py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-body-sm rounded transition-colors text-center truncate">
+                      Abrir expediente
+                    </button>
+</div>
+</div>
+</td>
+<!-- Colonial Actions -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-sm rounded shadow-xs transition-colors">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Ver ficha completa</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-body-sm rounded transition-colors text-center truncate">
+                      Ver contratos
+                    </button>
+<button class="py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-body-sm rounded transition-colors text-center truncate">
+                      Abrir expediente
+                    </button>
+</div>
+</div>
+</td>
+<!-- Plaza Actions -->
+<td class="p-4 border-l border-outline-variant">
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 bg-primary-container hover:bg-primary text-on-primary font-label-md text-body-sm rounded shadow-xs transition-colors">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span>Ver ficha completa</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-body-sm rounded transition-colors text-center truncate">
+                      Ver contratos
+                    </button>
+<button class="py-1.5 px-2 bg-surface-container-lowest hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-body-sm rounded transition-colors text-center truncate">
+                      Abrir expediente
+                    </button>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Additional Analytical Footnote & ISO Standard Compliance -->
+<footer class="flex items-center justify-between text-body-sm text-outline pb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-body-md text-primary-container">policy</span>
+<span>Protocolo de auditoría conforme a ISO 31000:2018 (Gestión del riesgo) &amp; RNT Colombia</span>
+</div>
+<div class="flex items-center gap-4 font-code text-label-sm">
+<span>Versión 2.4.1</span>
+<span>•</span>
+<span>Hash de auditoría: 4a9f-88bc-e012</span>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

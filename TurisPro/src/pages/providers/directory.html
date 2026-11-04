@@ -117,7 +117,7 @@
 </tr>
 </thead>
 <tbody id="directorio-tbody" class="divide-y divide-slate-200 text-sm text-slate-700">
-<!-- Fila 1: Hoteles -->
+<!-- Fila 1: Hotel Los Andes -->
 <tr class="provider-row" data-categoria="hoteles" data-nombre="hotel los andes">
 <td class="px-4 py-3 font-bold text-slate-900">Hotel Los Andes <span class="text-xs text-slate-500 font-normal">(HND-MED-049)</span></td>
 <td class="px-4 py-3"><span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded text-xs font-semibold">Hoteles</span></td>
@@ -127,7 +127,7 @@
 <button onclick="alert('Abriendo ficha de Hotel Los Andes')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- Fila 2: Hoteles -->
+<!-- Fila 2: Hotel Colonial -->
 <tr class="provider-row" data-categoria="hoteles" data-nombre="hotel colonial">
 <td class="px-4 py-3 font-bold text-slate-900">Hotel Colonial <span class="text-xs text-slate-500 font-normal">(COL-CTG-012)</span></td>
 <td class="px-4 py-3"><span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded text-xs font-semibold">Hoteles</span></td>
@@ -137,7 +137,7 @@
 <button onclick="alert('Abriendo ficha de Hotel Colonial')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- Fila 3: Transporte -->
+<!-- Fila 3: Transportes Rápidos Andinos -->
 <tr class="provider-row" data-categoria="transporte" data-nombre="transportes rapidos andinos">
 <td class="px-4 py-3 font-bold text-slate-900">Transportes Rápidos Andinos <span class="text-xs text-slate-500 font-normal">(TRA-MDE-102)</span></td>
 <td class="px-4 py-3"><span class="px-2 py-0.5 bg-amber-50 text-amber-700 rounded text-xs font-semibold">Transporte</span></td>
@@ -147,7 +147,7 @@
 <button onclick="alert('Abriendo ficha de Transportes Rápidos Andinos')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- Fila 4: Transporte -->
+<!-- Fila 4: AeroCaribe Express -->
 <tr class="provider-row" data-categoria="transporte" data-nombre="aerocaribe express">
 <td class="px-4 py-3 font-bold text-slate-900">AeroCaribe Express <span class="text-xs text-slate-500 font-normal">(ACE-REG-019)</span></td>
 <td class="px-4 py-3"><span class="px-2 py-0.5 bg-amber-50 text-amber-700 rounded text-xs font-semibold">Transporte</span></td>
@@ -157,7 +157,7 @@
 <button onclick="alert('Abriendo ficha de AeroCaribe Express')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- Fila 5: Agencias -->
+<!-- Fila 5: Viajes & Operador XYZ -->
 <tr class="provider-row" data-categoria="agencias" data-nombre="viajes y operador xyz">
 <td class="px-4 py-3 font-bold text-slate-900">Viajes &amp; Operador XYZ <span class="text-xs text-slate-500 font-normal">(XYZ-NAL-004)</span></td>
 <td class="px-4 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded text-xs font-semibold">Agencias</span></td>
@@ -174,7 +174,7 @@
 </main>
 </div>
 
-<!-- SCRIPT DIRECTO E INMEDIATO -->
+<!-- SCRIPT DE FILTRADO CORREGIDO Y BLINDADO -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.cat-btn');
@@ -182,14 +182,18 @@
 
     buttons.forEach(btn => {
       btn.addEventListener('click', (e) => {
+        // Encontrar siempre el botón principal sin importar dónde se haga clic
+        const targetBtn = e.target.closest('button');
+        if (!targetBtn) return;
+
         buttons.forEach(b => {
           b.classList.remove('bg-blue-600', 'text-white', 'font-semibold', 'shadow-xs');
           b.classList.add('hover:bg-slate-100', 'text-slate-700');
         });
-        e.target.classList.add('bg-blue-600', 'text-white', 'font-semibold', 'shadow-xs');
-        e.target.classList.remove('hover:bg-slate-100', 'text-slate-700');
+        targetBtn.classList.add('bg-blue-600', 'text-white', 'font-semibold', 'shadow-xs');
+        targetBtn.classList.remove('hover:bg-slate-100', 'text-slate-700');
 
-        const categoriaSeleccionada = e.target.getAttribute('data-cat');
+        const categoriaSeleccionada = targetBtn.getAttribute('data-cat');
 
         filas.forEach(fila => {
           const catFila = fila.getAttribute('data-categoria');
@@ -227,4 +231,3 @@
 </script>
 </body>
 </html>
-

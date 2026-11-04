@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<html class="h-full bg-surface" lang="es"><head>
+<html class="h-full bg-surface" lang="es">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>TurisPro - Directorio General de Proveedores y Selección Comparativa</title>
@@ -10,1051 +10,220 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS Play CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Configuration verbatim -->
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "surface": "#f9f9ff",
-            "inverse-primary": "#a9c7ff",
-            "on-primary-fixed": "#001b3d",
-            "surface-bright": "#f9f9ff",
-            "primary-fixed": "#d6e3ff",
-            "primary-fixed-dim": "#a9c7ff",
-            "primary": "#004d99",
-            "surface-container-highest": "#d8e3fb",
-            "inverse-surface": "#263143",
-            "secondary": "#2b5bb5",
-            "on-surface-variant": "#424752",
-            "outline-variant": "#c2c6d4",
-            "on-primary-fixed-variant": "#00468c",
-            "surface-dim": "#cfdaf2",
-            "tertiary": "#813900",
-            "on-tertiary-container": "#ffdece",
-            "on-secondary-fixed": "#001945",
-            "secondary-fixed": "#d9e2ff",
-            "on-secondary-fixed-variant": "#00429c",
-            "tertiary-fixed": "#ffdbc9",
-            "outline": "#727783",
-            "tertiary-fixed-dim": "#ffb68c",
-            "on-secondary": "#ffffff",
-            "surface-tint": "#005db7",
-            "surface-container": "#e7eeff",
-            "on-surface": "#111c2d",
-            "primary-container": "#1565c0",
-            "tertiary-container": "#a64c00",
-            "on-secondary-container": "#00337c",
-            "on-error-container": "#93000a",
-            "error": "#ba1a1a",
-            "surface-container-low": "#f0f3ff",
-            "secondary-container": "#759efd",
-            "on-tertiary-fixed": "#321200",
-            "background": "#f9f9ff",
-            "on-error": "#ffffff",
-            "on-background": "#111c2d",
-            "on-primary": "#ffffff",
-            "surface-container-lowest": "#ffffff",
-            "on-tertiary": "#ffffff",
-            "surface-container-high": "#dee8ff",
-            "error-container": "#ffdad6",
-            "surface-variant": "#d8e3fb",
-            "secondary-fixed-dim": "#b0c6ff",
-            "on-tertiary-fixed-variant": "#753400",
-            "inverse-on-surface": "#ecf1ff",
-            "on-primary-container": "#dae5ff"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
-          },
-          "spacing": {
-            "margin": "2rem",
-            "gutter": "1.5rem",
-            "space-xs": "0.25rem",
-            "space-sm": "0.5rem",
-            "space-xl": "2rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem"
-          },
-          "fontFamily": {
-            "table-header": ["Inter"],
-            "body-lg": ["Inter"],
-            "body-md": ["Inter"],
-            "body-sm": ["Inter"],
-            "headline-sm": ["Inter"],
-            "headline-md": ["Inter"],
-            "label-sm": ["Inter"],
-            "display-metric": ["Inter"],
-            "label-md": ["Inter"],
-            "headline-lg": ["Inter"],
-            "table-cell": ["Inter"]
-          },
-          "fontSize": {
-            "table-header": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
-            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-            "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
-            "headline-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
-            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-            "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
-            "display-metric": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-            "label-md": ["13px", {"lineHeight": "18px", "fontWeight": "600"}],
-            "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
-            "table-cell": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
-          }
-        },
-      },
-    }
-  </script>
 </head>
-<body class="h-full bg-background text-on-surface font-body-md text-body-md antialiased flex overflow-hidden">
-<!-- SIDEBAR (Component: SideNavBar) -->
-<aside class="fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-primary shadow-sm border-r border-outline-variant">
+<body class="h-full bg-background text-on-surface font-sans antialiased flex overflow-hidden">
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-blue-900 text-white shadow-sm border-r border-blue-800">
 <div class="flex flex-col">
-<!-- Header Brand Logo with Image Asset -->
-<div class="px-5 pb-5 pt-1 border-b border-primary-container/40">
+<div class="px-5 pb-5 pt-1 border-b border-blue-800">
 <div class="flex items-center gap-2 mb-2">
-<img alt="TurisPro Brand Logo" class="h-8 w-auto object-contain bg-surface-container-lowest p-1 rounded-lg" src="../../../assets/images/logo-turispro.png"/>
 <div>
-<h1 class="text-headline-sm font-headline-sm font-bold text-on-primary tracking-tight">TurisPro</h1>
-<p class="text-label-sm font-label-sm text-secondary-fixed-dim">Riesgo &amp; Proveedores</p>
+<h1 class="text-lg font-bold tracking-tight">TurisPro</h1>
+<p class="text-xs text-blue-300">Riesgo &amp; Proveedores</p>
 </div>
 </div>
-<div class="mt-3 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container text-label-sm font-label-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed"></span>
-<span>ISO 31000 Compliant</span>
 </div>
-</div>
-<!-- Quick Action CTA inside sidebar -->
 <div class="px-4 py-3">
-<button class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-primary-container text-on-primary hover:bg-secondary transition-colors rounded-lg text-label-md font-label-md shadow-sm" onclick="location.href='register.html'">
+<button class="w-full flex items-center justify-center gap-2 py-2 px-3 bg-blue-700 hover:bg-blue-600 transition-colors rounded-lg text-sm font-medium shadow-sm cursor-pointer" onclick="location.href='register.html'">
 <span class="material-symbols-outlined text-base">add</span>
 <span>+ Registrar proveedor</span>
 </button>
 </div>
-<!-- Navigation Menu Items -->
 <nav class="flex flex-col mt-2 space-y-0.5">
-<!-- 1. Inicio -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../dashboard/dashboard.html">
+<a class="flex items-center gap-3 px-4 py-2.5 text-blue-200 hover:text-white hover:bg-blue-800 transition-colors cursor-pointer" href="../dashboard/dashboard.html">
 <span class="material-symbols-outlined">dashboard</span>
-<span class="text-label-md font-label-md">Inicio</span>
+<span>Inicio</span>
 </a>
-<!-- 2. Proveedores (ACTIVE DESTINATION) -->
-<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary font-semibold border-l-4 border-on-primary cursor-pointer select-none shadow-sm" href="directory.html">
+<a class="flex items-center gap-3 px-4 py-3 bg-blue-800 text-white font-semibold border-l-4 border-white cursor-pointer" href="directory.html">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">domain</span>
-<span class="text-label-md font-label-md font-semibold">Proveedores</span>
-<span class="ml-auto text-label-sm font-label-sm bg-on-primary text-primary px-1.5 py-0.2 rounded-full font-bold">148</span>
+<span>Proveedores</span>
 </a>
-<!-- 3. Comparar -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="compare.html">
+<a class="flex items-center gap-3 px-4 py-2.5 text-blue-200 hover:text-white hover:bg-blue-800 transition-colors cursor-pointer" href="compare.html">
 <span class="material-symbols-outlined">compare_arrows</span>
-<span class="text-label-md font-label-md">Comparar</span>
-<span class="ml-auto text-label-sm font-label-sm bg-secondary-container text-on-secondary-container px-1.5 py-0.2 rounded-full font-bold">3</span>
-</a>
-<!-- 4. Documentos -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="hotel-los-andes/documents.html">
-<span class="material-symbols-outlined">folder</span>
-<span class="text-label-md font-label-md">Documentos</span>
-</a>
-<!-- 5. Evaluaciones -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="hotel-los-andes/evaluations.html">
-<span class="material-symbols-outlined">fact_check</span>
-<span class="text-label-md font-label-md">Evaluaciones</span>
-</a>
-<!-- 6. Incidentes -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="hotel-los-andes/incidents.html">
-<span class="material-symbols-outlined">report_problem</span>
-<span class="text-label-md font-label-md">Incidentes</span>
-</a>
-<!-- 7. Reportes -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../reports/executive-analytics.html">
-<span class="material-symbols-outlined">analytics</span>
-<span class="text-label-md font-label-md">Reportes</span>
-</a>
-<!-- 8. Análisis IA -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../risk/ai-risk-analysis.html">
-<span class="material-symbols-outlined">psychology</span>
-<span class="text-label-md font-label-md">Análisis IA</span>
-</a>
-<!-- 9. Configuración -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors cursor-pointer select-none" href="../settings/settings.html">
-<span class="material-symbols-outlined">settings</span>
-<span class="text-label-md font-label-md">Configuración</span>
+<span>Comparar</span>
 </a>
 </nav>
-</div>
-<!-- Sidebar Footer User Profile -->
-<div class="px-4 pt-3 border-t border-primary-container/60">
-<div class="flex items-center gap-3 p-2 rounded-lg bg-primary-container/40">
-<span class="material-symbols-outlined text-primary-fixed text-3xl">account_circle</span>
-<div class="overflow-hidden">
-<p class="text-label-md font-label-md font-bold text-on-primary truncate">Carlos Mendoza</p>
-<p class="text-label-sm font-label-sm text-secondary-fixed-dim truncate">Auditor de Riesgo ISO</p>
-</div>
-<button class="ml-auto text-secondary-fixed-dim hover:text-on-primary" title="Cerrar sesión" onclick="TurisProAPI.logout()">
-<span class="material-symbols-outlined text-sm">logout</span>
-</button>
-</div>
 </div>
 </aside>
-<!-- MAIN WRAPPER (Fluid Canvas offset by sidebar) -->
-<div class="ml-64 flex-1 flex flex-col h-screen overflow-hidden">
-<!-- TOP NAVIGATION BAR (Component: TopNavBar) -->
-<header class="h-16 bg-surface-container-lowest border-b border-outline-variant px-8 flex justify-between items-center shadow-sm z-30 shrink-0">
-<!-- Left side: Breadcrumb & Search -->
+
+<!-- MAIN WRAPPER -->
+<div class="ml-64 flex-1 flex flex-col h-screen overflow-hidden bg-slate-50">
+<header class="h-16 bg-white border-b border-slate-200 px-8 flex justify-between items-center shadow-sm z-30 shrink-0">
 <div class="flex items-center gap-6">
-<!-- Breadcrumb -->
-<nav class="flex items-center text-label-md font-label-md text-on-surface-variant gap-1.5">
-<a class="hover:text-primary transition-colors" href="../dashboard/dashboard.html">Inicio</a>
-<span class="material-symbols-outlined text-sm text-outline">chevron_right</span>
-<span class="text-primary font-semibold">Proveedores</span>
+<nav class="flex items-center text-sm text-slate-600 gap-1.5">
+<a class="hover:text-blue-600 transition-colors cursor-pointer" href="../dashboard/dashboard.html">Inicio</a>
+<span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+<span class="text-blue-600 font-semibold">Proveedores</span>
 </nav>
-<div class="h-5 w-px bg-outline-variant"></div>
-<!-- Global Search Input -->
 <div class="relative w-80">
-<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-lg">search</span>
-<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-9 pr-3 py-1.5 text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Buscar por NIT, Razón Social, RNT..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-base">search</span>
+<input id="search-input" class="w-full bg-slate-100 border border-slate-200 rounded-lg pl-9 pr-3 py-1.5 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar proveedor..." type="text"/>
 </div>
 </div>
-<!-- Right side: System Date, Notifications, Support, CTA -->
 <div class="flex items-center gap-4">
-<!-- System Date -->
-<div class="hidden lg:flex items-center gap-1.5 text-label-sm font-label-sm text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-lg border border-outline-variant">
-<span class="material-symbols-outlined text-sm text-secondary">calendar_today</span>
-<span>Hoy: 24 Octubre 2024</span>
-</div>
-<!-- Notifications -->
-<button class="relative p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" title="Notificaciones">
+<button id="btn-notif" class="relative p-2 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer" title="Notificaciones">
 <span class="material-symbols-outlined text-xl">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-600"></span>
 </button>
-<!-- Help Support -->
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" title="Ayuda y Soporte">
+<button id="btn-ayuda" class="p-2 text-slate-600 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer" title="Ayuda">
 <span class="material-symbols-outlined text-xl">help_outline</span>
-</button>
-<div class="h-6 w-px bg-outline-variant"></div>
-<!-- Trailing Primary Action -->
-<button class="inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-3.5 py-1.5 rounded-lg text-label-md font-label-md font-semibold shadow-sm transition-colors" onclick="location.href='register.html'">
-<span class="material-symbols-outlined text-base">add</span>
-<span>+ Registrar proveedor</span>
 </button>
 </div>
 </header>
-<!-- CONTENT SCROLLABLE CANVAS -->
-<main class="flex-1 overflow-y-auto p-8 bg-surface space-y-6">
-<!-- 1. PAGE HEADER & PRIMARY ACTION BAR -->
+
+<main class="flex-1 overflow-y-auto p-8 space-y-6">
 <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 <div>
-<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Directorio de Proveedores Turísticos</h2>
-<p class="text-body-md font-body-md text-on-surface-variant mt-0.5">
-            Gestión centralizada de prestadores, monitoreo de cumplimiento normativo y matriz comparativa en tiempo real.
-          </p>
+<h2 class="text-2xl font-bold text-slate-800 tracking-tight">Directorio de Proveedores Turísticos</h2>
+<p class="text-sm text-slate-600 mt-0.5">Gestión centralizada de prestadores y cumplimiento normativo.</p>
 </div>
-<div class="flex flex-wrap items-center gap-3">
-<!-- Comparar Seleccionados (Highlighted CTA) -->
-<a class="inline-flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary hover:bg-secondary rounded-lg text-label-md font-label-md font-bold shadow-sm transition-all focus:ring-2 focus:ring-primary-fixed" href="compare.html">
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 text-white hover:bg-blue-800 rounded-lg text-sm font-bold shadow-sm transition-all" href="compare.html">
 <span class="material-symbols-outlined text-lg">compare_arrows</span>
 <span>Comparar seleccionados (3)</span>
 </a>
-<!-- Exportar Directorio -->
-<button class="inline-flex items-center gap-2 px-3.5 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface hover:bg-surface-container-low rounded-lg text-label-md font-label-md font-semibold transition-colors">
-<span class="material-symbols-outlined text-lg text-secondary">download</span>
-<span>Exportar directorio (CSV/Excel)</span>
+</div>
+</div>
+
+<!-- FILTROS DE CATEGORÍA -->
+<section class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
+<div class="flex flex-wrap items-center justify-between border-b border-slate-200 pb-3 gap-3">
+<div id="filter-buttons" class="flex items-center gap-1 overflow-x-auto pb-1">
+<span class="text-xs uppercase tracking-wider text-slate-500 mr-2 font-bold">Categoría:</span>
+<button data-cat="todos" class="cat-btn px-3 py-1 bg-blue-600 text-white rounded-lg text-sm font-semibold shadow-xs cursor-pointer">Todos (148)</button>
+<button data-cat="hoteles" class="cat-btn px-3 py-1 hover:bg-slate-100 text-slate-700 rounded-lg text-sm transition-colors cursor-pointer">Hoteles (68)</button>
+<button data-cat="transporte" class="cat-btn px-3 py-1 hover:bg-slate-100 text-slate-700 rounded-lg text-sm transition-colors cursor-pointer">Transporte (42)</button>
+<button data-cat="agencias" class="cat-btn px-3 py-1 hover:bg-slate-100 text-slate-700 rounded-lg text-sm transition-colors cursor-pointer">Agencias (26)</button>
+</div>
+<button id="btn-reset" class="text-xs text-slate-500 hover:text-red-600 transition-colors flex items-center gap-1 cursor-pointer">
+<span class="material-symbols-outlined text-sm">restart_alt</span> Limpiar filtros
 </button>
-</div>
-</div>
-<!-- 2. BANNER DE SELECCIÓN ACTIVA PARA MATRIZ COMPARATIVA -->
-<section class="bg-surface-container-lowest border border-secondary/30 rounded-xl p-4 shadow-sm bg-gradient-to-r from-surface-container-low to-surface-container-lowest">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shrink-0 shadow-sm">
-<span class="material-symbols-outlined text-xl">balance</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="text-headline-sm font-headline-sm text-primary font-bold">Matriz de Comparación Activa</span>
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-label-sm font-bold bg-secondary-fixed text-on-secondary-fixed">
-                  3 de 4 cupos utilizados
-                </span>
-</div>
-<p class="text-body-sm font-body-sm text-on-surface-variant">Selecciona proveedores desde la tabla para cotejar pólizas, RNT, solvencia y riesgo ISO 31000.</p>
-</div>
-</div>
-<!-- Dismissible Selected Chips -->
-<div class="flex flex-wrap items-center gap-2">
-<!-- Chip 1: Hotel Los Andes -->
-<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-lowest border border-primary/40 rounded-full text-label-md font-label-md text-on-surface shadow-xs hover:border-primary">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span class="font-semibold">Hotel Los Andes</span>
-<span class="text-outline text-label-sm font-label-sm">(Medellín)</span>
-<button class="hover:text-error transition-colors ml-0.5 text-outline">
-<span class="material-symbols-outlined text-base leading-none">close</span>
-</button>
-</div>
-<!-- Chip 2: Hotel Colonial -->
-<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-lowest border border-primary/40 rounded-full text-label-md font-label-md text-on-surface shadow-xs hover:border-primary">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span class="font-semibold">Hotel Colonial</span>
-<span class="text-outline text-label-sm font-label-sm">(Cartagena)</span>
-<button class="hover:text-error transition-colors ml-0.5 text-outline">
-<span class="material-symbols-outlined text-base leading-none">close</span>
-</button>
-</div>
-<!-- Chip 3: Hotel Plaza -->
-<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-lowest border border-primary/40 rounded-full text-label-md font-label-md text-on-surface shadow-xs hover:border-primary">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span class="font-semibold">Hotel Plaza</span>
-<span class="text-outline text-label-sm font-label-sm">(Bogotá)</span>
-<button class="hover:text-error transition-colors ml-0.5 text-outline">
-<span class="material-symbols-outlined text-base leading-none">close</span>
-</button>
-</div>
-<!-- Add to compare action -->
-<button class="inline-flex items-center gap-1 px-3 py-1 bg-surface-container border border-dashed border-outline hover:border-primary hover:bg-surface-container-high rounded-full text-label-md font-label-md text-primary font-semibold transition-colors">
-<span class="material-symbols-outlined text-sm">add</span>
-<span>+ Agregar a comparar</span>
-</button>
-</div>
 </div>
 </section>
-<!-- 3. FILTROS AVANZADOS Y SEGMENTACIÓN -->
-<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm space-y-4">
-<!-- Category Segmented Filters Bar -->
-<div class="flex flex-wrap items-center justify-between border-b border-outline-variant pb-3 gap-3">
-<div class="flex items-center gap-1 overflow-x-auto pb-1">
-<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mr-2 font-bold">Categoría:</span>
-<button class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-md font-label-md font-semibold shadow-xs">
-              Todos (148)
-            </button>
-<button class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Hoteles (68)
-            </button>
-<button class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Transporte (42)
-            </button>
-<button class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Agencias (26)
-            </button>
-<button class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Guías (12)
-            </button>
-</div>
-<div class="flex items-center gap-2">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 text-label-sm font-label-sm text-outline hover:text-error transition-colors">
-<span class="material-symbols-outlined text-sm">restart_alt</span>
-<span>Limpiar filtros</span>
-</button>
-</div>
-</div>
-<!-- Granular Select Dropdowns & Search Matrix -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-<!-- Text filter -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Palabra clave / RNT / NIT</label>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-base">filter_alt</span>
-<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Ej. 901.345.890 o RNT 4120" type="text"/>
-</div>
-</div>
-<!-- Nivel de Riesgo IA -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Nivel de Riesgo IA</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-<option value="all">Todos los niveles</option>
-<option value="low">Riesgo Bajo (0-29 ptos)</option>
-<option value="medium">Riesgo Medio (30-69 ptos)</option>
-<option value="high">Riesgo Alto (70-100 ptos)</option>
-</select>
-</div>
-</div>
-<!-- Estado Documental -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Estado Documental</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-<option value="all">Todos los estados</option>
-<option value="valid">Al día / Vigente</option>
-<option value="expiring">Próximo a vencer (&lt;30d)</option>
-<option value="expired">Vencido / Bloqueado</option>
-</select>
-</div>
-</div>
-<!-- Cobertura / Región -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Cobertura / Región</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-<option value="all">Todas las regiones</option>
-<option value="antioquia">Antioquia / Medellín</option>
-<option value="bolivar">Bolívar / Cartagena</option>
-<option value="bogota">Bogotá D.C.</option>
-<option value="caribe">Región Caribe</option>
-<option value="ejecafetero">Eje Cafetero</option>
-<option value="nacional">Nacional (Todo el país)</option>
-</select>
-</div>
-</div>
-</div>
-</section>
-<!-- 4. TABLA Y CATÁLOGO MAESTRO DE PROVEEDORES -->
-<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col">
-<!-- Table Control Strip -->
-<div class="px-5 py-3 border-b border-outline-variant flex items-center justify-between bg-surface-container-low/40">
-<div class="flex items-center gap-3">
-<span class="text-label-md font-label-md font-bold text-on-surface">Catálogo Homologado</span>
-<span class="text-label-sm font-label-sm text-outline">Mostrando 7 proveedores destacados</span>
-</div>
-<div class="flex items-center gap-2">
-<button class="p-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-outline hover:text-primary transition-colors" title="Vista de lista">
-<span class="material-symbols-outlined text-base">view_list</span>
-</button>
-<button class="p-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-outline hover:text-primary transition-colors" title="Columnas visibles">
-<span class="material-symbols-outlined text-base">view_column</span>
-</button>
-</div>
-</div>
+
+<!-- TABLA DE PROVEEDORES FIJA Y GARANTIZADA -->
+<section class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden flex flex-col">
 <div class="overflow-x-auto">
 <table class="w-full border-collapse text-left">
 <thead>
-<tr class="bg-surface-container-low border-b border-outline-variant">
-<!-- Checkbox -->
-<th class="w-12 px-4 py-3 text-center">
-<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</th>
-<!-- Proveedor -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Proveedor &amp; Identificación</th>
-<!-- Categoría -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Categoría &amp; Clasificación</th>
-<!-- Ubicación -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Ubicación / Cobertura</th>
-<!-- Score IA -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Score de Riesgo IA</th>
-<!-- Documentación -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Estado Documental</th>
-<!-- Calificación -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Calificación</th>
-<!-- Acciones -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant text-right">Acciones</th>
+<tr class="bg-slate-100 border-b border-slate-200">
+<th class="px-4 py-3 text-xs uppercase font-bold text-slate-600">Proveedor &amp; Identificación</th>
+<th class="px-4 py-3 text-xs uppercase font-bold text-slate-600">Categoría</th>
+<th class="px-4 py-3 text-xs uppercase font-bold text-slate-600">Ubicación</th>
+<th class="px-4 py-3 text-xs uppercase font-bold text-slate-600">Estado</th>
+<th class="px-4 py-3 text-xs uppercase font-bold text-slate-600 text-right">Acciones</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-outline-variant/60 font-table-cell text-table-cell text-on-surface">
-<!-- FILA 1: Hotel Los Andes (SELECCIONADO) -->
-<tr class="bg-primary-fixed/20 hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">hotel</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">Hotel Los Andes</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-primary-fixed text-on-primary-fixed">HND-MED-049</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Inversiones Los Andes S.A.S. • NIT 900.456.123-1 • RNT 41208</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Hospedaje Turístico</span>
-<p class="text-body-sm font-body-sm text-outline">Hotel 4 Estrellas / Urbano</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">location_on</span>
-<span>Medellín, Antioquia</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">El Poblado</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-2 h-2 rounded-full bg-[#2E7D32]"></span>
-<span>18/100 Riesgo Bajo</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-[#1B5E20]">
-<span class="material-symbols-outlined text-base">check_circle</span>
-<span>Al día / Vigente</span>
-</div>
-<p class="text-label-sm font-label-sm text-outline">Póliza vence: 15/08/2025</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">4.8</span>
-<span class="text-outline text-xs">(128 evals)</span>
-</div>
-</td>
+<tbody id="directorio-tbody" class="divide-y divide-slate-200 text-sm text-slate-700">
+<!-- Fila 1: Hoteles -->
+<tr class="provider-row" data-categoria="hoteles" data-nombre="hotel los andes">
+<td class="px-4 py-3 font-bold text-slate-900">Hotel Los Andes <span class="text-xs text-slate-500 font-normal">(HND-MED-049)</span></td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded text-xs font-semibold">Hoteles</span></td>
+<td class="px-4 py-3">Medellín, Antioquia</td>
+<td class="px-4 py-3 text-emerald-600 font-semibold">● Vigente</td>
 <td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
+<button onclick="alert('Abriendo ficha de Hotel Los Andes')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- FILA 2: Hotel Colonial (SELECCIONADO) -->
-<tr class="bg-primary-fixed/20 hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">apartment</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">Hotel Colonial</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-primary-fixed text-on-primary-fixed">COL-CTG-012</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Operadora Colonial Caribe Ltda. • NIT 800.789.231-4 • RNT 18940</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Hospedaje Turístico</span>
-<p class="text-body-sm font-body-sm text-outline">Hotel Boutique / Patrimonial</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">location_on</span>
-<span>Cartagena, Bolívar</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Centro Histórico</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#5D4037]">
-<span class="w-2 h-2 rounded-full bg-[#F9A825]"></span>
-<span>42/100 Riesgo Medio</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-[#5D4037]">
-<span class="material-symbols-outlined text-base text-[#F9A825]">warning</span>
-<span>Próximo a vencer</span>
-</div>
-<p class="text-label-sm font-label-sm text-[#B71C1C]">RNT vence en 18 días</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">4.6</span>
-<span class="text-outline text-xs">(94 evals)</span>
-</div>
-</td>
+<!-- Fila 2: Hoteles -->
+<tr class="provider-row" data-categoria="hoteles" data-nombre="hotel colonial">
+<td class="px-4 py-3 font-bold text-slate-900">Hotel Colonial <span class="text-xs text-slate-500 font-normal">(COL-CTG-012)</span></td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded text-xs font-semibold">Hoteles</span></td>
+<td class="px-4 py-3">Cartagena, Bolívar</td>
+<td class="px-4 py-3 text-amber-600 font-semibold">● Próximo a vencer</td>
 <td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
+<button onclick="alert('Abriendo ficha de Hotel Colonial')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- FILA 3: Hotel Plaza (SELECCIONADO) -->
-<tr class="bg-primary-fixed/20 hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">corporate_fare</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">Hotel Plaza</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-primary-fixed text-on-primary-fixed">PLZ-BOG-088</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Hoteles Plaza Capital S.A. • NIT 860.123.456-9 • RNT 25110</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Hospedaje Turístico</span>
-<p class="text-body-sm font-body-sm text-outline">Hotel 5 Estrellas / Ejecutivo</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">location_on</span>
-<span>Bogotá D.C.</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Chicó Norte</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-2 h-2 rounded-full bg-[#2E7D32]"></span>
-<span>22/100 Riesgo Bajo</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-[#1B5E20]">
-<span class="material-symbols-outlined text-base">check_circle</span>
-<span>Al día / Vigente</span>
-</div>
-<p class="text-label-sm font-label-sm text-outline">Póliza vence: 11/11/2025</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">4.9</span>
-<span class="text-outline text-xs">(310 evals)</span>
-</div>
-</td>
+<!-- Fila 3: Transporte -->
+<tr class="provider-row" data-categoria="transporte" data-nombre="transportes rapidos andinos">
+<td class="px-4 py-3 font-bold text-slate-900">Transportes Rápidos Andinos <span class="text-xs text-slate-500 font-normal">(TRA-MDE-102)</span></td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-amber-50 text-amber-700 rounded text-xs font-semibold">Transporte</span></td>
+<td class="px-4 py-3">Medellín, Antioquia</td>
+<td class="px-4 py-3 text-emerald-600 font-semibold">● Vigente</td>
 <td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
+<button onclick="alert('Abriendo ficha de Transportes Rápidos Andinos')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- FILA 4: Transportes Rápidos Andinos -->
-<tr class="hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">directions_bus</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">Transportes Rápidos Andinos</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-surface-container text-on-surface-variant">TRA-MDE-102</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Cía. Andina de Transporte Especial • NIT 900.111.222-3 • RNT 31092</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Transporte Turístico</span>
-<p class="text-body-sm font-body-sm text-outline">Transporte Terrestre Especial</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">location_on</span>
-<span>Medellín, Antioquia</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Rutas Regionales / Eje Cafetero</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#5D4037]">
-<span class="w-2 h-2 rounded-full bg-[#F9A825]"></span>
-<span>48/100 Riesgo Medio</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-[#1B5E20]">
-<span class="material-symbols-outlined text-base">check_circle</span>
-<span>Al día / Vigente</span>
-</div>
-<p class="text-label-sm font-label-sm text-outline">SOAT &amp; RCE Validados</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">4.4</span>
-<span class="text-outline text-xs">(82 evals)</span>
-</div>
-</td>
+<!-- Fila 4: Transporte -->
+<tr class="provider-row" data-categoria="transporte" data-nombre="aerocaribe express">
+<td class="px-4 py-3 font-bold text-slate-900">AeroCaribe Express <span class="text-xs text-slate-500 font-normal">(ACE-REG-019)</span></td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-amber-50 text-amber-700 rounded text-xs font-semibold">Transporte</span></td>
+<td class="px-4 py-3">San Andrés &amp; Providencia</td>
+<td class="px-4 py-3 text-blue-600 font-semibold">● En Auditoría</td>
 <td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
+<button onclick="alert('Abriendo ficha de AeroCaribe Express')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
-<!-- FILA 5: Viajes & Operador Turístico XYZ -->
-<tr class="hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">travel_explore</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">Viajes &amp; Operador Turístico XYZ</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-surface-container text-on-surface-variant">XYZ-NAL-004</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Agencia Operadora XYZ Colombia SAS • NIT 901.888.777-2 • RNT 52899</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Agencia de Viajes</span>
-<p class="text-body-sm font-body-sm text-outline">Operador Receptivo Nacional</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">public</span>
-<span>Cobertura Nacional</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Sede Principal: Bogotá</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]">
-<span class="w-2 h-2 rounded-full bg-[#C62828]"></span>
-<span>78/100 Riesgo Alto</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-[#B71C1C]">
-<span class="material-symbols-outlined text-base">cancel</span>
-<span>Vencido / Bloqueado</span>
-</div>
-<p class="text-label-sm font-label-sm text-[#B71C1C]">Póliza RCE venció hace 12 días</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">3.8</span>
-<span class="text-outline text-xs">(47 evals)</span>
-</div>
-</td>
+<!-- Fila 5: Agencias -->
+<tr class="provider-row" data-categoria="agencias" data-nombre="viajes y operador xyz">
+<td class="px-4 py-3 font-bold text-slate-900">Viajes &amp; Operador XYZ <span class="text-xs text-slate-500 font-normal">(XYZ-NAL-004)</span></td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded text-xs font-semibold">Agencias</span></td>
+<td class="px-4 py-3">Bogotá D.C.</td>
+<td class="px-4 py-3 text-red-600 font-semibold">● Vencido</td>
 <td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- FILA 6: Gran Hotel Pereira -->
-<tr class="hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">hotel</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">Gran Hotel Pereira</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-surface-container text-on-surface-variant">GHP-PEI-033</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Inversiones Turísticas Risaralda • NIT 891.450.210-6 • RNT 12401</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Hospedaje Turístico</span>
-<p class="text-body-sm font-body-sm text-outline">Hotel 4 Estrellas / Centro de Convenciones</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">location_on</span>
-<span>Pereira, Risaralda</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Eje Cafetero</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-2 h-2 rounded-full bg-[#2E7D32]"></span>
-<span>24/100 Riesgo Bajo</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-[#1B5E20]">
-<span class="material-symbols-outlined text-base">check_circle</span>
-<span>Al día / Vigente</span>
-</div>
-<p class="text-label-sm font-label-sm text-outline">Auditoría Supertransporte: OK</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">4.7</span>
-<span class="text-outline text-xs">(63 evals)</span>
-</div>
-</td>
-<td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- FILA 7: AeroCaribe Express -->
-<tr class="hover:bg-surface-container transition-colors">
-<td class="px-4 py-3 text-center">
-<input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-<span class="material-symbols-outlined text-lg">flight_takeoff</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-headline-sm text-body-md font-bold text-on-surface">AeroCaribe Express</span>
-<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-surface-container text-on-surface-variant">ACE-REG-019</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Transportes Aéreos Caribe S.A.S. • NIT 900.992.341-8 • RNT 40019</p>
-</div>
-</div>
-</td>
-<td class="px-4 py-3">
-<span class="font-semibold text-on-surface">Transporte Aéreo No Regular</span>
-<p class="text-body-sm font-body-sm text-outline">Vuelos Chárter &amp; Traslados Isla</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-on-surface">
-<span class="material-symbols-outlined text-base text-secondary">location_on</span>
-<span>San Andrés &amp; Providencia</span>
-</div>
-<p class="text-body-sm font-body-sm text-outline">Hub Regional Caribe</p>
-</td>
-<td class="px-4 py-3">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E3F2FD] text-[#0D47A1]">
-<span class="w-2 h-2 rounded-full bg-[#1565C0]"></span>
-<span>En Auditoría IA</span>
-</div>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1.5 text-body-sm font-body-sm font-semibold text-primary">
-<span class="material-symbols-outlined text-base">pending_actions</span>
-<span>Revisión Técnica</span>
-</div>
-<p class="text-label-sm font-label-sm text-outline">Certificado Aerocivil en curso</p>
-</td>
-<td class="px-4 py-3">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-bold">4.5</span>
-<span class="text-outline text-xs">(39 evals)</span>
-</div>
-</td>
-<td class="px-4 py-3 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-<span class="material-symbols-outlined text-lg">visibility</span>
-</button>
-<button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-</button>
-<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-high rounded transition-colors" title="Más opciones">
-<span class="material-symbols-outlined text-lg">more_vert</span>
-</button>
-</div>
+<button onclick="alert('Abriendo ficha de Viajes XYZ')" class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium cursor-pointer">Ver ficha</button>
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-<!-- 5. PAGINACIÓN INFERIOR DE TABLA -->
-<div class="px-5 py-3 border-t border-outline-variant bg-surface-container-low/60 flex flex-col sm:flex-row items-center justify-between gap-3">
-<div class="text-body-sm font-body-sm text-on-surface-variant">
-            Mostrando <span class="font-semibold text-on-surface">1 a 7</span> de <span class="font-semibold text-on-surface">148</span> proveedores registrados
-          </div>
-<div class="flex items-center gap-4">
-<!-- Limite por pagina -->
-<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline">
-<span>Filas por página:</span>
-<select class="bg-surface-container-lowest border border-outline-variant rounded px-2 py-1 text-on-surface text-label-sm font-label-sm focus:outline-none focus:ring-1 focus:ring-primary">
-<option value="10">10</option>
-<option selected="" value="25">25</option>
-<option value="50">50</option>
-<option value="100">100</option>
-</select>
-</div>
-<!-- Page Buttons -->
-<div class="flex items-center gap-1">
-<button class="p-1 text-outline hover:text-on-surface disabled:opacity-40" disabled="">
-<span class="material-symbols-outlined text-lg">first_page</span>
-</button>
-<button class="p-1 text-outline hover:text-on-surface disabled:opacity-40" disabled="">
-<span class="material-symbols-outlined text-lg">chevron_left</span>
-</button>
-<span class="px-2.5 py-1 text-label-sm font-label-sm font-bold bg-primary text-on-primary rounded">1</span>
-<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface hover:bg-surface-container rounded">2</button>
-<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface hover:bg-surface-container rounded">3</button>
-<span class="text-outline text-xs">...</span>
-<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface hover:bg-surface-container rounded">6</button>
-<button class="p-1 text-outline hover:text-on-surface">
-<span class="material-symbols-outlined text-lg">chevron_right</span>
-</button>
-<button class="p-1 text-outline hover:text-on-surface">
-<span class="material-symbols-outlined text-lg">last_page</span>
-</button>
-</div>
-</div>
-</div>
 </section>
-<!-- 6. FOOTER DE GOBERNANZA & CUMPLIMIENTO -->
-<footer class="pt-4 pb-6 border-t border-outline-variant flex flex-col md:flex-row items-center justify-between gap-4 text-label-sm font-label-sm text-outline">
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-1.5 text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-primary">verified_user</span>
-<span>Estándar Internacional ISO 31000:2018 para Gestión Integral de Riesgo</span>
-</div>
-<span class="hidden md:inline">•</span>
-<div class="flex items-center gap-1.5 text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-secondary">gavel</span>
-<span>Articulación con Viceministerio de Turismo y Registro Nacional de Turismo (RNT Colombia)</span>
-</div>
-</div>
-<div class="text-right">
-<p>© 2024 TurisPro Enterprise Suite • Módulo de Contratación &amp; Homologación Segura</p>
-</div>
-</footer>
 </main>
 </div>
 
-<script src="../../assets/js/api.js"></script>
+<!-- SCRIPT DIRECTO E INMEDIATO -->
 <script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    if (!TurisProAPI.requireAuth()) return;
-    await cargarProveedores();
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.cat-btn');
+    const filas = document.querySelectorAll('.provider-row');
 
-    const searchInput = document.querySelector('input[placeholder*="Buscar"]');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        buttons.forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white', 'font-semibold', 'shadow-xs');
+          b.classList.add('hover:bg-slate-100', 'text-slate-700');
+        });
+        e.target.classList.add('bg-blue-600', 'text-white', 'font-semibold', 'shadow-xs');
+        e.target.classList.remove('hover:bg-slate-100', 'text-slate-700');
+
+        const categoriaSeleccionada = e.target.getAttribute('data-cat');
+
+        filas.forEach(fila => {
+          const catFila = fila.getAttribute('data-categoria');
+          if (categoriaSeleccionada === 'todos' || catFila === categoriaSeleccionada) {
+            fila.style.display = 'table-row';
+          } else {
+            fila.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    const searchInput = document.getElementById('search-input');
     if (searchInput) {
-      let debounceTimeout;
       searchInput.addEventListener('input', (e) => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(() => {
-          cargarProveedores({ texto: e.target.value });
-        }, 300);
+        const texto = e.target.value.toLowerCase();
+        filas.forEach(fila => {
+          const nombre = fila.getAttribute('data-nombre') || '';
+          if (nombre.includes(texto)) {
+            fila.style.display = 'table-row';
+          } else {
+            fila.style.display = 'none';
+          }
+        });
       });
     }
+
+    document.getElementById('btn-notif').addEventListener('click', () => alert('Bandeja de notificaciones: Todo al día.'));
+    document.getElementById('btn-ayuda').addEventListener('click', () => alert('Centro de Soporte TurisPro.'));
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      if(searchInput) searchInput.value = '';
+      buttons[0].click();
+    });
   });
-
-  async function cargarProveedores(filtros = {}) {
-    try {
-      const resp = await TurisProAPI.getProveedores(filtros);
-      const tbody = document.getElementById('directorio-tbody');
-      if (!tbody || !resp || !Array.isArray(resp.items)) return;
-
-      tbody.innerHTML = '';
-      resp.items.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-surface-container transition-colors';
-
-        const riesgoColor = p.nivelRiesgo === 'ALTO'
-          ? 'bg-[#FFEBEE] text-[#B71C1C]'
-          : p.nivelRiesgo === 'MEDIO'
-          ? 'bg-[#FFF8E1] text-[#5D4037]'
-          : 'bg-[#E8F5E9] text-[#1B5E20]';
-
-        const dotColor = p.nivelRiesgo === 'ALTO' ? 'bg-[#C62828]' : p.nivelRiesgo === 'MEDIO' ? 'bg-[#F9A825]' : 'bg-[#2E7D32]';
-        const zonasText = (p.zonas && p.zonas.length > 0) ? p.zonas.map(z => z.ciudad).join(', ') : 'Nacional';
-
-        tr.innerHTML = `
-          <td class="px-4 py-3 text-center">
-            <input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox" value="${p.idProveedor}"/>
-          </td>
-          <td class="px-4 py-3">
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold text-sm">
-                <span class="material-symbols-outlined text-lg">domain</span>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="font-headline-sm text-body-md font-bold text-on-surface">${p.razonSocial}</span>
-                  <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-primary-fixed text-on-primary-fixed">#${p.idProveedor}</span>
-                </div>
-                <p class="text-body-sm font-body-sm text-outline">NIT: ${p.nit} • ${p.correo}</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-4 py-3">
-            <span class="font-semibold text-on-surface">${p.tipo}</span>
-          </td>
-          <td class="px-4 py-3">
-            <div class="flex items-center gap-1.5 text-on-surface">
-              <span class="material-symbols-outlined text-base text-secondary">location_on</span>
-              <span>${zonasText}</span>
-            </div>
-          </td>
-          <td class="px-4 py-3">
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full ${riesgoColor}">
-              <span class="w-2 h-2 rounded-full ${dotColor}"></span>
-              <span>${p.puntajeRiesgo !== null ? p.puntajeRiesgo + '/100 ' : ''}${p.nivelRiesgo}</span>
-            </div>
-          </td>
-          <td class="px-4 py-3">
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-              ● ${p.estadoCiclo}
-            </span>
-          </td>
-          <td class="px-4 py-3">
-            <div class="flex items-center gap-1 text-xs text-slate-700">
-              <span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings: 'FILL' 1;">star</span>
-              <span class="font-bold">Activo</span>
-            </div>
-          </td>
-          <td class="px-4 py-3 text-right">
-            <div class="inline-flex items-center gap-1">
-              <button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" onclick="location.href='hotel-los-andes/detail.html'">
-                <span class="material-symbols-outlined text-lg">visibility</span>
-              </button>
-              <button class="p-1.5 text-secondary hover:bg-surface-container-high rounded transition-colors" title="Comparar" onclick="location.href='compare.html'">
-                <span class="material-symbols-outlined text-lg">compare_arrows</span>
-              </button>
-            </div>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    } catch (err) {
-      console.warn('Error al cargar proveedores:', err);
-    }
-  }
 </script>
-
-</body></html>
+</body>
+</html>

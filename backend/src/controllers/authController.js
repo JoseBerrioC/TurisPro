@@ -1,5 +1,6 @@
 const AuthService = require('../services/AuthService');
 const Usuario = require('../domain/Usuario');
+const PreferenciasUsuario = require('../domain/PreferenciasUsuario');
 const { Rol } = require('../domain/enums');
 
 class AuthController {
@@ -26,8 +27,58 @@ class AuthController {
           puedeGestionarServicios: usuario.tienePermiso('gestionar_servicios'),
           puedeGestionarDocumentos: usuario.tienePermiso('gestionar_documentos'),
           puedeEvaluar: usuario.tienePermiso('evaluar_proveedor'),
-          puedeRegistrarIncidente: usuario.tienePermiso('registrar_incidente')
+          puedeRegistrarIncidente: usuario.tienePermiso('registrar_incidente'),
+          puedeConfiguracion: usuario.tienePermiso('configuracion')
         }
+      }
+    };
+  }
+
+  static actualizarPerfil(body, usuario) {
+    const { nombre, correo } = body || {};
+    const actualizado = Usuario.actualizarPerfil(usuario.idUsuario, { nombre, correo });
+    return {
+      status: 200,
+      body: {
+        mensaje: 'Perfil corporativo actualizado exitosamente',
+        usuario: actualizado.toJSON()
+      }
+    };
+  }
+
+  static cambiarClave(body, usuario) {
+    const { claveActual, claveNueva, confirmarClave } = body || {};
+    Usuario.cambiarClave(usuario.idUsuario, claveActual, claveNueva, confirmarClave);
+    return {
+      status: 200,
+      body: {
+        mensaje: 'Contraseña actualizada exitosamente conforme a política ISO 27001'
+      }
+    };
+  }
+
+  static obtenerPreferencias(usuario) {
+    const prefs = PreferenciasUsuario.obtenerPorUsuario(usuario.idUsuario);
+    return {
+      status: 200,
+      body: {
+        preferencias: prefs.toJSON()
+      }
+    };
+  }
+
+  static guardarPreferencias(body, usuario) {
+    const { diasAlerta, alertasIncidentes, alertasEvaluaciones } = body || {};
+    const prefs = PreferenciasUsuario.guardar(usuario.idUsuario, {
+      diasAlerta,
+      alertasIncidentes,
+      alertasEvaluaciones
+    });
+    return {
+      status: 200,
+      body: {
+        mensaje: 'Preferencias de alertas predictivas guardadas exitosamente',
+        preferencias: prefs.toJSON()
       }
     };
   }
@@ -68,28 +119,31 @@ class AuthController {
 
   static crearUsuario(body, adminUsuario) {
     if (adminUsuario.rol !== Rol.ADMINISTRADOR) {
-      return { status: 403, body: { error: 'Solo los administradores pueden crear usuarios' } };
+      return { status: 403, body: { error: 'Acceso denegado: Solo los administradores pueden crear usuarios' } };
     }
 
-    const { nombre, correo, clave, rol } = body || {};
-    const nuevo = Usuario.crearUsuario({ nombre, correo, clave, rol });
+    const { nombre, correo, clave, rol, activo } = body || {};
+    const nuevo = Usuario.crearUsuario({ nombre, correo, clave, rol, activo });
     return {
       status: 201,
       body: {
-        mensaje: 'Usuario creado exitosamente',
+        mensaje: 'Usuario corporativo registrado exitosamente',
         usuario: nuevo.toJSON()
       }
     };
   }
 
-  static listarUsuarios(adminUsuario) {
+  static listarUsuarios(query, adminUsuario) {
     if (adminUsuario.rol !== Rol.ADMINISTRADOR) {
-      return { status: 403, body: { error: 'Solo los administradores pueden consultar usuarios' } };
+      return { status: 403, body: { error: 'Acceso denegado: Solo los administradores pueden consultar usuarios' } };
     }
-    const usuarios = Usuario.listarTodos();
+    const usuarios = Usuario.listarTodos(query);
     return {
       status: 200,
-      body: usuarios
+      body: {
+        total: usuarios.length,
+        items: usuarios
+      }
     };
   }
 }

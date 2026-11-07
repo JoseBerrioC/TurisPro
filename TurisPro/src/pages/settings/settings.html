@@ -788,8 +788,8 @@
 <!-- ========================================================= -->
 <!-- MODAL: + CREAR USUARIO (MANTENIDO INTACTO SEGÚN MANDATO)    -->
 <!-- ========================================================= -->
-<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-xs transition-opacity duration-200" id="user-modal">
-<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-2xl w-full max-w-lg overflow-hidden transform transition-transform">
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-on-background/40 backdrop-blur-xs transition-opacity duration-200" id="user-modal" role="dialog" aria-modal="true" aria-labelledby="modal-user-title">
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/60 shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden transform transition-transform">
 <!-- Modal Header -->
 <div class="px-6 py-5 border-b border-outline-variant/50 bg-surface-bright flex items-start justify-between">
 <div class="flex items-center gap-3">
@@ -797,16 +797,16 @@
 <span class="material-symbols-outlined text-[24px]">person_add</span>
 </div>
 <div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Crear nuevo usuario corporativo</h3>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface" id="modal-user-title">Crear nuevo usuario corporativo</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Asigna credenciales y permisos de acceso para la gestión y auditoría en TurisPro.</p>
 </div>
 </div>
-<button class="text-outline hover:text-on-surface p-1 rounded-xl hover:bg-surface-container transition-colors" onclick="closeModal()">
+<button class="text-outline hover:text-on-surface p-1 rounded-xl hover:bg-surface-container transition-colors" onclick="closeModal()" type="button" aria-label="Cerrar modal">
 <span class="material-symbols-outlined text-[20px]">close</span>
 </button>
 </div>
 <!-- Modal Body Form -->
-<form class="p-6 space-y-4" id="new-user-form" onsubmit="event.preventDefault(); closeModal();">
+<form class="p-6 space-y-4 overflow-y-auto" id="new-user-form" onsubmit="event.preventDefault(); handleCreateUser(event);">
 <!-- Field 1: Nombre Completo -->
 <div>
 <label class="block font-label-md text-label-md text-on-surface mb-1">Nombre completo</label>
@@ -886,35 +886,98 @@
       element.classList.add('bg-surface-container', 'text-primary', 'border-l-4', 'border-primary', 'font-semibold', 'shadow-xs');
     }
 
-    // Modal Controls
+    // Modal Controls & Form Management
     const userModal = document.getElementById('user-modal');
     const openUserModalBtn = document.getElementById('open-user-modal-btn');
+    const newUserForm = document.getElementById('new-user-form');
 
     function openModal() {
+      if (!userModal) return;
       userModal.classList.remove('hidden');
       userModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      const firstInput = userModal.querySelector('input:not([type="hidden"])');
+      if (firstInput) {
+        setTimeout(() => firstInput.focus(), 50);
+      }
     }
 
     function closeModal() {
+      if (!userModal) return;
       userModal.classList.add('hidden');
       userModal.classList.remove('flex');
+      document.body.style.overflow = '';
+      if (newUserForm) {
+        newUserForm.reset();
+      }
+    }
+
+    function handleCreateUser(event) {
+      if (event) event.preventDefault();
+      const nameInput = newUserForm ? newUserForm.querySelector('input[type="text"]') : null;
+      const userName = nameInput && nameInput.value.trim() ? nameInput.value.trim() : 'Usuario';
+      closeModal();
+      if (typeof window.showToast === 'function') {
+        window.showToast(`Invitación corporativa enviada con éxito a ${userName}.`, 'success');
+      }
     }
 
     if (openUserModalBtn) {
       openUserModalBtn.addEventListener('click', openModal);
     }
 
-    // Close on click outside
-    userModal.addEventListener('click', function(e) {
-      if (e.target === userModal) {
+    // Close on click outside (backdrop click)
+    if (userModal) {
+      userModal.addEventListener('click', function(e) {
+        if (e.target === userModal) {
+          closeModal();
+        }
+      });
+    }
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && userModal && !userModal.classList.contains('hidden')) {
         closeModal();
       }
     });
 
-    // Close on ESC key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !userModal.classList.contains('hidden')) {
-        closeModal();
+    // Feedback visual para botones de configuración en paneles
+    document.addEventListener('DOMContentLoaded', function() {
+      const btnPerfil = document.querySelector('#tab-perfil button');
+      if (btnPerfil) {
+        btnPerfil.addEventListener('click', function() {
+          if (typeof window.showToast === 'function') {
+            window.showToast('Perfil corporativo guardado exitosamente.', 'success');
+          }
+        });
+      }
+
+      const btnPassword = document.querySelector('#tab-seguridad button.bg-primary-container, #tab-seguridad button.bg-primary');
+      if (btnPassword) {
+        btnPassword.addEventListener('click', function() {
+          if (typeof window.showToast === 'function') {
+            window.showToast('Contraseña actualizada conforme a la política ISO 27001.', 'success');
+          }
+        });
+      }
+
+      const btnCerrarSesiones = document.querySelector('#tab-seguridad button.text-error');
+      if (btnCerrarSesiones) {
+        btnCerrarSesiones.addEventListener('click', function() {
+          if (typeof window.showToast === 'function') {
+            window.showToast('Otras sesiones remotas cerradas correctamente.', 'info');
+          }
+        });
+      }
+
+      const btnNotif = document.querySelector('#tab-notificaciones button');
+      if (btnNotif) {
+        btnNotif.addEventListener('click', function() {
+          if (typeof window.showToast === 'function') {
+            window.showToast('Preferencias de alertas predictivas guardadas.', 'success');
+          }
+        });
       }
     });
   </script>

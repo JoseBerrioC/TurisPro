@@ -141,14 +141,3 @@ CREATE TABLE IF NOT EXISTS alertas (
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
     leida INTEGER NOT NULL DEFAULT 0
 );
-
-
--- 11. Tabla de Preferencias de Usuario (Configuración y Notificaciones)
-CREATE TABLE IF NOT EXISTS preferencias_usuario (
-    id_usuario INTEGER PRIMARY KEY,
-    dias_alerta INTEGER NOT NULL DEFAULT 30 CHECK(dias_alerta IN (7, 15, 30)),
-    alertas_incidentes INTEGER NOT NULL DEFAULT 1 CHECK(alertas_incidentes IN (0, 1)),
-    alertas_evaluaciones INTEGER NOT NULL DEFAULT 1 CHECK(alertas_evaluaciones IN (0, 1)),
-    actualizado_en DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
-);

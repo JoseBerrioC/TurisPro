@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html><html lang="es"><head>
+<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TurisPro - Incidentes: Hotel Los Andes</title>
@@ -46,88 +46,252 @@
       color: #1e293b;
     }
   </style>
-<link rel="stylesheet" href="../../../assets/css/turispro-base.css">
+<style id="turispro-fixed-sidebar-styles">
+/* Sidebar fija y uniforme en todas las secciones */
+html body aside.tp-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  background-color: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>
+<style id="turispro-sidebar-uniform-style">
+/* Panel lateral unico de TurisPro: conserva exactamente el aspecto del Inicio. */
+.tp-sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+.tp-sidebar img {
+  display: block !important;
+  height: 2.25rem !important;
+  width: auto !important;
+  max-width: 190px !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+</style>
+<style id="turispro-sidebar-typography-uniform">
+/* Normalizacion final: mismo tamano de texto e iconos en todas las paginas */
+html body aside.tp-sidebar,
+html body aside.tp-sidebar * {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  box-sizing: border-box !important;
+}
+/* Todos los enlaces del menu tienen la misma altura, separacion y alineacion */
+html body aside.tp-sidebar nav a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  line-height: 18px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  flex: 0 0 48px !important;
+  white-space: nowrap !important;
+}
+/* Mismo tamano y ancho reservado para todos los iconos del menu */
+html body aside.tp-sidebar nav a .material-symbols-outlined {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  flex: 0 0 20px !important;
+  vertical-align: middle !important;
+}
+/* Texto de cada opcion: 13px exactos y una misma altura de linea */
+html body aside.tp-sidebar nav a > span:not(.material-symbols-outlined) {
+  display: inline-block !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* Insignia PRO consistente sin alterar el tamano del nombre de la opcion */
+html body aside.tp-sidebar nav a > span.ml-auto {
+  margin-left: auto !important;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  font-weight: 700 !important;
+}
+/* Boton Registrar proveedor */
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  height: 48px !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button .material-symbols-outlined {
+  width: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button span:not(.material-symbols-outlined) {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+/* Iconos y textos del pie de usuario con medidas definidas */
+html body aside.tp-sidebar > div:last-child .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:last-child p:first-child {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+}
+html body aside.tp-sidebar > div:last-child p:last-child {
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 400 !important;
+}
+</style>
 </head>
 <body class="flex min-h-screen bg-[#f6faff] text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900">
 
   <!-- SIDEBAR (Celeste Corporativo TurisPro) -->
-  <aside class="sidebar-drawer fixed left-0 top-0 h-screen w-64 bg-[#0284c7] text-white flex flex-col justify-between z-30 shadow-md">
-    <div>
-      <!-- Brand Logo Header -->
-      <div class="p-5 border-b border-sky-500/40 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <img src="../../../../assets/images/logo-turispro.png" alt="TurisPro Logo" class="h-10 w-auto object-contain rounded-lg shadow-sm bg-white/10 p-0.5">
-        </div>
-      </div>
-
-      <!-- Quick Action CTA -->
-      <div class="p-4">
-        <button class="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-white/15 hover:bg-white/25 active:bg-white/30 text-white font-semibold text-sm rounded-lg transition-all duration-150 shadow-sm border border-white/20" onclick="location.href='../register.html'">
-          <span class="material-symbols-outlined text-[18px]">add</span>
-          <span>+ Registrar proveedor</span>
-        </button>
-      </div>
-
-      <!-- Navigation Links -->
-      <nav class="px-3 space-y-1 mt-1">
-        <a href="../../dashboard/dashboard.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">dashboard</span>
-          <span>Inicio</span>
-        </a>
-        <a href="../directory.html" class="flex items-center gap-3 px-3.5 py-2.5 bg-white/20 text-white font-semibold rounded-lg shadow-sm border-l-4 border-white transition-all text-sm">
-          <span class="material-symbols-outlined text-[20px] fill">domain</span>
-          <span>Proveedores</span>
-        </a>
-        <a href="../compare.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">compare_arrows</span>
-          <span>Comparar</span>
-        </a>
-        <a href="documents.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">folder</span>
-          <span>Documentos</span>
-        </a>
-        <a href="evaluations.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">fact_check</span>
-          <span>Evaluaciones</span>
-        </a>
-        <a href="incidents.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">report_problem</span>
-          <span>Incidentes</span>
-        </a>
-        <a href="../../reports/executive-analytics.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">analytics</span>
-          <span>Reportes</span>
-        </a>
-        <a href="../../risk/ai-risk-analysis.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">psychology</span>
-          <span>Análisis IA</span>
-        </a>
-        <a href="../../settings/settings.html" class="flex items-center gap-3 px-3.5 py-2.5 text-sky-100 hover:text-white hover:bg-white/10 rounded-lg transition-all text-sm font-medium">
-          <span class="material-symbols-outlined text-[20px]">settings</span>
-          <span>Configuración</span>
-        </a>
-      </nav>
-    </div>
-
-    <!-- Sidebar Footer / User Profile -->
-    <div class="p-3.5 border-t border-sky-500/40 bg-sky-800/25 flex items-center justify-between">
-      <div class="flex items-center gap-2.5 overflow-hidden">
-        <div class="w-8 h-8 rounded-full bg-white/20 text-white font-bold text-xs flex items-center justify-center border border-white/30 shrink-0">
-          CM
-        </div>
-        <div class="truncate">
-          <p class="text-xs font-semibold text-white leading-tight truncate">Carlos Mendoza</p>
-          <p class="text-[11px] text-sky-200 leading-tight truncate">Director de Compras</p>
-        </div>
-      </div>
-      <button class="text-sky-200 hover:text-white p-1 rounded-md hover:bg-white/10 transition-colors" title="Cerrar sesión" onclick="location.href='../../auth/login.html'">
-        <span class="material-symbols-outlined text-[18px]">logout</span>
-      </button>
-    </div>
-  </aside>
+  <aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between z-40 bg-[#0D47A1] text-on-primary border-r border-[#00337c] shadow-sm select-none tp-sidebar">
+<!-- Top Brand & Navigation Cluster -->
+<div class="flex flex-col">
+<!-- Brand Header -->
+<div class="px-6 pt-5 pb-4 border-b border-[#1565C0]/40 flex items-center justify-between">
+<div class="flex items-center"><img src="../../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-9 w-auto max-w-[190px] object-contain rounded"></div>
+</div>
+<!-- Quick Action CTA inside Sidebar -->
+<div class="px-4 pt-4 pb-2">
+<button class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[#1565C0] hover:bg-[#0D47A1] text-white font-label-md text-label-md font-semibold shadow-sm transition-all border border-blue-400/30 cursor-pointer" onclick="location.href='../register.html'" type="button">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span class="">+ Registrar proveedor</span>
+</button>
+</div>
+<!-- Navigation Tabs (from Shared Components JSON) -->
+<nav class="mt-2 flex flex-col space-y-0.5 px-3">
+<!-- 1. Inicio (Activo) -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-r-lg transition-colors cursor-pointer" href="../../dashboard/dashboard.html">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="text-label-md font-label-md">Inicio</span>
+</a>
+<!-- 2. Proveedores -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../directory.html">
+<span class="material-symbols-outlined text-lg">domain</span>
+<span class="text-label-md font-label-md">Proveedores</span>
+</a>
+<!-- 3. Comparar -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../compare.html">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
+<span class="text-label-md font-label-md">Comparar</span>
+</a>
+<!-- 4. Documentos -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="documents.html">
+<span class="material-symbols-outlined text-lg">folder</span>
+<span class="text-label-md font-label-md">Documentos</span>
+</a>
+<!-- 5. Evaluaciones -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="evaluations.html">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+<span class="text-label-md font-label-md">Evaluaciones</span>
+</a>
+<!-- 6. Incidentes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="incidents.html">
+<span class="material-symbols-outlined text-lg">report_problem</span>
+<span class="text-label-md font-label-md">Incidentes</span>
+</a>
+<!-- 7. Reportes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../../reports/executive-analytics.html">
+<span class="material-symbols-outlined text-lg">analytics</span>
+<span class="text-label-md font-label-md">Reportes</span>
+</a>
+<!-- 8. Análisis IA -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../../risk/ai-risk-analysis.html">
+<span class="material-symbols-outlined text-lg">psychology</span>
+<span class="text-label-md font-label-md">Análisis IA</span>
+<span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-300/20 text-[#93C5FD]">PRO</span>
+</a>
+<!-- 9. Configuración -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../../settings/settings.html">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="text-label-md font-label-md">Configuración</span>
+</a>
+</nav>
+</div>
+<!-- User Anchor Footer -->
+<div class="p-3 border-t border-[#1565C0]/40">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#0a3880]/60 hover:bg-[#0a3880] transition-colors cursor-pointer">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-9 h-9 rounded-full bg-blue-200/20 border border-blue-300/30 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary text-xl">account_circle</span>
+</div>
+<div class="min-w-0 flex-1">
+<p id="user-display-name" class="text-label-md font-label-md font-bold text-white truncate leading-tight">Carlos Mendoza</p>
+<p id="user-display-role" class="text-body-sm font-body-sm text-[#93C5FD] truncate leading-tight mt-0.5">Administrador</p>
+</div>
+</div>
+<button class="p-1 text-[#93C5FD] hover:text-white transition-colors" title="Cerrar sesión" onclick="TurisProAPI.logout()">
+<span class="material-symbols-outlined text-lg">logout</span>
+</button>
+</div>
+</div>
+</aside>
 
   <!-- MAIN VIEWPORT CONTENT -->
-  <div class="ml-0 md:ml-64 flex-1 flex flex-col min-w-0 pb-16">
+  <div class="ml-64 flex-1 flex flex-col min-w-0 pb-16">
 
     <!-- TOP BAR DOCKED -->
     <header class="h-16 bg-white border-b border-slate-200/80 sticky top-0 z-20 px-8 flex items-center justify-between gap-4 shadow-sm">
@@ -142,10 +306,7 @@
       <!-- Header Secondary & Primary Actions -->
       <div class="flex items-center gap-3">
         <!-- Date Badge -->
-        <div class="flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-600">
-          <span class="material-symbols-outlined text-[16px] text-slate-500">calendar_today</span>
-          <span>Hoy, 24/10/2024</span>
-        </div>
+        
 
         <div class="h-5 w-px bg-slate-200"></div>
 
@@ -555,7 +716,7 @@
   </div>
 
   <!-- MODAL: + REGISTRAR INCIDENTE -->
-  <div id="modal-incidente" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden">
+  <div id="modal-incidente" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl overflow-hidden transition-all transform scale-100">
       
       <!-- Modal Header -->
@@ -676,5 +837,61 @@
 
 
 
-<script src="../../../assets/js/nav-layout.js"></script>
+<style id="turispro-professional-navigation">
+.tp-sidebar nav a{position:relative!important; border-left:4px solid transparent!important; border-radius:0 9px 9px 0!important; transition:background-color .18s ease,color .18s ease,border-color .18s ease!important}
+.tp-sidebar nav a.tp-active{background:#1565C0!important;color:#fff!important;border-left-color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)!important}
+.tp-sidebar nav a.tp-active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500!important}
+.tp-sidebar nav a:not(.tp-active):hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
+#feedbackToast[hidden]{display:none!important}
+</style>
+
+<style id="turispro-sidebar-active-fix">
+/* El estado activo se determina por la URL; ninguna opción queda resaltada por defecto. */
+html body aside.tp-sidebar nav a:not(.tp-active) {
+  background: transparent !important; color: #dbeafe !important;
+  border-left: 0 !important; border-radius: 8px !important; box-shadow: none !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar nav a.tp-active {
+  background: #1565C0 !important; color: #fff !important;
+  border-left: 4px solid #fff !important; border-radius: 0 8px 8px 0 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07) !important;
+}
+html body aside.tp-sidebar nav a:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important; color:#fff !important;
+}
+</style>
+<script id="turispro-live-ui">
+(function(){
+ function init(){
+  const sidebar=document.querySelector('aside.tp-sidebar');
+  if(sidebar){
+   const current=location.pathname.replace(/\\/g,'/');
+   sidebar.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); if(!href)return;
+    const target=new URL(href,location.href).pathname.replace(/\\/g,'/');
+    const active=target===current || (current.endsWith('/register.html') && target.endsWith('/directory.html')===false && a.textContent.trim().includes('Registrar proveedor'));
+    a.classList.toggle('tp-active',active);
+    if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+   });
+  }
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+
+<style id="turispro-sidebar-no-transient-home">
+/* Evita que Inicio se ilumine por estados momentáneos de foco/clic cuando no es la página activa. */
+html body aside.tp-sidebar nav a:not(.tp-active):active,
+html body aside.tp-sidebar nav a:not(.tp-active):focus {
+  background: transparent !important;
+  color: #dbeafe !important;
+  box-shadow: none !important;
+}
+html body aside.tp-sidebar nav a[href*="dashboard/dashboard.html"]:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important;
+}
+</style>
+
 </body></html>

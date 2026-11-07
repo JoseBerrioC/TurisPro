@@ -137,30 +137,6 @@ async function handleRequest(req, res) {
       return send(AuthController.perfil(usuario));
     }
 
-    if (method === 'PUT' && pathname === '/api/auth/perfil') {
-      const usuario = requerirAutenticacion(req, res);
-      if (!usuario) return;
-      return send(AuthController.actualizarPerfil(body, usuario));
-    }
-
-    if (method === 'POST' && (pathname === '/api/auth/cambiar-clave' || pathname === '/api/auth/contrasena')) {
-      const usuario = requerirAutenticacion(req, res);
-      if (!usuario) return;
-      return send(AuthController.cambiarClave(body, usuario));
-    }
-
-    if (method === 'GET' && pathname === '/api/configuracion/preferencias') {
-      const usuario = requerirAutenticacion(req, res);
-      if (!usuario) return;
-      return send(AuthController.obtenerPreferencias(usuario));
-    }
-
-    if (method === 'PUT' && pathname === '/api/configuracion/preferencias') {
-      const usuario = requerirAutenticacion(req, res);
-      if (!usuario) return;
-      return send(AuthController.guardarPreferencias(body, usuario));
-    }
-
     if (method === 'GET' && pathname === '/api/auth/menu') {
       const usuario = requerirAutenticacion(req, res);
       if (!usuario) return;
@@ -176,7 +152,7 @@ async function handleRequest(req, res) {
     if (method === 'GET' && pathname === '/api/auth/usuarios') {
       const usuario = requerirRol(Rol.ADMINISTRADOR)(req, res);
       if (!usuario) return;
-      return send(AuthController.listarUsuarios(query, usuario));
+      return send(AuthController.listarUsuarios(usuario));
     }
 
     // 3. Dashboard, Ranking, Comparar, Zonas

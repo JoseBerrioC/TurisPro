@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html><html class="h-full bg-surface" lang="es"><head>
+<!DOCTYPE html><html class="h-full bg-surface" lang="es"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>TurisPro - Registrar nuevo proveedor</title>
@@ -128,78 +128,250 @@
       background: #94a3b8;
     }
   </style>
-<link rel="stylesheet" href="../../assets/css/turispro-base.css">
+<style id="turispro-fixed-sidebar-styles">
+/* Sidebar fija y uniforme en todas las secciones */
+html body aside.tp-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  background-color: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>
+<style id="turispro-sidebar-uniform-style">
+/* Panel lateral unico de TurisPro: conserva exactamente el aspecto del Inicio. */
+.tp-sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+.tp-sidebar img {
+  display: block !important;
+  height: 2.25rem !important;
+  width: auto !important;
+  max-width: 190px !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+</style>
+<style id="turispro-sidebar-typography-uniform">
+/* Normalizacion final: mismo tamano de texto e iconos en todas las paginas */
+html body aside.tp-sidebar,
+html body aside.tp-sidebar * {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  box-sizing: border-box !important;
+}
+/* Todos los enlaces del menu tienen la misma altura, separacion y alineacion */
+html body aside.tp-sidebar nav a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  line-height: 18px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  flex: 0 0 48px !important;
+  white-space: nowrap !important;
+}
+/* Mismo tamano y ancho reservado para todos los iconos del menu */
+html body aside.tp-sidebar nav a .material-symbols-outlined {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  flex: 0 0 20px !important;
+  vertical-align: middle !important;
+}
+/* Texto de cada opcion: 13px exactos y una misma altura de linea */
+html body aside.tp-sidebar nav a > span:not(.material-symbols-outlined) {
+  display: inline-block !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* Insignia PRO consistente sin alterar el tamano del nombre de la opcion */
+html body aside.tp-sidebar nav a > span.ml-auto {
+  margin-left: auto !important;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  font-weight: 700 !important;
+}
+/* Boton Registrar proveedor */
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  height: 48px !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button .material-symbols-outlined {
+  width: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button span:not(.material-symbols-outlined) {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+/* Iconos y textos del pie de usuario con medidas definidas */
+html body aside.tp-sidebar > div:last-child .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:last-child p:first-child {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+}
+html body aside.tp-sidebar > div:last-child p:last-child {
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 400 !important;
+}
+</style>
 </head>
 <body class="bg-surface text-on-surface antialiased font-body-md overflow-x-hidden">
 <!-- Side Navigation Bar (Anchored Component) -->
-<aside class="sidebar-drawer fixed left-0 top-0 h-full w-64 flex flex-col justify-between py-4 z-40 bg-primary dark:bg-on-background border-r border-outline-variant dark:border-outline shadow-sm select-none" style="background-color: #0D47A1;">
+<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between z-40 bg-[#0D47A1] text-on-primary border-r border-[#00337c] shadow-sm select-none tp-sidebar">
+<!-- Top Brand & Navigation Cluster -->
 <div class="flex flex-col">
-<!-- Header Brand Logo -->
-<div class="px-6 pt-2 pb-5 border-b border-primary-container/40 flex items-center justify-between">
-<div class="flex items-center gap-3"><a href="#" class="flex items-center block"><img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-10 w-auto max-w-[190px] object-contain rounded-md shadow-xs"></a></div>
+<!-- Brand Header -->
+<div class="px-6 pt-5 pb-4 border-b border-[#1565C0]/40 flex items-center justify-between">
+<div class="flex items-center"><img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-9 w-auto max-w-[190px] object-contain rounded"></div>
 </div>
-<!-- Action Button CTA -->
-<div class="px-4 py-4">
-<button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary px-4 py-2.5 rounded-lg text-label-md font-label-md shadow hover:bg-primary-container/90 transition-all cursor-pointer" type="button">
-<span class="material-symbols-outlined text-base" data-icon="add">add</span>
+<!-- Quick Action CTA inside Sidebar -->
+<div class="px-4 pt-4 pb-2">
+<button class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[#1565C0] hover:bg-[#0D47A1] text-white font-label-md text-label-md font-semibold shadow-sm transition-all border border-blue-400/30 cursor-pointer" onclick="location.href='register.html'" type="button">
+<span class="material-symbols-outlined text-lg">add_circle</span>
 <span class="">+ Registrar proveedor</span>
 </button>
 </div>
-<!-- Navigation Tabs -->
-<nav class="flex flex-col space-y-0.5 px-2">
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../dashboard/dashboard.html">
-<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+<!-- Navigation Tabs (from Shared Components JSON) -->
+<nav class="mt-2 flex flex-col space-y-0.5 px-3">
+<!-- 1. Inicio (Activo) -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-r-lg transition-colors cursor-pointer" href="../dashboard/dashboard.html">
+<span class="material-symbols-outlined text-lg">dashboard</span>
 <span class="text-label-md font-label-md">Inicio</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary font-semibold border-l-4 border-on-primary rounded-r-lg cursor-pointer" href="directory.html">
-<span class="material-symbols-outlined text-xl" data-icon="domain" data-weight="fill" style="font-variation-settings: 'FILL' 1;">domain</span>
+<!-- 2. Proveedores -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="directory.html">
+<span class="material-symbols-outlined text-lg">domain</span>
 <span class="text-label-md font-label-md">Proveedores</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="compare.html">
-<span class="material-symbols-outlined text-xl" data-icon="compare_arrows">compare_arrows</span>
+<!-- 3. Comparar -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="compare.html">
+<span class="material-symbols-outlined text-lg">compare_arrows</span>
 <span class="text-label-md font-label-md">Comparar</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/documents.html">
-<span class="material-symbols-outlined text-xl" data-icon="folder">folder</span>
+<!-- 4. Documentos -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/documents.html">
+<span class="material-symbols-outlined text-lg">folder</span>
 <span class="text-label-md font-label-md">Documentos</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/evaluations.html">
-<span class="material-symbols-outlined text-xl" data-icon="fact_check">fact_check</span>
+<!-- 5. Evaluaciones -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/evaluations.html">
+<span class="material-symbols-outlined text-lg">fact_check</span>
 <span class="text-label-md font-label-md">Evaluaciones</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/incidents.html">
-<span class="material-symbols-outlined text-xl" data-icon="report_problem">report_problem</span>
+<!-- 6. Incidentes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="hotel-los-andes/incidents.html">
+<span class="material-symbols-outlined text-lg">report_problem</span>
 <span class="text-label-md font-label-md">Incidentes</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../reports/executive-analytics.html">
-<span class="material-symbols-outlined text-xl" data-icon="analytics">analytics</span>
+<!-- 7. Reportes -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../reports/executive-analytics.html">
+<span class="material-symbols-outlined text-lg">analytics</span>
 <span class="text-label-md font-label-md">Reportes</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../risk/ai-risk-analysis.html">
-<span class="material-symbols-outlined text-xl" data-icon="psychology">psychology</span>
+<!-- 8. Análisis IA -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../risk/ai-risk-analysis.html">
+<span class="material-symbols-outlined text-lg">psychology</span>
 <span class="text-label-md font-label-md">Análisis IA</span>
+<span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-300/20 text-[#93C5FD]">PRO</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../settings/settings.html">
-<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<!-- 9. Configuración -->
+<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../settings/settings.html">
+<span class="material-symbols-outlined text-lg">settings</span>
 <span class="text-label-md font-label-md">Configuración</span>
 </a>
 </nav>
 </div>
-<!-- Sidebar Footer / User Profile -->
-<div class="px-4 pt-3 border-t border-primary-container/40">
-<div class="flex items-center gap-3 p-2 rounded-lg bg-primary-container/30 hover:bg-primary-container/50 transition-colors cursor-pointer">
-<div class="w-9 h-9 rounded-full bg-secondary-fixed text-primary flex items-center justify-center font-bold text-label-md">
-<span class="material-symbols-outlined text-xl" data-icon="account_circle">account_circle</span>
+<!-- User Anchor Footer -->
+<div class="p-3 border-t border-[#1565C0]/40">
+<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#0a3880]/60 hover:bg-[#0a3880] transition-colors cursor-pointer">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-9 h-9 rounded-full bg-blue-200/20 border border-blue-300/30 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary text-xl">account_circle</span>
 </div>
-<div class="flex flex-col min-w-0">
-<span class="text-label-md font-label-md text-on-primary truncate">Carlos Mendoza</span>
-<span class="text-label-sm font-label-sm text-secondary-fixed-dim truncate">Administrador</span>
+<div class="min-w-0 flex-1">
+<p id="user-display-name" class="text-label-md font-label-md font-bold text-white truncate leading-tight">Carlos Mendoza</p>
+<p id="user-display-role" class="text-body-sm font-body-sm text-[#93C5FD] truncate leading-tight mt-0.5">Administrador</p>
 </div>
+</div>
+<button class="p-1 text-[#93C5FD] hover:text-white transition-colors" title="Cerrar sesión" onclick="TurisProAPI.logout()">
+<span class="material-symbols-outlined text-lg">logout</span>
+</button>
 </div>
 </div>
 </aside>
 <!-- Top Navigation Header (Anchored Component) -->
-<header class="fixed top-0 right-0 left-0 md:left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
+<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
 <!-- Left Search Area -->
 <div class="flex items-center gap-4 w-96">
 <div class="relative w-full">
@@ -209,10 +381,7 @@
 </div>
 <!-- Right Header Elements -->
 <div class="flex items-center gap-6">
-<div class="flex items-center gap-2 text-outline text-body-sm font-body-sm">
-<span class="material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</span>
-<span class="">Hoy, 24/10/2024</span>
-</div>
+
 <div class="h-4 w-px bg-outline-variant"></div>
 <!-- Action Icons -->
 <div class="flex items-center gap-3">
@@ -238,7 +407,7 @@
 </div>
 </header>
 <!-- Main Canvas Container -->
-<main class="ml-0 md:ml-64 pt-20 pb-28 px-8 min-h-screen bg-surface custom-scroll">
+<main class="ml-64 pt-20 pb-28 px-8 min-h-screen bg-surface custom-scroll">
 <div class="max-w-6xl mx-auto space-y-6">
 <!-- Breadcrumbs & Heading -->
 <div class="pt-2">
@@ -277,7 +446,7 @@
           </p>
 </div>
 </div>
-<form class="space-y-6" id="providerForm" onsubmit="event.preventDefault(); window.location.href='directory.html';">
+<form class="space-y-6" id="providerForm">
 <!-- Sección 1: Información General -->
 <section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
 <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
@@ -640,7 +809,7 @@
 </div>
 <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
 <!-- Botón Secundario Cancelar -->
-<button class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-label-md font-label-md font-medium transition-colors shadow-xs cursor-pointer" onclick="location.href=\'directory.html\'" type="button">
+<button class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-label-md font-label-md font-medium transition-colors shadow-xs" type="button">
               Cancelar
             </button>
 <!-- Botón Primario Guardar -->
@@ -654,7 +823,7 @@
 </div>
 </main>
 <!-- Success Toast / Notification (Visible Feedback) -->
-<aside class="sidebar-drawer fixed bottom-6 right-8 max-w-md bg-slate-900 text-white p-4 rounded-xl shadow-2xl border border-slate-700 flex items-start gap-3.5 z-50 transition-all duration-300 transform translate-y-0" id="feedbackToast">
+<aside class="fixed bottom-6 right-8 max-w-md bg-slate-900 text-white p-4 rounded-xl shadow-2xl border border-slate-700 flex items-start gap-3.5 z-50 transition-all duration-300 transform translate-y-0" id="feedbackToast" hidden>
 <div class="p-1 rounded-full bg-emerald-500/20 text-emerald-400 mt-0.5">
 <span class="material-symbols-outlined text-lg" data-icon="check">check</span>
 </div>
@@ -666,23 +835,96 @@
 <span class="material-symbols-outlined text-base" data-icon="close">close</span>
 </button>
 </aside>
+<script src="../../assets/js/api.js"></script>
+<script src="../../assets/js/api.js"></script>
 <script>
-    function triggerFeedback() {
-      const toast = document.getElementById('feedbackToast');
-      if (toast) {
-        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-        toast.classList.add('opacity-100', 'translate-y-0');
+  function triggerFeedback(){const toast=document.getElementById('feedbackToast');if(toast){toast.hidden=false;toast.classList.remove('opacity-0','pointer-events-none','translate-y-4');toast.classList.add('opacity-100','translate-y-0');}}
+  function dismissToast(){const toast=document.getElementById('feedbackToast');if(toast){toast.hidden=true;}}
+  document.addEventListener('DOMContentLoaded',function(){
+    const form=document.getElementById('providerForm'); if(!form)return;
+    const cancel=form.querySelector('button[type="button"]');
+    if(cancel)cancel.addEventListener('click',()=>{window.location.href='directory.html';});
+    form.addEventListener('submit',async function(event){
+      event.preventDefault();
+      if(!form.reportValidity())return;
+      const button=form.querySelector('button[type="submit"]');
+      const oldText=button?button.innerText:'';
+      if(button){button.disabled=true;button.innerText='Registrando…';button.classList.add('opacity-70');}
+      const typeMap={hotel:'HOTEL',transporte:'TRANSPORTADOR',operador:'OPERADOR',aerolinea:'AEROLINEA',guia:'GUIA',otro:'RESTAURANTE'};
+      const data={razonSocial:form.company_name.value.trim(),nit:form.nit.value.trim(),tipo:typeMap[form.provider_type.value]||'HOTEL',correo:form.email.value.trim(),telefono:form.phone.value.trim(),direccion:form.address.value.trim()};
+      try{
+        if(!window.TurisProAPI||typeof window.TurisProAPI.crearProveedor!=='function')throw new Error('No se pudo cargar el servicio de proveedores.');
+        await window.TurisProAPI.crearProveedor(data);
+        const title=document.querySelector('#feedbackToast h4');const message=document.querySelector('#feedbackToast p');
+        if(title)title.textContent='Proveedor registrado correctamente';
+        if(message)message.textContent='El proveedor fue guardado. Volviendo al directorio…';
+        triggerFeedback();setTimeout(()=>window.location.href='directory.html',1300);
+      }catch(error){
+        const title=document.querySelector('#feedbackToast h4');const message=document.querySelector('#feedbackToast p');
+        if(title)title.textContent='No fue posible registrar el proveedor';
+        if(message)message.textContent=error.message==='ERR_SERVER_OFFLINE'?'No hay conexión con el servidor. Inicia el backend e inténtalo nuevamente.':error.message;
+        triggerFeedback();if(button){button.disabled=false;button.innerText=oldText;button.classList.remove('opacity-70');}
       }
-    }
-
-    function dismissToast() {
-      const toast = document.getElementById('feedbackToast');
-      if (toast) {
-        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-      }
-    }
-  </script>
+    });
+  });
+</script>
 
 
-<script src="../../assets/js/nav-layout.js"></script>
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div><style id="turispro-professional-navigation">
+.tp-sidebar nav a{position:relative!important; border-left:4px solid transparent!important; border-radius:0 9px 9px 0!important; transition:background-color .18s ease,color .18s ease,border-color .18s ease!important}
+.tp-sidebar nav a.tp-active{background:#1565C0!important;color:#fff!important;border-left-color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)!important}
+.tp-sidebar nav a.tp-active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500!important}
+.tp-sidebar nav a:not(.tp-active):hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
+#feedbackToast[hidden]{display:none!important}
+</style>
+
+<style id="turispro-sidebar-active-fix">
+/* El estado activo se determina por la URL; ninguna opción queda resaltada por defecto. */
+html body aside.tp-sidebar nav a:not(.tp-active) {
+  background: transparent !important; color: #dbeafe !important;
+  border-left: 0 !important; border-radius: 8px !important; box-shadow: none !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar nav a.tp-active {
+  background: #1565C0 !important; color: #fff !important;
+  border-left: 4px solid #fff !important; border-radius: 0 8px 8px 0 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07) !important;
+}
+html body aside.tp-sidebar nav a:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important; color:#fff !important;
+}
+</style>
+<script id="turispro-live-ui">
+(function(){
+ function init(){
+  const sidebar=document.querySelector('aside.tp-sidebar');
+  if(sidebar){
+   const current=location.pathname.replace(/\\/g,'/');
+   sidebar.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); if(!href)return;
+    const target=new URL(href,location.href).pathname.replace(/\\/g,'/');
+    const active=target===current || (current.endsWith('/register.html') && target.endsWith('/directory.html')===false && a.textContent.trim().includes('Registrar proveedor'));
+    a.classList.toggle('tp-active',active);
+    if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+   });
+  }
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+
+<style id="turispro-sidebar-no-transient-home">
+/* Evita que Inicio se ilumine por estados momentáneos de foco/clic cuando no es la página activa. */
+html body aside.tp-sidebar nav a:not(.tp-active):active,
+html body aside.tp-sidebar nav a:not(.tp-active):focus {
+  background: transparent !important;
+  color: #dbeafe !important;
+  box-shadow: none !important;
+}
+html body aside.tp-sidebar nav a[href*="dashboard/dashboard.html"]:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important;
+}
+</style>
+
 </body></html>

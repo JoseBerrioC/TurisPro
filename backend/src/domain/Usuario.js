@@ -137,127 +137,31 @@ class Usuario {
     return permisos.includes(accion);
   }
 
-  static crearUsuario({ nombre, correo, clave, rol, activo = true }) {
-    if (!nombre || !correo || !rol) {
-      const err = new Error('Faltan campos obligatorios para registrar el usuario (nombre, correo, rol)');
-      err.statusCode = 400;
-      throw err;
+  static crearUsuario({ nombre, correo, clave, rol }) {
+    if (!nombre || !correo || !clave || !rol) {
+      throw new Error('Faltan campos obligatorios para registrar el usuario');
+    }
+    if (!Object.values(Rol).includes(rol)) {
+      throw new Error(`Rol inválido: ${rol}`);
     }
 
-    const rolNormalizado = String(rol).toUpperCase().replace(/\s+/g, '_');
-    const rolFinal = rolNormalizado === 'GESTOR_DE_PROVEEDORES' ? Rol.GESTOR_PROVEEDORES : rolNormalizado;
-
-    if (!Object.values(Rol).includes(rolFinal)) {
-      const err = new Error(`Rol inválido: ${rol}. Roles permitidos: ${Object.values(Rol).join(', ')}`);
-      err.statusCode = 400;
-      throw err;
-    }
-
-    const emailLimpio = correo.toLowerCase().trim();
     const db = getDatabase();
-
-    const existente = this.buscarPorCorreo(emailLimpio);
-    if (existente) {
-      const err = new Error(`Ya existe un usuario corporativo registrado con el correo: ${emailLimpio}`);
-      err.statusCode = 409;
-      throw err;
-    }
-
-    const claveFinal = clave && String(clave).trim()
-      ? String(clave).trim()
-      : crypto.randomBytes(12).toString('base64url') + 'A1*!';
-
-    const contrasenaHash = this.hashClave(claveFinal);
-    const estadoActivo = activo ? 1 : 0;
+    const contrasenaHash = this.hashClave(clave);
 
     const stmt = db.prepare(`
       INSERT INTO usuarios (nombre, correo, contrasena_hash, rol, activo)
-      VALUES (?, ?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, 1)
     `);
 
-    const result = stmt.run(nombre.trim(), emailLimpio, contrasenaHash, rolFinal, estadoActivo);
+    const result = stmt.run(nombre, correo.toLowerCase().trim(), contrasenaHash, rol);
     return new Usuario({
       idUsuario: Number(result.lastInsertRowid),
-      nombre: nombre.trim(),
-      correo: emailLimpio,
+      nombre,
+      correo: correo.toLowerCase().trim(),
       contrasenaHash,
-      rol: rolFinal,
-      activo: Boolean(estadoActivo)
+      rol,
+      activo: true
     });
-  }
-
-  static actualizarPerfil(idUsuario, { nombre, correo }) {
-    if (!nombre || typeof nombre !== 'string' || !nombre.trim()) {
-      const err = new Error('El nombre completo es obligatorio');
-      err.statusCode = 400;
-      throw err;
-    }
-    if (!correo || typeof correo !== 'string' || !correo.trim()) {
-      const err = new Error('El correo electrónico corporativo es obligatorio');
-      err.statusCode = 400;
-      throw err;
-    }
-
-    const emailLimpio = correo.trim().toLowerCase();
-    const db = getDatabase();
-
-    const duplicado = db.prepare('SELECT id_usuario FROM usuarios WHERE correo = ? AND id_usuario != ?').get(emailLimpio, idUsuario);
-    if (duplicado) {
-      const err = new Error(`El correo corporativo ya está en uso por otro usuario: ${emailLimpio}`);
-      err.statusCode = 409;
-      throw err;
-    }
-
-    db.prepare('UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?')
-      .run(nombre.trim(), emailLimpio, idUsuario);
-
-    return this.buscarPorId(idUsuario);
-  }
-
-  static cambiarClave(idUsuario, claveActual, claveNueva, confirmarClave) {
-    if (!claveActual || !claveNueva || !confirmarClave) {
-      const err = new Error('Debe ingresar la contraseña actual, la nueva contraseña y la confirmación');
-      err.statusCode = 400;
-      throw err;
-    }
-
-    if (claveNueva !== confirmarClave) {
-      const err = new Error('La nueva contraseña y su confirmación no coinciden');
-      err.statusCode = 400;
-      throw err;
-    }
-
-    if (claveNueva.length < 8) {
-      const err = new Error('La nueva contraseña debe tener un mínimo de 8 caracteres conforme a la política ISO 27001');
-      err.statusCode = 400;
-      throw err;
-    }
-
-    const db = getDatabase();
-    const row = db.prepare('SELECT * FROM usuarios WHERE id_usuario = ?').get(idUsuario);
-    if (!row) {
-      const err = new Error('Usuario no encontrado');
-      err.statusCode = 404;
-      throw err;
-    }
-
-    const esValida = this.verificarClave(claveActual, row.contrasena_hash);
-    if (!esValida) {
-      const err = new Error('La contraseña actual ingresada es incorrecta');
-      err.statusCode = 401;
-      throw err;
-    }
-
-    if (claveActual === claveNueva) {
-      const err = new Error('La nueva contraseña debe ser diferente a la contraseña actual');
-      err.statusCode = 400;
-      throw err;
-    }
-
-    const nuevoHash = this.hashClave(claveNueva, ITERACIONES_ACTUALES);
-    this.actualizarHash(idUsuario, nuevoHash);
-
-    return { exito: true };
   }
 
   static buscarPorCorreo(correo) {
@@ -290,33 +194,9 @@ class Usuario {
     });
   }
 
-  static listarTodos(filtros = {}) {
+  static listarTodos() {
     const db = getDatabase();
-    let query = 'SELECT id_usuario, nombre, correo, rol, activo, creado_en FROM usuarios WHERE 1=1';
-    const params = [];
-
-    if (filtros && filtros.busqueda) {
-      query += ' AND (LOWER(nombre) LIKE ? OR LOWER(correo) LIKE ?)';
-      const term = `%${filtros.busqueda.toLowerCase().trim()}%`;
-      params.push(term, term);
-    }
-
-    if (filtros && filtros.rol) {
-      const rolBuscado = String(filtros.rol).toUpperCase().replace(/\s+/g, '_');
-      const rolFinal = rolBuscado === 'GESTOR_DE_PROVEEDORES' ? Rol.GESTOR_PROVEEDORES : rolBuscado;
-      query += ' AND rol = ?';
-      params.push(rolFinal);
-    }
-
-    if (filtros && filtros.activo !== undefined && filtros.activo !== null && filtros.activo !== '') {
-      const act = (filtros.activo === '1' || filtros.activo === 1 || filtros.activo === 'true' || filtros.activo === true) ? 1 : 0;
-      query += ' AND activo = ?';
-      params.push(act);
-    }
-
-    query += ' ORDER BY id_usuario ASC';
-
-    const rows = db.prepare(query).all(...params);
+    const rows = db.prepare('SELECT id_usuario, nombre, correo, rol, activo, creado_en FROM usuarios').all();
     return rows.map(r => ({
       idUsuario: r.id_usuario,
       nombre: r.nombre,

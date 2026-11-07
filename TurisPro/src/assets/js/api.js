@@ -359,68 +359,6 @@
       const q = new URLSearchParams(filtros).toString();
       return request(`/riesgo/global${q ? '?' + q : ''}`);
     }
-    // Configuración y Administración de Usuarios (Fase 4C)
-    async getUsuarios(filtros = {}) {
-      const q = new URLSearchParams(filtros).toString();
-      try {
-        const res = await request(`/auth/usuarios${q ? '?' + q : ''}`);
-        return res.items || res;
-      } catch (err) {
-        if (err.isNetworkError) {
-          return [
-            { idUsuario: 1, nombre: 'Administrador General', correo: 'admin@turispro.com', rol: 'ADMINISTRADOR', activo: true, creadoEn: '2024-10-01' },
-            { idUsuario: 2, nombre: 'Gestor de Proveedores', correo: 'gestor@turispro.com', rol: 'GESTOR_PROVEEDORES', activo: true, creadoEn: '2024-10-05' },
-            { idUsuario: 3, nombre: 'Evaluador Turístico', correo: 'evaluador@turispro.com', rol: 'EVALUADOR', activo: true, creadoEn: '2024-10-12' }
-          ];
-        }
-        throw err;
-      }
-    },
-
-    async crearUsuario(datos) {
-      return request('/auth/usuarios', {
-        method: 'POST',
-        body: datos
-      });
-    },
-
-    async actualizarPerfil(datos) {
-      const res = await request('/auth/perfil', {
-        method: 'PUT',
-        body: datos
-      });
-      if (res && res.usuario) {
-        const actual = this.getUser() || {};
-        localStorage.setItem(USER_KEY, JSON.stringify({ ...actual, ...res.usuario }));
-        // Sincronizar UI de cabecera si existe
-        const nameEl = document.getElementById('user-display-name') || document.querySelector('[data-user-name]');
-        if (nameEl) nameEl.textContent = res.usuario.nombre || res.usuario.correo;
-      }
-      return res;
-    },
-
-    async cambiarClave(datos) {
-      return request('/auth/cambiar-clave', {
-        method: 'POST',
-        body: datos
-      });
-    },
-
-    async getPreferencias() {
-      try {
-        const res = await request('/configuracion/preferencias');
-        return res.preferencias || res;
-      } catch (e) {
-        return { diasAlerta: 30, alertasIncidentes: true, alertasEvaluaciones: true };
-      }
-    },
-
-    async guardarPreferencias(datos) {
-      return request('/configuracion/preferencias', {
-        method: 'PUT',
-        body: datos
-      });
-    }
   };
 
   window.TurisProAPI = TurisProAPI;

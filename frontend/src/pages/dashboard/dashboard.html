@@ -1,14 +1,15 @@
-<!DOCTYPE html><html class="h-full bg-[#F5F7FA]" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+<html class="h-full bg-[#F5F7FA]" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>TurisPro — Dashboard de Gestión y Riesgo de Proveedores</title>
 <!-- Google Fonts: Inter -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS v3 -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Tailwind Config Verbatim -->
@@ -196,263 +197,19 @@
       font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
     }
   </style>
-<style id="turispro-fixed-sidebar-styles">
-/* Sidebar fija y uniforme en todas las secciones */
-html body aside.tp-sidebar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: auto !important;
-  bottom: 0 !important;
-  width: 16rem !important;
-  min-width: 16rem !important;
-  max-width: 16rem !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  flex: 0 0 16rem !important;
-  flex-shrink: 0 !important;
-  box-sizing: border-box !important;
-  transform: none !important;
-  background: #0D47A1 !important;
-  background-color: #0D47A1 !important;
-  color: #FFFFFF !important;
-  z-index: 1000 !important;
-  transition: none !important;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-</style>
-<style id="turispro-sidebar-uniform-style">
-/* Panel lateral unico de TurisPro: conserva exactamente el aspecto del Inicio. */
-.tp-sidebar {
-  position: fixed !important;
-  inset: 0 auto 0 0 !important;
-  width: 16rem !important;
-  min-width: 16rem !important;
-  max-width: 16rem !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  box-sizing: border-box !important;
-  flex: 0 0 16rem !important;
-  flex-shrink: 0 !important;
-  transform: none !important;
-  background: #0D47A1 !important;
-  color: #FFFFFF !important;
-  z-index: 1000 !important;
-  transition: none !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-}
-.tp-sidebar img {
-  display: block !important;
-  height: 2.25rem !important;
-  width: auto !important;
-  max-width: 190px !important;
-  object-fit: contain !important;
-  flex: 0 0 auto !important;
-}
-</style>
-<style id="turispro-sidebar-typography-uniform">
-/* Normalizacion final: mismo tamano de texto e iconos en todas las paginas */
-html body aside.tp-sidebar,
-html body aside.tp-sidebar * {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  box-sizing: border-box !important;
-}
-/* Todos los enlaces del menu tienen la misma altura, separacion y alineacion */
-html body aside.tp-sidebar nav a {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  width: 100% !important;
-  height: 48px !important;
-  min-height: 48px !important;
-  max-height: 48px !important;
-  padding: 0 16px !important;
-  margin: 0 !important;
-  line-height: 18px !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0 !important;
-  text-decoration: none !important;
-  flex: 0 0 48px !important;
-  white-space: nowrap !important;
-}
-/* Mismo tamano y ancho reservado para todos los iconos del menu */
-html body aside.tp-sidebar nav a .material-symbols-outlined {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 20px !important;
-  min-width: 20px !important;
-  max-width: 20px !important;
-  height: 20px !important;
-  min-height: 20px !important;
-  font-family: 'Material Symbols Outlined' !important;
-  font-size: 20px !important;
-  line-height: 20px !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-  flex: 0 0 20px !important;
-  vertical-align: middle !important;
-}
-/* Texto de cada opcion: 13px exactos y una misma altura de linea */
-html body aside.tp-sidebar nav a > span:not(.material-symbols-outlined) {
-  display: inline-block !important;
-  font-size: 13px !important;
-  line-height: 18px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0 !important;
-}
-/* Insignia PRO consistente sin alterar el tamano del nombre de la opcion */
-html body aside.tp-sidebar nav a > span.ml-auto {
-  margin-left: auto !important;
-  font-size: 10px !important;
-  line-height: 14px !important;
-  font-weight: 700 !important;
-}
-/* Boton Registrar proveedor */
-html body aside.tp-sidebar > div:first-child > div:nth-child(2) button {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  height: 48px !important;
-  font-size: 13px !important;
-  line-height: 18px !important;
-  font-weight: 600 !important;
-}
-html body aside.tp-sidebar > div:first-child > div:nth-child(2) button .material-symbols-outlined {
-  width: 20px !important;
-  min-width: 20px !important;
-  height: 20px !important;
-  font-family: 'Material Symbols Outlined' !important;
-  font-size: 20px !important;
-  line-height: 20px !important;
-}
-html body aside.tp-sidebar > div:first-child > div:nth-child(2) button span:not(.material-symbols-outlined) {
-  font-size: 13px !important;
-  line-height: 18px !important;
-  font-weight: 600 !important;
-}
-/* Iconos y textos del pie de usuario con medidas definidas */
-html body aside.tp-sidebar > div:last-child .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined' !important;
-  font-size: 20px !important;
-  line-height: 20px !important;
-}
-html body aside.tp-sidebar > div:last-child p:first-child {
-  font-size: 13px !important;
-  line-height: 18px !important;
-  font-weight: 700 !important;
-}
-html body aside.tp-sidebar > div:last-child p:last-child {
-  font-size: 12px !important;
-  line-height: 16px !important;
-  font-weight: 400 !important;
-}
-</style>
+<link href="../../assets/css/turispro-sidebar.css" rel="stylesheet"/>
 </head>
 <body class="h-full text-on-surface antialiased bg-[#F5F7FA]" data-mode="connect">
 <!-- ========================================================================= -->
 <!-- 1. SIDEBAR IZQUIERDO PERSISTENTE (#0D47A1)                                 -->
 <!-- ========================================================================= -->
-<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between z-40 bg-[#0D47A1] text-on-primary border-r border-[#00337c] shadow-sm select-none tp-sidebar">
-<!-- Top Brand & Navigation Cluster -->
-<div class="flex flex-col">
-<!-- Brand Header -->
-<div class="px-6 pt-5 pb-4 border-b border-[#1565C0]/40 flex items-center justify-between">
-<div class="flex items-center"><img src="../../../assets/images/logo-turispro.png" alt="TurisPro - Gestión de proveedores turísticos" class="h-9 w-auto max-w-[190px] object-contain rounded"></div>
-</div>
-<!-- Quick Action CTA inside Sidebar -->
-<div class="px-4 pt-4 pb-2">
-<button class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[#1565C0] hover:bg-[#0D47A1] text-white font-label-md text-label-md font-semibold shadow-sm transition-all border border-blue-400/30 cursor-pointer" onclick="location.href='../providers/register.html'" type="button">
-<span class="material-symbols-outlined text-lg">add_circle</span>
-<span class="">+ Registrar proveedor</span>
-</button>
-</div>
-<!-- Navigation Tabs (from Shared Components JSON) -->
-<nav class="mt-2 flex flex-col space-y-0.5 px-3">
-<!-- 1. Inicio (Activo) -->
-<a class="flex items-center gap-3 px-4 py-2.5 bg-primary-container text-on-primary font-semibold border-l-4 border-on-primary rounded-r-lg transition-colors cursor-pointer" href="dashboard.html">
-<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-<span class="text-label-md font-label-md">Inicio</span>
-</a>
-<!-- 2. Proveedores -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../providers/directory.html">
-<span class="material-symbols-outlined text-lg">domain</span>
-<span class="text-label-md font-label-md">Proveedores</span>
-</a>
-<!-- 3. Comparar -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../providers/compare.html">
-<span class="material-symbols-outlined text-lg">compare_arrows</span>
-<span class="text-label-md font-label-md">Comparar</span>
-</a>
-<!-- 4. Documentos -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../providers/hotel-los-andes/documents.html">
-<span class="material-symbols-outlined text-lg">folder</span>
-<span class="text-label-md font-label-md">Documentos</span>
-</a>
-<!-- 5. Evaluaciones -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../providers/hotel-los-andes/evaluations.html">
-<span class="material-symbols-outlined text-lg">fact_check</span>
-<span class="text-label-md font-label-md">Evaluaciones</span>
-</a>
-<!-- 6. Incidentes -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../providers/hotel-los-andes/incidents.html">
-<span class="material-symbols-outlined text-lg">report_problem</span>
-<span class="text-label-md font-label-md">Incidentes</span>
-</a>
-<!-- 7. Reportes -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../reports/executive-analytics.html">
-<span class="material-symbols-outlined text-lg">analytics</span>
-<span class="text-label-md font-label-md">Reportes</span>
-</a>
-<!-- 8. Análisis IA -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../risk/ai-risk-analysis.html">
-<span class="material-symbols-outlined text-lg">psychology</span>
-<span class="text-label-md font-label-md">Análisis IA</span>
-<span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-300/20 text-[#93C5FD]">PRO</span>
-</a>
-<!-- 9. Configuración -->
-<a class="flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer" href="../settings/settings.html">
-<span class="material-symbols-outlined text-lg">settings</span>
-<span class="text-label-md font-label-md">Configuración</span>
-</a>
-</nav>
-</div>
-<!-- User Anchor Footer -->
-<div class="p-3 border-t border-[#1565C0]/40">
-<div class="flex items-center justify-between p-2.5 rounded-lg bg-[#0a3880]/60 hover:bg-[#0a3880] transition-colors cursor-pointer">
-<div class="flex items-center gap-3 min-w-0">
-<div class="w-9 h-9 rounded-full bg-blue-200/20 border border-blue-300/30 flex items-center justify-center flex-shrink-0">
-<span class="material-symbols-outlined text-on-primary text-xl">account_circle</span>
-</div>
-<div class="min-w-0 flex-1">
-<p id="user-display-name" class="text-label-md font-label-md font-bold text-white truncate leading-tight">Carlos Mendoza</p>
-<p id="user-display-role" class="text-body-sm font-body-sm text-[#93C5FD] truncate leading-tight mt-0.5">Administrador</p>
-</div>
-</div>
-<button class="p-1 text-[#93C5FD] hover:text-white transition-colors" title="Cerrar sesión" onclick="TurisProAPI.logout()">
-<span class="material-symbols-outlined text-lg">logout</span>
-</button>
-</div>
-</div>
-</aside>
+<script src="../../assets/js/sidebar.js"></script>
 <!-- ========================================================================= -->
 <!-- 2. TOPBAR DOCKADO A LA DERECHA DEL SIDEBAR                                 -->
 <!-- ========================================================================= -->
 <header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant/60 shadow-sm">
-<!-- Left: Global Search Bar -->
-<div class="flex items-center flex-1 max-w-xl">
-<div class="relative w-full">
-<span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
-<span class="material-symbols-outlined text-xl">search</span>
-</span>
-<input class="w-full pl-10 pr-4 py-2 bg-[#F8FAFC] border border-slate-300 rounded-lg text-body-md font-body-md text-on-surface placeholder-slate-400 focus:outline-none focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 transition-all" placeholder="Buscar proveedores, servicios, NIT o documentos..." type="text">
-</div>
-</div>
+<!-- La búsqueda global se concentra en el Directorio de Proveedores -->
+
 <!-- Right: Operational Actions & Quick Context -->
 <div class="flex items-center gap-4 ml-6">
 <!-- Date Chip -->
@@ -473,10 +230,6 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 </div>
 <div class="h-6 w-px bg-slate-200"></div>
 <!-- Quick Modal Trigger Header -->
-<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#1565C0] hover:bg-[#0D47A1] text-white text-label-md font-label-md font-semibold transition-all shadow-sm" onclick="openModal()" type="button">
-<span class="material-symbols-outlined text-base">add</span>
-<span class="">+ Registrar proveedor</span>
-</button>
 </div>
 </header>
 <!-- ========================================================================= -->
@@ -493,7 +246,7 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <span class="inline-block w-2 h-2 rounded-full bg-[#2E7D32]"></span>
 <span class="">Sistema Operativo Conectado</span>
 <span class="text-slate-300">|</span>
-<span>Hora actual: <strong id="turispro-live-time" class="font-semibold text-slate-700">--:--:--</strong></span>
+<span>Hora actual: <strong class="font-semibold text-slate-700" id="turispro-live-time">--:--:--</strong></span>
 </div>
 </div>
 <!-- Banner Institucional de Inteligencia Artificial (Aviso Obligatorio) -->
@@ -526,11 +279,11 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <div class="flex items-center justify-between">
 <span class="text-label-md font-label-md text-slate-500">Total de proveedores</span>
 <div class="w-9 h-9 rounded-lg bg-blue-50 text-[#1565C0] flex items-center justify-center">
-<span class="material-symbols-outlined text-xl"><br></span>
+<span class="material-symbols-outlined text-xl"><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div id="metric-proveedores-activos" class="text-display-metric font-display-metric text-slate-900">128</div>
+<div class="text-display-metric font-display-metric text-slate-900" id="metric-proveedores-activos">128</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm text-[#2E7D32]">
 <span class="material-symbols-outlined text-base font-bold">trending_up</span>
 <span class="font-semibold">+8 este trimestre</span>
@@ -542,11 +295,11 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <div class="flex items-center justify-between">
 <span class="text-label-md font-label-md text-slate-500">Requieren seguimiento</span>
 <div class="w-9 h-9 rounded-lg bg-amber-50 text-[#F9A825] flex items-center justify-center">
-<span class="material-symbols-outlined text-xl" style="font-variation-settings: &quot;FILL&quot; 1;"><br></span>
+<span class="material-symbols-outlined text-xl" style='font-variation-settings: "FILL" 1;'><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div id="metric-riesgo-alto" class="text-display-metric font-display-metric text-slate-900">12</div>
+<div class="text-display-metric font-display-metric text-slate-900" id="metric-riesgo-alto">12</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm">
 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FFF8E1] text-[#7A5300]">
 <span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>
@@ -560,11 +313,11 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <div class="flex items-center justify-between">
 <span class="text-label-md font-label-md text-slate-500">Documentos vencidos</span>
 <div class="w-9 h-9 rounded-lg bg-red-50 text-[#C62828] flex items-center justify-center">
-<span class="material-symbols-outlined text-xl"><br></span>
+<span class="material-symbols-outlined text-xl"><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div id="metric-docs-atencion" class="text-display-metric font-display-metric text-[#C62828]">7</div>
+<div class="text-display-metric font-display-metric text-[#C62828]" id="metric-docs-atencion">7</div>
 <div class="mt-1 flex items-center gap-1 text-body-sm font-body-sm text-[#C62828]">
 <span class="material-symbols-outlined text-base">error</span>
 <span class="font-medium">Requiere bloqueo temporal</span>
@@ -576,11 +329,11 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <div class="flex items-center justify-between">
 <span class="text-label-md font-label-md text-slate-500">Evaluaciones realizadas</span>
 <div class="w-9 h-9 rounded-lg bg-emerald-50 text-[#2E7D32] flex items-center justify-center">
-<span class="material-symbols-outlined text-xl"><br></span>
+<span class="material-symbols-outlined text-xl"><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div id="metric-incidentes-abiertos" class="text-display-metric font-display-metric text-slate-900">24</div>
+<div class="text-display-metric font-display-metric text-slate-900" id="metric-incidentes-abiertos">24</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm text-[#2E7D32]">
 <span class="material-symbols-outlined text-base font-bold">check_circle</span>
 <span class="font-semibold">+18% vs. mes anterior</span>
@@ -599,11 +352,8 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <div class="flex items-center justify-between pb-4 border-b border-slate-100">
 <div>
 <h2 class="text-headline-sm font-headline-sm text-slate-900">Proveedores por nivel de riesgo</h2>
-<p class="text-body-sm font-body-sm text-slate-500">Clasificación algorítmica ponderada sobre 128 entidades activas</p>
+<p class="text-body-sm font-body-sm text-slate-500">Clasificación algorítmica ponderada sobre <span id="risk-subtitle-total">0</span> proveedores activos</p>
 </div>
-<span class="text-label-sm font-label-sm px-2.5 py-1 rounded bg-slate-100 text-slate-600 font-semibold">
-              Corte: 24/10/2024
-            </span>
 </div>
 <!-- Visual Distribution Section -->
 <div class="py-6 flex flex-col sm:flex-row items-center gap-8">
@@ -613,16 +363,17 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <!-- Track -->
 <circle cx="60" cy="60" fill="transparent" r="48" stroke="#F1F5F9" stroke-width="16"></circle>
 <!-- Riesgo Alto: 9.4% of 301.59 = 28.3 stroke, dashoffset 0 -->
-<circle cx="60" cy="60" fill="transparent" r="48" stroke="#C62828" stroke-dasharray="28.3 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
+<circle cx="60" cy="60" fill="transparent" r="48" stroke="#C62828" id="risk-chart-high" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
 <!-- Riesgo Medio: 25.0% of 301.59 = 75.4 stroke, offset -28.3 -->
-<circle cx="60" cy="60" fill="transparent" r="48" stroke="#F9A825" stroke-dasharray="75.4 301.59" stroke-dashoffset="-28.3" stroke-linecap="round" stroke-width="16"></circle>
+<circle cx="60" cy="60" fill="transparent" r="48" stroke="#F9A825" id="risk-chart-medium" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
 <!-- Riesgo Bajo: 65.6% of 301.59 = 197.8 stroke, offset -103.7 -->
-<circle cx="60" cy="60" fill="transparent" r="48" stroke="#2E7D32" stroke-dasharray="197.8 301.59" stroke-dashoffset="-103.7" stroke-linecap="round" stroke-width="16"></circle>
+<circle cx="60" cy="60" fill="transparent" r="48" stroke="#2E7D32" id="risk-chart-low" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
+<circle cx="60" cy="60" fill="transparent" r="48" stroke="#94A3B8" id="risk-chart-unknown" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
 </svg>
 <!-- Center Metric -->
 <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-<span class="text-display-metric font-display-metric text-slate-800 leading-none">128</span>
-<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-1">Auditados</span>
+<span id="risk-total" class="text-display-metric font-display-metric text-slate-800 leading-none">0</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-1">Activos</span>
 </div>
 </div>
 <!-- Legend & Proportional Progress Rows -->
@@ -636,12 +387,12 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <span class="text-xs text-slate-400 font-mono">(Score 0-33)</span>
 </div>
 <div class="text-right">
-<span class="font-bold text-slate-900">84 proveedores</span>
-<span class="text-xs text-slate-500 ml-1.5">(65.6%)</span>
+<span id="risk-low-count" class="font-bold text-slate-900">0 proveedores</span>
+<span id="risk-low-percent" class="text-xs text-slate-500 ml-1.5">(0%)</span>
 </div>
 </div>
 <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-<div class="bg-[#2E7D32] h-2 rounded-full" style="width: 65.6%"></div>
+<div id="risk-low-bar" class="bg-[#2E7D32] h-2 rounded-full" style="width: 0%"></div>
 </div>
 </div>
 <!-- Riesgo Medio -->
@@ -653,12 +404,12 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <span class="text-xs text-slate-400 font-mono">(Score 34-66)</span>
 </div>
 <div class="text-right">
-<span class="font-bold text-slate-900">32 proveedores</span>
-<span class="text-xs text-slate-500 ml-1.5">(25.0%)</span>
+<span id="risk-medium-count" class="font-bold text-slate-900">0 proveedores</span>
+<span id="risk-medium-percent" class="text-xs text-slate-500 ml-1.5">(0%)</span>
 </div>
 </div>
 <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-<div class="bg-[#F9A825] h-2 rounded-full" style="width: 25%"></div>
+<div id="risk-medium-bar" class="bg-[#F9A825] h-2 rounded-full" style="width: 0%"></div>
 </div>
 </div>
 <!-- Riesgo Alto -->
@@ -670,24 +421,28 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <span class="text-xs text-slate-400 font-mono">(Score 67-100)</span>
 </div>
 <div class="text-right">
-<span class="font-bold text-[#C62828]">12 proveedores</span>
-<span class="text-xs text-slate-500 ml-1.5">(9.4%)</span>
+<span id="risk-high-count" class="font-bold text-[#C62828]">0 proveedores</span>
+<span id="risk-high-percent" class="text-xs text-slate-500 ml-1.5">(0%)</span>
 </div>
 </div>
 <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-<div class="bg-[#C62828] h-2 rounded-full" style="width: 9.4%"></div>
+<div id="risk-high-bar" class="bg-[#C62828] h-2 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+<div id="risk-unknown-row">
+<div class="flex items-center justify-between text-body-sm font-body-sm mb-1.5">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-slate-400"></span><span class="font-semibold text-slate-800">Sin evaluar</span></div>
+<div class="text-right"><span id="risk-unknown-count" class="font-bold text-slate-900">0 proveedores</span><span id="risk-unknown-percent" class="text-xs text-slate-500 ml-1.5">(0%)</span></div>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden"><div id="risk-unknown-bar" class="bg-slate-400 h-2 rounded-full" style="width:0%"></div></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<!-- Matrix Link CTA -->
+<!-- Nota metodológica de la matriz de riesgo -->
 <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
 <span class="text-body-sm font-body-sm text-slate-500">Cálculo diario basado en incidentes, vigencias y certificaciones ISO/RNT.</span>
-<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-[#1565C0] font-label-md text-label-md font-semibold hover:bg-slate-50 transition-colors" type="button">
-<span class="">Ver matriz completa de riesgo</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
 </div>
 </div>
 <!-- Columna Derecha: Alertas Recientes (5 de 12 col = ~40%) -->
@@ -779,7 +534,7 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
 <span class="material-symbols-outlined text-lg">filter_alt</span>
 </span>
-<input class="w-full pl-9 pr-3 py-1.5 bg-[#F8FAFC] border border-slate-300 rounded-lg text-body-sm font-body-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#1565C0] focus:ring-1 focus:ring-blue-200" placeholder="Filtrar en esta tabla..." type="text">
+<input class="w-full pl-9 pr-3 py-1.5 bg-[#F8FAFC] border border-slate-300 rounded-lg text-body-sm font-body-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#1565C0] focus:ring-1 focus:ring-blue-200" placeholder="Filtrar en esta tabla..." type="text"/>
 </div>
 <button class="p-2 border border-slate-300 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" title="Exportar CSV" type="button">
 <span class="material-symbols-outlined text-lg">download</span>
@@ -799,7 +554,7 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <th class="py-3 px-5 text-right" scope="col">Acciones</th>
 </tr>
 </thead>
-<tbody id="tabla-atencion-tbody" class="divide-y divide-slate-200 text-table-cell font-table-cell text-slate-800">
+<tbody class="divide-y divide-slate-200 text-table-cell font-table-cell text-slate-800" id="tabla-atencion-tbody">
 <!-- FILA 1: Viajes XYZ -->
 <tr class="hover:bg-[#F1F5F9] transition-colors">
 <td class="py-3.5 px-5 font-semibold text-slate-900">
@@ -1017,17 +772,17 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <!-- Razón Social -->
 <div class="sm:col-span-2">
 <label class="block text-label-md font-label-md text-slate-700 mb-1">Razón Social o Nombre Comercial *</label>
-<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="Ej. Agencia de Viajes y Turismo Andes SAS" required="" type="text">
+<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="Ej. Agencia de Viajes y Turismo Andes SAS" required="" type="text"/>
 </div>
 <!-- NIT -->
 <div>
 <label class="block text-label-md font-label-md text-slate-700 mb-1">NIT con dígito de verificación *</label>
-<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="901.234.567-8" required="" type="text">
+<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="901.234.567-8" required="" type="text"/>
 </div>
 <!-- RNT (Registro Nacional de Turismo) -->
 <div>
 <label class="block text-label-md font-label-md text-slate-700 mb-1">No. RNT (Obligatorio Colombia) *</label>
-<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="Ej. 48291" required="" type="text">
+<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="Ej. 48291" required="" type="text"/>
 </div>
 <!-- Categoría -->
 <div>
@@ -1055,11 +810,11 @@ html body aside.tp-sidebar > div:last-child p:last-child {
 <!-- Representante & Contacto -->
 <div>
 <label class="block text-label-md font-label-md text-slate-700 mb-1">Correo de Contacto *</label>
-<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="operaciones@proveedor.com" required="" type="email">
+<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="operaciones@proveedor.com" required="" type="email"/>
 </div>
 <div>
 <label class="block text-label-md font-label-md text-slate-700 mb-1">Teléfono Operativo (Móvil)</label>
-<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="+57 300 123 4567" type="tel">
+<input class="w-full px-3.5 py-2 rounded-lg border border-slate-300 text-body-md font-body-md focus:border-[#1565C0] focus:ring-2 focus:ring-blue-100 outline-none" placeholder="+57 300 123 4567" type="tel"/>
 </div>
 </div>
 <!-- Documentación requerida aviso -->
@@ -1267,9 +1022,6 @@ html body aside.tp-sidebar > div:last-child p:last-child {
       }
     });
   </script>
-
-
-
 <script src="../../assets/js/api.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
@@ -1286,7 +1038,53 @@ html body aside.tp-sidebar > div:last-child p:last-child {
     }
 
     await cargarDatosDashboard();
+    // Mantener la matriz y los indicadores sincronizados si se agregan o actualizan proveedores.
+    window.setInterval(() => {
+      if (!document.hidden) cargarDatosDashboard();
+    }, 60000);
   });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && window.TurisProAPI && TurisProAPI.isAuthenticated()) {
+      cargarDatosDashboard();
+    }
+  });
+
+
+  function actualizarMatrizRiesgo(datos) {
+    const total = Number(datos.total ?? ((datos.BAJO || 0) + (datos.MEDIO || 0) + (datos.ALTO || 0) + (datos.SIN_DATOS || 0)));
+    const categorias = [
+      { key: 'BAJO', slug: 'low', color: '#2E7D32' },
+      { key: 'MEDIO', slug: 'medium', color: '#F9A825' },
+      { key: 'ALTO', slug: 'high', color: '#C62828' },
+      { key: 'SIN_DATOS', slug: 'unknown', color: '#94A3B8' }
+    ];
+    const circumference = 2 * Math.PI * 48;
+    let offset = 0;
+    categorias.forEach(cat => {
+      const count = Number(datos[cat.key] || 0);
+      const percent = total ? (count / total) * 100 : 0;
+      const length = circumference * percent / 100;
+      const circle = document.getElementById(`risk-chart-${cat.slug}`);
+      if (circle) {
+        circle.setAttribute('stroke-dasharray', `${length} ${circumference - length}`);
+        circle.setAttribute('stroke-dashoffset', `${-offset}`);
+      }
+      offset += length;
+      const countEl = document.getElementById(`risk-${cat.slug}-count`);
+      const percentEl = document.getElementById(`risk-${cat.slug}-percent`);
+      const bar = document.getElementById(`risk-${cat.slug}-bar`);
+      if (countEl) countEl.textContent = `${count} proveedores`;
+      if (percentEl) percentEl.textContent = `(${percent.toFixed(1)}%)`;
+      if (bar) bar.style.width = `${percent}%`;
+    });
+    const totalEl = document.getElementById('risk-total');
+    if (totalEl) totalEl.textContent = total;
+    const subtitleTotal = document.getElementById('risk-subtitle-total');
+    if (subtitleTotal) subtitleTotal.textContent = total;
+    const unknownRow = document.getElementById('risk-unknown-row');
+    if (unknownRow) unknownRow.style.display = Number(datos.SIN_DATOS || 0) > 0 ? '' : 'none';
+  }
 
   async function cargarDatosDashboard() {
     try {
@@ -1294,6 +1092,7 @@ html body aside.tp-sidebar > div:last-child p:last-child {
       if (!resp || !resp.indicadores) return;
 
       const ind = resp.indicadores;
+      actualizarMatrizRiesgo(resp.matrizRiesgo || { BAJO: 0, MEDIO: 0, ALTO: 0, SIN_DATOS: 0, total: 0 });
       const elActivos = document.getElementById('metric-proveedores-activos');
       const elRiesgoAlto = document.getElementById('metric-riesgo-alto');
       const elDocs = document.getElementById('metric-docs-atencion');
@@ -1392,69 +1191,5 @@ html body aside.tp-sidebar > div:last-child p:last-child {
     }
   };
 </script>
-
-<style id="turispro-professional-navigation">
-.tp-sidebar nav a{position:relative!important; border-left:4px solid transparent!important; border-radius:0 9px 9px 0!important; transition:background-color .18s ease,color .18s ease,border-color .18s ease!important}
-.tp-sidebar nav a.tp-active{background:#1565C0!important;color:#fff!important;border-left-color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)!important}
-.tp-sidebar nav a.tp-active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500!important}
-.tp-sidebar nav a:not(.tp-active):hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
-#feedbackToast[hidden]{display:none!important}
-</style>
-
-<style id="turispro-sidebar-active-fix">
-/* El estado activo se determina por la URL; ninguna opción queda resaltada por defecto. */
-html body aside.tp-sidebar nav a:not(.tp-active) {
-  background: transparent !important; color: #dbeafe !important;
-  border-left: 0 !important; border-radius: 8px !important; box-shadow: none !important;
-  font-weight: 600 !important;
-}
-html body aside.tp-sidebar nav a.tp-active {
-  background: #1565C0 !important; color: #fff !important;
-  border-left: 4px solid #fff !important; border-radius: 0 8px 8px 0 !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07) !important;
-}
-html body aside.tp-sidebar nav a:not(.tp-active):hover {
-  background: rgba(255,255,255,.12) !important; color:#fff !important;
-}
-</style>
-<script id="turispro-live-ui">
-(function(){
- function init(){
-  const sidebar=document.querySelector('aside.tp-sidebar');
-  if(sidebar){
-   const current=location.pathname.replace(/\\/g,'/');
-   sidebar.querySelectorAll('nav a').forEach(a=>{
-    const href=a.getAttribute('href'); if(!href)return;
-    const target=new URL(href,location.href).pathname.replace(/\\/g,'/');
-    const active=target===current || (current.endsWith('/register.html') && target.endsWith('/directory.html')===false && a.textContent.trim().includes('Registrar proveedor'));
-    a.classList.toggle('tp-active',active);
-    if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
-   });
-  }
-  const dateNode=document.getElementById('turispro-live-date');
-  const timeNode=document.getElementById('turispro-live-time');
-  function updateClock(){const now=new Date();const opts={timeZone:'America/Bogota'};
-   if(dateNode)dateNode.textContent=new Intl.DateTimeFormat('es-CO',{...opts,weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(now);
-   if(timeNode)timeNode.textContent=new Intl.DateTimeFormat('es-CO',{...opts,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now);
-  }
-  updateClock(); if(!window.__turisproClock){window.__turisproClock=setInterval(updateClock,1000)}
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
-</script>
-
-
-<style id="turispro-sidebar-no-transient-home">
-/* Evita que Inicio se ilumine por estados momentáneos de foco/clic cuando no es la página activa. */
-html body aside.tp-sidebar nav a:not(.tp-active):active,
-html body aside.tp-sidebar nav a:not(.tp-active):focus {
-  background: transparent !important;
-  color: #dbeafe !important;
-  box-shadow: none !important;
-}
-html body aside.tp-sidebar nav a[href*="dashboard/dashboard.html"]:not(.tp-active):hover {
-  background: rgba(255,255,255,.12) !important;
-}
-</style>
-
+<script src="../../assets/js/clock.js"></script>
 </body></html>

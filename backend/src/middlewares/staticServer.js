@@ -19,7 +19,7 @@ const MIME_TYPES = {
   '.txt': 'text/plain; charset=utf-8'
 };
 
-const STATIC_DIR = path.resolve(__dirname, '../../../TurisPro');
+const STATIC_DIR = path.resolve(__dirname, '../../../frontend');
 
 function serveStatic(req, res) {
   // Solo manejar GET y HEAD para archivos estáticos

@@ -93,10 +93,7 @@ class MotorRiesgo {
     // 1. Evaluaciones
     const promEv = proveedor.promedioEvaluaciones();
     let factorEv;
-    if (promEv === null) {
-      // Sin evaluaciones registradas
-      return null;
-    } else {
+    if (promEv !== null) {
       // E = (5 - promedio) / 4 (varía de 0 si prom=5, a 1 si prom=1)
       const valE = Math.max(0, Math.min(1, (5 - promEv) / 4));
       factorEv = new FactorRiesgo({
@@ -142,13 +139,22 @@ class MotorRiesgo {
       descripcion: `${docsVencidosCount} de ${documentos.length} documento(s) vencido(s)`
     });
 
-    return [factorEv, factorInc, factorDoc];
+    // Si una categoría no tiene registros, no se inventa una calificación para ella.
+    // Se redistribuyen proporcionalmente los pesos entre las fuentes que sí se pueden medir.
+    const factores = [factorEv, factorInc, factorDoc].filter(Boolean);
+    const pesoDisponible = factores.reduce((total, factor) => total + factor.peso, 0);
+    if (pesoDisponible > 0) {
+      for (const factor of factores) {
+        factor.peso = factor.peso / pesoDisponible;
+        factor.aporte = Math.round(factor.peso * factor.valor * 100 * 100) / 100;
+      }
+    }
+    return factores;
   }
 
   calcularPuntaje(factores) {
     if (!factores || factores.length === 0) return null;
     const totalAporte = factores.reduce((acc, f) => acc + f.aporte, 0);
-    // Asegurar rango 0 a 100
     return Math.max(0, Math.min(100, Math.round(totalAporte)));
   }
 
@@ -190,14 +196,13 @@ class MotorRiesgo {
     // Recalcular
     const factores = this.generarFactores(proveedor);
 
-    // Caso regla de negocio: sin datos suficientes (si no hay evaluaciones)
-    if (!factores) {
-      proveedor.actualizarNivelRiesgo(NivelRiesgo.SIN_DATOS, null);
+    // Solo se declara SIN_DATOS cuando ninguna fuente aporta evidencia medible.
+    if (!factores || factores.length === 0) {
       return {
         analisis: null,
         reutilizado: false,
         nivelRiesgo: NivelRiesgo.SIN_DATOS,
-        mensaje: 'Sin datos suficientes: El proveedor no tiene evaluaciones registradas para calcular el puntaje de riesgo.',
+        mensaje: 'No existen datos de evaluaciones, incidentes o documentos para calcular el riesgo. Registra información antes de analizar.',
         avisoHumano: 'La decisión final sobre el proveedor siempre la toma una persona.'
       };
     }

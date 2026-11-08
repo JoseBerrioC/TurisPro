@@ -12,6 +12,11 @@ class DashboardController {
     };
   }
 
+  static analitica(periodo) {
+    const reporte = new Reporte();
+    return { status: 200, body: reporte.obtenerAnalitica(periodo) };
+  }
+
   static ranking() {
     const reporte = new Reporte();
     const datos = reporte.obtenerRanking();

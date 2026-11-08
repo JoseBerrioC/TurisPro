@@ -1,7 +1,7 @@
 const http = require('node:http');
 const config = require('./config/config');
 const { getDatabase } = require('./database/connection');
-const { seed } = require('./database/seed');
+const { seed, seedHotelesReales } = require('./database/seed');
 const corsMiddleware = require('./middlewares/corsMiddleware');
 const { serveStatic } = require('./middlewares/staticServer');
 const { handleRequest } = require('./routes/router');
@@ -19,6 +19,9 @@ async function iniciarServidor() {
     console.log('⚡ Base de datos vacía detectada. Ejecutando seed inicial...');
     await seed(db);
   }
+
+  // Mantener el catálogo hotelero en la base de datos, sin datos ficticios en el frontend.
+  seedHotelesReales(db);
 
   // 3. Crear Servidor HTTP
   const server = http.createServer((req, res) => {

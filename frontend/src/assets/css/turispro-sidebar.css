@@ -1,0 +1,197 @@
+/**
+ * TurisPro - Estilos del menú lateral (compartidos por todas las pantallas).
+ * Antes estaban copiados dentro de cada HTML como 6 bloques <style>.
+ * El orden de los bloques se conserva porque la cascada depende de él.
+ */
+
+/* ── turispro-fixed-sidebar-styles ── */
+/* Sidebar fija y uniforme en todas las secciones */
+html body aside.tp-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  background-color: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ── turispro-sidebar-uniform-style ── */
+/* Panel lateral unico de TurisPro: conserva exactamente el aspecto del Inicio. */
+.tp-sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: 16rem !important;
+  min-width: 16rem !important;
+  max-width: 16rem !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  box-sizing: border-box !important;
+  flex: 0 0 16rem !important;
+  flex-shrink: 0 !important;
+  transform: none !important;
+  background: #0D47A1 !important;
+  color: #FFFFFF !important;
+  z-index: 1000 !important;
+  transition: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+.tp-sidebar img {
+  display: block !important;
+  height: 2.25rem !important;
+  width: auto !important;
+  max-width: 190px !important;
+  object-fit: contain !important;
+  flex: 0 0 auto !important;
+}
+
+/* ── turispro-sidebar-typography-uniform ── */
+/* Normalizacion final: mismo tamano de texto e iconos en todas las paginas */
+html body aside.tp-sidebar,
+html body aside.tp-sidebar * {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  box-sizing: border-box !important;
+}
+/* Todos los enlaces del menu tienen la misma altura, separacion y alineacion */
+html body aside.tp-sidebar nav a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  line-height: 18px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  flex: 0 0 48px !important;
+  white-space: nowrap !important;
+}
+/* Mismo tamano y ancho reservado para todos los iconos del menu */
+html body aside.tp-sidebar nav a .material-symbols-outlined {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  flex: 0 0 20px !important;
+  vertical-align: middle !important;
+}
+/* Texto de cada opcion: 13px exactos y una misma altura de linea */
+html body aside.tp-sidebar nav a > span:not(.material-symbols-outlined) {
+  display: inline-block !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+/* Insignia PRO consistente sin alterar el tamano del nombre de la opcion */
+html body aside.tp-sidebar nav a > span.ml-auto {
+  margin-left: auto !important;
+  font-size: 10px !important;
+  line-height: 14px !important;
+  font-weight: 700 !important;
+}
+/* Boton Registrar proveedor */
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  height: 48px !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button .material-symbols-outlined {
+  width: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:first-child > div:nth-child(2) button span:not(.material-symbols-outlined) {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 600 !important;
+}
+/* Iconos y textos del pie de usuario con medidas definidas */
+html body aside.tp-sidebar > div:last-child .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-size: 20px !important;
+  line-height: 20px !important;
+}
+html body aside.tp-sidebar > div:last-child p:first-child {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  font-weight: 700 !important;
+}
+html body aside.tp-sidebar > div:last-child p:last-child {
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 400 !important;
+}
+
+/* ── turispro-professional-navigation ── */
+.tp-sidebar nav a{position:relative!important; border-left:4px solid transparent!important; border-radius:0 9px 9px 0!important; transition:background-color .18s ease,color .18s ease,border-color .18s ease!important}
+.tp-sidebar nav a.tp-active{background:#1565C0!important;color:#fff!important;border-left-color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)!important}
+.tp-sidebar nav a.tp-active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 500!important}
+.tp-sidebar nav a:not(.tp-active):hover{background:rgba(255,255,255,.12)!important;color:#fff!important}
+#feedbackToast[hidden]{display:none!important}
+
+/* ── turispro-sidebar-active-fix ── */
+/* El estado activo se determina por la URL; ninguna opción queda resaltada por defecto. */
+html body aside.tp-sidebar nav a:not(.tp-active) {
+  background: transparent !important; color: #dbeafe !important;
+  border-left: 0 !important; border-radius: 8px !important; box-shadow: none !important;
+  font-weight: 600 !important;
+}
+html body aside.tp-sidebar nav a.tp-active {
+  background: #1565C0 !important; color: #fff !important;
+  border-left: 4px solid #fff !important; border-radius: 0 8px 8px 0 !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07) !important;
+}
+html body aside.tp-sidebar nav a:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important; color:#fff !important;
+}
+
+/* ── turispro-sidebar-no-transient-home ── */
+/* Evita que Inicio se ilumine por estados momentáneos de foco/clic cuando no es la página activa. */
+html body aside.tp-sidebar nav a:not(.tp-active):active,
+html body aside.tp-sidebar nav a:not(.tp-active):focus {
+  background: transparent !important;
+  color: #dbeafe !important;
+  box-shadow: none !important;
+}
+html body aside.tp-sidebar nav a[href*="dashboard/dashboard.html"]:not(.tp-active):hover {
+  background: rgba(255,255,255,.12) !important;
+}

@@ -1,7 +1,17 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const crypto = require('node:crypto');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 const { EventEmitter } = require('node:events');
+
+// Base de datos aislada: las pruebas nunca tocan turispro.db real.
+// Debe definirse ANTES de cargar cualquier módulo que lea config.js.
+const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'turispro-test-'));
+process.env.DB_PATH = path.join(tmpDir, 'test.db');
+test.after(() => fs.rmSync(tmpDir, { recursive: true, force: true }));
+
 const { handleRequest } = require('../src/routes/router');
 const { getDatabase } = require('../src/database/connection');
 const { seed } = require('../src/database/seed');
@@ -11,6 +21,7 @@ function callApi(method, path, body = null, headers = {}) {
   return new Promise((resolve, reject) => {
     const req = new EventEmitter();
     req.method = method.toUpperCase();
+    req.resume = () => {}; // Los streams HTTP reales exponen resume()
     req.url = path;
     req.headers = {
       host: 'localhost',

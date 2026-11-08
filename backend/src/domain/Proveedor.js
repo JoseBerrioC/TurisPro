@@ -150,8 +150,9 @@ class Proveedor {
 
     if (texto && texto.trim()) {
       const q = `%${texto.trim()}%`;
-      sql += ` AND (p.razon_social LIKE ? OR p.nit LIKE ? OR p.correo LIKE ? OR p.telefono LIKE ?)`;
-      params.push(q, q, q, q);
+      const idQuery = `%${texto.trim().replace(/^#/, '')}%`;
+      sql += ` AND (p.razon_social LIKE ? OR p.nit LIKE ? OR CAST(p.id_proveedor AS TEXT) LIKE ? OR p.correo LIKE ? OR p.telefono LIKE ?)`;
+      params.push(q, q, idQuery, q, q);
     }
 
     if (tipo && tipo.trim()) {

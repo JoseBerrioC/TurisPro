@@ -20,6 +20,18 @@ class Reporte {
     const rowActivos = db.prepare('SELECT COUNT(*) as total FROM proveedores WHERE activo = 1').get();
     const proveedoresActivos = rowActivos ? rowActivos.total : 0;
 
+    // Distribución dinámica de riesgo de todos los proveedores activos.
+    const distribucionRiesgo = db.prepare(`
+      SELECT UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS')) AS nivel, COUNT(*) AS total
+      FROM proveedores WHERE activo = 1 GROUP BY UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS'))
+    `).all();
+    const matrizRiesgo = { BAJO: 0, MEDIO: 0, ALTO: 0, SIN_DATOS: 0 };
+    distribucionRiesgo.forEach(row => {
+      const nivel = ['BAJO', 'MEDIO', 'ALTO'].includes(row.nivel) ? row.nivel : 'SIN_DATOS';
+      matrizRiesgo[nivel] += row.total;
+    });
+    matrizRiesgo.total = Object.values(matrizRiesgo).reduce((a, b) => a + b, 0);
+
     // 2. Proveedores con riesgo alto
     const rowRiesgoAlto = db.prepare("SELECT COUNT(*) as total FROM proveedores WHERE activo = 1 AND nivel_riesgo = 'ALTO'").get();
     const riesgoAlto = rowRiesgoAlto ? rowRiesgoAlto.total : 0;
@@ -71,7 +83,54 @@ class Reporte {
         documentosAtencion: documentosPorVencerOVencidos,
         incidentesAbiertos
       },
-      tablaAtencion
+      tablaAtencion,
+      matrizRiesgo
+    };
+  }
+
+  obtenerAnalitica(periodo = 'semana') {
+    const db = getDatabase();
+    const modificadores = { dia: '-1 day', semana: '-7 days', mes: '-1 month', anio: '-1 year' };
+    const modifier = modificadores[periodo];
+    const where = (campo) => modifier ? `${campo} >= datetime('now', ?)` : '1 = 1';
+    const params = modifier ? [modifier] : [];
+
+    const contar = (tabla, campo) => db.prepare(`SELECT COUNT(*) AS total FROM ${tabla} WHERE ${where(campo)}`).get(...params).total;
+    const proveedores = contar('proveedores', 'creado_en');
+    const documentos = contar('documentos', 'creado_en');
+    const evaluaciones = contar('evaluaciones', 'fecha');
+    const incidentes = contar('incidentes', 'fecha');
+
+    const riesgo = db.prepare(`SELECT UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS')) AS nivel, COUNT(*) AS total
+      FROM proveedores WHERE activo = 1 ${modifier ? "AND creado_en >= datetime('now', ?)" : ''} GROUP BY UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS'))`).all(...params);
+
+    const actividad = db.prepare(`
+      SELECT 'Proveedor registrado' AS tipo, p.razon_social AS detalle, p.creado_en AS fecha, p.id_proveedor AS referencia
+      FROM proveedores p WHERE ${where('p.creado_en')}
+      UNION ALL
+      SELECT 'Documento añadido', d.tipo || ' · ' || p.razon_social, d.creado_en, d.id_documento
+      FROM documentos d JOIN proveedores p ON p.id_proveedor=d.id_proveedor WHERE ${where('d.creado_en')}
+      UNION ALL
+      SELECT 'Evaluación registrada', p.razon_social || ' · ' || printf('%.1f/5', e.promedio), e.fecha, e.id_evaluacion
+      FROM evaluaciones e JOIN proveedores p ON p.id_proveedor=e.id_proveedor WHERE ${where('e.fecha')}
+      UNION ALL
+      SELECT 'Incidente registrado', p.razon_social || ' · ' || i.tipo || ' (' || i.severidad || ')', i.fecha, i.id_incidente
+      FROM incidentes i JOIN proveedores p ON p.id_proveedor=i.id_proveedor WHERE ${where('i.fecha')}
+      ORDER BY fecha DESC LIMIT 100
+    `).all(...Array(4).fill(params).flat());
+
+    const resumenIncidentes = db.prepare(`SELECT UPPER(severidad) AS severidad, COUNT(*) AS total FROM incidentes
+      WHERE ${where('fecha')} GROUP BY UPPER(severidad)`).all(...params);
+    const resumenDocumentos = db.prepare(`SELECT COUNT(*) AS total FROM documentos WHERE date(fecha_vencimiento) < date('now')
+      ${modifier ? "AND creado_en >= datetime('now', ?)" : ''}`).get(...params).total;
+
+    return {
+      periodo,
+      generadoEn: new Date().toISOString(),
+      indicadores: { proveedores, documentos, evaluaciones, incidentes, documentosVencidos: resumenDocumentos },
+      distribucionRiesgo: riesgo,
+      incidentesPorSeveridad: resumenIncidentes,
+      actividad
     };
   }
 

@@ -181,3 +181,30 @@ npm test
 npm start
 # o directamente: node src/index.js
 ```
+
+### Catálogo hotelero inicial
+
+Al iniciar el backend (`npm start`) o ejecutar el seed (`npm run seed`), TurisPro carga de forma idempotente 10 hoteles reales de Colombia en la tabla `proveedores` (`tipo = HOTEL`). El directorio consulta estos registros mediante la API; no utiliza una lista de hoteles simulada en el navegador.
+
+Los nombres y ciudades se basan en información pública. Los NIT y datos de contacto no se inventan: aparecen marcados como pendientes de verificación hasta que el equipo los complete con información empresarial confirmada.
+
+## Análisis de riesgo asistido por IA
+
+La pantalla `frontend/src/pages/risk/ai-risk-analysis.html` consulta proveedores desde SQLite mediante `/api/proveedores` y ejecuta el análisis individual con `/api/proveedores/:id/riesgo` o su recálculo con `/api/proveedores/:id/riesgo/recalcular`.
+
+El análisis combina:
+- Motor de reglas ponderadas: evaluaciones (40%), incidentes activos (35%) y documentos vencidos (25%). Cuando una categoría no tiene registros para calcularse, no se inventa un valor: se excluye y los pesos disponibles se normalizan proporcionalmente.
+- Explicación generativa opcional con Google Gemini. Para activarla, configura `GEMINI_API_KEY` en el entorno del backend. La clave nunca se envía al navegador. Sin esa clave, el motor sigue calculando la clasificación real y genera una explicación de respaldo basada en los factores de SQLite; la interfaz identifica ese origen sin presentarlo como texto generado por un LLM.
+
+Variables: `GEMINI_API_KEY`, `LLM_MODEL` (por defecto `gemini-2.5-flash`) y `LLM_TIMEOUT_MS` (por defecto 15000 ms). La clasificación es apoyo a la decisión y requiere supervisión humana.
+
+
+## Activar análisis con IA real (Google Gemini)
+
+1. Copia `backend/.env.example` como `backend/.env`.
+2. Obtén una clave de Google AI Studio y asígnala a `GEMINI_API_KEY` en `backend/.env`.
+3. Conserva `LLM_MODEL=gemini-2.5-flash` o usa un modelo disponible para tu clave.
+4. Reinicia el backend con `npm start`.
+5. En TurisPro busca un proveedor y pulsa **Analizar riesgo**.
+
+El backend calcula los indicadores con los datos de SQLite y envía esos factores a Gemini para redactar la explicación. Si falta la clave o Gemini falla, la pantalla mostrará el error: no se presentará una plantilla como si fuera una respuesta de IA. La clave se mantiene exclusivamente en el backend.

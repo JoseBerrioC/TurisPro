@@ -5,6 +5,8 @@
  */
 
 (function (window) {
+  // Ruta de este script: sirve para resolver la pantalla de login desde cualquier nivel de carpetas
+  const SCRIPT_SRC = document.currentScript && document.currentScript.src;
   const DEFAULT_API_BASE = 'http://localhost:3000/api';
   const API_BASE = window.TURISPRO_API_BASE || DEFAULT_API_BASE;
 
@@ -111,8 +113,9 @@
     logout() {
       localStorage.removeItem(TOKEN_KEY);
       localStorage.removeItem(USER_KEY);
-      const isAuthDir = window.location.pathname.includes('/auth/');
-      const loginPath = isAuthDir ? 'login.html' : '../auth/login.html';
+      const loginPath = SCRIPT_SRC
+        ? new URL('../../pages/auth/login.html', SCRIPT_SRC).href
+        : (window.location.pathname.includes('/auth/') ? 'login.html' : '../auth/login.html');
       window.location.href = loginPath;
     },
 
@@ -131,8 +134,9 @@
 
     requireAuth() {
       if (!this.isAuthenticated()) {
-        const isAuthDir = window.location.pathname.includes('/auth/');
-        const loginPath = isAuthDir ? 'login.html' : '../auth/login.html';
+        const loginPath = SCRIPT_SRC
+          ? new URL('../../pages/auth/login.html', SCRIPT_SRC).href
+          : (window.location.pathname.includes('/auth/') ? 'login.html' : '../auth/login.html');
         window.location.replace(loginPath);
         return false;
       }
@@ -158,37 +162,7 @@
 
     // Dashboard & Comparador
     async getDashboard() {
-      try {
-        return await request('/dashboard');
-      } catch (err) {
-        // Fallback local con datos del MVP si el servidor está desconectado
-        return {
-          indicadores: {
-            proveedoresActivos: 3,
-            proveedoresRiesgoAlto: 1,
-            documentosAtencion: 2,
-            incidentesAbiertos: 2
-          },
-          tablaAtencion: [
-            {
-              idProveedor: 2,
-              razonSocial: 'Transportes Andinos Express',
-              tipo: 'TRANSPORTADOR',
-              nivelRiesgo: 'ALTO',
-              puntajeRiesgo: 72,
-              motivosAtencion: ['Nivel de riesgo ALTO (72 pts)', '1 incidente de alta severidad sin cerrar']
-            },
-            {
-              idProveedor: 1,
-              razonSocial: 'Hotel Los Andes S.A.S.',
-              tipo: 'HOTEL',
-              nivelRiesgo: 'MEDIO',
-              puntajeRiesgo: 38,
-              motivosAtencion: ['1 documento vencido (Póliza)', '1 documento por vencer (Bomberos)']
-            }
-          ]
-        };
-      }
+      return request('/dashboard');
     },
 
     async getRanking() {
@@ -212,19 +186,10 @@
 
     // Proveedores
     async getProveedores(params = {}) {
-      try {
-        const q = new URLSearchParams(params).toString();
-        return await request(`/proveedores${q ? '?' + q : ''}`);
-      } catch (err) {
-        return {
-          total: 3,
-          items: [
-            { idProveedor: 1, razonSocial: 'Hotel Los Andes S.A.S.', nit: '900.123.456-7', tipo: 'HOTEL', correo: 'contacto@hotellosandes.com', activo: true, estadoCiclo: 'Activo', nivelRiesgo: 'MEDIO', puntajeRiesgo: 38, zonas: [{ ciudad: 'Bogotá' }] },
-            { idProveedor: 2, razonSocial: 'Transportes Andinos Express', nit: '901.987.654-3', tipo: 'TRANSPORTADOR', correo: 'operaciones@transportesandinos.com', activo: true, estadoCiclo: 'Activo', nivelRiesgo: 'ALTO', puntajeRiesgo: 72, zonas: [{ ciudad: 'Medellín' }] },
-            { idProveedor: 3, razonSocial: 'Rutas del Inca Tours E.I.R.L.', nit: '204.567.890-1', tipo: 'OPERADOR', correo: 'reservas@rutasdelinca.pe', activo: true, estadoCiclo: 'Registrado', nivelRiesgo: 'SIN_DATOS', puntajeRiesgo: null, zonas: [{ ciudad: 'Cusco' }] }
-          ]
-        };
-      }
+      const q = new URLSearchParams(params).toString();
+      // El directorio se alimenta únicamente de la API y, por tanto, de SQLite.
+      // No se mezclan registros de demostración ni proveedores guardados en localStorage.
+      return request(`/proveedores${q ? '?' + q : ''}`);
     },
 
     async getProveedorDetalle(id) {
@@ -232,10 +197,8 @@
     },
 
     async crearProveedor(datos) {
-      return request('/proveedores', {
-        method: 'POST',
-        body: datos
-      });
+      // El registro solo se confirma cuando el backend guarda el proveedor en SQLite.
+      return request('/proveedores', { method: 'POST', body: datos });
     },
 
     async editarProveedor(id, datos) {
@@ -296,6 +259,10 @@
 
     async getDocumentosGlobal() {
       return request('/documentos');
+    },
+
+    async crearDocumentoGlobal(idProveedor, datos) {
+      return request(`/proveedores/${idProveedor}/documentos`, { method: 'POST', body: datos });
     },
 
     async eliminarDocumento(idDocumento) {

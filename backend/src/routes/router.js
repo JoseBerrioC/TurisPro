@@ -1,4 +1,6 @@
 const { URL } = require('node:url');
+const fs = require('node:fs');
+const path = require('node:path');
 const { Rol } = require('../domain/enums');
 const { autenticar, requerirAutenticacion, requerirRol } = require('../middlewares/authMiddleware');
 
@@ -160,6 +162,11 @@ async function handleRequest(req, res) {
       return send(DashboardController.resumenDashboard());
     }
 
+    if (method === 'GET' && pathname === '/api/reportes/analitica') {
+      const periodo = ['dia', 'semana', 'mes', 'anio', 'todo'].includes(query.periodo) ? query.periodo : 'semana';
+      return send(DashboardController.analitica(periodo));
+    }
+
     if (method === 'GET' && pathname === '/api/dashboard/ranking') {
       return send(DashboardController.ranking());
     }
@@ -227,6 +234,17 @@ async function handleRequest(req, res) {
       const usuario = requerirRol(Rol.ADMINISTRADOR, Rol.GESTOR_PROVEEDORES)(req, res);
       if (!usuario) return;
       return send(ServicioController.eliminar(params.id));
+    }
+
+    // Archivos adjuntos de documentos (solo nombres generados por el servidor).
+    if (method === 'GET' && pathname.startsWith('/api/archivos/')) {
+      const nombre = path.basename(pathname.slice('/api/archivos/'.length));
+      const archivoPath = path.resolve(__dirname, '../../uploads', nombre);
+      if (!fs.existsSync(archivoPath)) return send({ status: 404, body: { error: 'Archivo no encontrado' } });
+      const ext = path.extname(nombre).toLowerCase();
+      const tipos = { '.pdf': 'application/pdf', '.png': 'image/png', '.jpg': 'image/jpeg', '.doc': 'application/msword', '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '.xls': 'application/vnd.ms-excel', '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' };
+      res.writeHead(200, { 'Content-Type': tipos[ext] || 'application/octet-stream', 'Content-Length': fs.statSync(archivoPath).size, 'Content-Disposition': 'inline; filename="' + nombre + '"' });
+      return fs.createReadStream(archivoPath).pipe(res);
     }
 
     // 6. Documentos

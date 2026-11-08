@@ -14,12 +14,11 @@ class ClienteLLM {
   }
 
   async generarExplicacion(factores, proveedorInfo = {}) {
-    // Si no hay API Key o endpoint configurado, recurrir directamente a la plantilla de respaldo
+    // No simular IA: si no hay credenciales, informar que el servicio no está configurado.
     if (!this.apiKey && !this.endpoint) {
-      return {
-        explicacion: this.plantillaRespaldo(factores, proveedorInfo),
-        origen: 'PLANTILLA'
-      };
+      const error = new Error('La IA no está configurada. Agrega GEMINI_API_KEY en backend/.env y reinicia el servidor.');
+      error.statusCode = 503;
+      throw error;
     }
 
     const controller = new AbortController();
@@ -77,11 +76,12 @@ class ClienteLLM {
       };
     } catch (err) {
       clearTimeout(timeoutId);
-      // En caso de error o tiempo agotado (tiempoEsperaMs), usar plantilla de respaldo
-      return {
-        explicacion: this.plantillaRespaldo(factores, proveedorInfo),
-        origen: 'PLANTILLA'
-      };
+      // No reemplazar una respuesta real de IA por texto predeterminado.
+      const error = new Error(err.name === 'AbortError'
+        ? 'La IA tardó demasiado en responder. Inténtalo nuevamente.'
+        : `No se pudo obtener una respuesta de Gemini: ${err.message}`);
+      error.statusCode = err.statusCode || 502;
+      throw error;
     }
   }
 

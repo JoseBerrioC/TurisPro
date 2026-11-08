@@ -250,6 +250,7 @@ async function seed(customDb = null) {
 
 if (require.main === module) {
   seed()
+    .then(() => seedHotelesReales())
     .then(() => process.exit(0))
     .catch(err => {
       console.error('Error al ejecutar seed:', err);
@@ -257,4 +258,65 @@ if (require.main === module) {
     });
 }
 
-module.exports = { seed };
+
+// Catálogo inicial de 10 hoteles reales de Colombia.
+// Solo se guardan nombres y ciudades respaldados por fuentes públicas.
+// NIT, correo y teléfono quedan explícitamente pendientes de verificación:
+// no se inventan datos legales ni de contacto.
+function seedHotelesReales(db = null) {
+  const database = db || getDatabase();
+  const hoteles = [
+    { nombre: 'Cannúa Lodge', ciudad: 'Marinilla', departamento: 'Antioquia' },
+    { nombre: 'Casa Pestagua', ciudad: 'Cartagena', departamento: 'Bolívar' },
+    { nombre: 'Hotel Casa Legado', ciudad: 'Bogotá', departamento: 'Bogotá D.C.' },
+    { nombre: 'Hotel Quadrifolio', ciudad: 'Cartagena', departamento: 'Bolívar' },
+    { nombre: 'Hotel Casa San Agustín', ciudad: 'Cartagena', departamento: 'Bolívar' },
+    { nombre: 'Casona del Colegio', ciudad: 'Cartagena', departamento: 'Bolívar' },
+    { nombre: 'Sofitel Legend Santa Clara Cartagena', ciudad: 'Cartagena', departamento: 'Bolívar' },
+    { nombre: 'Elcielo Hotel & Restaurant', ciudad: 'Medellín', departamento: 'Antioquia' },
+    { nombre: 'Hacienda Bambusa', ciudad: 'Armenia', departamento: 'Quindío' },
+    { nombre: 'Bio Habitat Hotel', ciudad: 'Armenia', departamento: 'Quindío' }
+  ];
+
+  const insertar = database.prepare(`
+    INSERT INTO proveedores (
+      razon_social, nit, tipo, correo, telefono, direccion,
+      activo, estado_ciclo, nivel_riesgo
+    ) VALUES (?, ?, 'HOTEL', '', '', ?, 1, 'Registrado', 'SIN_DATOS')
+  `);
+  const buscar = database.prepare('SELECT id_proveedor FROM proveedores WHERE razon_social = ? COLLATE NOCASE');
+  const crearZona = database.prepare('INSERT INTO zonas_cobertura (pais, ciudad, descripcion) VALUES (?, ?, ?)');
+  const buscarZona = database.prepare('SELECT id_zona FROM zonas_cobertura WHERE pais = ? AND ciudad = ? LIMIT 1');
+  const asociarZona = database.prepare('INSERT OR IGNORE INTO proveedor_zonas (id_proveedor, id_zona) VALUES (?, ?)');
+
+  database.exec('BEGIN IMMEDIATE');
+  try {
+    // Eliminar el hotel ficticio que venía con el prototipo. Sus relaciones
+    // dependientes se eliminan mediante ON DELETE CASCADE.
+    database.prepare("DELETE FROM proveedores WHERE razon_social = 'Hotel Los Andes S.A.S.' AND nit = '900.123.456-7' AND tipo = 'HOTEL'").run();
+
+    hoteles.forEach((hotel, index) => {
+      let zona = buscarZona.get('Colombia', hotel.ciudad);
+      if (!zona) {
+        crearZona.run('Colombia', hotel.ciudad, `Cobertura hotelera - ${hotel.departamento}`);
+        zona = buscarZona.get('Colombia', hotel.ciudad);
+      }
+
+      let existente = buscar.get(hotel.nombre);
+      if (!existente) {
+        const nitPendiente = `PENDIENTE-VERIFICACION-HTL-${String(index + 1).padStart(3, '0')}`;
+        const direccion = `${hotel.ciudad}, ${hotel.departamento}, Colombia`;
+        const resultado = insertar.run(hotel.nombre, nitPendiente, direccion);
+        existente = { id_proveedor: Number(resultado.lastInsertRowid) };
+      }
+      asociarZona.run(existente.id_proveedor, zona.id_zona);
+    });
+    database.exec('COMMIT');
+  } catch (error) {
+    database.exec('ROLLBACK');
+    throw error;
+  }
+  console.log('✅ Catálogo de 10 hoteles reales cargado en la base de datos (datos legales/contacto pendientes de validar).');
+}
+
+module.exports = { seed, seedHotelesReales };

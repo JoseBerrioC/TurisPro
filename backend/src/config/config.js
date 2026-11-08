@@ -46,7 +46,7 @@ const config = {
     endpoint: process.env.LLM_ENDPOINT || '',
     apiKey: process.env.GEMINI_API_KEY || process.env.LLM_API_KEY || '',
     modelo: process.env.LLM_MODEL || 'gemini-2.5-flash',
-    tiempoEsperaMs: process.env.LLM_TIMEOUT_MS ? parseInt(process.env.LLM_TIMEOUT_MS, 10) : 4000
+    tiempoEsperaMs: process.env.LLM_TIMEOUT_MS ? parseInt(process.env.LLM_TIMEOUT_MS, 10) : 15000
   }
 };
 

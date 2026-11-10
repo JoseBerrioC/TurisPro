@@ -7,7 +7,14 @@
 (function (window) {
   // Ruta de este script: sirve para resolver la pantalla de login desde cualquier nivel de carpetas
   const SCRIPT_SRC = document.currentScript && document.currentScript.src;
-  const DEFAULT_API_BASE = 'http://localhost:3000/api';
+  const DEFAULT_API_BASE = (function () {
+  const loc = window.location;
+  const esLocal = loc.hostname === 'localhost' || loc.hostname === '127.0.0.1';
+  if (loc.protocol.indexOf('http') === 0 && !(esLocal && loc.port !== '3000')) {
+    return loc.origin + '/api';
+  }
+  return 'http://localhost:3000/api';
+})();
   const API_BASE = window.TURISPRO_API_BASE || DEFAULT_API_BASE;
 
   const TOKEN_KEY = 'turispro_auth_token';

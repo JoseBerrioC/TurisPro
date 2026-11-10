@@ -11,7 +11,10 @@ El backend sigue los principios de **Clean Architecture** y **Domain-Driven Desi
 ```
 backend/
 ├── package.json               # Configuración del paquete y scripts
-├── .env.example               # Variables de entorno de ejemplo
+├── secrets/                   # Carpeta privada para claves locales (no subir a Git)
+│   ├── .env                   # Archivo local donde pegas tu API key
+│   ├── .env.example           # Plantilla sin credenciales reales
+│   └── README.txt             # Instrucciones de seguridad
 ├── .gitignore                 # Exclusiones de Git (base de datos y secretos)
 ├── README.md                  # Documentación completa de la API
 ├── src/
@@ -86,11 +89,18 @@ backend/
    - **Bajo**: $0 \le \text{Puntaje} < 34$
    - **Medio**: $34 \le \text{Puntaje} < 67$
    - **Alto**: $67 \le \text{Puntaje} \le 100$
-5. **Cliente LLM y Plantilla de Respaldo**: Intenta generar la explicación con el modelo de lenguaje (Gemini / LLM); si falla o agota el tiempo límite (`LLM_TIMEOUT_MS`), recurre automáticamente a la `plantillaRespaldo(factores)`.
+5. **Cliente LLM y Plantilla de Respaldo**: Si `GEMINI_API_KEY` está configurada, intenta generar la explicación con Google Gemini. Si falta la clave o el servicio falla/vence el tiempo límite (`LLM_TIMEOUT_MS`), el cálculo y guardado del riesgo continúan con una explicación determinística basada en los factores. La respuesta queda marcada como `PLANTILLA`, nunca como IA.
 6. **Aviso Humano Obligatorio (HU-13)**: Toda consulta de riesgo incluye la advertencia explícita:
    > *"La decisión final sobre el proveedor siempre la toma una persona."*
 
 ---
+
+## ⚙️ Configuración local
+
+1. Abre `backend/secrets/.env` y pega tu clave después de `GEMINI_API_KEY=` (el valor está vacío).
+2. Guarda el archivo. El backend carga primero `backend/secrets/.env`; también admite `backend/.env` por compatibilidad. Las variables definidas en el sistema tienen prioridad.
+3. Ejecuta `npm start` desde `backend/`.
+4. Si no configuras la clave, el motor sigue calculando el riesgo real y la pantalla identifica claramente que la explicación proviene de reglas locales, no de Gemini.
 
 ## 👥 Usuarios Pre-cargados por Defecto (Seed)
 
@@ -160,7 +170,7 @@ El sistema incluye 3 roles fijos listos para usar:
 ## 🧪 Ejecución y Pruebas Automatizadas
 
 ### Requisitos
-- **Node.js**: Versión 20 o 22 (recomendado 22+).
+- **Node.js**: Versión 22.5.0 o superior (requerida por `node:sqlite`).
 - Sin instalación obligatoria de paquetes npm (cero dependencias externas).
 
 ### Comandos disponibles
@@ -196,15 +206,29 @@ El análisis combina:
 - Motor de reglas ponderadas: evaluaciones (40%), incidentes activos (35%) y documentos vencidos (25%). Cuando una categoría no tiene registros para calcularse, no se inventa un valor: se excluye y los pesos disponibles se normalizan proporcionalmente.
 - Explicación generativa opcional con Google Gemini. Para activarla, configura `GEMINI_API_KEY` en el entorno del backend. La clave nunca se envía al navegador. Sin esa clave, el motor sigue calculando la clasificación real y genera una explicación de respaldo basada en los factores de SQLite; la interfaz identifica ese origen sin presentarlo como texto generado por un LLM.
 
-Variables: `GEMINI_API_KEY`, `LLM_MODEL` (por defecto `gemini-2.5-flash`) y `LLM_TIMEOUT_MS` (por defecto 15000 ms). La clasificación es apoyo a la decisión y requiere supervisión humana.
+Variables: `GEMINI_API_KEY`, `LLM_MODEL` (por defecto `gemini-3.8-flash`) y `LLM_TIMEOUT_MS` (por defecto 45000 ms). La clasificación es apoyo a la decisión y requiere supervisión humana.
 
 
 ## Activar análisis con IA real (Google Gemini)
 
-1. Copia `backend/.env.example` como `backend/.env`.
-2. Obtén una clave de Google AI Studio y asígnala a `GEMINI_API_KEY` en `backend/.env`.
-3. Conserva `LLM_MODEL=gemini-2.5-flash` o usa un modelo disponible para tu clave.
+1. Abre `backend/secrets/.env`.
+2. Pega tu clave después de `GEMINI_API_KEY=` (el valor está vacío).
+3. Conserva `LLM_MODEL=gemini-3.8-flash`, modelo Flash estable configurado para esta versión.
 4. Reinicia el backend con `npm start`.
 5. En TurisPro busca un proveedor y pulsa **Analizar riesgo**.
 
-El backend calcula los indicadores con los datos de SQLite y envía esos factores a Gemini para redactar la explicación. Si falta la clave o Gemini falla, la pantalla mostrará el error: no se presentará una plantilla como si fuera una respuesta de IA. La clave se mantiene exclusivamente en el backend.
+El backend calcula los indicadores con los datos de SQLite y envía esos factores a Gemini para redactar la explicación. Si falta la clave o Gemini falla, la pantalla mostrará un aviso y marcará el texto como explicación basada en reglas locales; nunca presentará una plantilla como si fuera una respuesta de IA. La clave se mantiene exclusivamente en el backend y se envía en el encabezado `x-goog-api-key`, no en la URL. Para despliegue, configura las variables en el panel privado del hosting; no publiques el archivo `.env`.
+
+
+## Preparar el despliegue (hosting)
+
+En el panel de variables privadas/Secrets del proveedor de hosting configura:
+
+- `NODE_ENV` = `production`
+- `GEMINI_API_KEY` = tu clave de Google AI Studio
+- `LLM_MODEL` = `gemini-3.8-flash`
+- `LLM_TIMEOUT_MS` = `45000`
+- `JWT_SECRET` = una cadena aleatoria larga y exclusiva (mínimo 32 caracteres).
+- `PORT` = usa el puerto que proporcione automáticamente el hosting; si lo exige, permite que la plataforma lo inyecte.
+
+No subas `backend/secrets/.env` al repositorio. El `.gitignore` ya lo excluye. El archivo incluido en el ZIP tiene `GEMINI_API_KEY` vacío, no contiene una API key real.

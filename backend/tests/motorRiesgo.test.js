@@ -127,3 +127,33 @@ test('MotorRiesgo & Documento - Consistencia en comparación de fechas y cálcul
   assert.strictEqual(docAyer.diasParaVencer('2026-11-01'), -1);
   assert.strictEqual(docAyer.calcularEstado('2026-11-01'), 'Vencido');
 });
+
+test('ClienteLLM - Sin clave de Gemini entrega respaldo identificado y no bloquea el cálculo', async () => {
+  const ClienteLLM = require('../src/services/ClienteLLM');
+  const cliente = new ClienteLLM({ apiKey: '', endpoint: '' });
+  const factores = [
+    new FactorRiesgo({ nombre: 'Evaluaciones', peso: 0.4, valor: 0.25, descripcion: 'Promedio 4.0/5' }),
+    new FactorRiesgo({ nombre: 'Incidentes', peso: 0.35, valor: 0.3, descripcion: '1 incidente medio' }),
+    new FactorRiesgo({ nombre: 'Documentos', peso: 0.25, valor: 0, descripcion: 'Todos vigentes' })
+  ];
+
+  const resultado = await cliente.generarExplicacion(factores, { razonSocial: 'Hotel de prueba' });
+  assert.strictEqual(resultado.origen, 'PLANTILLA');
+  assert.ok(resultado.explicacion.includes('Análisis de riesgo calculado'));
+  assert.ok(!resultado.explicacion.includes('Google Gemini generó'));
+});
+
+test('ClienteLLM - Si Gemini falla, conserva el análisis con respaldo claramente identificado', async () => {
+  const ClienteLLM = require('../src/services/ClienteLLM');
+  const fetchOriginal = global.fetch;
+  global.fetch = async () => ({ ok: false, status: 503 });
+  try {
+    const cliente = new ClienteLLM({ apiKey: 'clave-de-prueba-no-real', tiempoEsperaMs: 1000 });
+    const factores = [new FactorRiesgo({ nombre: 'Incidentes', peso: 1, valor: 0.5, descripcion: 'Un incidente activo' })];
+    const resultado = await cliente.generarExplicacion(factores, { razonSocial: 'Proveedor de prueba' });
+    assert.strictEqual(resultado.origen, 'PLANTILLA');
+    assert.ok(resultado.explicacion.includes('no fue posible consultar el servicio de IA'));
+  } finally {
+    global.fetch = fetchOriginal;
+  }
+});

@@ -217,19 +217,7 @@
 <span class="material-symbols-outlined text-slate-500 text-base">calendar_today</span>
 <span id="turispro-live-date">Actualizando fecha…</span>
 </div>
-<!-- Quick Support Tooltip -->
-<button class="p-2 text-slate-500 hover:text-[#1565C0] hover:bg-slate-100 rounded-lg transition-colors" title="Centro de ayuda" type="button">
-<span class="material-symbols-outlined text-xl">help_outline</span>
-</button>
-<!-- Notifications with Alert Badge -->
-<div class="relative">
-<button class="p-2 text-slate-500 hover:text-[#1565C0] hover:bg-slate-100 rounded-lg transition-colors relative" title="Notificaciones pendientes" type="button">
-<span class="material-symbols-outlined text-xl">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#C62828] border-2 border-white rounded-full"></span>
-</button>
-</div>
-<div class="h-6 w-px bg-slate-200"></div>
-<!-- Quick Modal Trigger Header -->
+
 </div>
 </header>
 <!-- ========================================================================= -->
@@ -239,7 +227,7 @@
 <!-- Encabezado de Página & Saludo -->
 <div class="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
-<h1 class="text-headline-lg font-headline-lg text-slate-900 tracking-tight">Buenos días, Administrador</h1>
+<h1 class="text-headline-lg font-headline-lg text-slate-900 tracking-tight">Bienvenido</h1>
 <p class="text-body-md font-body-md text-slate-600 mt-1">Resumen general de tus proveedores turísticos y estado de riesgo en tiempo real.</p>
 </div>
 <div class="flex items-center gap-2 text-body-sm font-body-sm text-slate-500 bg-white border border-slate-200 px-3 py-1.5 rounded-lg shadow-sm">
@@ -249,27 +237,6 @@
 <span>Hora actual: <strong class="font-semibold text-slate-700" id="turispro-live-time">--:--:--</strong></span>
 </div>
 </div>
-<!-- Banner Institucional de Inteligencia Artificial (Aviso Obligatorio) -->
-<div class="mb-6 p-4 rounded-xl bg-blue-50/70 border border-blue-200 flex items-start sm:items-center justify-between gap-4 shadow-sm">
-<div class="flex items-start sm:items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-[#1565C0] text-white flex items-center justify-center flex-shrink-0">
-<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">psychology</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-[#1565C0] text-white">IA CO-PILOT</span>
-<span class="text-body-sm font-body-sm font-semibold text-slate-800">Modelo predictivo de riesgo activo</span>
-</div>
-<p class="text-body-sm font-body-sm text-slate-600 mt-0.5">
-            Análisis de apoyo con IA. La decisión final la toma una persona. Cumplimiento auditado bajo norma ISO 31000.
-          </p>
-</div>
-</div>
-<a class="hidden sm:inline-flex items-center gap-1 text-label-sm font-label-sm text-[#1565C0] font-semibold hover:underline flex-shrink-0" href="#">
-<span class="">Políticas de gobernanza</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
 <!-- ========================================================================= -->
 <!-- FILA 1: 4 TARJETAS KPI MÉTRICAS                                           -->
 <!-- ========================================================================= -->
@@ -277,16 +244,15 @@
 <!-- Card 1: Total proveedores -->
 <div class="bg-surface-container-lowest border border-slate-200 rounded-xl p-5 shadow-sm hover:border-slate-300 transition-all flex flex-col justify-between">
 <div class="flex items-center justify-between">
-<span class="text-label-md font-label-md text-slate-500">Total de proveedores</span>
+<span class="text-label-md font-label-md text-slate-500">Proveedores activos</span>
 <div class="w-9 h-9 rounded-lg bg-blue-50 text-[#1565C0] flex items-center justify-center">
 <span class="material-symbols-outlined text-xl"><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-slate-900" id="metric-proveedores-activos">128</div>
+<div class="text-display-metric font-display-metric text-slate-900" id="metric-proveedores-activos">0</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm text-[#2E7D32]">
-<span class="material-symbols-outlined text-base font-bold">trending_up</span>
-<span class="font-semibold">+8 este trimestre</span>
+<span class="font-semibold">Registrados y activos en la base de datos</span>
 </div>
 </div>
 </div>
@@ -299,7 +265,7 @@
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-slate-900" id="metric-riesgo-alto">12</div>
+<div class="text-display-metric font-display-metric text-slate-900" id="metric-riesgo-alto">0</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm">
 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-[#FFF8E1] text-[#7A5300]">
 <span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>
@@ -311,32 +277,30 @@
 <!-- Card 3: Documentos vencidos -->
 <div class="bg-surface-container-lowest border border-slate-200 rounded-xl p-5 shadow-sm hover:border-slate-300 transition-all flex flex-col justify-between">
 <div class="flex items-center justify-between">
-<span class="text-label-md font-label-md text-slate-500">Documentos vencidos</span>
+<span class="text-label-md font-label-md text-slate-500">Documentos vencidos o próximos a vencer</span>
 <div class="w-9 h-9 rounded-lg bg-red-50 text-[#C62828] flex items-center justify-center">
 <span class="material-symbols-outlined text-xl"><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-[#C62828]" id="metric-docs-atencion">7</div>
+<div class="text-display-metric font-display-metric text-[#C62828]" id="metric-docs-atencion">0</div>
 <div class="mt-1 flex items-center gap-1 text-body-sm font-body-sm text-[#C62828]">
-<span class="material-symbols-outlined text-base">error</span>
-<span class="font-medium">Requiere bloqueo temporal</span>
+<span class="font-medium">Estado calculado según fecha de vencimiento</span>
 </div>
 </div>
 </div>
-<!-- Card 4: Evaluaciones realizadas este mes -->
+<!-- Card 4: Incidentes abiertos -->
 <div class="bg-surface-container-lowest border border-slate-200 rounded-xl p-5 shadow-sm hover:border-slate-300 transition-all flex flex-col justify-between">
 <div class="flex items-center justify-between">
-<span class="text-label-md font-label-md text-slate-500">Evaluaciones realizadas</span>
+<span class="text-label-md font-label-md text-slate-500">Incidentes abiertos</span>
 <div class="w-9 h-9 rounded-lg bg-emerald-50 text-[#2E7D32] flex items-center justify-center">
 <span class="material-symbols-outlined text-xl"><br/></span>
 </div>
 </div>
 <div class="mt-4">
-<div class="text-display-metric font-display-metric text-slate-900" id="metric-incidentes-abiertos">24</div>
+<div class="text-display-metric font-display-metric text-slate-900" id="metric-incidentes-abiertos">0</div>
 <div class="mt-1 flex items-center gap-1.5 text-body-sm font-body-sm text-[#2E7D32]">
-<span class="material-symbols-outlined text-base font-bold">check_circle</span>
-<span class="font-semibold">+18% vs. mes anterior</span>
+<span class="font-semibold">Incidentes abiertos o en seguimiento</span>
 </div>
 </div>
 </div>
@@ -368,12 +332,11 @@
 <circle cx="60" cy="60" fill="transparent" r="48" stroke="#F9A825" id="risk-chart-medium" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
 <!-- Riesgo Bajo: 65.6% of 301.59 = 197.8 stroke, offset -103.7 -->
 <circle cx="60" cy="60" fill="transparent" r="48" stroke="#2E7D32" id="risk-chart-low" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
-<circle cx="60" cy="60" fill="transparent" r="48" stroke="#94A3B8" id="risk-chart-unknown" stroke-dasharray="0 301.59" stroke-dashoffset="0" stroke-linecap="round" stroke-width="16"></circle>
 </svg>
 <!-- Center Metric -->
 <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
 <span id="risk-total" class="text-display-metric font-display-metric text-slate-800 leading-none">0</span>
-<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-1">Activos</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mt-1">Evaluados</span>
 </div>
 </div>
 <!-- Legend & Proportional Progress Rows -->
@@ -429,89 +392,9 @@
 <div id="risk-high-bar" class="bg-[#C62828] h-2 rounded-full" style="width: 0%"></div>
 </div>
 </div>
-<div id="risk-unknown-row">
-<div class="flex items-center justify-between text-body-sm font-body-sm mb-1.5">
-<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-slate-400"></span><span class="font-semibold text-slate-800">Sin evaluar</span></div>
-<div class="text-right"><span id="risk-unknown-count" class="font-bold text-slate-900">0 proveedores</span><span id="risk-unknown-percent" class="text-xs text-slate-500 ml-1.5">(0%)</span></div>
-</div>
-<div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden"><div id="risk-unknown-bar" class="bg-slate-400 h-2 rounded-full" style="width:0%"></div></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<!-- Nota metodológica de la matriz de riesgo -->
-<div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-<span class="text-body-sm font-body-sm text-slate-500">Cálculo diario basado en incidentes, vigencias y certificaciones ISO/RNT.</span>
-</div>
-</div>
-<!-- Columna Derecha: Alertas Recientes (5 de 12 col = ~40%) -->
-<div class="lg:col-span-5 bg-surface-container-lowest border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
-<div>
-<div class="flex items-center justify-between pb-4 border-b border-slate-100">
-<div>
-<h2 class="text-headline-sm font-headline-sm text-slate-900">Alertas recientes</h2>
-<p class="text-body-sm font-body-sm text-slate-500">Incidentes y vencimientos prioritarios</p>
-</div>
-<span class="w-2.5 h-2.5 rounded-full bg-[#C62828] animate-pulse"></span>
-</div>
-<!-- Alert Cards Container -->
-<div class="py-4 space-y-3">
-<!-- Alerta 1: Póliza (Amarillo #F9A825) -->
-<div class="p-3.5 rounded-lg bg-[#FFF8E1] border-l-4 border-[#F9A825] border border-amber-200/60 shadow-xs flex items-start gap-3">
-<span class="material-symbols-outlined text-[#7A5300] text-xl flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">warning</span>
-<div class="min-w-0 flex-1">
-<div class="flex items-center justify-between">
-<h3 class="text-label-md font-label-md font-bold text-[#7A5300] leading-snug">Póliza de Transporte Andino próxima a vencer</h3>
-</div>
-<p class="text-body-sm font-body-sm text-[#5D4037] mt-0.5">Vence en 5 días · Categoría: Transporte</p>
-<div class="mt-2 flex items-center gap-2">
-<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-white/80 text-[#7A5300] border border-amber-300/40">
-                    ● Próximo a vencer
-                  </span>
-<a class="text-xs font-bold text-[#7A5300] hover:underline ml-auto" href="#">Revisar póliza →</a>
-</div>
-</div>
-</div>
-<!-- Alerta 2: Incidente (Rojo #C62828) -->
-<div class="p-3.5 rounded-lg bg-[#FFEBEE] border-l-4 border-[#C62828] border border-red-200/60 shadow-xs flex items-start gap-3">
-<span class="material-symbols-outlined text-[#C62828] text-xl flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">report</span>
-<div class="min-w-0 flex-1">
-<div class="flex items-center justify-between">
-<h3 class="text-label-md font-label-md font-bold text-[#B71C1C] leading-snug">Nuevo incidente registrado para Viajes XYZ</h3>
-</div>
-<p class="text-body-sm font-body-sm text-[#7F1D1D] mt-0.5">Reporte de retraso no justificado en tour · Operador turístico</p>
-<div class="mt-2 flex items-center gap-2">
-<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-white/80 text-[#B71C1C] border border-red-300/40">
-                    ● Riesgo alto
-                  </span>
-<a class="text-xs font-bold text-[#C62828] hover:underline ml-auto" href="#">Abrir bitácora →</a>
-</div>
-</div>
-</div>
-<!-- Alerta 3: Evaluación (Azul #1565C0) -->
-<div class="p-3.5 rounded-lg bg-[#E3F2FD] border-l-4 border-[#1565C0] border border-blue-200/60 shadow-xs flex items-start gap-3">
-<span class="material-symbols-outlined text-[#0D47A1] text-xl flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">assignment</span>
-<div class="min-w-0 flex-1">
-<div class="flex items-center justify-between">
-<h3 class="text-label-md font-label-md font-bold text-[#0D47A1] leading-snug">Evaluación pendiente de Hotel Colonial</h3>
-</div>
-<p class="text-body-sm font-body-sm text-[#1E3A8A] mt-0.5">Programada para revisión semestral · Hotel</p>
-<div class="mt-2 flex items-center gap-2">
-<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-white/80 text-[#0D47A1] border border-blue-300/40">
-                    ● En Auditoría
-                  </span>
-<a class="text-xs font-bold text-[#1565C0] hover:underline ml-auto" href="#">Iniciar auditoría →</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="pt-3 border-t border-slate-100 text-center">
-<a class="inline-flex items-center gap-1 text-label-md font-label-md font-semibold text-[#1565C0] hover:text-[#0D47A1] transition-colors" href="#">
-<span class="">Ver todas las alertas (14)</span>
-<span class="material-symbols-outlined text-sm">open_in_new</span>
-</a>
 </div>
 </div>
 </section>
@@ -524,22 +407,11 @@
 <div>
 <div class="flex items-center gap-2">
 <h2 class="text-headline-sm font-headline-sm text-slate-900">Proveedores que requieren atención</h2>
-<span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-[#7A5300]">(12 identificados)</span>
+
 </div>
 <p class="text-body-sm font-body-sm text-slate-500 mt-0.5">Entidades con desviaciones documentales o incremento de riesgo crítico</p>
 </div>
-<!-- Table Filters & Fast Search -->
-<div class="flex items-center gap-3">
-<div class="relative w-64">
-<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-<span class="material-symbols-outlined text-lg">filter_alt</span>
-</span>
-<input class="w-full pl-9 pr-3 py-1.5 bg-[#F8FAFC] border border-slate-300 rounded-lg text-body-sm font-body-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#1565C0] focus:ring-1 focus:ring-blue-200" placeholder="Filtrar en esta tabla..." type="text"/>
-</div>
-<button class="p-2 border border-slate-300 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" title="Exportar CSV" type="button">
-<span class="material-symbols-outlined text-lg">download</span>
-</button>
-</div>
+<div class="flex items-center gap-2 text-sm text-slate-600"><span id="atencion-total-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-[#7A5300]">0 identificados</span></div>
 </div>
 <!-- Data Table Responsive Wrapper -->
 <div class="overflow-x-auto">
@@ -549,192 +421,18 @@
 <th class="py-3 px-5" scope="col">Proveedor</th>
 <th class="py-3 px-5" scope="col">Categoría</th>
 <th class="py-3 px-5" scope="col">Cobertura</th>
-<th class="py-3 px-5" scope="col">Nivel de Riesgo (IA)</th>
+<th class="py-3 px-5" scope="col">Nivel de riesgo calculado</th>
 <th class="py-3 px-5" scope="col">Estado Documental</th>
 <th class="py-3 px-5 text-right" scope="col">Acciones</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-slate-200 text-table-cell font-table-cell text-slate-800" id="tabla-atencion-tbody">
-<!-- FILA 1: Viajes XYZ -->
-<tr class="hover:bg-[#F1F5F9] transition-colors">
-<td class="py-3.5 px-5 font-semibold text-slate-900">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-red-100 text-[#C62828] font-bold flex items-center justify-center text-xs flex-shrink-0">
-                    XYZ
-                  </div>
-<div>
-<div class="font-bold text-slate-900 leading-snug">Viajes XYZ</div>
-<div class="text-xs text-slate-400 font-mono">NIT: 900.824.112-4</div>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-5 text-slate-700">Operador turístico</td>
-<td class="py-3.5 px-5">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">
-                  Nacional
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Riesgo alto (Rojo #C62828 / #FFEBEE) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#C62828]"></span>
-                  ● Riesgo alto
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Vencido (Rojo #C62828 / #FFEBEE) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#C62828]"></span>
-                  ● Vencido
-                </span>
-</td>
-<td class="py-3.5 px-5 text-right">
-<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs transition-colors" onclick="openDrawer('Viajes XYZ', 'Operador turístico', 'Nacional', 'Riesgo alto', 'Vencido')" type="button">
-<span class="">Ver detalles</span>
-<span class="material-symbols-outlined text-sm">visibility</span>
-</button>
-</td>
-</tr>
-<!-- FILA 2: Transporte Andino -->
-<tr class="hover:bg-[#F1F5F9] transition-colors">
-<td class="py-3.5 px-5 font-semibold text-slate-900">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-amber-100 text-[#7A5300] font-bold flex items-center justify-center text-xs flex-shrink-0">
-                    TAN
-                  </div>
-<div>
-<div class="font-bold text-slate-900 leading-snug">Transporte Andino</div>
-<div class="text-xs text-slate-400 font-mono">NIT: 811.042.890-1</div>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-5 text-slate-700">Transporte</td>
-<td class="py-3.5 px-5">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">
-                  Antioquia
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Riesgo medio (Amarillo #F9A825 / #FFF8E1 / #7A5300) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#7A5300]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>
-                  ● Riesgo medio
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Próximo a vencer (Amarillo) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#7A5300]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>
-                  ● Próximo a vencer
-                </span>
-</td>
-<td class="py-3.5 px-5 text-right">
-<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs transition-colors" onclick="openDrawer('Transporte Andino', 'Transporte', 'Antioquia', 'Riesgo medio', 'Próximo a vencer')" type="button">
-<span class="">Ver detalles</span>
-<span class="material-symbols-outlined text-sm">visibility</span>
-</button>
-</td>
-</tr>
-<!-- FILA 3: Hotel Colonial -->
-<tr class="hover:bg-[#F1F5F9] transition-colors">
-<td class="py-3.5 px-5 font-semibold text-slate-900">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-blue-100 text-[#1565C0] font-bold flex items-center justify-center text-xs flex-shrink-0">
-                    HCO
-                  </div>
-<div>
-<div class="font-bold text-slate-900 leading-snug">Hotel Colonial</div>
-<div class="text-xs text-slate-400 font-mono">NIT: 890.301.765-9</div>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-5 text-slate-700">Hotel</td>
-<td class="py-3.5 px-5">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">
-                  Cartagena
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Riesgo medio (Amarillo) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#7A5300]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>
-                  ● Riesgo medio
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Vigente (Verde #2E7D32 / #E8F5E9) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
-                  ● Vigente
-                </span>
-</td>
-<td class="py-3.5 px-5 text-right">
-<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs transition-colors" onclick="openDrawer('Hotel Colonial', 'Hotel', 'Cartagena', 'Riesgo medio', 'Vigente')" type="button">
-<span class="">Ver detalles</span>
-<span class="material-symbols-outlined text-sm">visibility</span>
-</button>
-</td>
-</tr>
-<!-- FILA 4: AeroCaribe Express -->
-<tr class="hover:bg-[#F1F5F9] transition-colors">
-<td class="py-3.5 px-5 font-semibold text-slate-900">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-emerald-100 text-[#2E7D32] font-bold flex items-center justify-center text-xs flex-shrink-0">
-                    ACE
-                  </div>
-<div>
-<div class="font-bold text-slate-900 leading-snug">AeroCaribe Express</div>
-<div class="text-xs text-slate-400 font-mono">NIT: 901.442.100-3</div>
-</div>
-</div>
-</td>
-<td class="py-3.5 px-5 text-slate-700">Aerolínea</td>
-<td class="py-3.5 px-5">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">
-                  Regional
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Riesgo bajo (Verde #2E7D32 / #E8F5E9) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
-                  ● Riesgo bajo
-                </span>
-</td>
-<td class="py-3.5 px-5">
-<!-- Badge: ● Vigente (Verde #2E7D32 / #E8F5E9) -->
-<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
-                  ● Vigente
-                </span>
-</td>
-<td class="py-3.5 px-5 text-right">
-<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs transition-colors" onclick="openDrawer('AeroCaribe Express', 'Aerolínea', 'Regional', 'Riesgo bajo', 'Vigente')" type="button">
-<span class="">Ver detalles</span>
-<span class="material-symbols-outlined text-sm">visibility</span>
-</button>
-</td>
-</tr>
-</tbody>
+<tbody class="divide-y divide-slate-200 text-table-cell font-table-cell text-slate-800" id="tabla-atencion-tbody"><tr><td colspan="6" class="py-8 text-center text-slate-500">Cargando proveedores que requieren atención…</td></tr></tbody>
 </table>
 </div>
-<!-- Table Sticky / Clean Footer with Pagination -->
+<!-- Paginación funcional de proveedores que requieren atención -->
 <div class="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-body-sm font-body-sm text-slate-600">
-<div class="">
-          Mostrando <span class="font-bold text-slate-800">1 a 4</span> de <span class="font-bold text-slate-800">12</span> proveedores
-        </div>
-<div class="flex items-center gap-1">
-<button class="px-3 py-1.5 rounded border border-slate-300 bg-white text-slate-400 cursor-not-allowed text-xs font-medium flex items-center gap-1" disabled="" type="button">
-<span class="material-symbols-outlined text-sm">chevron_left</span>
-<span class="">Anterior</span>
-</button>
-<button class="px-3 py-1.5 rounded border border-[#1565C0] bg-[#1565C0] text-white text-xs font-semibold" type="button">1</button>
-<button class="px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold" type="button">2</button>
-<button class="px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold" type="button">3</button>
-<button class="px-3 py-1.5 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1" type="button">
-<span class="">Siguiente</span>
-<span class="material-symbols-outlined text-sm">chevron_right</span>
-</button>
+  <div id="atencion-paginacion-resumen">Cargando proveedores…</div>
+  <div id="atencion-paginacion-controles" class="flex items-center gap-1"></div>
 </div>
 </div>
 </section>
@@ -854,15 +552,15 @@
 <span class="material-symbols-outlined text-xl">close</span>
 </button>
 </div>
-<h3 class="text-headline-md font-headline-md text-slate-900 mt-2 font-bold leading-tight" id="drawer-provider-name">Viajes XYZ</h3>
-<p class="text-body-sm font-body-sm text-slate-500" id="drawer-provider-category">Operador turístico · Cobertura Nacional</p>
+<h3 class="text-headline-md font-headline-md text-slate-900 mt-2 font-bold leading-tight" id="drawer-provider-name">Proveedor</h3>
+<p class="text-body-sm font-body-sm text-slate-500" id="drawer-provider-category">Información del proveedor</p>
 <!-- Current Badges -->
 <div class="mt-3 flex items-center gap-2">
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]" id="drawer-risk-badge">
-            ● Riesgo alto
+            Sin evaluar
           </span>
 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]" id="drawer-doc-badge">
-            ● Vencido
+            Sin documentos
           </span>
 </div>
 </div>
@@ -1038,38 +736,29 @@
     }
 
     await cargarDatosDashboard();
-    // Mantener la matriz y los indicadores sincronizados si se agregan o actualizan proveedores.
-    window.setInterval(() => {
-      if (!document.hidden) cargarDatosDashboard();
-    }, 60000);
+    // Sincronización moderada y no intrusiva: se pausa mientras se edita o guarda.
+    if (window.TurisProSync) window.__turisproStopDashboardSync = TurisProSync.start(cargarDatosDashboard, 60000);
   });
 
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && window.TurisProAPI && TurisProAPI.isAuthenticated()) {
-      cargarDatosDashboard();
-    }
-  });
 
+  let proveedoresAtencionActuales = [];
+  let paginaAtencion = 1;
+  const elementosPorPaginaAtencion = 5;
 
   function actualizarMatrizRiesgo(datos) {
-    const total = Number(datos.total ?? ((datos.BAJO || 0) + (datos.MEDIO || 0) + (datos.ALTO || 0) + (datos.SIN_DATOS || 0)));
-    const categorias = [
-      { key: 'BAJO', slug: 'low', color: '#2E7D32' },
-      { key: 'MEDIO', slug: 'medium', color: '#F9A825' },
-      { key: 'ALTO', slug: 'high', color: '#C62828' },
-      { key: 'SIN_DATOS', slug: 'unknown', color: '#94A3B8' }
-    ];
-    const circumference = 2 * Math.PI * 48;
+    // El gráfico representa únicamente proveedores con clasificación de riesgo.
+    // Los registros sin datos no se dibujan ni generan un segmento gris.
+    const totalActivos = Number(datos.total || 0);
+    const totalEvaluados = Number(datos.BAJO || 0) + Number(datos.MEDIO || 0) + Number(datos.ALTO || 0);
+    const categorias = [{key:'BAJO',slug:'low'},{key:'MEDIO',slug:'medium'},{key:'ALTO',slug:'high'}];
+    const circ = 2 * Math.PI * 48;
     let offset = 0;
     categorias.forEach(cat => {
       const count = Number(datos[cat.key] || 0);
-      const percent = total ? (count / total) * 100 : 0;
-      const length = circumference * percent / 100;
+      const percent = totalEvaluados ? count / totalEvaluados * 100 : 0;
+      const length = circ * percent / 100;
       const circle = document.getElementById(`risk-chart-${cat.slug}`);
-      if (circle) {
-        circle.setAttribute('stroke-dasharray', `${length} ${circumference - length}`);
-        circle.setAttribute('stroke-dashoffset', `${-offset}`);
-      }
+      if (circle) { circle.setAttribute('stroke-dasharray', `${length} ${circ-length}`); circle.setAttribute('stroke-dashoffset', `${-offset}`); }
       offset += length;
       const countEl = document.getElementById(`risk-${cat.slug}-count`);
       const percentEl = document.getElementById(`risk-${cat.slug}-percent`);
@@ -1078,77 +767,78 @@
       if (percentEl) percentEl.textContent = `(${percent.toFixed(1)}%)`;
       if (bar) bar.style.width = `${percent}%`;
     });
-    const totalEl = document.getElementById('risk-total');
-    if (totalEl) totalEl.textContent = total;
-    const subtitleTotal = document.getElementById('risk-subtitle-total');
-    if (subtitleTotal) subtitleTotal.textContent = total;
-    const unknownRow = document.getElementById('risk-unknown-row');
-    if (unknownRow) unknownRow.style.display = Number(datos.SIN_DATOS || 0) > 0 ? '' : 'none';
+    document.getElementById('risk-total').textContent = totalEvaluados;
+    document.getElementById('risk-subtitle-total').textContent = totalActivos;
   }
 
+  function escapeDashboard(value) {
+    return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function pintarPaginacionAtencion(total) {
+    const controles = document.getElementById('atencion-paginacion-controles');
+    const resumen = document.getElementById('atencion-paginacion-resumen');
+    const paginas = Math.max(1, Math.ceil(total / elementosPorPaginaAtencion));
+    paginaAtencion = Math.min(paginaAtencion, paginas);
+    const desde = total ? (paginaAtencion-1)*elementosPorPaginaAtencion+1 : 0;
+    const hasta = Math.min(paginaAtencion*elementosPorPaginaAtencion,total);
+    if (resumen) resumen.textContent = `Mostrando ${desde} a ${hasta} de ${total} proveedores`;
+    if (!controles) return;
+    controles.innerHTML = `<button type="button" data-page="${paginaAtencion-1}" ${paginaAtencion===1?'disabled':''} class="px-3 py-1.5 rounded border text-xs ${paginaAtencion===1?'text-slate-400':'hover:bg-white'}">Anterior</button>` +
+      Array.from({length:paginas},(_,i)=>`<button type="button" data-page="${i+1}" class="px-3 py-1.5 rounded border text-xs ${paginaAtencion===i+1?'bg-[#1565C0] text-white border-[#1565C0]':'hover:bg-white'}">${i+1}</button>`).join('') +
+      `<button type="button" data-page="${paginaAtencion+1}" ${paginaAtencion===paginas?'disabled':''} class="px-3 py-1.5 rounded border text-xs ${paginaAtencion===paginas?'text-slate-400':'hover:bg-white'}">Siguiente</button>`;
+    controles.querySelectorAll('button[data-page]').forEach(btn => btn.addEventListener('click', () => {
+      const next = Number(btn.dataset.page);
+      if (next >= 1 && next <= paginas) { paginaAtencion = next; pintarTablaAtencion(); }
+    }));
+  }
+
+  function pintarTablaAtencion() {
+    const tbody = document.getElementById('tabla-atencion-tbody');
+    const lista = proveedoresAtencionActuales;
+    const inicio = (paginaAtencion-1)*elementosPorPaginaAtencion;
+    const visibles = lista.slice(inicio,inicio+elementosPorPaginaAtencion);
+    const badge = document.getElementById('atencion-total-badge');
+    if (badge) badge.textContent = `${lista.length} identificados`;
+    if (!lista.length) {
+      tbody.innerHTML = '<tr><td colspan="6" class="py-8 text-center text-slate-500">No hay proveedores que requieran atención actualmente.</td></tr>';
+      pintarPaginacionAtencion(0); return;
+    }
+    tbody.innerHTML = visibles.map(item => {
+      const risk = ({ALTO:'bg-[#FFEBEE] text-[#B71C1C]',MEDIO:'bg-[#FFF8E1] text-[#7A5300]',BAJO:'bg-[#E8F5E9] text-[#1B5E20]',SIN_DATOS:'bg-slate-100 text-slate-600'})[item.nivelRiesgo] || 'bg-slate-100 text-slate-600';
+      const docs = ({VENCIDO:'Vencido',POR_VENCER:'Próximo a vencer',VIGENTE:'Vigente',SIN_DOCUMENTOS:'Sin documentos'})[item.estadoDocumental] || 'Sin documentos';
+      const docStyle = item.estadoDocumental==='VENCIDO'?'bg-[#FFEBEE] text-[#B71C1C]':item.estadoDocumental==='POR_VENCER'?'bg-[#FFF8E1] text-[#7A5300]':'bg-[#E8F5E9] text-[#1B5E20]';
+      const tieneIncidente = Boolean(item.incidenteId);
+      const destino = tieneIncidente
+        ? `../providers/hotel-los-andes/incidents.html?id=${encodeURIComponent(item.idProveedor)}&incidenteId=${encodeURIComponent(item.incidenteId)}`
+        : `../providers/hotel-los-andes/detail.html?id=${encodeURIComponent(item.idProveedor)}`;
+      const accion = tieneIncidente ? 'Ver incidencia' : 'Ver ficha';
+      return `<tr class="hover:bg-[#F1F5F9]"><td class="py-3.5 px-5"><div class="font-bold text-slate-900">${escapeDashboard(item.razonSocial)}</div><div class="text-xs text-slate-400">NIT: ${escapeDashboard(item.nit||'No registrado')} · ID #${item.idProveedor}</div></td><td class="py-3.5 px-5">${escapeDashboard(item.tipo)}</td><td class="py-3.5 px-5 text-sm">${escapeDashboard(item.cobertura)}</td><td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${risk}">${escapeDashboard(item.nivelRiesgo)}</span><div class="text-xs text-slate-500 mt-1">${item.puntajeRiesgo==null?'Sin puntaje':item.puntajeRiesgo+'/100'}</div></td><td class="py-3.5 px-5"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${docStyle}">${docs}</span><div class="text-xs text-slate-500 mt-1">${escapeDashboard((item.motivosAtencion||[]).join(' · '))}</div></td><td class="py-3.5 px-5 text-right"><a href="${destino}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs">${accion} <span class="material-symbols-outlined text-sm">${tieneIncidente?'report':'visibility'}</span></a></td></tr>`;
+    }).join('');
+    pintarPaginacionAtencion(lista.length);
+  }
+
+  let dashboardRequestInProgress = false;
   async function cargarDatosDashboard() {
+    if (dashboardRequestInProgress) return;
+    dashboardRequestInProgress = true;
     try {
       const resp = await TurisProAPI.getDashboard();
-      if (!resp || !resp.indicadores) return;
-
+      if (!resp || !resp.indicadores) throw new Error('La API no devolvió indicadores.');
       const ind = resp.indicadores;
-      actualizarMatrizRiesgo(resp.matrizRiesgo || { BAJO: 0, MEDIO: 0, ALTO: 0, SIN_DATOS: 0, total: 0 });
-      const elActivos = document.getElementById('metric-proveedores-activos');
-      const elRiesgoAlto = document.getElementById('metric-riesgo-alto');
-      const elDocs = document.getElementById('metric-docs-atencion');
-      const elIncs = document.getElementById('metric-incidentes-abiertos');
-
-      if (elActivos) elActivos.textContent = ind.proveedoresActivos;
-      if (elRiesgoAlto) elRiesgoAlto.textContent = ind.proveedoresRiesgoAlto;
-      if (elDocs) elDocs.textContent = ind.documentosAtencion;
-      if (elIncs) elIncs.textContent = ind.incidentesAbiertos;
-
-      // Renderizar tabla de atención prioritaria
-      const tbody = document.getElementById('tabla-atencion-tbody');
-      if (tbody && Array.isArray(resp.tablaAtencion) && resp.tablaAtencion.length > 0) {
-        tbody.innerHTML = '';
-        resp.tablaAtencion.forEach(item => {
-          const tr = document.createElement('tr');
-          tr.className = 'hover:bg-[#F1F5F9] transition-colors';
-
-          const badgeRiesgo = item.nivelRiesgo === 'ALTO'
-            ? '<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFEBEE] text-[#B71C1C]"><span class="w-1.5 h-1.5 rounded-full bg-[#C62828]"></span>● Riesgo alto</span>'
-            : '<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#FFF8E1] text-[#7A5300]"><span class="w-1.5 h-1.5 rounded-full bg-[#F9A825]"></span>● ' + (item.nivelRiesgo || 'Medio') + '</span>';
-
-          const motivos = (item.motivosAtencion || []).join('; ') || 'Atención requerida';
-
-          tr.innerHTML = `
-            <td class="py-3.5 px-5 font-semibold text-slate-900">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-red-100 text-[#C62828] font-bold flex items-center justify-center text-xs flex-shrink-0">
-                  ${item.razonSocial.substring(0, 3).toUpperCase()}
-                </div>
-                <div>
-                  <div class="font-bold text-slate-900 leading-snug">${item.razonSocial}</div>
-                  <div class="text-xs text-slate-400 font-mono">ID: #${item.idProveedor}</div>
-                </div>
-              </div>
-            </td>
-            <td class="py-3.5 px-5 text-slate-700">${item.tipo}</td>
-            <td class="py-3.5 px-5">
-              <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">
-                ${item.motivosAtencion?.[0] || 'Atención'}
-              </span>
-            </td>
-            <td class="py-3.5 px-5">${badgeRiesgo}</td>
-            <td class="py-3.5 px-5 text-xs text-slate-600">${motivos}</td>
-            <td class="py-3.5 px-5 text-right">
-              <a href="../providers/hotel-los-andes/detail.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs transition-colors">
-                <span>Ver ficha</span>
-                <span class="material-symbols-outlined text-sm">visibility</span>
-              </a>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
-    } catch (err) {
-      console.warn('No se pudo conectar con la API de Dashboard:', err);
+      actualizarMatrizRiesgo(resp.matrizRiesgo || {BAJO:0,MEDIO:0,ALTO:0,SIN_DATOS:0,total:0});
+      document.getElementById('metric-proveedores-activos').textContent = ind.proveedoresActivos ?? 0;
+      document.getElementById('metric-riesgo-alto').textContent = ind.proveedoresRiesgoAlto ?? 0;
+      document.getElementById('metric-docs-atencion').textContent = ind.documentosAtencion ?? 0;
+      document.getElementById('metric-incidentes-abiertos').textContent = ind.incidentesAbiertos ?? 0;
+      proveedoresAtencionActuales = resp.tablaAtencion || [];
+      paginaAtencion = 1;
+      pintarTablaAtencion();
+    } catch (error) {
+      console.error('Error cargando dashboard:',error);
+      document.getElementById('tabla-atencion-tbody').innerHTML = '<tr><td colspan="6" class="py-8 text-center text-red-600">No se pudieron cargar los proveedores.</td></tr>';
+    } finally {
+      dashboardRequestInProgress = false;
     }
   }
 

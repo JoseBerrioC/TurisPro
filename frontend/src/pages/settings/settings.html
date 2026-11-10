@@ -3,7 +3,7 @@
 <html class="h-full bg-background" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>TurisPro - Configuración del sistema</title>
+<title>TurisPro - Configuración</title>
 <!-- Google Fonts: Inter -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -301,26 +301,14 @@
 <div class="flex items-center gap-5">
 <!-- Current Date Indicator -->
 <!-- Trailing Action Button from JSON -->
-<!-- Trailing Icon Actions: notifications, help_outline -->
-<div class="flex items-center gap-1 border-l border-outline-variant/50 pl-4">
-<!-- Notifications with badge -->
-<button class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" title="Notificaciones">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
-</button>
-<!-- Help & Support -->
-<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" title="Ayuda y documentación">
-<span class="material-symbols-outlined">help_outline</span>
-</button>
-</div>
 <!-- User Profile Thumbnail -->
 <div class="flex items-center gap-3 pl-3 border-l border-outline-variant/50">
 <div class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-headline-sm font-bold text-sm ring-2 ring-primary-container/20">
-          CM
+          <span id="settings-avatar-initials">AD</span>
         </div>
 <div class="hidden md:flex flex-col text-left">
-<span class="font-label-md text-label-md text-on-surface leading-tight font-semibold">Carlos Mendoza</span>
-<span class="font-body-sm text-body-sm text-outline">carlos.mendoza@turispro.com</span>
+<span id="settings-header-name" class="font-label-md text-label-md text-on-surface leading-tight font-semibold">Administrador</span>
+<span id="settings-header-email" class="font-body-sm text-body-sm text-outline"> </span>
 </div>
 </div>
 </div>
@@ -330,37 +318,12 @@
 <!-- ========================================================= -->
 <main class="ml-64 mt-16 flex-1 h-[calc(100vh-4rem)] overflow-y-auto custom-scroll bg-surface p-8">
 <div class="max-w-7xl mx-auto space-y-6">
-<!-- Breadcrumb & Header Title Area -->
-<div class="settings-intro flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-2">
-<div>
-<!-- Breadcrumb -->
-<nav class="flex items-center gap-2 font-body-sm text-body-sm text-outline mb-1">
-<a class="hover:text-primary transition-colors" href="../dashboard/dashboard.html">Inicio</a>
-<span class="material-symbols-outlined text-[14px]">chevron_right</span>
-<span class="text-on-surface font-medium">Configuración del sistema</span>
-</nav>
-<!-- Page Headline -->
-<div class="flex items-center gap-3">
-<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
-              Configuración del sistema
-            </h1>
-<!-- Institutional Badge -->
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold bg-surface-container text-primary border border-primary-fixed">
-<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">shield_person</span>
-              Rol: Administrador del sistema
-            </span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">
-            Gestiona tus preferencias de cuenta, seguridad corporativa, alertas normativas y administración de accesos del equipo.
-          </p>
-</div>
-<!-- Quick Top Actions -->
-<div class="settings-actions flex items-center gap-3">
-<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-outline-variant/60 bg-surface-container-lowest font-body-md text-body-md text-on-surface hover:bg-surface-container-low hover:border-primary transition-all shadow-xs">
-<span class="material-symbols-outlined text-[18px]">history</span>
-<span>Registro de actividad</span>
-</button>
-</div>
+<!-- Rol del usuario actual -->
+<div class="flex justify-end pb-2">
+  <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-primary-fixed text-primary shadow-sm font-label-md text-label-md font-semibold">
+    <span class="material-symbols-outlined text-[18px]">shield_person</span>
+    Rol: Administrador del sistema
+  </span>
 </div>
 <!-- Main Layout: Vertical Tabs Navigation + Dynamic Section Panels -->
 <div class="settings-layout grid grid-cols-12 gap-8 items-start">
@@ -383,7 +346,7 @@
 <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">lock_reset</span>
 <span class="font-medium">Seguridad</span>
 </div>
-<span class="font-label-code text-label-code text-outline px-1.5 py-0.5 rounded bg-surface-container-low">2FA</span>
+
 </button>
 <!-- Tab: Notificaciones -->
 <button class="tab-button w-full flex items-center justify-between px-3.5 py-3 rounded-xl font-body-md text-body-md text-on-surface-variant hover:bg-surface-container-low transition-colors text-left group" onclick="switchTab('tab-notificaciones', this)">
@@ -393,26 +356,6 @@
 </div>
 <span class="w-2 h-2 rounded-full bg-primary-container"></span>
 </button>
-<!-- Tab: Usuarios (ACTIVE DEFAULT) -->
-<button class="tab-button active w-full flex items-center justify-between px-3.5 py-3 rounded-xl font-body-md text-body-md bg-surface-container text-primary border-l-4 border-primary font-semibold text-left shadow-xs" onclick="switchTab('tab-usuarios', this)">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">manage_accounts</span>
-<span>Usuarios</span>
-</div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-primary font-semibold">
-                Solo Admin
-              </span>
-</button>
-<!-- Internal System Meta Info -->
-<div class="settings-meta pt-4 mt-3 border-t border-outline-variant/40 px-3 pb-2 text-outline">
-<div class="flex items-center justify-between text-label-code font-label-code mb-1">
-<span>Versión SaaS</span>
-<span class="font-semibold text-on-surface">v3.4.12 Enterprise</span>
-</div>
-<div class="flex items-center justify-between text-label-code font-label-code">
-<span>Norma técnica</span>
-<span class="font-semibold text-primary">ISO 31000 / 27001</span>
-</div>
 </div>
 </div>
 </div>
@@ -421,303 +364,50 @@
 <!-- ========================================================= -->
 <div class="settings-content col-span-12 lg:col-span-9 space-y-6">
 <!-- ------------------------------------------------------- -->
-<!-- PANEL A: USUARIOS Y PERMISOS (SELECTED BY DEFAULT)      -->
-<!-- ------------------------------------------------------- -->
-<section class="tab-panel bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-xs overflow-hidden" id="tab-usuarios">
-<!-- Section Header -->
-<div class="p-6 border-b border-outline-variant/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-bright">
-<div>
-<div class="flex items-center gap-2">
-<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Usuarios y permisos</h2>
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-primary font-semibold">
-                    3 Miembros activos
-                  </span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                  Administra los miembros de compras, auditores y gestores con acceso a TurisPro.
-                </p>
-</div>
-<button class="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold shadow-sm transition-all" onclick="openModal()">
-<span class="material-symbols-outlined text-[20px]">add</span>
-<span>+ Crear usuario</span>
-</button>
-</div>
-<!-- Filters & Search Toolbar -->
-<div class="p-4 border-b border-outline-variant/50 bg-surface-container-low flex flex-col md:flex-row gap-3 items-center justify-between">
-<!-- Search inside users -->
-
-<!-- Filter pills -->
-<div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-<span class="font-label-sm text-label-sm text-outline font-semibold uppercase">Filtrar:</span>
-<button class="px-3 py-1 rounded-xl text-xs font-label-md font-semibold bg-primary-container text-on-primary">Todos</button>
-<button class="px-3 py-1 rounded-xl text-xs font-label-md font-semibold bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/60">Administradores</button>
-<button class="px-3 py-1 rounded-xl text-xs font-label-md font-semibold bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/60">Gestores</button>
-<button class="px-3 py-1 rounded-xl text-xs font-label-md font-semibold bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container border border-outline-variant/60">Evaluadores</button>
-</div>
-</div>
-<!-- Table of Users -->
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low border-b border-outline-variant/50">
-<th class="px-6 py-3.5 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Nombre</th>
-<th class="px-6 py-3.5 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Correo electrónico</th>
-<th class="px-6 py-3.5 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Rol asignado</th>
-<th class="px-6 py-3.5 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Estado</th>
-<th class="px-6 py-3.5 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Último acceso</th>
-<th class="px-6 py-3.5 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider text-right">Acciones</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant/40 font-table-cell text-table-cell">
-<!-- Row 1: Ana Torres -->
-<tr class="hover:bg-surface-container-low/70 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-full bg-primary-fixed text-primary font-headline-sm font-bold flex items-center justify-center text-sm shadow-xs">
-                          AT
-                        </div>
-<div>
-<div class="font-label-md text-label-md text-on-surface font-semibold">Ana Torres</div>
-<div class="font-body-sm text-body-sm text-outline">ID: TUR-0914</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant font-label-code">
-                      ana.torres@turispro.com
-                    </td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed text-primary font-semibold">
-<span class="material-symbols-outlined text-[14px]">shield</span>
-                        Administrador
-                      </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
-                        Activo
-                      </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant font-label-code text-xs">
-                      Hoy, 09:42
-                    </td>
-<td class="px-6 py-4 whitespace-nowrap text-right">
-<button class="inline-flex items-center gap-1 text-primary hover:text-primary-container font-label-md text-sm font-semibold px-2 py-1 rounded-xl hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined text-[16px]">edit</span>
-                        Editar
-                      </button>
-</td>
-</tr>
-<!-- Row 2: Andrés Molina -->
-<tr class="hover:bg-surface-container-low/70 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="w-9 h-9 rounded-full bg-surface-container-highest text-primary font-headline-sm font-bold flex items-center justify-center text-sm shadow-xs">
-                          AM
-                        </div>
-<div>
-<div class="font-label-md text-label-md text-on-surface font-semibold">Andrés Molina</div>
-<div class="font-body-sm text-body-sm text-outline">ID: TUR-1182</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant font-label-code">
-                      andres.molina@turispro.com
-                    </td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container text-primary font-semibold border border-primary-fixed">
-<span class="material-symbols-outlined text-[14px]">storefront</span>
-                        Gestor de proveedores
-                      </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
-                        Activo
-                      </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant font-label-code text-xs">
-                      Ayer, 16:15
-                    </td>
-<td class="px-6 py-4 whitespace-nowrap text-right">
-<button class="inline-flex items-center gap-1 text-primary hover:text-primary-container font-label-md text-sm font-semibold px-2 py-1 rounded-xl hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined text-[16px]">edit</span>
-                        Editar
-                      </button>
-</td>
-</tr>
-<!-- Row 3: Sofía Vargas -->
-<tr class="hover:bg-surface-container-low/70 transition-colors group">
-<td class="px-6 py-4 whitespace-nowrap">
-<div class="flex items-center gap-3">
-<div class="w-9 h-9 rounded-full bg-surface-container-high text-primary font-headline-sm font-bold flex items-center justify-center text-sm shadow-xs">
-                          SV
-                        </div>
-<div>
-<div class="font-label-md text-label-md text-on-surface font-semibold">Sofía Vargas</div>
-<div class="font-body-sm text-body-sm text-outline">ID: TUR-2041</div>
-</div>
-</div>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant font-label-code">
-                      sofia.vargas@turispro.com
-                    </td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant font-semibold">
-<span class="material-symbols-outlined text-[14px]">fact_check</span>
-                        Evaluador
-                      </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
-                        Activo
-                      </span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-on-surface-variant font-label-code text-xs">
-                      22/10/2024
-                    </td>
-<td class="px-6 py-4 whitespace-nowrap text-right">
-<button class="inline-flex items-center gap-1 text-primary hover:text-primary-container font-label-md text-sm font-semibold px-2 py-1 rounded-xl hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined text-[16px]">edit</span>
-                        Editar
-                      </button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Table Pagination & Counter -->
-<div class="p-4 border-t border-outline-variant/50 bg-surface-bright flex items-center justify-between">
-<span class="font-body-sm text-body-sm text-outline">
-                Mostrando <strong class="text-on-surface">3 de 3</strong> usuarios activos
-              </span>
-<div class="flex items-center gap-1">
-<button class="px-2.5 py-1 text-xs font-label-md rounded-xl border border-outline-variant/60 text-outline opacity-50 cursor-not-allowed" disabled="">Anterior</button>
-<button class="px-2.5 py-1 text-xs font-label-md rounded-xl bg-primary-container text-on-primary font-semibold">1</button>
-<button class="px-2.5 py-1 text-xs font-label-md rounded-xl border border-outline-variant/60 text-outline opacity-50 cursor-not-allowed" disabled="">Siguiente</button>
-</div>
-</div>
-</section>
-<!-- ------------------------------------------------------- -->
 <!-- PANEL B: PERFIL DE USUARIO                              -->
 <!-- ------------------------------------------------------- -->
 <section class="tab-panel bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-xs p-6 space-y-6 hidden" id="tab-perfil">
-<div class="border-b border-outline-variant/50 pb-4">
-<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Perfil corporativo</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                Información de contacto oficial del auditor o director de compras.
-              </p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<!-- Nombre -->
-<div>
-<label class="block font-label-md text-label-md text-on-surface mb-1">Nombre completo</label>
-<input class="w-full px-3.5 py-2.5 bg-surface-container-lowest border border-outline-variant/60 rounded-xl font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary-container/20" type="text" value="Carlos Mendoza"/>
-</div>
-<!-- Correo -->
-<div>
-<label class="block font-label-md text-label-md text-on-surface mb-1">Correo electrónico corporativo</label>
-<input class="w-full px-3.5 py-2.5 bg-surface-container-lowest border border-outline-variant/60 rounded-xl font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary-container/20" type="email" value="carlos.mendoza@turispro.com"/>
-</div>
-<!-- Rol con Bloqueo de solo lectura -->
-<div class="md:col-span-2">
-<div class="flex items-center justify-between mb-1">
-<label class="font-label-md text-label-md text-on-surface">Rol asignado en TurisPro</label>
-<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded border border-outline-variant/50">
-<span class="material-symbols-outlined text-[13px]">lock</span>
-                    Campo protegido
-                  </span>
-</div>
-<div class="relative">
-<input class="w-full px-3.5 py-2.5 bg-surface-container border border-outline-variant/60 rounded-xl font-body-md text-body-md text-outline cursor-not-allowed select-none" readonly="" type="text" value="Director de Compras &amp; Riesgo / Administrador"/>
-</div>
-<p class="font-body-sm text-body-sm text-outline mt-1.5 flex items-center gap-1">
-<span class="material-symbols-outlined text-[15px] text-primary">info</span>
-                  El rol solo puede ser modificado por el departamento de TI y gobernanza de la compañía.
-                </p>
-</div>
-</div>
-<div class="pt-4 border-t border-outline-variant/50 flex justify-end">
-<button class="px-5 py-2.5 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold transition-colors shadow-sm">
-                Guardar cambios de perfil
-              </button>
-</div>
+  <div class="border-b border-outline-variant/50 pb-4">
+    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Perfil corporativo</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Actualiza tu nombre y correo de acceso.</p>
+  </div>
+  <form id="settings-profile-form" class="space-y-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div>
+        <label for="profile-name" class="block font-label-md text-label-md text-on-surface mb-1">Nombre completo</label>
+        <input id="profile-name" name="nombre" required maxlength="100" class="w-full px-3.5 py-2.5 bg-white border border-outline-variant/60 rounded-xl font-body-md text-body-md" type="text" autocomplete="name" />
+      </div>
+      <div>
+        <label for="profile-email" class="block font-label-md text-label-md text-on-surface mb-1">Correo electrónico corporativo</label>
+        <input id="profile-email" name="correo" required maxlength="150" class="w-full px-3.5 py-2.5 bg-white border border-outline-variant/60 rounded-xl font-body-md text-body-md" type="email" autocomplete="email" />
+      </div>
+      <div class="md:col-span-2">
+        <label for="profile-role" class="block font-label-md text-label-md text-on-surface mb-1">Rol</label>
+        <input id="profile-role" readonly class="w-full px-3.5 py-2.5 bg-surface-container border border-outline-variant/60 rounded-xl font-body-md text-body-md text-outline" value="Administrador del sistema" />
+      </div>
+    </div>
+    <div class="pt-4 border-t border-outline-variant/50 flex justify-end">
+      <button type="submit" class="px-5 py-2.5 bg-primary-container hover:bg-primary text-white rounded-xl font-label-md text-label-md font-semibold shadow-sm">Guardar cambios de perfil</button>
+    </div>
+  </form>
 </section>
 <!-- ------------------------------------------------------- -->
 <!-- PANEL C: SEGURIDAD CORPORATIVA                          -->
 <!-- ------------------------------------------------------- -->
 <section class="tab-panel bg-surface-container-lowest rounded-xl border border-outline-variant/60 shadow-xs p-6 space-y-6 hidden" id="tab-seguridad">
-<div class="border-b border-outline-variant/50 pb-4">
-<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Seguridad y credenciales</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1">
-                Políticas de contraseña, rotación periódica y protocolos de acceso seguro conforme a ISO 27001.
-              </p>
-</div>
-<!-- Form: Cambiar Contraseña -->
-<div class="bg-surface-container-low/70 rounded-xl p-5 border border-outline-variant/50 space-y-4">
-<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">key</span>
-                Cambiar contraseña
-              </h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-<div>
-<label class="block font-label-md text-label-md text-on-surface mb-1">Contraseña actual</label>
-<input class="w-full px-3.5 py-2 bg-surface-container-lowest border border-outline-variant/60 rounded-xl font-body-md text-body-md" type="password" value="••••••••••••"/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface mb-1">Nueva contraseña</label>
-<input class="w-full px-3.5 py-2 bg-surface-container-lowest border border-outline-variant/60 rounded-xl font-body-md text-body-md" placeholder="Mínimo 12 caracteres" type="password"/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface mb-1">Confirmar nueva contraseña</label>
-<input class="w-full px-3.5 py-2 bg-surface-container-lowest border border-outline-variant/60 rounded-xl font-body-md text-body-md" placeholder="Repita contraseña" type="password"/>
-</div>
-</div>
-<!-- Password Strength Meter -->
-<div class="space-y-1.5 pt-1">
-<div class="flex items-center justify-between font-label-sm text-label-sm">
-<span class="text-on-surface-variant font-medium">Fortaleza de contraseña corporativa:</span>
-<span class="text-[#065F46] font-semibold flex items-center gap-1">
-<span class="material-symbols-outlined text-[15px]">verified</span>
-                    Excelente (Nivel empresarial)
-                  </span>
-</div>
-<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden flex gap-1">
-<div class="h-full w-1/4 bg-[#10B981] rounded-full"></div>
-<div class="h-full w-1/4 bg-[#10B981] rounded-full"></div>
-<div class="h-full w-1/4 bg-[#10B981] rounded-full"></div>
-<div class="h-full w-1/4 bg-[#10B981] rounded-full"></div>
-</div>
-<p class="font-body-sm text-body-sm text-outline">
-                  Debe incluir números, mayúsculas, minúsculas y caracteres especiales (@, #, $, %).
-                </p>
-</div>
-<div class="flex justify-end pt-2">
-<button class="px-4 py-2 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold transition-colors">
-                  Actualizar contraseña
-                </button>
-</div>
-</div>
-<!-- Active Sessions & ISO 27001 Compliance -->
-<div class="border border-outline-variant/60 rounded-xl p-5 space-y-3">
-<div class="flex items-center justify-between">
-<div>
-<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Sesiones activas y registro de auditoría ISO 27001</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Trazabilidad de accesos en tiempo real con cifrado TLS 1.3</p>
-</div>
-<button class="text-error hover:underline font-label-sm text-label-sm font-semibold">Cerrar otras sesiones</button>
-</div>
-<div class="divide-y divide-outline-variant/40">
-<div class="py-2.5 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline">laptop_mac</span>
-<div>
-<div class="font-label-md text-label-md text-on-surface font-semibold">macOS Sonoma · Google Chrome 130</div>
-<div class="font-label-code text-label-code text-outline">Bogotá, Colombia (IP: 190.158.42.11) · Sesión actual</div>
-</div>
-</div>
-<span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]">En línea</span>
-</div>
-</div>
-</div>
+  <div class="border-b border-outline-variant/50 pb-4">
+    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Seguridad y credenciales</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant mt-1">Cambia tu contraseña de acceso. La nueva contraseña se almacenará protegida mediante hash en la base de datos.</p>
+  </div>
+  <form id="settings-password-form" class="bg-surface-container-low/70 rounded-xl p-5 border border-outline-variant/50 space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div><label for="current-password" class="block font-label-md text-label-md text-on-surface mb-1">Contraseña actual</label><input id="current-password" name="contrasenaActual" required class="w-full px-3.5 py-2 bg-white border border-outline-variant/60 rounded-xl" type="password" autocomplete="current-password" /></div>
+      <div><label for="new-password" class="block font-label-md text-label-md text-on-surface mb-1">Nueva contraseña</label><input id="new-password" name="nuevaContrasena" required minlength="12" placeholder="Mínimo 12 caracteres" class="w-full px-3.5 py-2 bg-white border border-outline-variant/60 rounded-xl" type="password" autocomplete="new-password" /></div>
+      <div><label for="confirm-password" class="block font-label-md text-label-md text-on-surface mb-1">Confirmar nueva contraseña</label><input id="confirm-password" name="confirmarContrasena" required minlength="12" placeholder="Repite la contraseña" class="w-full px-3.5 py-2 bg-white border border-outline-variant/60 rounded-xl" type="password" autocomplete="new-password" /></div>
+    </div>
+    <p class="font-body-sm text-body-sm text-outline">Usa al menos 12 caracteres e incluye mayúsculas, minúsculas, números y símbolos.</p>
+    <div class="flex justify-end pt-2"><button type="submit" class="px-5 py-2.5 bg-primary-container hover:bg-primary text-white rounded-xl font-label-md text-label-md font-semibold">Actualizar contraseña</button></div>
+  </form>
 </section>
 <!-- ------------------------------------------------------- -->
 <!-- PANEL D: NOTIFICACIONES (ALERTAS PREVENTIVAS)           -->
@@ -813,73 +503,108 @@
 <span class="material-symbols-outlined text-[17px] text-primary">verified_user</span>
 <span>Control de accesos y gobernanza conforme a normas ISO 31000 e ISO 27001.</span>
 </div>
-<div class="font-label-code text-label-code text-xs">
-              Última sincronización: 24/10/2024 · 10:14:02 COT
-            </div>
+
 </footer>
 </div>
 </div>
 </div>
 </main>
 <!-- Inline Javascript for Micro-Interactions & Tabs -->
+<script src="../../assets/js/api.js"></script>
 <script>
-    // Cambio de secciones de configuración
-    function switchTab(tabId, element) {
-      const targetPanel = document.getElementById(tabId);
-      if (!targetPanel) return;
+  function switchTab(tabId, element) {
+    const targetPanel = document.getElementById(tabId);
+    if (!targetPanel) return;
+    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+    targetPanel.classList.remove('hidden');
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.classList.remove('active','bg-surface-container','text-primary','border-l-4','border-primary','font-semibold','shadow-xs');
+      button.classList.add('text-on-surface-variant');
+    });
+    const activeButton = element || document.querySelector(`.tab-button[onclick*="${tabId}"]`);
+    if (activeButton) {
+      activeButton.classList.add('active','bg-surface-container','text-primary','border-l-4','border-primary','font-semibold','shadow-xs');
+      activeButton.classList.remove('text-on-surface-variant');
+    }
+  }
 
-      document.querySelectorAll('.tab-panel').forEach(panel => {
-        panel.classList.add('hidden');
-        panel.setAttribute('aria-hidden', 'true');
-      });
+  function settingsMessage(message, error = false) {
+    const toast = document.getElementById('settings-feedback');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.style.background = error ? '#991b1b' : '#123b70';
+    toast.style.display = 'block';
+    clearTimeout(window.settingsFeedbackTimer);
+    window.settingsFeedbackTimer = setTimeout(() => toast.style.display = 'none', 3500);
+  }
 
-      targetPanel.classList.remove('hidden');
-      targetPanel.setAttribute('aria-hidden', 'false');
+  function paintCurrentUser(user) {
+    if (!user) return;
+    const name = user.nombre || 'Administrador';
+    const email = user.correo || '';
+    const headerName = document.getElementById('settings-header-name');
+    const headerEmail = document.getElementById('settings-header-email');
+    const initials = document.getElementById('settings-avatar-initials');
+    if (headerName) headerName.textContent = name;
+    if (headerEmail) headerEmail.textContent = email;
+    if (initials) initials.textContent = name.split(/\s+/).filter(Boolean).slice(0,2).map(part => part[0].toUpperCase()).join('');
+    const nameInput = document.getElementById('profile-name');
+    const emailInput = document.getElementById('profile-email');
+    if (nameInput) nameInput.value = name;
+    if (emailInput) emailInput.value = email;
+  }
 
-      document.querySelectorAll('.tab-button').forEach(button => {
-        button.classList.remove('active', 'bg-surface-container', 'text-primary',
-          'border-l-4', 'border-primary', 'font-semibold', 'shadow-xs');
-        button.classList.add('text-on-surface-variant');
-        button.setAttribute('aria-selected', 'false');
-      });
+  document.addEventListener('DOMContentLoaded', async () => {
+    const profileTab = document.querySelector('.tab-button[onclick*="tab-perfil"]');
+    if (profileTab) switchTab('tab-perfil', profileTab);
 
-      const activeButton = element || document.querySelector(
-        `.tab-button[onclick*="${tabId}"]`
-      );
-      if (activeButton) {
-        activeButton.classList.add('active');
-        activeButton.classList.remove('text-on-surface-variant');
-        activeButton.setAttribute('aria-selected', 'true');
-      }
+    if (!window.TurisProAPI || !window.TurisProAPI.requireAuth()) return;
+    try {
+      const response = await window.TurisProAPI.getPerfil();
+      if (response && response.usuario) paintCurrentUser(response.usuario);
+      else paintCurrentUser(window.TurisProAPI.getUser());
+    } catch (error) {
+      paintCurrentUser(window.TurisProAPI.getUser());
+      settingsMessage(error.message || 'No se pudo cargar el perfil.', true);
     }
 
-    // Abrir Configuración inicialmente en Perfil
-    document.addEventListener('DOMContentLoaded', () => {
-      const profileTab = document.querySelector('.tab-button[onclick*="tab-perfil"]');
-      if (profileTab) switchTab('tab-perfil', profileTab);
+    const profileForm = document.getElementById('settings-profile-form');
+    profileForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      const nombre = document.getElementById('profile-name').value.trim();
+      const correo = document.getElementById('profile-email').value.trim();
+      if (!nombre || !correo) return settingsMessage('Completa el nombre y el correo.', true);
+      try {
+        const response = await window.TurisProAPI.actualizarPerfil({ nombre, correo });
+        if (response.usuario) {
+          localStorage.setItem('turispro_auth_user', JSON.stringify(response.usuario));
+          paintCurrentUser(response.usuario);
+        }
+        settingsMessage(response.mensaje || 'Perfil actualizado correctamente.');
+      } catch (error) {
+        settingsMessage(error.message || 'No se pudo actualizar el perfil.', true);
+      }
     });
 
-
-    // Confirmación visual de acciones de configuración.
-    function showSettingsFeedback(message) {
-      const toast = document.getElementById('settings-feedback');
-      if (!toast) return;
-      toast.textContent = message;
-      toast.style.display = 'block';
-      clearTimeout(window.settingsFeedbackTimer);
-      window.settingsFeedbackTimer = setTimeout(() => {
-        toast.style.display = 'none';
-      }, 2800);
-    }
-
-    document.querySelectorAll('#tab-perfil button, #tab-seguridad button, #tab-notificaciones button')
-      .forEach(button => {
-        if (/guardar|actualizar|cambiar/i.test(button.textContent)) {
-          button.addEventListener('click', () => {
-            showSettingsFeedback('Cambios preparados. La persistencia requiere conectar el servicio de configuración.');
-          });
-        }
-      });
-  </script>
+    const passwordForm = document.getElementById('settings-password-form');
+    passwordForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      const actual = document.getElementById('current-password').value;
+      const nueva = document.getElementById('new-password').value;
+      const confirmar = document.getElementById('confirm-password').value;
+      if (nueva !== confirmar) return settingsMessage('La confirmación no coincide con la nueva contraseña.', true);
+      if (nueva.length < 12 || !/[A-Z]/.test(nueva) || !/[a-z]/.test(nueva) || !/[0-9]/.test(nueva) || !/[^A-Za-z0-9]/.test(nueva)) {
+        return settingsMessage('La contraseña debe tener 12 caracteres e incluir mayúsculas, minúsculas, números y símbolos.', true);
+      }
+      try {
+        const response = await window.TurisProAPI.cambiarContrasena({ contrasenaActual: actual, nuevaContrasena: nueva });
+        passwordForm.reset();
+        settingsMessage(response.mensaje || 'Contraseña actualizada correctamente.');
+      } catch (error) {
+        settingsMessage(error.message || 'No se pudo cambiar la contraseña.', true);
+      }
+    });
+  });
+</script>
 <div aria-live="polite" id="settings-feedback" role="status" style="display:none;position:fixed;right:24px;bottom:24px;z-index:2000;background:#123b70;color:#fff;padding:12px 18px;border-radius:12px;box-shadow:0 8px 24px rgba(10,35,70,.2);font:600 13px Inter,sans-serif"></div>
 </body></html>

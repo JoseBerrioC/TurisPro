@@ -8,6 +8,8 @@ const { handleRequest } = require('./routes/router');
 
 async function iniciarServidor() {
   console.log('🚀 Iniciando TurisPro Backend API...');
+  console.log(`🔐 Gemini API Key: ${config.llm.apiKeyConfigurada ? 'CONFIGURADA' : 'NO DETECTADA'}`);
+  console.log(`📄 Archivos de entorno encontrados: ${config.llm.archivosEnvEncontrados.length ? config.llm.archivosEnvEncontrados.join(', ') : 'ninguno'}`);
 
   // 1. Conexión y preparación de la base de datos
   const db = getDatabase();

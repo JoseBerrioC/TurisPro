@@ -5,6 +5,7 @@ const Evaluacion = require('./Evaluacion');
 const Incidente = require('./Incidente');
 const Servicio = require('./Servicio');
 const AnalisisRiesgo = require('./AnalisisRiesgo');
+const MotorRiesgo = require('../services/MotorRiesgo');
 const { NivelRiesgo, EstadoIncidente, EstadoDocumento } = require('./enums');
 
 class Reporte {
@@ -15,75 +16,102 @@ class Reporte {
 
   obtenerIndicadores() {
     const db = getDatabase();
-
-    // 1. Proveedores activos
-    const rowActivos = db.prepare('SELECT COUNT(*) as total FROM proveedores WHERE activo = 1').get();
-    const proveedoresActivos = rowActivos ? rowActivos.total : 0;
-
-    // Distribución dinámica de riesgo de todos los proveedores activos.
-    const distribucionRiesgo = db.prepare(`
-      SELECT UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS')) AS nivel, COUNT(*) AS total
-      FROM proveedores WHERE activo = 1 GROUP BY UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS'))
-    `).all();
+    const motorRiesgo = new MotorRiesgo();
+    const proveedores = Proveedor.buscar({ estado: '1' });
     const matrizRiesgo = { BAJO: 0, MEDIO: 0, ALTO: 0, SIN_DATOS: 0 };
-    distribucionRiesgo.forEach(row => {
-      const nivel = ['BAJO', 'MEDIO', 'ALTO'].includes(row.nivel) ? row.nivel : 'SIN_DATOS';
-      matrizRiesgo[nivel] += row.total;
-    });
-    matrizRiesgo.total = Object.values(matrizRiesgo).reduce((a, b) => a + b, 0);
-
-    // 2. Proveedores con riesgo alto
-    const rowRiesgoAlto = db.prepare("SELECT COUNT(*) as total FROM proveedores WHERE activo = 1 AND nivel_riesgo = 'ALTO'").get();
-    const riesgoAlto = rowRiesgoAlto ? rowRiesgoAlto.total : 0;
-
-    // 3. Documentos vencidos o próximos a vencer
-    const todosDocs = Documento.listarGlobal();
-    const docsAtencion = todosDocs.filter(d => d.estado === EstadoDocumento.POR_VENCER || d.estado === EstadoDocumento.VENCIDO);
-    const documentosPorVencerOVencidos = docsAtencion.length;
-
-    // 4. Incidentes abiertos o en seguimiento
-    const rowIncidentes = db.prepare(`
-      SELECT COUNT(*) as total FROM incidentes 
-      WHERE estado IN ('ABIERTO', 'EN_SEGUIMIENTO')
-    `).get();
-    const incidentesAbiertos = rowIncidentes ? rowIncidentes.total : 0;
-
-    // Tabla de elementos que requieren atención:
-    // Proveedores con riesgo alto O documentos vencidos O incidentes de severidad alta
-    const proveedoresList = Proveedor.buscar({ estado: '1' });
     const tablaAtencion = [];
 
-    for (const p of proveedoresList) {
-      const docsP = Documento.listarPorProveedor(p.idProveedor);
-      const docsVencidos = docsP.filter(d => d.calcularEstado() === EstadoDocumento.VENCIDO);
-      const incsP = Incidente.listarPorProveedor(p.idProveedor);
-      const incsCriticos = incsP.filter(i => i.severidad === 'ALTA' && i.estado !== EstadoIncidente.CERRADO);
+    // La clasificación del dashboard se calcula con los datos actuales de evaluaciones,
+    // incidentes y documentos; no depende de valores de demostración ni de un análisis antiguo.
+    for (const p of proveedores) {
+      const factores = motorRiesgo.generarFactores(p);
+      const puntaje = motorRiesgo.calcularPuntaje(factores);
+      const nivel = motorRiesgo.clasificarNivel(puntaje);
+      matrizRiesgo[nivel] = (matrizRiesgo[nivel] || 0) + 1;
 
-      if (p.nivelRiesgo === NivelRiesgo.ALTO || docsVencidos.length > 0 || incsCriticos.length > 0) {
+      const docs = Documento.listarPorProveedor(p.idProveedor);
+      const docsVencidos = docs.filter(d => d.calcularEstado() === EstadoDocumento.VENCIDO);
+      const docsPorVencer = docs.filter(d => d.calcularEstado() === EstadoDocumento.POR_VENCER);
+      const incidentes = Incidente.listarPorProveedor(p.idProveedor);
+      const incidentesAbiertos = incidentes.filter(i => i.estado !== EstadoIncidente.CERRADO);
+      const incidentesCriticos = incidentesAbiertos.filter(i => i.severidad === 'ALTA');
+
+      if (nivel === NivelRiesgo.ALTO || docsVencidos.length || docsPorVencer.length || incidentesCriticos.length) {
         const motivos = [];
-        if (p.nivelRiesgo === NivelRiesgo.ALTO) motivos.push(`Nivel de riesgo ALTO (${p.puntajeRiesgo ?? 'N/D'} pts)`);
-        if (docsVencidos.length > 0) motivos.push(`${docsVencidos.length} documento(s) vencido(s)`);
-        if (incsCriticos.length > 0) motivos.push(`${incsCriticos.length} incidente(s) de alta severidad sin cerrar`);
-
+        if (nivel === NivelRiesgo.ALTO) motivos.push(`Riesgo alto (${puntaje ?? 'N/D'} pts)`);
+        if (docsVencidos.length) motivos.push(`${docsVencidos.length} documento(s) vencido(s)`);
+        if (docsPorVencer.length) motivos.push(`${docsPorVencer.length} documento(s) próximo(s) a vencer`);
+        if (incidentesCriticos.length) motivos.push(`${incidentesCriticos.length} incidente(s) crítico(s) abierto(s)`);
+        const estadoDocumental = docsVencidos.length ? 'VENCIDO' : docsPorVencer.length ? 'POR_VENCER' : docs.length ? 'VIGENTE' : 'SIN_DOCUMENTOS';
         tablaAtencion.push({
           idProveedor: p.idProveedor,
           razonSocial: p.razonSocial,
+          nit: p.nit,
           tipo: p.tipo,
-          nivelRiesgo: p.nivelRiesgo,
-          puntajeRiesgo: p.puntajeRiesgo,
-          motivosAtencion: motivos
+          cobertura: (p.zonas || []).map(z => z.ciudad).filter(Boolean).join(', ') || 'Sin cobertura registrada',
+          nivelRiesgo: nivel,
+          puntajeRiesgo: puntaje,
+          estadoDocumental,
+          motivosAtencion: motivos,
+          // Si el proveedor requiere atención por un incidente crítico,
+          // se conserva su identificador para abrir directamente ese registro.
+          incidenteId: incidentesAbiertos.length ? incidentesAbiertos[0].idIncidente : null
         });
       }
     }
 
+    // Alertas reales: incidentes no cerrados y documentos vencidos o que vencen en 30 días.
+    const alertasIncidentes = db.prepare(`
+      SELECT 'INCIDENTE' AS tipoAlerta, i.id_incidente AS id, i.id_proveedor AS idProveedor,
+             p.razon_social AS proveedorNombre, i.tipo AS titulo, i.descripcion AS detalle,
+             i.severidad AS prioridad, i.estado AS estado, i.fecha AS fecha
+      FROM incidentes i JOIN proveedores p ON p.id_proveedor = i.id_proveedor
+      WHERE p.activo = 1
+      ORDER BY datetime(i.fecha) DESC LIMIT 20
+    `).all();
+    const alertasDocumentos = db.prepare(`
+      SELECT 'DOCUMENTO' AS tipoAlerta, d.id_documento AS id, d.id_proveedor AS idProveedor,
+             p.razon_social AS proveedorNombre, d.tipo AS titulo,
+             CASE WHEN date(d.fecha_vencimiento) < date('now') THEN 'Documento vencido · Venció el ' || date(d.fecha_vencimiento)
+                  ELSE 'Documento próximo a vencer · Vence el ' || date(d.fecha_vencimiento) END AS detalle,
+             CASE WHEN date(d.fecha_vencimiento) < date('now') THEN 'ALTA' ELSE 'MEDIA' END AS prioridad,
+             CASE WHEN date(d.fecha_vencimiento) < date('now') THEN 'VENCIDO' ELSE 'POR_VENCER' END AS estado,
+             d.creado_en AS fecha
+      FROM documentos d JOIN proveedores p ON p.id_proveedor = d.id_proveedor
+      WHERE p.activo = 1 AND date(d.fecha_vencimiento) <= date('now', '+30 days')
+      ORDER BY date(d.fecha_vencimiento) ASC LIMIT 20
+    `).all();
+    const alertasRecientes = [...alertasIncidentes, ...alertasDocumentos]
+      .sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
+      .slice(0, 5);
+
+    tablaAtencion.sort((a, b) => {
+      const prioridad = x => x.nivelRiesgo === 'ALTO' ? 0 : x.estadoDocumental === 'VENCIDO' ? 1 : 2;
+      return prioridad(a) - prioridad(b) || (b.puntajeRiesgo ?? -1) - (a.puntajeRiesgo ?? -1);
+    });
+
+    const documentosAtencion = db.prepare(`
+      SELECT COUNT(*) AS total FROM documentos d JOIN proveedores p ON p.id_proveedor=d.id_proveedor
+      WHERE p.activo=1 AND date(d.fecha_vencimiento) <= date('now', '+30 days')
+    `).get().total;
+    const incidentesAbiertos = db.prepare(`
+      SELECT COUNT(*) AS total FROM incidentes i JOIN proveedores p ON p.id_proveedor=i.id_proveedor
+      WHERE p.activo=1 AND i.estado IN ('ABIERTO', 'EN_SEGUIMIENTO')
+    `).get().total;
+    const evaluacionesMes = db.prepare("SELECT COUNT(*) AS total FROM evaluaciones e JOIN proveedores p ON p.id_proveedor=e.id_proveedor WHERE p.activo=1 AND date(e.fecha) >= date('now', 'start of month')").get().total;
+
+    matrizRiesgo.total = Object.values(matrizRiesgo).reduce((a, b) => a + b, 0);
     return {
+      generadoEn: new Date().toISOString(),
       indicadores: {
-        proveedoresActivos,
-        proveedoresRiesgoAlto: riesgoAlto,
-        documentosAtencion: documentosPorVencerOVencidos,
-        incidentesAbiertos
+        proveedoresActivos: proveedores.length,
+        proveedoresRiesgoAlto: matrizRiesgo.ALTO,
+        documentosAtencion,
+        incidentesAbiertos,
+        evaluacionesMes
       },
       tablaAtencion,
+      alertasRecientes,
       matrizRiesgo
     };
   }
@@ -92,17 +120,34 @@ class Reporte {
     const db = getDatabase();
     const modificadores = { dia: '-1 day', semana: '-7 days', mes: '-1 month', anio: '-1 year' };
     const modifier = modificadores[periodo];
-    const where = (campo) => modifier ? `${campo} >= datetime('now', ?)` : '1 = 1';
+    const where = campo => modifier ? `${campo} >= datetime('now', ?)` : '1 = 1';
     const params = modifier ? [modifier] : [];
 
-    const contar = (tabla, campo) => db.prepare(`SELECT COUNT(*) AS total FROM ${tabla} WHERE ${where(campo)}`).get(...params).total;
+    // Los indicadores de actividad se cuentan según la fecha real de cada registro.
+    const contar = (tabla, campo) => db.prepare(
+      `SELECT COUNT(*) AS total FROM ${tabla} WHERE ${where(campo)}`
+    ).get(...params).total;
     const proveedores = contar('proveedores', 'creado_en');
     const documentos = contar('documentos', 'creado_en');
     const evaluaciones = contar('evaluaciones', 'fecha');
     const incidentes = contar('incidentes', 'fecha');
 
-    const riesgo = db.prepare(`SELECT UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS')) AS nivel, COUNT(*) AS total
-      FROM proveedores WHERE activo = 1 ${modifier ? "AND creado_en >= datetime('now', ?)" : ''} GROUP BY UPPER(COALESCE(nivel_riesgo, 'SIN_DATOS'))`).all(...params);
+    // La distribución de riesgo es una fotografía actual: se recalcula con las
+    // evaluaciones, incidentes y documentos existentes, no con el nivel guardado
+    // anteriormente en la ficha del proveedor.
+    const motorRiesgo = new MotorRiesgo();
+    const proveedoresActivos = db.prepare(`
+      SELECT id_proveedor FROM proveedores
+      WHERE activo = 1 ${modifier ? "AND creado_en >= datetime('now', ?)" : ''}
+    `).all(...params).map(fila => Proveedor.verDetalle(fila.id_proveedor)).filter(Boolean);
+    const conteoRiesgo = { BAJO: 0, MEDIO: 0, ALTO: 0, SIN_DATOS: 0 };
+    for (const proveedor of proveedoresActivos) {
+      const factores = motorRiesgo.generarFactores(proveedor);
+      const puntaje = motorRiesgo.calcularPuntaje(factores);
+      const nivel = motorRiesgo.clasificarNivel(puntaje);
+      conteoRiesgo[nivel] = (conteoRiesgo[nivel] || 0) + 1;
+    }
+    const riesgo = Object.entries(conteoRiesgo).map(([nivel, total]) => ({ nivel, total }));
 
     const actividad = db.prepare(`
       SELECT 'Proveedor registrado' AS tipo, p.razon_social AS detalle, p.creado_en AS fecha, p.id_proveedor AS referencia
@@ -119,10 +164,18 @@ class Reporte {
       ORDER BY fecha DESC LIMIT 100
     `).all(...Array(4).fill(params).flat());
 
-    const resumenIncidentes = db.prepare(`SELECT UPPER(severidad) AS severidad, COUNT(*) AS total FROM incidentes
-      WHERE ${where('fecha')} GROUP BY UPPER(severidad)`).all(...params);
-    const resumenDocumentos = db.prepare(`SELECT COUNT(*) AS total FROM documentos WHERE date(fecha_vencimiento) < date('now')
-      ${modifier ? "AND creado_en >= datetime('now', ?)" : ''}`).get(...params).total;
+    const resumenIncidentes = db.prepare(`
+      SELECT UPPER(severidad) AS severidad, COUNT(*) AS total
+      FROM incidentes WHERE ${where('fecha')} GROUP BY UPPER(severidad)
+    `).all(...params);
+
+    // Para documentos vencidos se utiliza la fecha de vencimiento, no la fecha
+    // de creación del registro: así el filtro representa el periodo del evento.
+    const resumenDocumentos = db.prepare(`
+      SELECT COUNT(*) AS total FROM documentos
+      WHERE date(fecha_vencimiento) < date('now')
+      ${modifier ? "AND date(fecha_vencimiento) >= date('now', ?)" : ''}
+    `).get(...params).total;
 
     return {
       periodo,

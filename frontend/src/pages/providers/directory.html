@@ -1,508 +1,79 @@
 <!DOCTYPE html>
-
-<html class="h-full bg-surface" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>TurisPro - Directorio General de Proveedores y Selección Comparativa</title>
-<!-- Material Symbols Outlined Font -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Inter Google Font -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS Play CDN -->
+<html lang="es" class="h-full bg-surface">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TurisPro - Proveedores</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Configuration verbatim -->
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "surface": "#f9f9ff",
-            "inverse-primary": "#a9c7ff",
-            "on-primary-fixed": "#001b3d",
-            "surface-bright": "#f9f9ff",
-            "primary-fixed": "#d6e3ff",
-            "primary-fixed-dim": "#a9c7ff",
-            "primary": "#004d99",
-            "surface-container-highest": "#d8e3fb",
-            "inverse-surface": "#263143",
-            "secondary": "#2b5bb5",
-            "on-surface-variant": "#424752",
-            "outline-variant": "#c2c6d4",
-            "on-primary-fixed-variant": "#00468c",
-            "surface-dim": "#cfdaf2",
-            "tertiary": "#813900",
-            "on-tertiary-container": "#ffdece",
-            "on-secondary-fixed": "#001945",
-            "secondary-fixed": "#d9e2ff",
-            "on-secondary-fixed-variant": "#00429c",
-            "tertiary-fixed": "#ffdbc9",
-            "outline": "#727783",
-            "tertiary-fixed-dim": "#ffb68c",
-            "on-secondary": "#ffffff",
-            "surface-tint": "#005db7",
-            "surface-container": "#e7eeff",
-            "on-surface": "#111c2d",
-            "primary-container": "#1565c0",
-            "tertiary-container": "#a64c00",
-            "on-secondary-container": "#00337c",
-            "on-error-container": "#93000a",
-            "error": "#ba1a1a",
-            "surface-container-low": "#f0f3ff",
-            "secondary-container": "#759efd",
-            "on-tertiary-fixed": "#321200",
-            "background": "#f9f9ff",
-            "on-error": "#ffffff",
-            "on-background": "#111c2d",
-            "on-primary": "#ffffff",
-            "surface-container-lowest": "#ffffff",
-            "on-tertiary": "#ffffff",
-            "surface-container-high": "#dee8ff",
-            "error-container": "#ffdad6",
-            "surface-variant": "#d8e3fb",
-            "secondary-fixed-dim": "#b0c6ff",
-            "on-tertiary-fixed-variant": "#753400",
-            "inverse-on-surface": "#ecf1ff",
-            "on-primary-container": "#dae5ff"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.125rem",
-            "lg": "0.25rem",
-            "xl": "0.5rem",
-            "full": "0.75rem"
-          },
-          "spacing": {
-            "margin": "2rem",
-            "gutter": "1.5rem",
-            "space-xs": "0.25rem",
-            "space-sm": "0.5rem",
-            "space-xl": "2rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem"
-          },
-          "fontFamily": {
-            "table-header": ["Inter"],
-            "body-lg": ["Inter"],
-            "body-md": ["Inter"],
-            "body-sm": ["Inter"],
-            "headline-sm": ["Inter"],
-            "headline-md": ["Inter"],
-            "label-sm": ["Inter"],
-            "display-metric": ["Inter"],
-            "label-md": ["Inter"],
-            "headline-lg": ["Inter"],
-            "table-cell": ["Inter"]
-          },
-          "fontSize": {
-            "table-header": ["11px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
-            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-            "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
-            "headline-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
-            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-            "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
-            "display-metric": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-            "label-md": ["13px", {"lineHeight": "18px", "fontWeight": "600"}],
-            "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
-            "table-cell": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
-          }
-        },
-      },
-    }
-  </script>
-<style>
-  /* Ajustes de estructura para evitar que los bloques se monten entre sí. */
-  html, body { min-width: 320px; }
-  body { min-height: 100vh; }
-  main > section { width: 100%; }
-  main section, main table { max-width: 100%; }
-  #providerSearch { min-width: 0; }
-  select, input { max-width: 100%; }
-  @media (max-width: 1100px) {
-    body { overflow: auto !important; }
-    body > div.ml-64 { margin-left: 0; min-height: 100vh; height: auto; overflow: visible; }
-    body > div.ml-64 > header { height: auto; min-height: 4rem; padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.75rem; }
-    body > div.ml-64 > header > div { flex-wrap: wrap; gap: 0.75rem; }
-    body > div.ml-64 > main { overflow: visible; }
-  }
-  @media (max-width: 640px) {
-    body > div.ml-64 > header > div:first-child { width: 100%; }
-    body > div.ml-64 > header > div:first-child > div.relative { width: 100%; }
-    body > div.ml-64 > header > div:last-child { width: 100%; justify-content: flex-end; }
-    main { padding: 1rem !important; }
-    main section.rounded-xl { border-radius: 0.75rem; }
-  }
-</style>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#004d99',surface:'#f9f9ff','surface-container-low':'#f0f3ff','outline-variant':'#c2c6d4'}}}}</script>
 <link rel="stylesheet" href="../../assets/css/turispro-sidebar.css">
+<style>html,body{min-width:320px}body{min-height:100vh}@media(max-width:1100px){body{overflow:auto!important}body>div.ml-64{margin-left:0;min-height:100vh;height:auto;overflow:visible}body>div.ml-64>header{height:auto;min-height:4rem;padding:.75rem 1rem;flex-wrap:wrap;gap:.75rem}body>div.ml-64>main{overflow:visible}}@media(max-width:640px){main{padding:1rem!important}}</style>
+<style>@media(max-width:1100px){#providerDetailModal{left:0!important}}#providerDetailContent{min-height:0;overscroll-behavior:contain}#providerDetailModal>div{min-width:0}</style>
 </head>
-<body class="h-full bg-background text-on-surface font-body-md text-body-md antialiased flex overflow-hidden">
-<!-- SIDEBAR (Component: SideNavBar) -->
+<body class="h-full bg-[#f8faff] text-slate-800 flex overflow-hidden">
 <script src="../../assets/js/sidebar.js"></script>
-<!-- MAIN WRAPPER (Fluid Canvas offset by sidebar) -->
 <div class="ml-64 min-w-0 flex-1 flex flex-col h-screen overflow-hidden">
-<!-- TOP NAVIGATION BAR (Component: TopNavBar) -->
-<header class="h-16 bg-surface-container-lowest border-b border-outline-variant px-8 flex justify-between items-center shadow-sm z-30 shrink-0">
-<!-- Left side: Breadcrumb & Search -->
-<div class="flex items-center gap-6">
-<!-- Breadcrumb -->
-<nav class="flex items-center text-label-md font-label-md text-on-surface-variant gap-1.5">
-<a class="hover:text-primary transition-colors" href="../dashboard/dashboard.html">Inicio</a>
-<span class="material-symbols-outlined text-sm text-outline">chevron_right</span>
-<span class="text-primary font-semibold">Proveedores</span>
-</nav>
-<div class="h-5 w-px bg-outline-variant"></div>
-<!-- Global Search Input -->
-<div class="relative w-80 flex items-center">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-outline text-lg leading-none pointer-events-none">search</span>
-<input id="providerSearch" class="w-full h-10 bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-3 text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Buscar por nombre o ID del proveedor..." type="search" autocomplete="off"/>
-</div>
-</div>
-<!-- Right side: System Date, Notifications, Support, CTA -->
-<div class="flex items-center gap-4">
-<!-- System Date -->
-
-<!-- Notifications -->
-<button class="relative p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" title="Notificaciones">
-<span class="material-symbols-outlined text-xl">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
-</button>
-<!-- Help Support -->
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-colors" title="Ayuda y Soporte">
-<span class="material-symbols-outlined text-xl">help_outline</span>
-</button>
-<div class="h-6 w-px bg-outline-variant"></div>
-<!-- Trailing Primary Action -->
-<button class="inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-3.5 py-1.5 rounded-lg text-label-md font-label-md font-semibold shadow-sm transition-colors" onclick="location.href='register.html'">
-<span class="material-symbols-outlined text-base">add</span>
-<span>Registrar proveedor</span>
-</button>
-</div>
+<header class="h-16 bg-white border-b border-slate-200 px-6 flex justify-between items-center shadow-sm z-30 shrink-0">
+  <div class="flex items-center min-w-0 flex-1">
+  <div class="relative w-[min(34vw,390px)] min-w-[180px]"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span><input id="providerSearch" type="search" autocomplete="off" placeholder="Buscar proveedor por nombre o ID..." class="w-full h-10 rounded-lg border-slate-200 bg-slate-50 pl-10 pr-3 text-sm focus:border-primary focus:ring-primary"></div></div>
+  <button data-tp-roles="ADMINISTRADOR GESTOR_PROVEEDORES" onclick="location.href='register.html'" class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"><span class="material-symbols-outlined text-lg">add</span>Registrar proveedor</button>
 </header>
-<!-- CONTENT SCROLLABLE CANVAS -->
-<main class="flex-1 min-w-0 overflow-y-auto p-5 lg:p-8 bg-surface space-y-6 lg:space-y-7">
-<!-- ENCABEZADO DE LA PANTALLA -->
-<section class="flex flex-col gap-2">
-  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
-    <div class="min-w-0">
-      <p class="text-xs font-semibold uppercase tracking-[0.12em] text-primary mb-1">Gestión de aliados</p>
-      <h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Directorio de Proveedores Turísticos</h2>
-      <p class="text-body-md font-body-md text-on-surface-variant mt-1">Consulta y administra los proveedores registrados en la base de datos de TurisPro.</p>
-    </div>
-    <div class="shrink-0 text-sm text-on-surface-variant bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant/70">
-      <span class="material-symbols-outlined align-middle text-base mr-1 text-primary">database</span>
-      Información conectada al sistema
-    </div>
-  </div>
-</section>
-
-<!-- FILTROS AVANZADOS Y SEGMENTACIÓN -->
-<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 md:p-6 shadow-sm space-y-5">
-<!-- Category Segmented Filters Bar -->
-<div class="flex flex-col xl:flex-row xl:items-center xl:justify-between border-b border-outline-variant pb-4 gap-3">
-<div class="flex flex-wrap items-center gap-2">
-<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mr-2 font-bold">Categoría:</span>
-<button id="filter-all" data-type="" class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-md font-label-md font-semibold shadow-xs">
-              Todos
-            </button>
-<button id="filter-hotel" data-type="HOTEL" class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Hoteles
-            </button>
-<button id="filter-transport" data-type="TRANSPORTADOR" class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Transporte
-            </button>
-<button id="filter-agency" data-type="OPERADOR" class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Agencias
-            </button>
-<button id="filter-guide" data-type="GUIA" class="px-3 py-1 hover:bg-surface-container text-on-surface-variant hover:text-on-surface rounded-lg text-label-md font-label-md transition-colors">
-              Guías
-            </button>
-</div>
-<div class="flex items-center gap-2">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 text-label-sm font-label-sm text-outline hover:text-error transition-colors">
-<span class="material-symbols-outlined text-sm">restart_alt</span>
-<span>Limpiar filtros</span>
-</button>
-</div>
-</div>
-<!-- Granular Select Dropdowns & Search Matrix -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-<!-- Nivel de Riesgo IA -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Nivel de Riesgo IA</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-<option value="all">Todos los niveles</option>
-<option value="low">Riesgo Bajo (0-29 ptos)</option>
-<option value="medium">Riesgo Medio (30-69 ptos)</option>
-<option value="high">Riesgo Alto (70-100 ptos)</option>
-</select>
-</div>
-</div>
-<!-- Estado Documental -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Estado Documental</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-<option value="all">Todos los estados</option>
-<option value="valid">Al día / Vigente</option>
-<option value="expiring">Próximo a vencer (&lt;30d)</option>
-<option value="expired">Vencido / Bloqueado</option>
-</select>
-</div>
-</div>
-<!-- Cobertura / Región -->
-<div>
-<label class="block text-label-sm font-label-sm text-on-surface-variant mb-1">Cobertura / Región</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
-<option value="all">Todas las regiones</option>
-<option value="antioquia">Antioquia / Medellín</option>
-<option value="bolivar">Bolívar / Cartagena</option>
-<option value="bogota">Bogotá D.C.</option>
-<option value="caribe">Región Caribe</option>
-<option value="ejecafetero">Eje Cafetero</option>
-<option value="nacional">Nacional (Todo el país)</option>
-</select>
-</div>
-</div>
-</div>
-</section>
-<!-- 4. TABLA Y CATÁLOGO MAESTRO DE PROVEEDORES -->
-<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col min-w-0">
-<!-- Table Control Strip -->
-<div class="px-5 py-3 border-b border-outline-variant flex items-center justify-between bg-surface-container-low/40">
-<div class="flex items-center gap-3">
-<span class="text-label-md font-label-md font-bold text-on-surface">Catálogo Homologado</span>
-<span id="providerCount" class="text-label-sm font-label-sm text-outline">Cargando proveedores…</span>
-</div>
-<div class="flex items-center gap-2">
-<button class="p-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-outline hover:text-primary transition-colors" title="Vista de lista">
-<span class="material-symbols-outlined text-base">view_list</span>
-</button>
-<button class="p-1.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-outline hover:text-primary transition-colors" title="Columnas visibles">
-<span class="material-symbols-outlined text-base">view_column</span>
-</button>
-</div>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full min-w-[1120px] border-collapse text-left">
-<thead>
-<tr class="bg-surface-container-low border-b border-outline-variant">
-<!-- Checkbox -->
-<th class="w-12 px-4 py-3 text-center">
-<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox"/>
-</th>
-<!-- Proveedor -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Proveedor &amp; Identificación</th>
-<!-- Categoría -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Categoría &amp; Clasificación</th>
-<!-- Ubicación -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Ubicación / Cobertura</th>
-<!-- Score IA -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Score de Riesgo IA</th>
-<!-- Documentación -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Estado Documental</th>
-<!-- Calificación -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant">Calificación</th>
-<!-- Acciones -->
-<th class="px-4 py-3 font-table-header text-table-header uppercase text-on-surface-variant text-right">Acciones</th>
-</tr>
-</thead>
-<tbody id="directorio-tbody" class="divide-y divide-outline-variant/60 font-table-cell text-table-cell text-on-surface"><tr><td colspan="8" class="px-4 py-8 text-center text-slate-500">Cargando proveedores…</td></tr></tbody>
-</table>
-</div>
-<!-- 5. PAGINACIÓN INFERIOR DE TABLA -->
-<div class="px-5 py-3 border-t border-outline-variant bg-surface-container-low/60 flex flex-col sm:flex-row items-center justify-between gap-3">
-<div class="text-body-sm font-body-sm text-on-surface-variant">
-            Mostrando <span class="font-semibold text-on-surface">1 a 7</span> de <span class="font-semibold text-on-surface">148</span> proveedores registrados
-          </div>
-<div class="flex items-center gap-4">
-<!-- Limite por pagina -->
-<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline">
-<span>Filas por página:</span>
-<select class="bg-surface-container-lowest border border-outline-variant rounded px-2 py-1 text-on-surface text-label-sm font-label-sm focus:outline-none focus:ring-1 focus:ring-primary">
-<option value="10">10</option>
-<option selected="" value="25">25</option>
-<option value="50">50</option>
-<option value="100">100</option>
-</select>
-</div>
-<!-- Page Buttons -->
-<div class="flex items-center gap-1">
-<button class="p-1 text-outline hover:text-on-surface disabled:opacity-40" disabled="">
-<span class="material-symbols-outlined text-lg">first_page</span>
-</button>
-<button class="p-1 text-outline hover:text-on-surface disabled:opacity-40" disabled="">
-<span class="material-symbols-outlined text-lg">chevron_left</span>
-</button>
-<span class="px-2.5 py-1 text-label-sm font-label-sm font-bold bg-primary text-on-primary rounded">1</span>
-<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface hover:bg-surface-container rounded">2</button>
-<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface hover:bg-surface-container rounded">3</button>
-<span class="text-outline text-xs">...</span>
-<button class="px-2.5 py-1 text-label-sm font-label-sm text-on-surface hover:bg-surface-container rounded">6</button>
-<button class="p-1 text-outline hover:text-on-surface">
-<span class="material-symbols-outlined text-lg">chevron_right</span>
-</button>
-<button class="p-1 text-outline hover:text-on-surface">
-<span class="material-symbols-outlined text-lg">last_page</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-<!-- 6. FOOTER DE GOBERNANZA & CUMPLIMIENTO -->
-<footer class="pt-4 pb-6 border-t border-outline-variant flex flex-col md:flex-row items-center justify-between gap-4 text-label-sm font-label-sm text-outline">
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-1.5 text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-primary">verified_user</span>
-<span>Estándar Internacional ISO 31000:2018 para Gestión Integral de Riesgo</span>
-</div>
-<span class="hidden md:inline">•</span>
-<div class="flex items-center gap-1.5 text-on-surface-variant">
-<span class="material-symbols-outlined text-sm text-secondary">gavel</span>
-<span>Articulación con Viceministerio de Turismo y Registro Nacional de Turismo (RNT Colombia)</span>
-</div>
-</div>
-<div class="text-right">
-<p>© 2024 TurisPro Enterprise Suite • Módulo de Contratación &amp; Homologación Segura</p>
-</div>
-</footer>
-</main>
-</div>
-
-<div id="providerDetailModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/50 p-4" role="dialog" aria-modal="true" aria-labelledby="providerDetailTitle">
-  <div class="w-full max-w-2xl rounded-2xl bg-white shadow-2xl overflow-hidden">
-    <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4">
-      <div><p class="text-xs font-semibold uppercase tracking-wider text-primary">Ficha del proveedor · Base de datos</p><h2 id="providerDetailTitle" class="mt-1 text-xl font-bold text-slate-900">Cargando...</h2></div>
-      <button id="closeProviderDetail" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100" aria-label="Cerrar ficha"><span class="material-symbols-outlined">close</span></button>
-    </div>
-    <div id="providerDetailContent" class="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 text-sm text-slate-700"><p class="sm:col-span-2">Consultando información...</p></div>
-  </div>
+<main class="flex-1 min-w-0 overflow-y-auto p-6 lg:p-8 space-y-6">
+  <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"><div class="flex flex-col gap-3"><div class="flex items-center justify-between gap-3"><h2 class="text-sm font-bold uppercase tracking-wide text-slate-600">Categorías</h2></div><div id="categoryFilters" class="flex flex-wrap gap-2">
+    <button data-type="" class="category-filter active rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white">Todos</button>
+    <button data-type="HOTEL" class="category-filter rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-primary hover:text-primary">Hoteles</button>
+    <button data-type="TRANSPORTADOR" class="category-filter rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-primary hover:text-primary">Transporte</button>
+    <button data-type="OPERADOR" class="category-filter rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-primary hover:text-primary">Agencias y operadores</button>
+    <button data-type="GUIA" class="category-filter rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 hover:border-primary hover:text-primary">Guías</button>
+  </div></div></section>
+  <section class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4"><div><h2 class="font-bold text-slate-900">Catálogo de proveedores</h2><p class="mt-0.5 text-xs text-slate-500">Selecciona un nombre para consultar su ficha completa.</p></div><span id="providerCount" class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">Cargando...</span></div>
+    <div id="providerCatalog" class="divide-y divide-slate-100"><div class="p-8 text-center text-sm text-slate-500">Cargando proveedores...</div></div>
+  </section>
+  <footer class="border-t border-slate-200 py-5 text-xs text-slate-400">TurisPro · Directorio y gestión de proveedores</footer>
+</main></div>
+<div id="providerDetailModal" class="fixed inset-y-0 left-64 right-0 z-[1101] hidden items-center justify-center bg-slate-950/60 p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="providerDetailTitle">
+ <div class="flex max-h-[94vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+  <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4 sm:px-7"><div class="min-w-0"><p class="text-[11px] font-bold uppercase tracking-widest text-primary">Ficha del proveedor</p><h2 id="providerDetailTitle" class="mt-1 truncate text-xl font-bold text-slate-900">Cargando...</h2></div><button id="closeProviderDetail" class="ml-3 rounded-lg p-2 text-slate-500 hover:bg-slate-100" aria-label="Cerrar"><span class="material-symbols-outlined">close</span></button></div>
+  <div id="providerDetailContent" class="overflow-y-auto p-5 sm:p-7"><p class="text-sm text-slate-500">Consultando información en la base de datos...</p></div>
+ </div>
 </div>
 <script src="../../assets/js/api.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    if (!TurisProAPI.requireAuth()) return;
-    const searchInput = document.getElementById('providerSearch');
-    let debounceTimeout;
-    document.querySelectorAll('[data-type]').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('[data-type]').forEach(item => item.classList.remove('bg-primary', 'text-on-primary'));
-        button.classList.add('bg-primary', 'text-on-primary');
-        cargarProveedores(searchInput?.value || '', button.dataset.type || '');
-      });
-    });
-    document.getElementById('closeProviderDetail')?.addEventListener('click', cerrarFichaProveedor);
-    document.getElementById('providerDetailModal')?.addEventListener('click', event => {
-      if (event.target.id === 'providerDetailModal') cerrarFichaProveedor();
-    });
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(() => cargarProveedores(searchInput.value, document.querySelector('[data-type].bg-primary')?.dataset.type || ''), 180);
-      });
-    }
-    await cargarProveedores('');
-  });
-
-  async function cargarProveedores(texto = '', tipo = '') {
-    const tbody = document.getElementById('directorio-tbody');
-    const count = document.getElementById('providerCount');
-    if (!tbody) return;
-    try {
-      const resp = await TurisProAPI.getProveedores({ texto, tipo });
-      const items = Array.isArray(resp?.items) ? resp.items : [];
-      tbody.innerHTML = '';
-      if (!items.length) {
-        tbody.innerHTML = `<tr><td colspan="8" class="px-4 py-10 text-center text-slate-500">No se encontraron proveedores${texto ? ` para “${escapeHtml(texto)}”` : ''}.</td></tr>`;
-      }
-      items.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-surface-container transition-colors';
-        const nivel = String(p.nivelRiesgo || 'SIN_DATOS').toUpperCase();
-        const riesgoColor = nivel === 'ALTO' ? 'bg-[#FFEBEE] text-[#B71C1C]' : nivel === 'MEDIO' ? 'bg-[#FFF8E1] text-[#5D4037]' : nivel === 'BAJO' ? 'bg-[#E8F5E9] text-[#1B5E20]' : 'bg-slate-100 text-slate-600';
-        const dotColor = nivel === 'ALTO' ? 'bg-[#C62828]' : nivel === 'MEDIO' ? 'bg-[#F9A825]' : nivel === 'BAJO' ? 'bg-[#2E7D32]' : 'bg-slate-400';
-        const zonasText = Array.isArray(p.zonas) && p.zonas.length ? p.zonas.map(z => z.ciudad).filter(Boolean).join(', ') : 'Nacional';
-        tr.innerHTML = `
-          <td class="px-4 py-3 text-center"><input class="rounded text-primary focus:ring-primary border-outline-variant h-4 w-4" type="checkbox" value="${escapeHtml(p.idProveedor)}"/></td>
-          <td class="px-4 py-3"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary"><span class="material-symbols-outlined text-lg">domain</span></div><div><div class="flex items-center gap-2"><span class="font-headline-sm text-body-md font-bold text-on-surface">${escapeHtml(p.razonSocial || 'Sin nombre')}</span><span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-bold bg-primary-fixed text-on-primary-fixed">#${escapeHtml(p.idProveedor)}</span></div><p class="text-body-sm font-body-sm text-outline">NIT: ${escapeHtml(String(p.nit || '').startsWith('PENDIENTE-VERIFICACION-') ? 'Pendiente de verificar' : (p.nit || '—'))} • ${escapeHtml(p.correo || '—')}</p></div></div></td>
-          <td class="px-4 py-3"><span class="font-semibold text-on-surface">${escapeHtml(p.tipo || '—')}</span></td>
-          <td class="px-4 py-3"><div class="flex items-center gap-1.5 text-on-surface"><span class="material-symbols-outlined text-base text-secondary">location_on</span><span>${escapeHtml(zonasText)}</span></div></td>
-          <td class="px-4 py-3"><div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs font-semibold rounded-full ${riesgoColor}"><span class="w-2 h-2 rounded-full ${dotColor}"></span><span>${p.puntajeRiesgo !== null && p.puntajeRiesgo !== undefined ? `${escapeHtml(p.puntajeRiesgo)}/100 ` : ''}${escapeHtml(nivel)}</span></div></td>
-          <td class="px-4 py-3"><span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">● ${escapeHtml(p.estadoCiclo || 'Registrado')}</span></td>
-          <td class="px-4 py-3"><div class="flex items-center gap-1 text-xs text-slate-700"><span class="material-symbols-outlined text-sm text-[#F9A825]" style="font-variation-settings:'FILL' 1">star</span><span class="font-bold">${p.activo === false ? 'Inactivo' : 'Activo'}</span></div></td>
-          <td class="px-4 py-3 text-right"><button class="p-1.5 text-primary hover:bg-surface-container-high rounded transition-colors" title="Ver ficha" data-provider-id="${escapeHtml(p.idProveedor)}"><span class="material-symbols-outlined text-lg">visibility</span></button></td>`;
-        const detailButton = tr.querySelector('[data-provider-id]');
-        detailButton.addEventListener('click', () => abrirFichaProveedor(detailButton.dataset.providerId));
-        tbody.appendChild(tr);
-      });
-      if (count) count.textContent = `${items.length} proveedor${items.length === 1 ? '' : 'es'} encontrados en la base de datos`;
-      actualizarContadoresCategoria();
-    } catch (err) {
-      console.error('Error al cargar proveedores:', err);
-      tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-10 text-center text-red-600">No fue posible cargar el directorio.</td></tr>';
-      if (count) count.textContent = 'Error al cargar proveedores';
-    }
-  }
-
-  async function abrirFichaProveedor(id) {
-    const modal = document.getElementById('providerDetailModal');
-    const title = document.getElementById('providerDetailTitle');
-    const content = document.getElementById('providerDetailContent');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    title.textContent = 'Cargando ficha...';
-    content.innerHTML = '<p class="sm:col-span-2">Consultando información en la base de datos...</p>';
-    try {
-      const response = await TurisProAPI.getProveedorDetalle(id);
-      const p = response.proveedor || response;
-      title.textContent = p.razonSocial || 'Proveedor';
-      const zonas = Array.isArray(p.zonas) && p.zonas.length ? p.zonas.map(z => z.ciudad).join(', ') : 'Sin cobertura registrada';
-      const campos = [
-        ['ID', `#${p.idProveedor}`], ['Tipo', p.tipo || '—'],
-        ['NIT', String(p.nit || '').startsWith('PENDIENTE-VERIFICACION-') ? 'Pendiente de verificar' : (p.nit || 'Pendiente de verificar')], ['Correo', p.correo || 'Pendiente de verificar'],
-        ['Teléfono', p.telefono || 'Pendiente de verificar'], ['Dirección', p.direccion || 'Pendiente de verificar'],
-        ['Cobertura', zonas], ['Estado', p.estadoCiclo || 'Registrado'],
-        ['Nivel de riesgo', p.nivelRiesgo || 'SIN_DATOS'],
-        ['Puntaje de riesgo', p.puntajeRiesgo == null ? 'Sin evaluación' : `${p.puntajeRiesgo}/100`]
-      ];
-      content.innerHTML = campos.map(([label, value]) => `<div class="rounded-xl border border-slate-200 bg-slate-50 p-3"><p class="text-xs font-semibold uppercase tracking-wide text-slate-500">${escapeHtml(label)}</p><p class="mt-1 break-words font-medium text-slate-900">${escapeHtml(value)}</p></div>`).join('');
-    } catch (error) {
-      title.textContent = 'No fue posible cargar la ficha';
-      content.innerHTML = `<p class="sm:col-span-2 text-red-600">${escapeHtml(error.message || 'Error de conexión con el backend.')}</p>`;
-    }
-  }
-
-  function cerrarFichaProveedor() {
-    const modal = document.getElementById('providerDetailModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-  }
-
-  async function actualizarContadoresCategoria() {
-    try {
-      const response = await TurisProAPI.getProveedores({});
-      const items = response.items || [];
-      const conteos = {
-        'filter-all': items.length,
-        'filter-hotel': items.filter(p => p.tipo === 'HOTEL').length,
-        'filter-transport': items.filter(p => p.tipo === 'TRANSPORTADOR').length,
-        'filter-agency': items.filter(p => p.tipo === 'OPERADOR').length,
-        'filter-guide': items.filter(p => p.tipo === 'GUIA').length
-      };
-      Object.entries(conteos).forEach(([id, total]) => {
-        const button = document.getElementById(id);
-        if (button) button.textContent = `${button.dataset.type ? button.dataset.type === 'HOTEL' ? 'Hoteles' : button.dataset.type === 'TRANSPORTADOR' ? 'Transporte' : button.dataset.type === 'OPERADOR' ? 'Agencias' : 'Guías' : 'Todos'} (${total})`;
-      });
-    } catch (_) { /* El mensaje principal de carga muestra el estado de la API. */ }
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  }
+let tipoSeleccionado='';let debounceTimeout;
+document.addEventListener('DOMContentLoaded',async()=>{
+ if(!TurisProAPI.requireAuth())return;
+ document.getElementById('providerSearch').addEventListener('input',()=>{clearTimeout(debounceTimeout);debounceTimeout=setTimeout(cargarProveedores,250)});
+ document.querySelectorAll('.category-filter').forEach(btn=>btn.addEventListener('click',()=>{tipoSeleccionado=btn.dataset.type||'';actualizarBotonesCategoria();cargarProveedores()}));
+ document.getElementById('closeProviderDetail').addEventListener('click',cerrarFichaProveedor);
+ document.getElementById('providerDetailModal').addEventListener('click',e=>{if(e.target.id==='providerDetailModal')cerrarFichaProveedor()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrarFichaProveedor()});
+ await cargarProveedores();
+});
+function actualizarBotonesCategoria(){document.querySelectorAll('.category-filter').forEach(b=>{const active=(b.dataset.type||'')===tipoSeleccionado;b.classList.toggle('active',active);b.classList.toggle('bg-primary',active);b.classList.toggle('text-white',active);b.classList.toggle('border',!active);b.classList.toggle('border-slate-200',!active);b.classList.toggle('text-slate-600',!active)})}
+async function cargarProveedores(){const catalog=document.getElementById('providerCatalog'),count=document.getElementById('providerCount'),texto=document.getElementById('providerSearch').value.trim();catalog.innerHTML='<div class="p-8 text-center text-sm text-slate-500">Consultando la base de datos...</div>';try{const resp=await TurisProAPI.getProveedores({texto,tipo:tipoSeleccionado});const items=Array.isArray(resp.items)?resp.items:[];count.textContent=`${items.length} ${items.length===1?'proveedor':'proveedores'}`;if(!items.length){catalog.innerHTML='<div class="p-10 text-center"><span class="material-symbols-outlined text-4xl text-slate-300">domain_disabled</span><p class="mt-2 font-semibold text-slate-700">No se encontraron proveedores</p><p class="mt-1 text-sm text-slate-500">Prueba con otro nombre, ID o categoría.</p></div>';return}catalog.innerHTML='';items.forEach(p=>{const row=document.createElement('button');row.type='button';row.className='group flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-blue-50/70 sm:px-6';row.innerHTML=`<span class="flex min-w-0 items-center gap-3"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-primary group-hover:bg-blue-100"><span class="material-symbols-outlined">${iconoTipo(p.tipo)}</span></span><span class="min-w-0"><span class="block truncate font-semibold text-slate-800 group-hover:text-primary">${escapeHtml(p.razonSocial||'Proveedor sin nombre')}</span><span class="mt-0.5 block text-xs text-slate-400">${escapeHtml(nombreTipo(p.tipo))} · ID #${escapeHtml(p.idProveedor)}</span></span></span><span class="material-symbols-outlined shrink-0 text-slate-300 transition group-hover:translate-x-1 group-hover:text-primary">chevron_right</span>`;row.addEventListener('click',()=>abrirFichaProveedor(p.idProveedor));catalog.appendChild(row)})}catch(err){console.error(err);count.textContent='Error de conexión';catalog.innerHTML=`<div class="p-8 text-center text-sm text-red-600">No fue posible consultar los proveedores. ${escapeHtml(err.message||'Verifica que el backend esté ejecutándose.')}</div>`}}
+async function abrirFichaProveedor(id){const modal=document.getElementById('providerDetailModal'),title=document.getElementById('providerDetailTitle'),content=document.getElementById('providerDetailContent');modal.classList.remove('hidden');modal.classList.add('flex');title.textContent='Cargando ficha...';content.innerHTML='<p class="text-sm text-slate-500">Consultando información...</p>';try{const response=await TurisProAPI.getProveedorDetalle(id);const p=response.proveedor||response;const tabs=response.pestanas||{};const servicios=Array.isArray(tabs.serviciosYTarifas)?tabs.serviciosYTarifas:[];const docs=Array.isArray(tabs.documentos)?tabs.documentos:[];const evaluaciones=tabs.evaluaciones||{};const historial=Array.isArray(evaluaciones.historial)?evaluaciones.historial:[];const incidentes=Array.isArray(tabs.incidentes)?tabs.incidentes:[];const zonas=Array.isArray(p.zonas)?p.zonas:[];const docsVigentes=docs.filter(d=>String(d.estado||'').toUpperCase()==='VIGENTE');const docsPorVencer=docs.filter(d=>String(d.estado||'').toUpperCase()==='POR_VENCER');const docsVencidos=docs.filter(d=>String(d.estado||'').toUpperCase()==='VENCIDO');const promedio=evaluaciones.promedioGeneral;title.textContent=p.razonSocial||'Proveedor';
+content.innerHTML=`
+ <section class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+ ${dato('Identificación',`#${p.idProveedor}`)}${dato('Categoría',nombreTipo(p.tipo))}${dato('Estado',p.estadoCiclo|| (p.activo?'Activo':'Inactivo'))}${dato('NIT',p.nit||'Sin registrar')}
+ ${dato('Correo',p.correo||'Sin registrar')}${dato('Teléfono',p.telefono||'Sin registrar')}${dato('Dirección',p.direccion||'Sin registrar')}${dato('Ubicación',zonas.length?zonas.map(z=>[z.ciudad,z.departamento,z.pais].filter(Boolean).join(', ')).join(' · '):'Sin ubicación registrada')}
+ </section>
+ <section class="mt-6"><h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-slate-600">Resumen de gestión</h3><div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+ ${metrica('Evaluación general',promedio==null?'Sin evaluar':`${Number(promedio).toFixed(2)} / 5`,'star')}${metrica('Incidentes registrados',String(incidentes.length),'report_problem')}${metrica('Documentos vigentes',String(docsVigentes.length),'verified_user')}${metrica('Servicios registrados',String(servicios.length),'room_service')}
+ </div><p class="mt-2 text-xs text-slate-400">Documentos por vencer: ${docsPorVencer.length} · Documentos vencidos: ${docsVencidos.length} · Evaluaciones: ${historial.length}</p></section>
+ <section class="mt-6"><div class="mb-3 flex items-center justify-between"><h3 class="text-sm font-bold uppercase tracking-wide text-slate-600">Servicios del proveedor</h3><span class="text-xs text-slate-400">${servicios.length} registrados</span></div>${servicios.length?`<div class="grid grid-cols-1 gap-3 md:grid-cols-2">${servicios.map(s=>`<article class="rounded-xl border border-slate-200 p-4"><div class="flex items-start justify-between gap-3"><h4 class="font-semibold text-slate-800">${escapeHtml(s.nombre||'Servicio sin nombre')}</h4><span class="rounded-full px-2 py-1 text-[11px] font-semibold ${s.estaVigente?'bg-emerald-50 text-emerald-700':'bg-amber-50 text-amber-700'}">${s.estaVigente?'Vigente':'Fuera de vigencia'}</span></div><p class="mt-2 text-sm text-slate-500">${escapeHtml(s.descripcion||'Sin descripción')}</p><p class="mt-3 font-semibold text-primary">${formatearMoneda(s.tarifa)} <span class="text-xs font-normal text-slate-500">/ ${escapeHtml(s.unidad||'unidad')}</span></p><p class="mt-1 text-xs text-slate-400">Vigencia: ${fecha(s.vigenteDesde)} – ${fecha(s.vigenteHasta)}</p></article>`).join('')}</div>`:'<p class="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">Este proveedor no tiene servicios registrados.</p>'}</section>
+ <section class="mt-6"><h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-slate-600">Documentación</h3>${docs.length?`<div class="overflow-x-auto rounded-xl border border-slate-200"><table class="w-full text-left text-sm"><thead class="bg-slate-50 text-xs uppercase text-slate-500"><tr><th class="px-4 py-3">Documento</th><th class="px-4 py-3">Vencimiento</th><th class="px-4 py-3">Estado</th></tr></thead><tbody class="divide-y divide-slate-100">${docs.map(d=>`<tr><td class="px-4 py-3 font-medium">${escapeHtml(d.tipo||'Documento')}</td><td class="px-4 py-3">${fecha(d.fechaVencimiento)}</td><td class="px-4 py-3">${etiquetaEstado(d.estado)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">No hay documentos registrados.</p>'}</section>
+ <section class="mt-6"><h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-slate-600">Historial de evaluaciones</h3>${historial.length?`<div class="space-y-2">${historial.map(e=>`<article class="rounded-lg border border-slate-200 p-3"><div class="flex flex-wrap items-center justify-between gap-2"><strong class="text-sm">Calificación: ${Number(e.promedio).toFixed(2)} / 5</strong><span class="text-xs text-slate-400">${fecha(e.fecha)}</span></div><p class="mt-1 text-sm text-slate-500">${escapeHtml(e.comentario||'Sin observaciones')}</p></article>`).join('')}</div>`:'<p class="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">No hay evaluaciones registradas.</p>'}</section>
+ <section class="mt-6"><h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-slate-600">Incidentes</h3>${incidentes.length?`<div class="space-y-2">${incidentes.map(i=>`<article class="rounded-lg border border-slate-200 p-3"><div class="flex flex-wrap items-center justify-between gap-2"><strong class="text-sm">${escapeHtml(i.tipo||'Incidente')} · ${escapeHtml(i.severidad||'')}</strong><span class="text-xs text-slate-400">${fecha(i.fecha)}</span></div><p class="mt-1 text-sm text-slate-600">${escapeHtml(i.descripcion||'Sin descripción')}</p><p class="mt-2 text-xs text-slate-500">Estado: ${escapeHtml(i.estado||'Sin estado')}</p></article>`).join('')}</div>`:'<p class="rounded-lg bg-slate-50 p-4 text-sm text-slate-500">No hay incidentes registrados.</p>'}</section>
+ <section class="mt-6 rounded-xl border border-blue-100 bg-blue-50/60 p-4"><h3 class="text-sm font-bold text-slate-700">Nivel de riesgo registrado</h3><p class="mt-1 text-sm text-slate-600">${escapeHtml(p.nivelRiesgo||'SIN_DATOS')} ${p.puntajeRiesgo==null?'':`· ${escapeHtml(p.puntajeRiesgo)}/100`}</p><p class="mt-1 text-xs text-slate-500">La información se consulta directamente desde los registros asociados a este proveedor.</p></section>`;
+ }catch(error){title.textContent='No fue posible cargar la ficha';content.innerHTML=`<p class="text-sm text-red-600">${escapeHtml(error.message||'Error de conexión con el backend.')}</p>`}}
+function dato(label,value){return `<div class="min-w-0 rounded-xl border border-slate-200 bg-slate-50 p-3"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">${label}</p><p class="mt-1 break-words text-sm font-medium text-slate-800">${escapeHtml(value)}</p></div>`}
+function metrica(label,value,icon){return `<div class="rounded-xl border border-slate-200 bg-white p-3"><span class="material-symbols-outlined text-xl text-primary">${icon}</span><p class="mt-2 text-xl font-bold text-slate-900">${escapeHtml(value)}</p><p class="mt-0.5 text-xs text-slate-500">${label}</p></div>`}
+function etiquetaEstado(estado){const e=String(estado||'').toUpperCase();const cls=e==='VIGENTE'?'bg-emerald-50 text-emerald-700':e==='POR_VENCER'?'bg-amber-50 text-amber-700':'bg-red-50 text-red-700';return `<span class="rounded-full px-2 py-1 text-xs font-semibold ${cls}">${escapeHtml(estado||'Sin estado')}</span>`}
+function nombreTipo(tipo){return ({HOTEL:'Hotel',TRANSPORTADOR:'Transporte',OPERADOR:'Agencia u operador',GUIA:'Guía'})[tipo]||tipo||'Sin categoría'}function iconoTipo(tipo){return ({HOTEL:'hotel',TRANSPORTADOR:'airport_shuttle',OPERADOR:'travel_explore',GUIA:'hiking'})[tipo]||'business'}
+function formatearMoneda(v){const n=Number(v);return Number.isFinite(n)?new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n):'Tarifa no registrada'}function fecha(v){if(!v)return '—';const d=new Date(`${String(v).slice(0,10)}T12:00:00`);return Number.isNaN(d.getTime())?escapeHtml(v):d.toLocaleDateString('es-CO')}
+function cerrarFichaProveedor(){const modal=document.getElementById('providerDetailModal');modal.classList.add('hidden');modal.classList.remove('flex')}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 </script>
-
 </body></html>

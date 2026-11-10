@@ -2,6 +2,9 @@
 node_modules/
 .env
 *.env.local
+backend/secrets/.env
+backend/secrets/.env.*
+!backend/secrets/.env.example
 
 # Bases de datos SQLite
 *.db

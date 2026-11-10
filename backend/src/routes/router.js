@@ -139,6 +139,18 @@ async function handleRequest(req, res) {
       return send(AuthController.perfil(usuario));
     }
 
+    if (method === 'PUT' && pathname === '/api/auth/perfil') {
+      const usuario = requerirAutenticacion(req, res);
+      if (!usuario) return;
+      return send(AuthController.actualizarPerfil(body, usuario));
+    }
+
+    if (method === 'PATCH' && pathname === '/api/auth/contrasena') {
+      const usuario = requerirAutenticacion(req, res);
+      if (!usuario) return;
+      return send(AuthController.cambiarContrasena(body, usuario));
+    }
+
     if (method === 'GET' && pathname === '/api/auth/menu') {
       const usuario = requerirAutenticacion(req, res);
       if (!usuario) return;
@@ -163,6 +175,8 @@ async function handleRequest(req, res) {
     }
 
     if (method === 'GET' && pathname === '/api/reportes/analitica') {
+      const usuario = requerirRol(Rol.ADMINISTRADOR, Rol.GESTOR_PROVEEDORES)(req, res);
+      if (!usuario) return;
       const periodo = ['dia', 'semana', 'mes', 'anio', 'todo'].includes(query.periodo) ? query.periodo : 'semana';
       return send(DashboardController.analitica(periodo));
     }
@@ -259,6 +273,8 @@ async function handleRequest(req, res) {
     }
 
     if (method === 'GET' && pathname === '/api/documentos') {
+      const usuario = requerirRol(Rol.ADMINISTRADOR, Rol.GESTOR_PROVEEDORES)(req, res);
+      if (!usuario) return;
       return send(DocumentoController.listarGlobal());
     }
 
@@ -310,6 +326,8 @@ async function handleRequest(req, res) {
     }
 
     if ((params = matchRoute(method, pathname, 'POST', '/api/proveedores/:id/riesgo/recalcular'))) {
+      const usuario = requerirRol(Rol.ADMINISTRADOR, Rol.EVALUADOR)(req, res);
+      if (!usuario) return;
       return send(await RiesgoController.recalcularRiesgo(params.id));
     }
 

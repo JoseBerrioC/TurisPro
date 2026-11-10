@@ -196,46 +196,16 @@
 <!-- ========================================================================= -->
 <div class="flex-1 flex flex-col ml-64 min-w-0 h-screen overflow-hidden">
 <!-- SHARED COMPONENT: TopNavBar -->
-<header class="h-16 px-8 flex justify-between items-center bg-surface-container-lowest border-b border-outline-variant/50 shadow-sm z-30 shrink-0">
-<!-- Search Input on Left -->
 
-<!-- Trailing Cluster -->
-<div class="flex items-center gap-4">
-<!-- Date indicator -->
-<div class="h-5 w-px bg-outline-variant"></div>
-<!-- Trailing Icon Actions -->
-<button class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Notificaciones">
-<span class="material-symbols-outlined text-[20px]">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
-</button>
-<button class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" title="Ayuda y documentación">
-<span class="material-symbols-outlined text-[20px]">help_outline</span>
-</button>
-<!-- CTA Action in Topbar -->
-<!-- User Profile Pill -->
-<div class="flex items-center gap-2 pl-2 border-l border-outline-variant/60">
-<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary-container font-bold text-xs ring-1 ring-primary-container/30">
-            CM
-          </div>
-<div class="flex flex-col text-left">
-<span class="text-body-sm font-semibold text-on-surface leading-tight">Carlos Mendoza</span>
-<span class="text-[11px] text-on-surface-variant leading-tight">Director de Compras &amp; Riesgo</span>
-</div>
-</div>
-</div>
-</header>
 <!-- ======================================================================= -->
 <!-- MAIN SCROLLABLE CONTENT CANVAS                                          -->
 <!-- ======================================================================= -->
 <main class="flex-1 overflow-y-auto px-8 py-7 space-y-6 bg-slate-50">
-  <section class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-    <div><p class="text-sm font-semibold text-blue-700">ANÁLISIS Y SEGUIMIENTO</p>
-      <h1 class="text-2xl font-bold text-slate-900 mt-1">Reportes y analítica</h1>
-      <p class="text-sm text-slate-500 mt-1">Indicadores calculados directamente con los registros de TurisPro.</p></div>
-    <div class="w-full lg:w-64"><label for="periodoReporte" class="block text-xs font-semibold text-slate-600 mb-1.5">PERIODO DEL REPORTE</label>
-      <select id="periodoReporte" class="w-full rounded-xl border-slate-300 bg-white text-sm py-3 focus:border-blue-600 focus:ring-blue-600">
-        <option value="semana">Última semana</option><option value="dia">Último día</option><option value="mes">Último mes</option><option value="anio">Último año</option><option value="todo">Todo el histórico</option>
-      </select></div>
+  <section class="flex justify-end items-center gap-3">
+    <label for="periodoReporte" class="text-xs font-semibold tracking-wide text-slate-600">PERIODO</label>
+    <select id="periodoReporte" class="w-full max-w-xs rounded-xl border-slate-300 bg-white text-sm py-3 focus:border-blue-600 focus:ring-blue-600">
+      <option value="semana">Última semana</option><option value="dia">Último día</option><option value="mes">Último mes</option><option value="anio">Último año</option><option value="todo">Todo el histórico</option>
+    </select>
   </section>
   <div id="estadoReporte" class="hidden rounded-xl border px-4 py-3 text-sm"></div>
   <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4" id="tarjetasReporte">
@@ -245,19 +215,19 @@
     <article class="rounded-2xl bg-white border border-slate-200 p-5 shadow-sm"><p class="text-sm text-slate-500">Incidentes registrados</p><p id="totalIncidentes" class="text-3xl font-bold text-slate-900 mt-3">—</p></article>
   </section>
   <section class="grid grid-cols-1 xl:grid-cols-2 gap-5">
-    <article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm"><div class="flex items-center justify-between gap-3"><div><h2 class="font-bold text-slate-900">Distribución de riesgo</h2><p class="text-xs text-slate-500 mt-1">Proveedores activos creados en el periodo seleccionado</p></div><span class="material-symbols-outlined text-blue-700">donut_large</span></div><div id="riesgoReporte" class="space-y-4 mt-6"><p class="text-sm text-slate-400">Cargando información…</p></div></article>
-    <article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm"><div class="flex items-center justify-between gap-3"><div><h2 class="font-bold text-slate-900">Incidentes por severidad</h2><p class="text-xs text-slate-500 mt-1">Registros creados durante el periodo</p></div><span class="material-symbols-outlined text-blue-700">report_problem</span></div><div id="incidentesReporte" class="space-y-4 mt-6"><p class="text-sm text-slate-400">Cargando información…</p></div><div class="mt-6 pt-4 border-t border-slate-100 flex justify-between text-sm"><span class="text-slate-500">Documentos vencidos registrados en el periodo</span><strong id="documentosVencidos" class="text-slate-900">—</strong></div></article>
+    <article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm"><div class="flex items-center justify-between gap-3"><div><h2 class="font-bold text-slate-900">Distribución de riesgo</h2><p class="text-xs text-slate-500 mt-1">Proveedores activos registrados en el periodo seleccionado</p></div><span class="material-symbols-outlined text-blue-700">donut_large</span></div><div id="riesgoReporte" class="space-y-4 mt-6"><p class="text-sm text-slate-400">Cargando información…</p></div></article>
+    <article class="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm"><div class="flex items-center justify-between gap-3"><div><h2 class="font-bold text-slate-900">Incidentes por severidad</h2><p class="text-xs text-slate-500 mt-1">Registros creados durante el periodo</p></div><span class="material-symbols-outlined text-blue-700">report_problem</span></div><div id="incidentesReporte" class="space-y-4 mt-6"><p class="text-sm text-slate-400">Cargando información…</p></div><div class="mt-6 pt-4 border-t border-slate-100 flex justify-between text-sm"><span class="text-slate-500">Documentos vencidos en el periodo</span><strong id="documentosVencidos" class="text-slate-900">—</strong></div></article>
   </section>
   <section class="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden">
     <div class="p-6 border-b border-slate-100"><h2 class="font-bold text-slate-900">Actividad registrada</h2><p class="text-xs text-slate-500 mt-1">Proveedores, documentos, evaluaciones e incidentes obtenidos de la base de datos.</p></div>
     <div class="overflow-x-auto"><table class="w-full text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="text-left px-6 py-3">Actividad</th><th class="text-left px-6 py-3">Detalle</th><th class="text-left px-6 py-3">Fecha</th><th class="text-left px-6 py-3">Referencia</th></tr></thead><tbody id="actividadReporte" class="divide-y divide-slate-100"><tr><td colspan="4" class="px-6 py-8 text-center text-slate-400">Cargando registros…</td></tr></tbody></table></div>
     <div id="contadorActividad" class="px-6 py-3 border-t border-slate-100 text-xs text-slate-500"></div>
   </section>
-  <p class="text-xs text-slate-400" id="actualizadoReporte">Los datos se consultan directamente al backend. No se utilizan cifras de demostración.</p>
+  <p class="text-xs text-slate-400" id="actualizadoReporte">Información obtenida de los registros de la base de datos.</p>
 </main>
+<script src="../../assets/js/api.js"></script>
 <script>
 (() => {
-  const API = window.TURISPRO_API_BASE || 'http://localhost:3000/api';
   const $ = id => document.getElementById(id);
   const formatoFecha = valor => { if (!valor) return '—'; const fecha = new Date(valor.replace(' ', 'T') + (valor.includes('Z') ? '' : '')); return Number.isNaN(fecha.getTime()) ? valor : fecha.toLocaleString('es-CO'); };
   function mostrarEstado(mensaje, error=false) { const el=$('estadoReporte'); el.textContent=mensaje; el.className='rounded-xl border px-4 py-3 text-sm '+(error?'border-red-200 bg-red-50 text-red-700':'border-blue-200 bg-blue-50 text-blue-800'); el.classList.remove('hidden'); }
@@ -266,12 +236,13 @@
     if (!filas.length) { contenedor.innerHTML='<p class="text-sm text-slate-400">No hay registros para este periodo.</p>'; return; }
     contenedor.innerHTML=filas.map(f=>{const nombre=f[clave]||'Sin datos'; const total=Number(f.total)||0; const pct=totalGeneral?Math.round(total/totalGeneral*100):0; return `<div><div class="flex justify-between text-sm mb-2"><span class="font-medium text-slate-700">${nombre.replaceAll('<','&lt;')}</span><span class="font-semibold text-slate-900">${total} <span class="text-slate-400 font-normal">(${pct}%)</span></span></div><div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full rounded-full ${colores[nombre]||'bg-blue-500'}" style="width:${pct}%"></div></div></div>`;}).join('');
   }
+  let reporteEnCarga=false;
   async function cargarReporte() {
+    if(reporteEnCarga)return;
+    reporteEnCarga=true;
     const periodo=$('periodoReporte').value; mostrarEstado('Actualizando reporte desde la base de datos…');
     try {
-      const token=localStorage.getItem('turispro_auth_token');
-      const respuesta=await fetch(`${API}/reportes/analitica?periodo=${encodeURIComponent(periodo)}`,{headers:token?{Authorization:`Bearer ${token}`}:{}});
-      const datos=await respuesta.json(); if(!respuesta.ok) throw new Error(datos.error||'No fue posible consultar los reportes.');
+      const datos=await TurisProAPI.getReporteAnalitica(periodo);
       $('estadoReporte').classList.add('hidden');
       $('totalProveedores').textContent=datos.indicadores.proveedores;
       $('totalDocumentos').textContent=datos.indicadores.documentos;
@@ -285,10 +256,13 @@
       const filas=datos.actividad||[];
       $('actividadReporte').innerHTML=filas.length?filas.map(item=>`<tr class="hover:bg-slate-50"><td class="px-6 py-4 font-semibold text-slate-800">${String(item.tipo).replaceAll('<','&lt;')}</td><td class="px-6 py-4 text-slate-600">${String(item.detalle||'').replaceAll('<','&lt;')}</td><td class="px-6 py-4 text-slate-500 whitespace-nowrap">${formatoFecha(item.fecha)}</td><td class="px-6 py-4 text-slate-500">#${item.referencia}</td></tr>`).join(''):'<tr><td colspan="4" class="px-6 py-8 text-center text-slate-400">No hay actividad registrada en este periodo.</td></tr>';
       $('contadorActividad').textContent=`${filas.length} registros mostrados (máximo 100).`;
-      $('actualizadoReporte').textContent=`Datos consultados desde SQLite · Actualizado: ${new Date().toLocaleString('es-CO')}`;
+      $('actualizadoReporte').textContent=`Datos consultados desde la base de datos · Actualizado: ${new Date().toLocaleString('es-CO')}`;
     } catch(error) { mostrarEstado(error.message.includes('Failed to fetch')?'No se pudo conectar con el backend. Inicia el servidor para consultar datos reales.':error.message,true); }
+    finally { reporteEnCarga=false; }
   }
-  $('periodoReporte').addEventListener('change',cargarReporte); cargarReporte();
+  $('periodoReporte').addEventListener('change',cargarReporte);
+  cargarReporte();
+  if(window.TurisProSync) window.__turisproStopReportsSync=TurisProSync.start(cargarReporte,60000);
 })();
 </script>
 </div>

@@ -20,22 +20,94 @@
   var LOGIN_URL = new URL('auth/login.html', PAGES).href;
   var REGISTER_URL = new URL('providers/register.html', PAGES).href;
 
+  // ---------------------------------------------------------------------------
+  // Control de acceso por rol (frontend). La seguridad real está en el backend
+  // (requerirRol); aquí se decide qué ve cada rol en el menú, qué páginas puede
+  // abrir y qué botones de acción se muestran.
+  // ---------------------------------------------------------------------------
+  var ADMIN = 'ADMINISTRADOR';
+  var GESTOR = 'GESTOR_PROVEEDORES';
+  var EVALUADOR = 'EVALUADOR';
+  var TODOS = [ADMIN, GESTOR, EVALUADOR];
+  var ADMIN_GESTOR = [ADMIN, GESTOR];
+
+  var ROLE_LABELS = {
+    ADMINISTRADOR: 'Administrador',
+    GESTOR_PROVEEDORES: 'Gestor de proveedores',
+    EVALUADOR: 'Evaluador'
+  };
+
   var NAV_ITEMS = [
-    { label: 'Inicio',        icon: 'dashboard',      href: 'dashboard/dashboard.html' },
-    { label: 'Proveedores',   icon: 'domain',         href: 'providers/directory.html' },
-    { label: 'Comparar',      icon: 'compare_arrows', href: 'providers/compare.html' },
-    { label: 'Documentos',    icon: 'folder',         href: 'providers/documents.html' },
-    { label: 'Evaluaciones',  icon: 'fact_check',     href: 'providers/hotel-los-andes/evaluations.html' },
-    { label: 'Incidentes',    icon: 'report_problem', href: 'providers/hotel-los-andes/incidents.html' },
-    { label: 'Reportes',      icon: 'analytics',      href: 'reports/executive-analytics.html' },
-    { label: 'Análisis IA',   icon: 'psychology',     href: 'risk/ai-risk-analysis.html', badge: 'PRO' },
-    { label: 'Configuración', icon: 'settings',       href: 'settings/settings.html' }
+    { label: 'Inicio',        icon: 'dashboard',      href: 'dashboard/dashboard.html',                    roles: TODOS },
+    { label: 'Proveedores',   icon: 'domain',         href: 'providers/directory.html',                    roles: TODOS },
+    { label: 'Comparar',      icon: 'compare_arrows', href: 'providers/compare.html',                      roles: TODOS },
+    { label: 'Documentos',    icon: 'folder',         href: 'providers/documents.html',                    roles: ADMIN_GESTOR },
+    { label: 'Evaluaciones',  icon: 'fact_check',     href: 'providers/hotel-los-andes/evaluations.html',  roles: TODOS },
+    { label: 'Incidentes',    icon: 'report_problem', href: 'providers/hotel-los-andes/incidents.html',    roles: TODOS },
+    { label: 'Reportes',      icon: 'analytics',      href: 'reports/executive-analytics.html',            roles: ADMIN_GESTOR },
+    { label: 'Análisis IA',   icon: 'psychology',     href: 'risk/ai-risk-analysis.html', badge: 'PRO',   roles: TODOS },
+    { label: 'Configuración', icon: 'settings',       href: 'settings/settings.html',                      roles: TODOS }
   ];
+
+  // Páginas que no son del menú pero tampoco puede abrir cualquier rol
+  // (ruta relativa a src/pages/).
+  var PAGE_ACCESS = {
+    'providers/register.html':          ADMIN_GESTOR,
+    'providers/documents.html':         ADMIN_GESTOR,
+    'reports/executive-analytics.html': ADMIN_GESTOR
+  };
+
+  function getUser() {
+    try {
+      var raw = localStorage.getItem('turispro_auth_user');
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  var USER = getUser();
+  var ROLE = (USER && USER.rol) || '';
+
+  function allowed(roles) { return !!ROLE && roles.indexOf(ROLE) >= 0; }
+
+  // Guardia de página: si el rol no tiene acceso, vuelve al inicio.
+  var pagesPath = PAGES.pathname;
+  var currentPath = location.pathname.replace(/\\/g, '/');
+  var relPage = currentPath.indexOf(pagesPath) === 0 ? currentPath.slice(pagesPath.length) : '';
+  if (ROLE && PAGE_ACCESS[relPage] && !allowed(PAGE_ACCESS[relPage])) {
+    try { sessionStorage.setItem('turispro_acceso_denegado', '1'); } catch (e) { /* ignorar */ }
+    location.replace(new URL('dashboard/dashboard.html', PAGES).href);
+    return;
+  }
+
+  // Botones y bloques con  data-tp-roles="ROL1 ROL2"  solo se muestran a esos roles.
+  var roleStyle = document.createElement('style');
+  roleStyle.textContent = (ROLE
+    ? '[data-tp-roles]:not([data-tp-roles~="' + ROLE + '"])'
+    : '[data-tp-roles]') + '{display:none!important}';
+  document.head.appendChild(roleStyle);
+  document.documentElement.setAttribute('data-tp-role', ROLE);
+
+  // Aviso cuando se fue redirigido por falta de permisos.
+  document.addEventListener('DOMContentLoaded', function () {
+    var denied = false;
+    try { denied = sessionStorage.getItem('turispro_acceso_denegado') === '1'; sessionStorage.removeItem('turispro_acceso_denegado'); } catch (e) { /* ignorar */ }
+    if (!denied) return;
+    var msg = 'Tu rol no tiene acceso a esa pantalla.';
+    if (typeof window.showToast === 'function') { window.showToast(msg, 'error'); return; }
+    var box = document.createElement('div');
+    box.setAttribute('role', 'alert');
+    box.className = 'fixed bottom-6 right-6 z-50 max-w-sm rounded-xl bg-slate-900 text-white text-sm font-medium px-4 py-3 shadow-2xl border border-rose-500/50';
+    box.textContent = msg;
+    document.body.appendChild(box);
+    setTimeout(function () { box.remove(); }, 4000);
+  });
+
+  var VISIBLE_ITEMS = NAV_ITEMS.filter(function (item) { return allowed(item.roles); });
 
   var LINK_CLASS = 'flex items-center gap-3 px-4 py-2.5 text-secondary-fixed-dim hover:text-on-primary hover:bg-primary-container/50 transition-colors rounded-lg cursor-pointer';
 
   function navHtml() {
-    return NAV_ITEMS.map(function (item) {
+    return VISIBLE_ITEMS.map(function (item) {
       var badge = item.badge
         ? '<span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-300/20 text-[#93C5FD]">' + item.badge + '</span>'
         : '';
@@ -89,7 +161,7 @@
     if (raw) {
       var user = JSON.parse(raw);
       aside.querySelector('#user-display-name').textContent = user.nombre || user.correo || '';
-      aside.querySelector('#user-display-role').textContent = user.rol || 'Usuario';
+      aside.querySelector('#user-display-role').textContent = ROLE_LABELS[user.rol] || user.rol || 'Usuario';
     }
   } catch (e) { /* localStorage no disponible */ }
 
@@ -107,5 +179,5 @@
     }
   });
 
-  window.TurisProSidebar = { items: NAV_ITEMS, element: aside };
+  window.TurisProSidebar = { items: VISIBLE_ITEMS, role: ROLE, element: aside };
 })();

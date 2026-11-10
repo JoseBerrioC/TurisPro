@@ -134,76 +134,9 @@
 <body class="bg-surface text-on-surface antialiased font-body-md overflow-x-hidden">
 <!-- Side Navigation Bar (Anchored Component) -->
 <script src="../../assets/js/sidebar.js"></script>
-<!-- Top Navigation Header (Anchored Component) -->
-<header class="fixed top-0 right-0 left-64 h-16 px-8 flex justify-between items-center z-30 bg-surface-container-lowest border-b border-outline-variant shadow-sm">
-<!-- Left Search Area -->
-
-<!-- Right Header Elements -->
-<div class="flex items-center gap-6">
-<div class="h-4 w-px bg-outline-variant"></div>
-<!-- Action Icons -->
-<div class="flex items-center gap-3">
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-full transition-colors relative" title="Ayuda" type="button">
-<span class="material-symbols-outlined text-xl" data-icon="help_outline">help_outline</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-full transition-colors relative" title="Notificaciones" type="button">
-<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
-</button>
-</div>
-<div class="h-4 w-px bg-outline-variant"></div>
-<!-- User Menu Anchor -->
-<div class="flex items-center gap-3 pl-1">
-<div class="text-right">
-<p class="text-label-md font-label-md text-on-surface leading-tight">Carlos Mendoza</p>
-<p class="text-label-sm font-label-sm text-outline">Riesgo &amp; Cumplimiento</p>
-</div>
-<div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-label-md border border-primary-fixed-dim">
-          CM
-        </div>
-</div>
-</div>
-</header>
 <!-- Main Canvas Container -->
-<main class="ml-64 pt-20 pb-28 px-8 min-h-screen bg-surface custom-scroll">
+<main class="ml-64 pt-8 pb-28 px-8 min-h-screen bg-surface custom-scroll">
 <div class="max-w-6xl mx-auto space-y-6">
-<!-- Breadcrumbs & Heading -->
-<div class="pt-2">
-<nav class="flex items-center gap-2 text-body-sm font-body-sm text-outline mb-2">
-<a class="hover:text-primary transition-colors" href="directory.html">Proveedores</a>
-<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
-<span class="text-primary font-semibold">Registrar nuevo proveedor</span>
-</nav>
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-<div>
-<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Registrar nuevo proveedor</h1>
-<p class="text-body-md font-body-md text-on-surface-variant mt-1">
-              Completa la información legal, operativa y documental para ingresar el proveedor y habilitar la estimación de riesgo con IA.
-            </p>
-</div>
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 text-label-sm font-label-sm rounded-full bg-[#E3F2FD] text-[#0D47A1]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#1565C0]"></span>
-              Modo Registro Rápido
-            </span>
-</div>
-</div>
-</div>
-<!-- Co-pilot AI Warning Banner -->
-<div class="rounded-xl border border-blue-200/80 bg-blue-50/70 p-4.5 flex items-start gap-3.5 shadow-sm" style="background-color: #F0F7FF; border-color: #B9DAFB;">
-<div class="p-2 rounded-lg bg-white text-primary shadow-xs flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-primary text-xl" data-icon="psychology" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
-</div>
-<div class="space-y-0.5">
-<div class="flex items-center gap-2">
-<h3 class="text-label-md font-label-md text-primary">Análisis de apoyo con IA Co-pilot</h3>
-<span class="px-2 py-0.2 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">ISO 31000 Compliant</span>
-</div>
-<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
-            Análisis de apoyo. La decisión final la toma una persona. Los datos ingresados alimentan el modelo predictivo de riesgo bajo norma ISO 31000.
-          </p>
-</div>
-</div>
 <form class="space-y-6" id="providerForm">
 <!-- Sección 1: Información General -->
 <section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
@@ -223,14 +156,14 @@
 <label class="block text-label-md font-label-md text-slate-700" for="company_name">
                 Nombre de empresa / Razón social <span class="text-error">*</span>
 </label>
-<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="company_name" name="company_name" placeholder="ej: Hoteles del Caribe S.A.S." required="" type="text" value="Hoteles del Caribe S.A.S."/>
+<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="company_name" name="company_name" placeholder="ej: Hoteles del Caribe S.A.S." required="" type="text"/>
 </div>
 <!-- NIT -->
 <div class="space-y-1.5">
 <label class="block text-label-md font-label-md text-slate-700" for="nit">
                 NIT / Identificación fiscal <span class="text-error">*</span>
 </label>
-<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400 font-mono text-sm" id="nit" name="nit" placeholder="ej: 900.123.456-7" required="" type="text" value="900.123.456-7"/>
+<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400 font-mono text-sm" id="nit" name="nit" placeholder="ej: 900.123.456-7" required="" type="text"/>
 </div>
 <!-- Tipo de proveedor -->
 <div class="space-y-1.5">
@@ -239,7 +172,7 @@
 </label>
 <div class="relative">
 <select class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all appearance-none cursor-pointer pr-10" id="provider_type" name="provider_type" required="">
-<option selected="" value="hotel">Hotel / Cadena Hotelera</option>
+<option selected="" value="">Selecciona el tipo de proveedor</option><option value="hotel">Hotel / Cadena Hotelera</option>
 <option value="transporte">Transporte Terrestre Especial</option>
 <option value="operador">Operador Turístico / Receptivo</option>
 <option value="aerolinea">Aerolínea Comercial</option>
@@ -254,7 +187,7 @@
 <label class="block text-label-md font-label-md text-slate-700" for="contact_name">
                 Persona de contacto <span class="text-error">*</span>
 </label>
-<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="contact_name" name="contact_name" placeholder="ej: Laura Gómez Mejía" required="" type="text" value="Laura Gómez Mejía"/>
+<input class="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="contact_name" name="contact_name" placeholder="ej: Laura Gómez Mejía" required="" type="text"/>
 </div>
 <!-- Teléfono -->
 <div class="space-y-1.5">
@@ -263,7 +196,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="call">call</span>
-<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="phone" name="phone" placeholder="ej: +57 (605) 664 1234" required="" type="tel" value="+57 (605) 664 1234"/>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="phone" name="phone" placeholder="ej: +57 (605) 664 1234" required="" type="tel"/>
 </div>
 </div>
 <!-- Correo electrónico -->
@@ -273,7 +206,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="mail">mail</span>
-<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="email" name="email" placeholder="ej: contacto@hoteldelcaribe.com" required="" type="email" value="contacto@hoteldelcaribe.com"/>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="email" name="email" placeholder="ej: contacto@hoteldelcaribe.com" required="" type="email"/>
 </div>
 </div>
 <!-- Dirección -->
@@ -283,7 +216,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="location_on">location_on</span>
-<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="address" name="address" placeholder="ej: Calle 32 # 8-45, Bocagrande" required="" type="text" value="Calle 32 # 8-45, Bocagrande"/>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="address" name="address" placeholder="ej: Calle 32 # 8-45, Bocagrande" required="" type="text"/>
 </div>
 </div>
 <!-- Ciudad principal -->
@@ -293,7 +226,7 @@
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg" data-icon="apartment">apartment</span>
-<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="city" name="city" placeholder="ej: Cartagena de Indias, Bolívar" required="" type="text" value="Cartagena de Indias, Bolívar"/>
+<input class="w-full pl-9 bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 transition-all placeholder:text-slate-400" id="city" name="city" placeholder="ej: Cartagena de Indias, Bolívar" required="" type="text"/>
 </div>
 </div>
 </div>
@@ -309,19 +242,19 @@
 </div>
 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 pt-2">
 <!-- Hotel (Checked) -->
-<label class="flex items-center gap-3 p-3.5 rounded-lg border-2 border-primary bg-blue-50/60 cursor-pointer transition-all shadow-xs">
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox"/>
+<label class="service-option flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox"/>
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-primary text-xl" data-icon="hotel">hotel</span>
-<span class="text-label-md font-label-md text-slate-800 font-semibold">Hotel</span>
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="hotel">hotel</span>
+<span class="text-body-md font-body-md text-slate-700">Hotel</span>
 </div>
 </label>
 <!-- Restaurante (Checked) -->
-<label class="flex items-center gap-3 p-3.5 rounded-lg border-2 border-primary bg-blue-50/60 cursor-pointer transition-all shadow-xs">
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox"/>
+<label class="service-option flex items-center gap-3 p-3.5 rounded-lg border border-slate-200 hover:border-slate-300 hover:bg-slate-50/50 cursor-pointer transition-all">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 cursor-pointer" type="checkbox"/>
 <div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-primary text-xl" data-icon="restaurant">restaurant</span>
-<span class="text-label-md font-label-md text-slate-800 font-semibold">Restaurante</span>
+<span class="material-symbols-outlined text-slate-500 text-xl" data-icon="restaurant">restaurant</span>
+<span class="text-body-md font-body-md text-slate-700">Restaurante</span>
 </div>
 </label>
 <!-- Transporte -->
@@ -395,169 +328,49 @@
 <span class="">+ Agregar cobertura</span>
 </button>
 </div>
-<!-- Active Chips / Badges Container -->
-<div class="pt-1">
-<label class="block text-label-sm font-label-sm text-slate-500 uppercase tracking-wider mb-2">Coberturas seleccionadas:</label>
-<div class="flex flex-wrap items-center gap-2">
-<!-- Chip 1 -->
-<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface border border-outline-variant/60 text-label-md font-label-md">
-<span class="material-symbols-outlined text-base text-primary" data-icon="pin_drop">pin_drop</span>
-<span class="">Cartagena (Bolívar)</span>
-<button class="text-outline hover:text-error transition-colors flex items-center" title="Eliminar Cartagena" type="button">
-<span class="material-symbols-outlined text-base" data-icon="close">close</span>
-</button>
-</div>
-<!-- Chip 2 -->
-<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface border border-outline-variant/60 text-label-md font-label-md">
-<span class="material-symbols-outlined text-base text-primary" data-icon="pin_drop">pin_drop</span>
-<span class="">Barranquilla (Atlántico)</span>
-<button class="text-outline hover:text-error transition-colors flex items-center" title="Eliminar Barranquilla" type="button">
-<span class="material-symbols-outlined text-base" data-icon="close">close</span>
-</button>
-</div>
-<!-- Chip 3 -->
-<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface border border-outline-variant/60 text-label-md font-label-md">
-<span class="material-symbols-outlined text-base text-primary" data-icon="pin_drop">pin_drop</span>
-<span class="">Santa Marta (Magdalena)</span>
-<button class="text-outline hover:text-error transition-colors flex items-center" title="Eliminar Santa Marta" type="button">
-<span class="material-symbols-outlined text-base" data-icon="close">close</span>
-</button>
-</div>
-<!-- Chip 4 -->
-<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-100/70 text-primary border border-blue-200 text-label-md font-label-md">
-<span class="material-symbols-outlined text-base text-primary" data-icon="travel_explore">travel_explore</span>
-<span class="">Región Caribe</span>
-<button class="text-primary hover:text-error transition-colors flex items-center" title="Eliminar Región Caribe" type="button">
-<span class="material-symbols-outlined text-base" data-icon="close">close</span>
-</button>
-</div>
-</div>
-</div>
 </div>
 </section>
-<!-- Sección 4: Documentación y Vigencias -->
+<!-- Sección 4: Documentos del proveedor -->
 <section class="bg-white rounded-xl shadow-sm border border-slate-200/80 p-6">
-<div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
-<div class="flex items-center gap-2.5">
-<span class="w-7 h-7 rounded-md bg-blue-50 text-primary flex items-center justify-center font-bold text-label-md">4</span>
-<div>
-<h2 class="text-headline-sm font-headline-sm text-on-surface">Documentación y Vigencias</h2>
-<p class="text-body-sm font-body-sm text-outline">Carga los soportes regulatorios y define los vencimientos para el monitoreo de riesgo activo.</p>
-</div>
-</div>
-<div class="flex items-center gap-2 text-label-sm font-label-sm text-slate-500">
-<span class="material-symbols-outlined text-base" data-icon="lock">lock</span>
-<span class="">Validación OCR automática</span>
-</div>
-</div>
-<!-- Drag and Drop Zone -->
-<div class="border-2 border-dashed border-slate-300 hover:border-primary/80 rounded-xl p-8 text-center bg-slate-50/50 hover:bg-blue-50/20 transition-all cursor-pointer group mb-6">
-<div class="w-12 h-12 mx-auto rounded-full bg-blue-100 text-primary flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-2xl" data-icon="cloud_upload">cloud_upload</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface font-medium">
-              Arrastra aquí los documentos o <span class="text-primary underline font-semibold">haz clic para examinar</span>
-</p>
-<p class="text-body-sm font-body-sm text-outline mt-1">
-              Admite formatos PDF, PNG, JPG (Tamaño máximo hasta 10MB por archivo)
-            </p>
-</div>
-<!-- Documents Checklist & Expiration Selector -->
-<div class="space-y-3">
-<label class="block text-label-sm font-label-sm text-slate-500 uppercase tracking-wider">Documentos requeridos para habilitación:</label>
-<!-- Doc 1: RNT -->
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
-<div class="flex items-start gap-3.5">
-<div class="p-2 rounded bg-red-50 text-red-700 shrink-0">
-<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="text-label-md font-label-md text-slate-900 font-semibold">Registro Nacional de Turismo (RNT)</span>
-<span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
-                      Cargado
-                    </span>
-</div>
-<p class="text-body-sm font-body-sm text-slate-500 mt-0.5">rnt_vigente_2024.pdf <span class="text-slate-400">•</span> 2.4 MB</p>
-</div>
-</div>
-<div class="flex items-center gap-3 shrink-0">
-<div class="flex items-center gap-2">
-<label class="text-label-sm font-label-sm text-slate-600" for="exp_rnt">Fecha de vencimiento:</label>
-<input class="bg-white border border-slate-300 rounded-md px-2.5 py-1 text-table-cell font-table-cell text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer" id="exp_rnt" type="date" value="2025-03-31"/>
-</div>
-<button class="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100 transition-colors" title="Ver documento" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
-</button>
-<button class="p-1.5 text-slate-400 hover:text-error rounded hover:bg-slate-100 transition-colors" title="Reemplazar archivo" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="delete_outline">delete_outline</span>
-</button>
-</div>
-</div>
-<!-- Doc 2: Póliza -->
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
-<div class="flex items-start gap-3.5">
-<div class="p-2 rounded bg-red-50 text-red-700 shrink-0">
-<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="text-label-md font-label-md text-slate-900 font-semibold">Póliza de Responsabilidad Civil</span>
-<span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
-                      Cargado
-                    </span>
-</div>
-<p class="text-body-sm font-body-sm text-slate-500 mt-0.5">poliza_contractual.pdf <span class="text-slate-400">•</span> 4.1 MB</p>
-</div>
-</div>
-<div class="flex items-center gap-3 shrink-0">
-<div class="flex items-center gap-2">
-<label class="text-label-sm font-label-sm text-slate-600" for="exp_poliza">Fecha de vencimiento:</label>
-<input class="bg-white border border-slate-300 rounded-md px-2.5 py-1 text-table-cell font-table-cell text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer" id="exp_poliza" type="date" value="2024-12-15"/>
-</div>
-<button class="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100 transition-colors" title="Ver documento" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
-</button>
-<button class="p-1.5 text-slate-400 hover:text-error rounded hover:bg-slate-100 transition-colors" title="Reemplazar archivo" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="delete_outline">delete_outline</span>
-</button>
-</div>
-</div>
-<!-- Doc 3: RUT -->
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-4 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
-<div class="flex items-start gap-3.5">
-<div class="p-2 rounded bg-red-50 text-red-700 shrink-0">
-<span class="material-symbols-outlined text-xl" data-icon="picture_as_pdf">picture_as_pdf</span>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="text-label-md font-label-md text-slate-900 font-semibold">RUT actualizado (DIAN)</span>
-<span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-[#E8F5E9] text-[#1B5E20]">
-<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32]"></span>
-                      Cargado
-                    </span>
-</div>
-<p class="text-body-sm font-body-sm text-slate-500 mt-0.5">rut_2024.pdf <span class="text-slate-400">•</span> 1.1 MB</p>
-</div>
-</div>
-<div class="flex items-center gap-3 shrink-0">
-<div class="flex items-center gap-2">
-<label class="text-label-sm font-label-sm text-slate-600">Fecha de vencimiento:</label>
-<div class="px-3 py-1 bg-slate-100 border border-slate-200 rounded-md text-slate-600 text-table-cell font-table-cell">
-                    Indefinido
-                  </div>
-</div>
-<button class="p-1.5 text-slate-400 hover:text-primary rounded hover:bg-slate-100 transition-colors" title="Ver documento" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
-</button>
-<button class="p-1.5 text-slate-400 hover:text-error rounded hover:bg-slate-100 transition-colors" title="Reemplazar archivo" type="button">
-<span class="material-symbols-outlined text-lg" data-icon="delete_outline">delete_outline</span>
-</button>
-</div>
-</div>
-</div>
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+    <div class="flex items-center gap-2.5">
+      <span class="w-7 h-7 rounded-md bg-blue-50 text-primary flex items-center justify-center font-bold">4</span>
+      <div>
+        <h2 class="text-lg font-semibold text-slate-900">Añadir documentos</h2>
+        <p class="text-sm text-slate-500 mt-1">Adjunta los documentos del proveedor. Se guardarán en su ficha después de registrar sus datos.</p>
+      </div>
+    </div>
+    <button id="addRegistrationDocument" type="button" class="inline-flex items-center justify-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-100">
+      <span class="material-symbols-outlined text-lg">add</span>Añadir otro documento
+    </button>
+  </div>
+  <div id="registrationDocuments" class="space-y-4">
+    <article class="registration-document rounded-xl border border-slate-200 p-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <label class="mb-1.5 block text-sm font-semibold text-slate-700">Tipo de documento</label>
+          <select class="registration-doc-type w-full rounded-xl border-slate-300">
+            <option value="">Selecciona el tipo</option><option>RUT</option><option>Cámara de Comercio</option><option>Registro Nacional de Turismo (RNT)</option><option>Certificación ISO</option><option>Póliza de responsabilidad civil</option><option>Certificación bancaria</option><option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-semibold text-slate-700">Archivo</label>
+          <input class="registration-doc-file block w-full text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:font-semibold file:text-blue-700" type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.xls,.xlsx">
+          <p class="mt-1 text-xs text-slate-500">PDF, imagen, Word o Excel. Máximo 3 MB.</p>
+        </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-semibold text-slate-700">Fecha de emisión</label>
+          <input class="registration-doc-issue w-full rounded-xl border-slate-300" type="date">
+        </div>
+        <div>
+          <label class="mb-1.5 block text-sm font-semibold text-slate-700">Fecha de vencimiento</label>
+          <input class="registration-doc-expiry w-full rounded-xl border-slate-300" type="date">
+        </div>
+      </div>
+      <p class="registration-doc-name mt-3 text-xs text-slate-500">Ningún archivo seleccionado.</p>
+    </article>
+  </div>
+  <p id="registrationDocumentsMessage" class="mt-4 hidden rounded-lg p-3 text-sm"></p>
 </section>
 <!-- Barra inferior de acciones (Sticky Docked Action Bar) -->
 <div class="sticky bottom-0 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-slate-200/90 flex flex-col sm:flex-row items-center justify-between gap-4 z-20">
@@ -567,7 +380,7 @@
 </div>
 <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
 <!-- Botón Secundario Cancelar -->
-<button class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-label-md font-label-md font-medium transition-colors shadow-xs" type="button">
+<button id="cancelProviderRegistration" class="px-5 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-label-md font-label-md font-medium transition-colors shadow-xs" type="button">
               Cancelar
             </button>
 <!-- Botón Primario Guardar -->
@@ -599,8 +412,40 @@
   function dismissToast(){const toast=document.getElementById('feedbackToast');if(toast){toast.hidden=true;}}
   document.addEventListener('DOMContentLoaded',function(){
     const form=document.getElementById('providerForm'); if(!form)return;
-    const cancel=form.querySelector('button[type="button"]');
+    // Las tarjetas de servicios solo se resaltan cuando su casilla está marcada.
+    form.querySelectorAll('.service-option').forEach(card=>{
+      const checkbox=card.querySelector('input[type="checkbox"]');
+      const icon=card.querySelector('.material-symbols-outlined');
+      const label=card.querySelector('span:last-child');
+      const paint=()=>{
+        const active=checkbox.checked;
+        card.classList.toggle('border-2',active);
+        card.classList.toggle('border-primary',active);
+        card.classList.toggle('bg-blue-50/60',active);
+        card.classList.toggle('shadow-xs',active);
+        card.classList.toggle('border',!active);
+        card.classList.toggle('border-slate-200',!active);
+        if(icon){icon.classList.toggle('text-primary',active);icon.classList.toggle('text-slate-500',!active);}
+        if(label){label.classList.toggle('text-label-md',active);label.classList.toggle('font-label-md',active);label.classList.toggle('text-slate-800',active);label.classList.toggle('text-body-md',!active);label.classList.toggle('font-body-md',!active);label.classList.toggle('text-slate-700',!active);}
+      };
+      checkbox.addEventListener('change',paint);
+      paint();
+    });
+    const cancel=document.getElementById('cancelProviderRegistration');
     if(cancel)cancel.addEventListener('click',()=>{window.location.href='directory.html';});
+    const docsContainer=document.getElementById('registrationDocuments');
+    const addDocButton=document.getElementById('addRegistrationDocument');
+    if(addDocButton&&docsContainer){
+      addDocButton.addEventListener('click',()=>{
+        const first=docsContainer.querySelector('.registration-document');
+        const clone=first.cloneNode(true);
+        clone.querySelectorAll('input,select').forEach(input=>{input.value='';});
+        clone.querySelector('.registration-doc-name').textContent='Ningún archivo seleccionado.';
+        const remove=document.createElement('button');remove.type='button';remove.className='mt-3 text-sm font-semibold text-red-600 hover:text-red-700';remove.textContent='Eliminar este documento';remove.addEventListener('click',()=>clone.remove());
+        clone.appendChild(remove);docsContainer.appendChild(clone);
+      });
+      docsContainer.addEventListener('change',event=>{if(event.target.classList.contains('registration-doc-file')){const file=event.target.files[0];const label=event.target.closest('.registration-document').querySelector('.registration-doc-name');label.textContent=file?`${file.name} · ${(file.size/1024/1024).toFixed(2)} MB`:'Ningún archivo seleccionado.';}});
+    }
     form.addEventListener('submit',async function(event){
       event.preventDefault();
       if(!form.reportValidity())return;
@@ -609,17 +454,41 @@
       if(button){button.disabled=true;button.innerText='Registrando…';button.classList.add('opacity-70');}
       const typeMap={hotel:'HOTEL',transporte:'TRANSPORTADOR',operador:'OPERADOR',aerolinea:'AEROLINEA',guia:'GUIA',otro:'RESTAURANTE'};
       const data={razonSocial:document.getElementById('company_name').value.trim(),nit:document.getElementById('nit').value.trim(),tipo:typeMap[document.getElementById('provider_type').value]||'HOTEL',correo:document.getElementById('email').value.trim(),telefono:document.getElementById('phone').value.trim(),direccion:document.getElementById('address').value.trim()};
+      const documents=[];
+      let proveedorCreado=false;
       try{
+        const docRows=[...document.querySelectorAll('.registration-document')];
+        for(const row of docRows){
+          const file=row.querySelector('.registration-doc-file').files[0];
+          const type=row.querySelector('.registration-doc-type').value;
+          const issue=row.querySelector('.registration-doc-issue').value;
+          const expiry=row.querySelector('.registration-doc-expiry').value;
+          if(!file)continue;
+          if(!type||!expiry)throw new Error('Para cada archivo adjunto debes seleccionar el tipo y la fecha de vencimiento.');
+          if(file.size>3*1024*1024)throw new Error(`El archivo ${file.name} supera el límite de 3 MB.`);
+          if(issue&&expiry<issue)throw new Error(`La fecha de vencimiento de ${file.name} no puede ser anterior a la fecha de emisión.`);
+          documents.push({file,tipo:type,fechaEmision:issue,fechaVencimiento:expiry});
+        }
         if(!window.TurisProAPI||typeof window.TurisProAPI.crearProveedor!=='function')throw new Error('No se pudo cargar el servicio de proveedores.');
         const resultado=await window.TurisProAPI.crearProveedor(data);
+        const proveedor=resultado.proveedor||resultado;
+        proveedorCreado=true;
+        const idProveedor=proveedor.idProveedor;
+        if(documents.length){
+          if(!idProveedor)throw new Error('El proveedor se registró, pero no se recibió su identificador para asociar los documentos.');
+          for(const doc of documents){
+            const base64=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=()=>reject(new Error(`No se pudo leer ${doc.file.name}.`));reader.readAsDataURL(doc.file);});
+            await window.TurisProAPI.crearDocumento(idProveedor,{tipo:doc.tipo,fechaEmision:doc.fechaEmision||new Date().toISOString().slice(0,10),fechaVencimiento:doc.fechaVencimiento,archivo:{nombre:doc.file.name,mimeType:doc.file.type,base64}});
+          }
+        }
         const title=document.querySelector('#feedbackToast h4');const message=document.querySelector('#feedbackToast p');
         if(title)title.textContent='Proveedor registrado correctamente';
-        if(message)message.textContent='El proveedor fue guardado en la base de datos. Volviendo al directorio…';
-        triggerFeedback();setTimeout(()=>window.location.href='directory.html',1300);
+        if(message)message.textContent=documents.length?`Proveedor y ${documents.length} documento(s) guardados correctamente. Volviendo al directorio…`:'El proveedor fue guardado en la base de datos. Volviendo al directorio…';
+        triggerFeedback();setTimeout(()=>window.location.href='directory.html',1500);
       }catch(error){
         const title=document.querySelector('#feedbackToast h4');const message=document.querySelector('#feedbackToast p');
-        if(title)title.textContent='No fue posible registrar el proveedor';
-        if(message)message.textContent=error.message;
+        if(title)title.textContent=proveedorCreado?'Proveedor registrado; revisar documentos':'No fue posible registrar el proveedor';
+        if(message)message.textContent=proveedorCreado?`El proveedor sí quedó guardado, pero no se pudieron completar todos los documentos: ${error.message}`:error.message;
         triggerFeedback();if(button){button.disabled=false;button.innerText=oldText;button.classList.remove('opacity-70');}
       }
     });

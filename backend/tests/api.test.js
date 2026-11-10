@@ -131,25 +131,56 @@ test('API Integration - Migración progresiva de contraseña legacy tras login e
   assert.strictEqual(partes[2], '210000', 'Debe haber sido actualizado a 210,000 iteraciones');
 });
 
+async function tokenDe(correo, clave) {
+  const res = await callApi('POST', '/api/auth/login', { correo, clave });
+  return { Authorization: `Bearer ${res.data.token}` };
+}
+
 test('API Integration - HU-02: Menú y opciones según rol del usuario', async () => {
-  const loginRes = await callApi('POST', '/api/auth/login', {
-    correo: 'gestor@turispro.com',
-    clave: 'Gestor123*'
-  });
-  const token = loginRes.data.token;
+  const menuDe = async (correo, clave) => {
+    const res = await callApi('GET', '/api/auth/menu', null, await tokenDe(correo, clave));
+    assert.strictEqual(res.status, 200);
+    return res.data;
+  };
 
-  const menuRes = await callApi('GET', '/api/auth/menu', null, {
-    Authorization: `Bearer ${token}`
-  });
+  const admin = await menuDe('admin@turispro.com', 'Admin123*');
+  assert.strictEqual(admin.rol, 'ADMINISTRADOR');
+  assert.strictEqual(admin.items.length, 9, 'El administrador ve todas las pantallas del menú');
 
-  assert.strictEqual(menuRes.status, 200);
-  assert.strictEqual(menuRes.data.rol, 'GESTOR_PROVEEDORES');
-  const ids = menuRes.data.items.map(i => i.id);
-  assert.ok(ids.includes('dashboard'));
-  assert.ok(ids.includes('proveedores'));
-  assert.ok(ids.includes('registrar_proveedor'));
-  // Gestor no debe tener configuración de usuarios
-  assert.strictEqual(ids.includes('configuracion'), false);
+  const gestor = await menuDe('gestor@turispro.com', 'Gestor123*');
+  assert.strictEqual(gestor.rol, 'GESTOR_PROVEEDORES');
+  const idsGestor = gestor.items.map(i => i.id);
+  ['dashboard', 'proveedores', 'comparar', 'documentos', 'evaluaciones', 'incidentes', 'reportes', 'analisis_riesgo', 'configuracion']
+    .forEach(id => assert.ok(idsGestor.includes(id), `El gestor debe ver ${id}`));
+
+  const evaluador = await menuDe('evaluador@turispro.com', 'Evaluador123*');
+  assert.strictEqual(evaluador.rol, 'EVALUADOR');
+  const idsEvaluador = evaluador.items.map(i => i.id);
+  ['dashboard', 'proveedores', 'comparar', 'evaluaciones', 'incidentes', 'analisis_riesgo', 'configuracion']
+    .forEach(id => assert.ok(idsEvaluador.includes(id), `El evaluador debe ver ${id}`));
+  // El evaluador no administra documentos ni ve los reportes ejecutivos
+  assert.strictEqual(idsEvaluador.includes('documentos'), false);
+  assert.strictEqual(idsEvaluador.includes('reportes'), false);
+});
+
+test('API Integration - Permisos por rol: reportes, documentos globales y recálculo de riesgo', async () => {
+  const admin = await tokenDe('admin@turispro.com', 'Admin123*');
+  const gestor = await tokenDe('gestor@turispro.com', 'Gestor123*');
+  const evaluador = await tokenDe('evaluador@turispro.com', 'Evaluador123*');
+
+  // Reportes y documentos globales: solo Administrador y Gestor
+  for (const ruta of ['/api/reportes/analitica', '/api/documentos']) {
+    assert.strictEqual((await callApi('GET', ruta)).status, 401, `${ruta} sin sesión`);
+    assert.strictEqual((await callApi('GET', ruta, null, evaluador)).status, 403, `${ruta} evaluador`);
+    assert.strictEqual((await callApi('GET', ruta, null, gestor)).status, 200, `${ruta} gestor`);
+    assert.strictEqual((await callApi('GET', ruta, null, admin)).status, 200, `${ruta} admin`);
+  }
+
+  // Recalcular riesgo: Administrador y Evaluador (el Gestor solo consulta)
+  const recalcular = '/api/proveedores/1/riesgo/recalcular';
+  assert.strictEqual((await callApi('POST', recalcular, {}, gestor)).status, 403);
+  assert.notStrictEqual((await callApi('POST', recalcular, {}, evaluador)).status, 403);
+  assert.notStrictEqual((await callApi('POST', recalcular, {}, admin)).status, 403);
 });
 
 test('API Integration - HU-14: Dashboard simple con 4 indicadores y tabla de atención', async () => {

@@ -21,46 +21,165 @@
     'carlos.mendoza@turispro.co': { idUsuario: 1, nombre: 'Carlos Mendoza', correo: 'carlos.mendoza@turispro.co', rol: 'ADMINISTRADOR', clave: null }
   };
 
+  // Control compartido de peticiones: evita duplicados, esperas infinitas y
+  // permite pausar la sincronización mientras el usuario está editando formularios.
+  const pendingGetRequests = new Map();
+  window.__turisproPendingRequests = window.__turisproPendingRequests || 0;
+  window.__turisproActiveWrites = window.__turisproActiveWrites || 0;
+
   async function request(endpoint, options = {}) {
+    const method = String(options.method || 'GET').toUpperCase();
     const url = `${API_BASE}${endpoint}`;
     const token = localStorage.getItem(TOKEN_KEY);
+    const isGet = method === 'GET';
+    const dedupeKey = isGet ? `${method}:${url}:${token || ''}` : null;
 
-    const headers = {
-      'Content-Type': 'application/json',
-      ...(options.headers || {})
+    // Si ya existe una consulta idéntica en curso, compartir su resultado.
+    if (dedupeKey && pendingGetRequests.has(dedupeKey)) {
+      return pendingGetRequests.get(dedupeKey);
+    }
+
+    const execute = async () => {
+      const headers = { ...(options.headers || {}) };
+      if (options.body !== undefined && !(options.body instanceof FormData)) {
+        headers['Content-Type'] = headers['Content-Type'] || 'application/json';
+      }
+      if (token) headers.Authorization = `Bearer ${token}`;
+
+      const controller = new AbortController();
+      const timeoutMs = Number(options.timeoutMs) || (isGet ? 20000 : 70000);
+      // El timeout propio siempre debe aplicar, incluso si el consumidor entrega
+      // una señal externa para cancelar la petición.
+      const externalSignal = options.signal;
+      const onExternalAbort = () => controller.abort(externalSignal && externalSignal.reason);
+      if (externalSignal) {
+        if (externalSignal.aborted) onExternalAbort();
+        else externalSignal.addEventListener('abort', onExternalAbort, { once: true });
+      }
+      const timeoutId = window.setTimeout(() => controller.abort(new DOMException('Tiempo de espera agotado', 'TimeoutError')), timeoutMs);
+      window.__turisproPendingRequests += 1;
+      if (!isGet) window.__turisproActiveWrites += 1;
+      window.dispatchEvent(new CustomEvent('turispro:request-start', { detail: { method, endpoint } }));
+
+      try {
+        const fetchOptions = {
+          method,
+          headers,
+          signal: controller.signal
+        };
+        if (options.body !== undefined) {
+          fetchOptions.body = options.body instanceof FormData
+            ? options.body
+            : JSON.stringify(options.body);
+        }
+
+        const response = await fetch(url, fetchOptions);
+        const raw = await response.text();
+        let data = {};
+        if (raw) {
+          try { data = JSON.parse(raw); }
+          catch (_) { data = { mensaje: raw }; }
+        }
+
+        if (!response.ok) {
+          const error = new Error(data.error || data.mensaje || `Error en la petición: HTTP ${response.status}`);
+          error.status = response.status;
+          throw error;
+        }
+        return data;
+      } catch (err) {
+        if (err.name === 'AbortError' || err.name === 'TimeoutError') {
+          const timeoutError = new Error(externalSignal && externalSignal.aborted
+            ? 'La solicitud fue cancelada.'
+            : 'La solicitud tardó demasiado. Intenta nuevamente.');
+          timeoutError.code = externalSignal && externalSignal.aborted ? 'REQUEST_ABORTED' : 'REQUEST_TIMEOUT';
+          throw timeoutError;
+        }
+        if (err.name === 'TypeError' || (err.message && err.message.toLowerCase().includes('fetch'))) {
+          const networkError = new Error('ERR_SERVER_OFFLINE');
+          networkError.isNetworkError = true;
+          throw networkError;
+        }
+        throw err;
+      } finally {
+        window.clearTimeout(timeoutId);
+        if (externalSignal) externalSignal.removeEventListener('abort', onExternalAbort);
+        window.__turisproPendingRequests = Math.max(0, window.__turisproPendingRequests - 1);
+        if (!isGet) window.__turisproActiveWrites = Math.max(0, window.__turisproActiveWrites - 1);
+        window.dispatchEvent(new CustomEvent('turispro:request-end', { detail: { method, endpoint } }));
+      }
     };
 
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+    const promise = execute();
+    if (dedupeKey) {
+      pendingGetRequests.set(dedupeKey, promise);
+      promise.finally(() => pendingGetRequests.delete(dedupeKey)).catch(() => {});
     }
-
-    try {
-      const response = await fetch(url, {
-        method: options.method || 'GET',
-        headers,
-        body: options.body ? JSON.stringify(options.body) : undefined
-      });
-
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        const errorMsg = data.error || `Error en la petición: HTTP ${response.status}`;
-        const err = new Error(errorMsg);
-        err.status = response.status;
-        throw err;
-      }
-
-      return data;
-    } catch (err) {
-      // Diferenciar fallo de conexión (servidor apagado) de error de lógica
-      if (err.name === 'TypeError' || (err.message && err.message.toLowerCase().includes('fetch'))) {
-        const netErr = new Error('ERR_SERVER_OFFLINE');
-        netErr.isNetworkError = true;
-        throw netErr;
-      }
-      throw err;
-    }
+    return promise;
   }
+
+  // Sincronización no intrusiva. También respeta filtros y controles que no están
+  // dentro de formularios (por ejemplo, los selectores de ciudad de Comparar).
+  let lastUserInteractionAt = 0;
+  const markUserInteraction = () => { lastUserInteractionAt = Date.now(); };
+  ['pointerdown', 'keydown', 'input', 'change', 'focusin'].forEach(eventName => {
+    document.addEventListener(eventName, markUserInteraction, true);
+  });
+
+  window.TurisProSync = window.TurisProSync || {
+    isBusy() {
+      if (document.hidden || window.__turisproActiveWrites > 0 || window.__turisproPendingRequests > 0) return true;
+      if (Date.now() - lastUserInteractionAt < 2000) return true;
+      if (document.querySelector('.fixed:not(.hidden) form, [role="dialog"]:not(.hidden) form')) return true;
+      if (document.querySelector('form[data-turispro-dirty="true"]')) return true;
+      const active = document.activeElement;
+      if (active && active.matches && active.matches('input, select, textarea, [contenteditable="true"]')) return true;
+      if (active && active.closest && active.closest('form')) return true;
+      return false;
+    },
+    start(callback, intervalMs = 60000) {
+      let running = false;
+      let stopped = false;
+      let focusTimer = null;
+      const run = async () => {
+        if (stopped || running || this.isBusy()) return;
+        running = true;
+        try { await callback(); }
+        catch (error) { console.warn('[TurisPro] No se pudo sincronizar la pantalla:', error); }
+        finally { running = false; }
+      };
+      const interval = window.setInterval(run, intervalMs);
+      const onReturn = () => {
+        if (document.hidden) return;
+        window.clearTimeout(focusTimer);
+        focusTimer = window.setTimeout(run, 2000);
+      };
+      document.addEventListener('visibilitychange', onReturn);
+      window.addEventListener('focus', onReturn);
+      return () => {
+        stopped = true;
+        window.clearInterval(interval);
+        window.clearTimeout(focusTimer);
+        document.removeEventListener('visibilitychange', onReturn);
+        window.removeEventListener('focus', onReturn);
+      };
+    }
+  };
+
+  // Marca formularios modificados para que la sincronización nunca borre trabajo sin guardar.
+  document.addEventListener('input', event => {
+    const form = event.target && event.target.closest && event.target.closest('form');
+    if (form) form.dataset.turisproDirty = 'true';
+  }, true);
+  document.addEventListener('change', event => {
+    const form = event.target && event.target.closest && event.target.closest('form');
+    if (form) form.dataset.turisproDirty = 'true';
+  }, true);
+  document.addEventListener('reset', event => {
+    if (event.target && event.target.matches && event.target.matches('form')) {
+      delete event.target.dataset.turisproDirty;
+    }
+  }, true);
 
   const TurisProAPI = {
     // Autenticación
@@ -160,6 +279,14 @@
       }
     },
 
+    async actualizarPerfil(datos) {
+      return request('/auth/perfil', { method: 'PUT', body: datos });
+    },
+
+    async cambiarContrasena(datos) {
+      return request('/auth/contrasena', { method: 'PATCH', body: datos });
+    },
+
     // Dashboard & Comparador
     async getDashboard() {
       return request('/dashboard');
@@ -171,6 +298,11 @@
       } catch (e) {
         return [];
       }
+    },
+
+    async getReporteAnalitica(periodo = 'todo') {
+      const q = new URLSearchParams({ periodo }).toString();
+      return request(`/reportes/analitica?${q}`);
     },
 
     async compararProveedores(ids) {
@@ -318,7 +450,8 @@
 
     async recalcularRiesgo(idProveedor) {
       return request(`/proveedores/${idProveedor}/riesgo/recalcular`, {
-        method: 'POST'
+        method: 'POST',
+        timeoutMs: 70000
       });
     },
 

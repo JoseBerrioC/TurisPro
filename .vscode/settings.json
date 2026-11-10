@@ -1,0 +1,13 @@
+{
+  "liveServer.settings.root": "/frontend",
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/backend/**",
+    "**/*.db",
+    "**/*.sqlite",
+    "**/*.sqlite3",
+    "**/uploads/**",
+    "**/node_modules/**",
+    "**/temp_update/**"
+  ]
+}

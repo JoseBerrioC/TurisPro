@@ -194,6 +194,21 @@ class Usuario {
     });
   }
 
+  static actualizarPerfil(idUsuario, nombre, correo) {
+    const db = getDatabase();
+    db.prepare('UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?')
+      .run(nombre, correo.toLowerCase().trim(), idUsuario);
+    return this.buscarPorId(idUsuario);
+  }
+
+  static actualizarContrasena(idUsuario, nuevaContrasena) {
+    const db = getDatabase();
+    const hash = this.hashClave(nuevaContrasena);
+    db.prepare('UPDATE usuarios SET contrasena_hash = ? WHERE id_usuario = ?')
+      .run(hash, idUsuario);
+    return true;
+  }
+
   static listarTodos() {
     const db = getDatabase();
     const rows = db.prepare('SELECT id_usuario, nombre, correo, rol, activo, creado_en FROM usuarios').all();

@@ -19,6 +19,6 @@
   "author": "José Berrío",
   "license": "ISC",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.5.0"
   }
 }

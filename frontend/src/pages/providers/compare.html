@@ -14,42 +14,30 @@
 <body class="h-full flex overflow-hidden bg-[#f6faff] text-slate-800 antialiased">
   <script src="../../assets/js/sidebar.js"></script>
   <div class="ml-64 flex min-w-0 flex-1 flex-col h-screen overflow-y-auto">
-    <header class="sticky top-0 z-30 flex h-16 items-center justify-end border-b border-slate-200 bg-white px-8 shadow-sm">
-      <div class="flex items-center gap-3 text-slate-500">
-        <span class="material-symbols-outlined">compare_arrows</span>
-        <span class="text-sm font-medium">Comparación de proveedores</span>
-      </div>
-    </header>
-
     <main class="mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-6 p-6 lg:p-8">
       <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="flex items-start gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
-            <span class="material-symbols-outlined text-2xl">compare_arrows</span>
-          </div>
-          <div>
-            <h1 class="text-2xl font-bold tracking-tight text-slate-900">Comparar proveedores</h1>
-            <p class="mt-1 max-w-3xl text-sm leading-6 text-slate-500">Consulta los proveedores registrados en TurisPro y filtra el directorio por ciudad para localizar rápidamente los aliados disponibles en cada destino.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div class="mb-5 flex flex-col gap-1">
-          <h2 class="text-base font-semibold text-slate-900">Filtrar por ciudad</h2>
-          <p class="text-sm text-slate-500">Selecciona una ciudad para mostrar únicamente los proveedores registrados con cobertura en ese destino.</p>
+          <h2 class="text-base font-semibold text-slate-900">Comparar por ciudad</h2>
+          <p class="text-sm text-slate-500">Selecciona una ciudad para consultar sus proveedores o dos ciudades para comparar los proveedores con cobertura en ambos destinos.</p>
         </div>
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div class="w-full max-w-md">
-            <label for="cityFilter" class="mb-2 block text-sm font-medium text-slate-700">Ciudad</label>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] md:items-end">
+          <div class="w-full">
+            <label for="cityFilter" class="mb-2 block text-sm font-medium text-slate-700">Primera ciudad</label>
             <select id="cityFilter" class="h-11 w-full rounded-lg border-slate-300 bg-white text-sm shadow-sm focus:border-blue-600 focus:ring-blue-600">
-              <option value="">Todas las ciudades</option>
+              <option value="">Selecciona una ciudad</option>
+            </select>
+          </div>
+          <div class="w-full">
+            <label for="cityFilter2" class="mb-2 block text-sm font-medium text-slate-700">Segunda ciudad <span class="font-normal text-slate-400">(opcional)</span></label>
+            <select id="cityFilter2" class="h-11 w-full rounded-lg border-slate-300 bg-white text-sm shadow-sm focus:border-blue-600 focus:ring-blue-600">
+              <option value="">No comparar otra ciudad</option>
             </select>
           </div>
           <button id="clearCityFilter" type="button" class="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
-            <span class="material-symbols-outlined text-lg">filter_alt_off</span>Limpiar filtro
+            <span class="material-symbols-outlined text-lg">filter_alt_off</span>Limpiar
           </button>
         </div>
+        <p id="comparisonDescription" class="mt-4 text-xs text-slate-500">Selecciona una ciudad para comenzar la comparación.</p>
       </section>
 
       <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -90,8 +78,10 @@
     document.addEventListener('DOMContentLoaded', async () => {
       if (!window.TurisProAPI || !TurisProAPI.requireAuth()) return;
       document.getElementById('cityFilter').addEventListener('change', renderProviders);
+      document.getElementById('cityFilter2').addEventListener('change', renderProviders);
       document.getElementById('clearCityFilter').addEventListener('click', () => {
         document.getElementById('cityFilter').value = '';
+        document.getElementById('cityFilter2').value = '';
         renderProviders();
       });
       await loadProviders();
@@ -118,26 +108,55 @@
     }
 
     function populateCities() {
-      const select = document.getElementById('cityFilter');
-      const currentValue = select.value;
       const cities = [...new Set(allProviders.flatMap(getProviderCities))].sort((a, b) => a.localeCompare(b, 'es'));
-      select.innerHTML = '<option value="">Todas las ciudades</option>' + cities.map(city => `<option value="${escapeHtml(city)}">${escapeHtml(city)}</option>`).join('');
-      if (cities.includes(currentValue)) select.value = currentValue;
+      const firstSelect = document.getElementById('cityFilter');
+      const secondSelect = document.getElementById('cityFilter2');
+      const firstValue = firstSelect.value;
+      const secondValue = secondSelect.value;
+      firstSelect.innerHTML = '<option value="">Selecciona una ciudad</option>' + cities.map(city => `<option value="${escapeHtml(city)}">${escapeHtml(city)}</option>`).join('');
+      secondSelect.innerHTML = '<option value="">No comparar otra ciudad</option>' + cities.map(city => `<option value="${escapeHtml(city)}">${escapeHtml(city)}</option>`).join('');
+      if (cities.includes(firstValue)) firstSelect.value = firstValue;
+      if (cities.includes(secondValue)) secondSelect.value = secondValue;
     }
 
     function renderProviders() {
-      const selectedCity = document.getElementById('cityFilter').value;
-      const filtered = selectedCity
-        ? allProviders.filter(provider => getProviderCities(provider).some(city => city.toLocaleLowerCase('es') === selectedCity.toLocaleLowerCase('es')))
+      const firstCity = document.getElementById('cityFilter').value;
+      const secondCity = document.getElementById('cityFilter2').value;
+      const selectedCities = [...new Set([firstCity, secondCity].filter(Boolean))];
+      const filtered = selectedCities.length
+        ? allProviders.filter(provider => getProviderCities(provider).some(city => selectedCities.some(selected => city.toLocaleLowerCase('es') === selected.toLocaleLowerCase('es'))))
         : allProviders;
       const table = document.getElementById('providersTable');
-      table.innerHTML = '';
+      const description = document.getElementById('comparisonDescription');
+      const fragment = document.createDocumentFragment();
+
+      if (firstCity && secondCity && firstCity.toLocaleLowerCase('es') === secondCity.toLocaleLowerCase('es')) {
+        description.textContent = 'Has seleccionado la misma ciudad en ambos filtros. Se muestra una sola vez para evitar duplicar resultados.';
+      } else if (firstCity && secondCity) {
+        description.textContent = `Comparación entre ${firstCity} y ${secondCity}. Se muestran los proveedores que tienen cobertura en una o ambas ciudades.`;
+      } else if (firstCity) {
+        description.textContent = `Mostrando proveedores con cobertura en ${firstCity}. Puedes seleccionar una segunda ciudad para comparar destinos.`;
+      } else if (secondCity) {
+        description.textContent = `Mostrando proveedores con cobertura en ${secondCity}. Puedes seleccionar una primera ciudad para comparar destinos.`;
+      } else {
+        description.textContent = 'Selecciona una ciudad para consultar sus proveedores o dos ciudades para compararlas.';
+      }
 
       if (!filtered.length) {
-        table.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center text-sm text-slate-500">No hay proveedores registrados para ${selectedCity ? escapeHtml(selectedCity) : 'los filtros seleccionados'}.</td></tr>`;
+        const label = selectedCities.length ? selectedCities.join(' y ') : 'los destinos seleccionados';
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 6;
+        cell.className = 'px-6 py-12 text-center text-sm text-slate-500';
+        cell.textContent = `No hay proveedores registrados con cobertura en ${label}.`;
+        row.appendChild(cell);
+        fragment.appendChild(row);
       } else {
         filtered.forEach(provider => {
           const cities = getProviderCities(provider);
+          const matchedCities = selectedCities.length
+            ? cities.filter(city => selectedCities.some(selected => city.toLocaleLowerCase('es') === selected.toLocaleLowerCase('es')))
+            : cities;
           const risk = String(provider.nivelRiesgo || 'Sin evaluar').replaceAll('_', ' ');
           const row = document.createElement('tr');
           row.className = 'transition hover:bg-slate-50';
@@ -145,13 +164,16 @@
             <td class="whitespace-nowrap px-6 py-4"><div class="font-semibold text-slate-900">${escapeHtml(provider.razonSocial || 'Sin nombre')}</div><div class="mt-1 text-xs text-slate-500">${escapeHtml(provider.correo || 'Sin correo registrado')}</div></td>
             <td class="whitespace-nowrap px-6 py-4 text-sm text-slate-600">#${escapeHtml(provider.idProveedor ?? '—')}</td>
             <td class="whitespace-nowrap px-6 py-4 text-sm text-slate-600">${escapeHtml(provider.tipo || '—')}</td>
-            <td class="px-6 py-4 text-sm text-slate-600">${cities.length ? cities.map(escapeHtml).join(', ') : 'Sin ciudad registrada'}</td>
+            <td class="px-6 py-4 text-sm text-slate-600">${(matchedCities.length ? matchedCities : cities).map(escapeHtml).join(', ') || 'Sin ciudad registrada'}</td>
             <td class="whitespace-nowrap px-6 py-4"><span class="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">${escapeHtml(risk)}</span></td>
             <td class="whitespace-nowrap px-6 py-4"><span class="inline-flex rounded-full ${provider.activo === false ? 'bg-red-50 text-red-700' : 'bg-emerald-50 text-emerald-700'} px-2.5 py-1 text-xs font-semibold">${provider.activo === false ? 'Inactivo' : 'Activo'}</span></td>`;
-          table.appendChild(row);
+          fragment.appendChild(row);
         });
       }
-      document.getElementById('providerCount').textContent = `${filtered.length} de ${allProviders.length} proveedor${allProviders.length === 1 ? '' : 'es'}${selectedCity ? ` en ${selectedCity}` : ' registrados'}`;
+      // Sustituye todas las filas en una sola operación para evitar parpadeos.
+      table.replaceChildren(fragment);
+      const destinationLabel = selectedCities.length ? ` para ${selectedCities.join(' y ')}` : ' registrados';
+      document.getElementById('providerCount').textContent = `${filtered.length} de ${allProviders.length} proveedor${allProviders.length === 1 ? '' : 'es'}${destinationLabel}`;
     }
 
     function escapeHtml(value) {

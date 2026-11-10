@@ -195,3 +195,88 @@ html body aside.tp-sidebar nav a:not(.tp-active):focus {
 html body aside.tp-sidebar nav a[href*="dashboard/dashboard.html"]:not(.tp-active):hover {
   background: rgba(255,255,255,.12) !important;
 }
+
+
+/* ── TurisPro: sistema visual unificado para todas las pantallas ── */
+:root {
+  --tp-title-size: 28px;
+  --tp-title-line: 1.2;
+  --tp-section-size: 18px;
+  --tp-subtitle-size: 14px;
+  --tp-body-size: 14px;
+  --tp-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Tipografía y jerarquía consistentes en el contenido principal */
+html body > .ml-64 main,
+html body .ml-64 main {
+  font-family: var(--tp-font);
+}
+html body .ml-64 main h1 {
+  font-family: var(--tp-font) !important;
+  font-size: var(--tp-title-size) !important;
+  line-height: var(--tp-title-line) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+}
+html body .ml-64 main h2 {
+  font-family: var(--tp-font) !important;
+  font-size: var(--tp-section-size) !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+}
+html body .ml-64 main h3 {
+  font-family: var(--tp-font) !important;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  font-weight: 700 !important;
+}
+html body .ml-64 main p {
+  font-family: var(--tp-font);
+}
+html body .ml-64 main h1 + p,
+html body .ml-64 main h2 + p,
+html body .ml-64 main h3 + p {
+  font-size: var(--tp-subtitle-size) !important;
+  line-height: 1.55 !important;
+}
+
+/* Panel azul: logotipo centrado y área de navegación uniforme */
+html body aside.tp-sidebar > div:first-child > div:first-child {
+  justify-content: center !important;
+  min-height: 76px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+html body aside.tp-sidebar > div:first-child > div:first-child > div {
+  justify-content: center !important;
+  width: 100% !important;
+}
+html body aside.tp-sidebar > div:first-child > div:first-child img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+html body aside.tp-sidebar nav {
+  width: 100% !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+html body aside.tp-sidebar nav a {
+  font-family: var(--tp-font) !important;
+  text-align: left !important;
+}
+html body aside.tp-sidebar > div:last-child {
+  font-family: var(--tp-font) !important;
+}
+html body aside.tp-sidebar > div:last-child > div {
+  align-items: center !important;
+}
+html body aside.tp-sidebar > div:last-child p {
+  text-align: left !important;
+}
+
+/* Evita que los estilos de cada página alteren la tipografía del menú */
+html body aside.tp-sidebar,
+html body aside.tp-sidebar * {
+  font-family: var(--tp-font) !important;
+}

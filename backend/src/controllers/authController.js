@@ -32,36 +32,66 @@ class AuthController {
     };
   }
 
+  static actualizarPerfil(body, usuarioActual) {
+    const nombre = String(body?.nombre || '').trim();
+    const correo = String(body?.correo || '').trim().toLowerCase();
+    if (!nombre || nombre.length > 100) {
+      return { status: 400, body: { error: 'El nombre es obligatorio y no puede superar 100 caracteres.' } };
+    }
+    if (!correo || correo.length > 150 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+      return { status: 400, body: { error: 'Ingresa un correo electrónico válido.' } };
+    }
+    const existente = Usuario.buscarPorCorreo(correo);
+    if (existente && existente.idUsuario !== usuarioActual.idUsuario) {
+      return { status: 409, body: { error: 'Ese correo ya está registrado por otro usuario.' } };
+    }
+    const actualizado = Usuario.actualizarPerfil(usuarioActual.idUsuario, nombre, correo);
+    return { status: 200, body: { mensaje: 'Perfil actualizado correctamente.', usuario: actualizado.toJSON() } };
+  }
+
+  static cambiarContrasena(body, usuarioActual) {
+    const actual = String(body?.contrasenaActual || '');
+    const nueva = String(body?.nuevaContrasena || '');
+    if (!actual || !nueva) return { status: 400, body: { error: 'Completa la contraseña actual y la nueva contraseña.' } };
+    if (!Usuario.verificarClave(actual, usuarioActual.contrasenaHash)) {
+      return { status: 400, body: { error: 'La contraseña actual no es correcta.' } };
+    }
+    const cumplePolitica = nueva.length >= 12 && /[A-Z]/.test(nueva) && /[a-z]/.test(nueva) && /[0-9]/.test(nueva) && /[^A-Za-z0-9]/.test(nueva);
+    if (!cumplePolitica) {
+      return { status: 400, body: { error: 'La nueva contraseña debe tener al menos 12 caracteres e incluir mayúsculas, minúsculas, números y símbolos.' } };
+    }
+    if (actual === nueva) return { status: 400, body: { error: 'La nueva contraseña debe ser diferente de la actual.' } };
+    Usuario.actualizarContrasena(usuarioActual.idUsuario, nueva);
+    return { status: 200, body: { mensaje: 'Contraseña actualizada correctamente.' } };
+  }
+
   static menuPorRol(usuario) {
-    // HU-02: Genera los enlaces y opciones permitidas para el menú lateral según el rol
-    const baseMenu = [
-      { id: 'dashboard', nombre: 'Dashboard', ruta: '/src/pages/dashboard/dashboard.html', icono: 'dashboard' },
-      { id: 'proveedores', nombre: 'Proveedores', ruta: '/src/pages/providers/directory.html', icono: 'storefront' },
-      { id: 'comparar', nombre: 'Comparar Proveedores', ruta: '/src/pages/providers/compare.html', icono: 'compare_arrows' }
+    // HU-02: Genera los enlaces y opciones permitidas para el menú lateral según el rol.
+    // Debe mantenerse alineado con NAV_ITEMS de frontend/src/assets/js/sidebar.js.
+    const TODOS = [Rol.ADMINISTRADOR, Rol.GESTOR_PROVEEDORES, Rol.EVALUADOR];
+    const ADMIN_GESTOR = [Rol.ADMINISTRADOR, Rol.GESTOR_PROVEEDORES];
+
+    const catalogo = [
+      { id: 'dashboard',      nombre: 'Inicio',        ruta: '/src/pages/dashboard/dashboard.html',                   icono: 'dashboard',      roles: TODOS },
+      { id: 'proveedores',    nombre: 'Proveedores',   ruta: '/src/pages/providers/directory.html',                   icono: 'domain',         roles: TODOS },
+      { id: 'comparar',       nombre: 'Comparar',      ruta: '/src/pages/providers/compare.html',                     icono: 'compare_arrows', roles: TODOS },
+      { id: 'documentos',     nombre: 'Documentos',    ruta: '/src/pages/providers/documents.html',                   icono: 'folder',         roles: ADMIN_GESTOR },
+      { id: 'evaluaciones',   nombre: 'Evaluaciones',  ruta: '/src/pages/providers/hotel-los-andes/evaluations.html', icono: 'fact_check',     roles: TODOS },
+      { id: 'incidentes',     nombre: 'Incidentes',    ruta: '/src/pages/providers/hotel-los-andes/incidents.html',   icono: 'report_problem', roles: TODOS },
+      { id: 'reportes',       nombre: 'Reportes',      ruta: '/src/pages/reports/executive-analytics.html',           icono: 'analytics',      roles: ADMIN_GESTOR },
+      { id: 'analisis_riesgo', nombre: 'Análisis IA',  ruta: '/src/pages/risk/ai-risk-analysis.html',                 icono: 'psychology',     roles: TODOS },
+      { id: 'configuracion',  nombre: 'Configuración', ruta: '/src/pages/settings/settings.html',                     icono: 'settings',       roles: TODOS }
     ];
 
-    if (usuario.rol === Rol.ADMINISTRADOR || usuario.rol === Rol.GESTOR_PROVEEDORES) {
-      baseMenu.push(
-        { id: 'registrar_proveedor', nombre: 'Nuevo Proveedor', ruta: '/src/pages/providers/register.html', icono: 'add_business' }
-      );
-    }
-
-    baseMenu.push(
-      { id: 'analisis_riesgo', nombre: 'Análisis IA', ruta: '/src/pages/risk/ai-risk-analysis.html', icono: 'psychology' },
-      { id: 'reportes', nombre: 'Reportes', ruta: '/src/pages/reports/executive-analytics.html', icono: 'bar_chart' }
-    );
-
-    if (usuario.rol === Rol.ADMINISTRADOR) {
-      baseMenu.push(
-        { id: 'configuracion', nombre: 'Configuración y Usuarios', ruta: '/src/pages/settings/settings.html', icono: 'settings' }
-      );
-    }
+    const items = catalogo
+      .filter((item) => item.roles.includes(usuario.rol))
+      .map(({ roles, ...item }) => item);
 
     return {
       status: 200,
       body: {
         rol: usuario.rol,
-        items: baseMenu
+        items
       }
     };
   }

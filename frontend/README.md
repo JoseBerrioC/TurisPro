@@ -1,85 +1,29 @@
 # TurisPro
 
-Plataforma web de gestión y evaluación de proveedores turísticos (hoteles, transporte, tours). Este repositorio contiene el **prototipo navegable** del diseño UX/UI, generado en Google Stitch con HTML y Tailwind CSS.
+## Ejecución recomendada
 
-## Cómo ejecutarlo
+1. Abre una terminal en `backend/` y ejecuta `npm start`.
+2. Abre `http://localhost:3000` en el navegador. El backend también sirve el frontend y evita el mecanismo de recarga automática de Live Server.
 
-Lo más simple es levantar el backend, que también sirve el frontend:
+## Alternativa con VS Code Live Server
 
-```
-cd backend && npm start        # http://localhost:3000
-```
+El proyecto incluye `.vscode/settings.json` con `liveServer.settings.root` apuntando a `/frontend`. Abre la carpeta raíz `TurisPro` en VS Code y ejecuta Live Server sobre `frontend/index.html`. Así Live Server sirve únicamente los archivos del frontend y no observa la base de datos SQLite ni los archivos cargados en `backend/uploads`.
 
-También puedes abrir `frontend/index.html`: redirige automáticamente a la pantalla de **inicio de sesión**.
+**No inicies Live Server desde la raíz antigua del proyecto sin esta configuración.** Cuando Live Server vigila también `backend/`, los cambios de SQLite al guardar evaluaciones, incidentes o documentos pueden ser detectados como cambios de archivos y provocar una recarga completa del navegador.
 
-- Con VS Code: extensión *Live Server* → clic derecho en `index.html` → *Open with Live Server*.
-- Con Python: `python -m http.server 5500 (desde la carpeta frontend)` y abre http://localhost:5500
+También puedes ejecutar `python server.py`; este servidor sirve únicamente `frontend/` en el puerto 5500. En cualquier caso, la API Node debe estar ejecutándose en el puerto 3000.
 
-Requiere internet (Tailwind CSS, Inter y Material Symbols se cargan por CDN).
+Se requiere Node.js 20 o superior. Tailwind, Inter y Material Symbols se cargan desde CDN y requieren conexión a internet.
 
-## Flujo del prototipo
+## Permisos por rol
 
-`Login` → `Dashboard` → menú lateral: Proveedores (directorio), Comparar, Documentos, Evaluaciones, Incidentes, Reportes, Análisis IA y Configuración. Desde el directorio se accede a la ficha de **Hotel Los Andes** y a sus pestañas (información, servicios y tarifas, documentos, evaluaciones, incidentes). El botón de cerrar sesión regresa al login.
+| Pantalla | Administrador | Gestor | Evaluador |
+|---|---|---|---|
+| Inicio, Proveedores, Comparar, Configuración | ✅ | ✅ | ✅ |
+| Documentos (global), Reportes, Registrar proveedor | ✅ | ✅ | ❌ |
+| Servicios/tarifas y documentos del proveedor (crear, editar) | ✅ | ✅ | solo lectura |
+| Evaluaciones, Incidentes (crear), recalcular Análisis IA | ✅ | solo lectura | ✅ |
 
-## Estructura
-
-```
-TurisPro/                         # raíz del repositorio
-├── index.html                    # Redirige al frontend
-├── backend/                      # API REST (Node 22 + SQLite) - ver backend/README.md
-└── frontend/
-    ├── index.html                # Punto de entrada (redirige al login)
-    ├── src/
-    │   ├── assets/
-    │   │   ├── css/turispro-sidebar.css   # Estilos del menú lateral (compartidos)
-    │   │   ├── css/turispro-base.css      # Normalización responsive (aún sin enlazar)
-    │   │   └── js/
-    │   │       ├── sidebar.js    # Menú lateral compartido: opciones, usuario, logout
-    │   │       ├── clock.js      # Reloj en vivo (zona America/Bogota)
-    │   │       ├── api.js        # Cliente de la API REST (con modo demo)
-    │   │       └── nav-layout.js # Toasts y menú móvil (aún sin enlazar)
-    │   ├── pages/                # Pantallas principales
-    │   │   ├── auth/             # login
-    │   │   ├── dashboard/        # dashboard
-    │   │   ├── providers/        # directory, register, compare
-    │   │   │   └── hotel-los-andes/  # detail, services-and-rates, documents, evaluations, incidents
-    │   │   ├── risk/             # ai-risk-analysis
-    │   │   ├── reports/          # executive-analytics
-    │   │   └── settings/         # settings
-    │   └── variants/             # Diseños alternativos (mismo esquema de carpetas)
-    ├── assets/images/            # Logo de TurisPro
-    ├── design-system/            # TurisPro Corporate System y Celeste Corporate System
-    └── docs/                     # Índice de pantallas y capturas
-```
-
-### Menú lateral compartido
-
-El menú ya no se copia en cada HTML. Cada pantalla incluye, donde va el menú:
-
-```html
-<script src="../../assets/js/sidebar.js"></script>
-```
-
-y, en el `<head>`, `turispro-sidebar.css`. Para agregar o cambiar una opción se edita
-solo el arreglo `NAV_ITEMS` de `sidebar.js`. La opción activa se calcula según la URL.
-
-## Variantes
-
-| Archivo | Descripción |
-|---|---|
-| `variants/auth/login-alt.html` | Login con cabecera de texto en lugar del logo |
-| `variants/dashboard/dashboard-celeste.html` | Versión con el sistema de diseño Celeste |
-| `variants/providers/compare-alt.html` | Segunda versión de comparar proveedores |
-| `variants/providers/hotel-los-andes/detail-celeste.html` | Ficha del proveedor en tema Celeste |
-| `variants/reports/executive-analytics-alt.html` | Segunda versión de reportes |
-| `variants/settings/settings-alt.html` | Segunda versión de configuración |
-
-## Sistema de diseño
-
-Los tokens (colores, tipografía, espaciado) están documentados en `design-system/`.
-
-## Pendiente
-
-- Los datos son estáticos (maquetas); falta conectar un backend y autenticación real.
-- Extraer la cabecera superior y la configuración de Tailwind (`tailwind-config`) a archivos compartidos; hoy hay variantes de paleta distintas entre pantallas.
-- Enlazar `turispro-base.css` y `nav-layout.js` (menú móvil, toasts) cuando se decida activar la versión responsive.
+- El menú, la guardia de páginas y los botones se controlan en `src/assets/js/sidebar.js` (`NAV_ITEMS`, `PAGE_ACCESS`).
+- Para ocultar un botón o bloque a ciertos roles: `data-tp-roles="ADMINISTRADOR GESTOR_PROVEEDORES"`.
+- La seguridad real está en el backend (`requerirRol` en `router.js`); `menuPorRol` en `authController.js` debe mantenerse igual que `NAV_ITEMS`.

@@ -1,6 +1,9 @@
 # Entorno y Secretos
 .env
 *.env.local
+secrets/.env
+secrets/.env.*
+!secrets/.env.example
 
 # Bases de datos SQLite locales
 *.db
